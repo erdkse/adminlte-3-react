@@ -1,13 +1,83 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import '../node_modules/bootstrap/dist/css/bootstrap.css';
+@import '../node_modules/admin-lte/dist/css/adminlte.css';
+
+::-webkit-scrollbar {
+  width: 0px;
+  /* remove scrollbar space */
+  background: transparent;
+  /* optional: just make scrollbar invisible */
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+  background: #ff0000;
+}
+
+body {
+  min-height: 100vh;
+}
+
+#root {
+  /* height: calc(100vh - 112px); */
+  min-height: 100vh;
+}
+
+.content-wrapper {
+  min-height: calc(100vh - 112px);
+}
+
+.main-header button {
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.main-sidebar {
+  overflow-x: hidden;
+  z-index: 1001;
+}
+
+#sidebar-overlay {
+  z-index: 1000;
+}
+
+.login-card-body,
+.register-card-body {
+  background: #fff;
+  padding: 20px;
+  border-top: 0;
+  color: #666;
+}
+
+.login-card-body .input-group .input-group-text,
+.register-card-body .input-group .input-group-text {
+  color: #777;
+  background-color: transparent;
+}
+
+.login-card-body .input-group .form-control,
+.register-card-body .input-group .form-control {
+  border-right: none;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+  height: 8px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #343a40dd;
+  border-radius: 8px;
+}
+
+/*  */
+
+.card.user-list tr:hover {
+  cursor: pointer;
+}
+
+.card.card-primary .card-header {
+  background-color: #4f5962;
 }
