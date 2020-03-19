@@ -8,7 +8,6 @@ class MenuSidebar extends Component {
   }
 
   render() {
-    console.log('AAA', this);
     return (
       <aside className="main-sidebar sidebar-dark-primary elevation-4">
         <Link to="/" className="brand-link">

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const intance = axios.create({
-  baseURL: 'http://localhost:5000/v1'
+  baseURL: 'http://' + window.location.host
 });
 
 if (localStorage.getItem('token')) {

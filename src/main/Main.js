@@ -17,7 +17,7 @@ class Main extends Component {
   constructor() {
     super();
     this.state = {
-      isMenuSidebarCollapsed: true,
+      isMenuSidebarCollapsed: false,
       user: {}
     };
     console.log('[Main] constructor');
@@ -70,7 +70,7 @@ class Main extends Component {
   componentDidMount() {
     console.log('[Main] componentDidMount', '\nprops', this.props);
     axios
-      .get('/users/profile', {
+      .get('/mock/profile.json', {
         Authorization: 'Bearer ' + localStorage.getItem('token')
       })
       .then(response => {
