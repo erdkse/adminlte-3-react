@@ -1,10 +1,11 @@
-/* eslint-disable no-console */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Header from './header/Header';
 import Footer from './footer/Footer';
 import MenuSidebar from './menu-sidebar/MenuSidebar';
 import Dashboard from '../pages/Dashboard';
+
+let updateUser = true;
 
 const Main = () => {
   const [userState, updateUserState] = useState({
@@ -12,6 +13,7 @@ const Main = () => {
       data: { email: 'mail@example.com', image: null },
     },
   });
+
   const [menusidebarState, updateMenusidebarState] = useState({
     isMenuSidebarCollapsed: false,
   });
@@ -21,6 +23,20 @@ const Main = () => {
       isMenuSidebarCollapsed: !menusidebarState.isMenuSidebarCollapsed,
     });
   };
+
+  useEffect(() => {
+    if (updateUser) {
+      updateUserState({
+        user: {
+          data: { email: 'mail@example.com', image: null },
+        },
+      });
+    }
+
+    return () => {
+      updateUser = false;
+    };
+  });
 
   document.body.classList.remove('register-page');
   document.body.classList.remove('login-page');
