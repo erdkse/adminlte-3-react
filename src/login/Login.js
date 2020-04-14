@@ -1,76 +1,111 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import axios from './../utils/axios';
+import React from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import axios from '../utils/axios';
 
-class Login extends Component {
-  notificationSystem;
-  login = event => {
+const Login = () => {
+  const history = useHistory();
+
+  let emailInput = null;
+  let passwordInput = null;
+
+  const setEmailInputRef = (element) => {
+    emailInput = element;
+  };
+
+  const setPasswordInputRef = (element) => {
+    passwordInput = element;
+  };
+
+  const login = (event) => {
     axios
-      .post('/auth/login', {
-        email: this.refs.email.value,
-        password: this.refs.password.value
+      .post('/v1/auth/signin', {
+        email: emailInput.value,
+        password: passwordInput.value
       })
-      .then(response => {
-        localStorage.setItem('token', response.data.token.accessToken);
+      .then((response) => {
+        localStorage.setItem('token', response.data.token);
         document.body.classList.remove('login-page');
-        this.props.history.push('/');
+        document.body.classList.remove('hold-transition');
+
+        toast.success('Giriş başarılı');
+        history.push('/');
+      })
+      // eslint-disable-next-line no-unused-vars
+      .catch((error) => {
+        toast.error('Giriş başarısız!');
       });
 
     event.preventDefault();
   };
 
-  render() {
-    document.body.classList = 'login-page';
-    return (
-      <div className="login-box">
-        <div className="login-logo">
-          <Link to="/">
-            <b>Admin</b>Panel
-          </Link>
-        </div>
+  document.body.classList = 'hold-transition login-page';
 
-        <div className="card">
-          <div className="card-body login-card-body">
-            <p className="login-box-msg">Sign in to start your session</p>
-            <form onSubmit={this.login}>
-              <div className="input-group mb-3">
-                <input
-                  type="email"
-                  ref="email"
-                  className="form-control"
-                  placeholder="Email"
-                />
-                <div className="input-group-append">
-                  <span className="fa fa-envelope input-group-text" />
+  return (
+    <div className="login-box">
+      <div className="login-logo">
+        <Link to="/">
+          <b>Admin</b>
+          <span>LTE</span>
+        </Link>
+      </div>
+      <div className="card">
+        <div className="card-body login-card-body">
+          <p className="login-box-msg">Sign in to start your session</p>
+          <form onSubmit={login}>
+            <div className="input-group mb-3">
+              <input type="email" ref={setEmailInputRef} className="form-control" placeholder="Email" />
+              <div className="input-group-append">
+                <div className="input-group-text">
+                  <span className="fas fa-envelope" />
                 </div>
               </div>
-              <div className="input-group mb-3">
-                <input
-                  type="password"
-                  ref="password"
-                  className="form-control"
-                  placeholder="Password"
-                />
-                <div className="input-group-append">
-                  <span className="fa fa-lock input-group-text" />
+            </div>
+            <div className="input-group mb-3">
+              <input type="password" ref={setPasswordInputRef} className="form-control" placeholder="Password" />
+              <div className="input-group-append">
+                <div className="input-group-text">
+                  <span className="fas fa-lock" />
                 </div>
               </div>
-              <div className="row">
-                <div className="col-4 offset-8">
-                  <button
-                    className="btn btn-primary btn-block btn-flat"
-                    type="submit"
-                  >
-                    Sign In
-                  </button>
+            </div>
+            <div className="row">
+              <div className="col-8">
+                <div className="icheck-primary">
+                  <input type="checkbox" id="remember" />
+                  <label htmlFor="remember">Remember Me</label>
                 </div>
               </div>
-            </form>
+              <div className="col-4">
+                <button type="submit" className="btn btn-primary btn-block">
+                  Sign In
+                </button>
+              </div>
+            </div>
+          </form>
+          <div className="social-auth-links text-center mb-3">
+            <p>- OR -</p>
+            <button type="button" className="btn btn-block btn-primary">
+              <i className="fab fa-facebook mr-2" />
+              <span> Sign in using Facebook</span>
+            </button>
+            <button type="button" className="btn btn-block btn-danger">
+              <i className="fab fa-google-plus mr-2" />
+              <span> Sign in using Google+</span>
+            </button>
           </div>
+          <p className="mb-1">
+            <Link to="/forgot-password">I forgot my password</Link>
+          </p>
+          <p className="mb-0">
+            <Link to="/register" className="text-center">
+              Register a new membership
+            </Link>
+          </p>
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default Login;

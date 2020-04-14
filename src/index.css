@@ -1,14 +1,28 @@
+@import '../node_modules/admin-lte/plugins/fontawesome-free/css/all.min.css';
 @import '../node_modules/bootstrap/dist/css/bootstrap.css';
-@import '../node_modules/admin-lte/dist/css/adminlte.css';
+@import '../node_modules/admin-lte/plugins/icheck-bootstrap/icheck-bootstrap.min.css';
+@import '../node_modules/admin-lte/dist/css/adminlte.min.css';
 
-::-webkit-scrollbar {
-  width: 0px;
-  /* remove scrollbar space */
+.main-header .navbar-nav .nav-item .nav-link {
   background: transparent;
-  /* optional: just make scrollbar invisible */
+  border: none;
+  outline: none;
+  cursor: pointer;
 }
 
-/* optional: show position indicator in red */
+.navbar-nav > .user-menu .user-image {
+  height: 1.6rem;
+  width: 1.6rem;
+  margin-right: 0;
+  margin-left: -8px;
+}
+
+/* 
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
 ::-webkit-scrollbar-thumb {
   background: #ff0000;
 }
@@ -18,7 +32,6 @@ body {
 }
 
 #root {
-  /* height: calc(100vh - 112px); */
   min-height: 100vh;
 }
 
@@ -72,12 +85,10 @@ body {
   border-radius: 8px;
 }
 
-/*  */
-
 .card.user-list tr:hover {
   cursor: pointer;
 }
 
 .card.card-primary .card-header {
   background-color: #4f5962;
-}
+} */
