@@ -1,33 +1,22 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from '../utils/axios';
+import Button from '../components/Button';
 
 const Register = () => {
   const history = useHistory();
 
-  let emailInput = null;
-  let passwordInput = null;
-  let passwordRetypeInput = null;
-
-  const setEmailInputRef = (element) => {
-    emailInput = element;
-  };
-
-  const setPasswordInputRef = (element) => {
-    passwordInput = element;
-  };
-
-  const setPasswordRetypeInputRef = (element) => {
-    passwordRetypeInput = element;
-  };
+  const emailInputRef = useRef(null);
+  const passwordInputRef = useRef(null);
+  const passwordRetypeInputRef = useRef(null);
 
   const register = (event) => {
-    if (passwordInput.value === passwordRetypeInput.value) {
+    if (passwordInputRef.current.value === passwordRetypeInputRef.current.value) {
       axios
         .post('/v1/auth/signup', {
-          email: emailInput.value,
-          password: passwordInput.value
+          email: emailInputRef.current.value,
+          password: passwordInputRef.current.value
         })
         .then((response) => {
           // localStorage.setItem('token', response.data.token);
@@ -65,7 +54,7 @@ const Register = () => {
           <p className="login-box-msg">Register a new membership</p>
           <form onSubmit={register}>
             <div className="input-group mb-3">
-              <input ref={setEmailInputRef} type="email" className="form-control" placeholder="Email" />
+              <input ref={emailInputRef} type="email" className="form-control" placeholder="Email" />
               <div className="input-group-append">
                 <div className="input-group-text">
                   <span className="fas fa-envelope" />
@@ -73,7 +62,7 @@ const Register = () => {
               </div>
             </div>
             <div className="input-group mb-3">
-              <input ref={setPasswordInputRef} type="password" className="form-control" placeholder="Password" />
+              <input ref={passwordInputRef} type="password" className="form-control" placeholder="Password" />
               <div className="input-group-append">
                 <div className="input-group-text">
                   <span className="fas fa-lock" />
@@ -81,7 +70,7 @@ const Register = () => {
               </div>
             </div>
             <div className="input-group mb-3">
-              <input ref={setPasswordRetypeInputRef} type="password" className="form-control" placeholder="Retype password" />
+              <input ref={passwordRetypeInputRef} type="password" className="form-control" placeholder="Retype password" />
               <div className="input-group-append">
                 <div className="input-group-text">
                   <span className="fas fa-lock" />
@@ -99,22 +88,14 @@ const Register = () => {
                 </div>
               </div>
               <div className="col-4">
-                <button type="submit" className="btn btn-primary btn-block">
-                  Register
-                </button>
+                <Button type="submit" block text="Register" />
               </div>
             </div>
           </form>
           <div className="social-auth-links text-center">
             <p>- OR -</p>
-            <button type="button" className="btn btn-block btn-primary">
-              <i className="fab fa-facebook mr-2" />
-              <span>Sign up using Facebook</span>
-            </button>
-            <button type="button" className="btn btn-block btn-danger">
-              <i className="fab fa-google-plus mr-2" />
-              <span>Sign up using Google+</span>
-            </button>
+            <Button block icon="facebook" text="Sign in using Facebook" />
+            <Button block icon="google" text="Sign in using Google" theme="danger" />
           </div>
           <Link to="/login" className="text-center">
             I already have a membership

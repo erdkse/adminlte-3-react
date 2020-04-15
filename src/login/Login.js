@@ -1,40 +1,40 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from '../utils/axios';
+import Button from '../components/Button';
 
 const Login = () => {
+  const [isAuthLoading, setAuthLoading] = useState(false);
+
   const history = useHistory();
 
-  let emailInput = null;
-  let passwordInput = null;
-
-  const setEmailInputRef = (element) => {
-    emailInput = element;
-  };
-
-  const setPasswordInputRef = (element) => {
-    passwordInput = element;
-  };
+  const emailInputRef = useRef(null);
+  const passwordInputRef = useRef(null);
 
   const login = (event) => {
-    axios
-      .post('/v1/auth/signin', {
-        email: emailInput.value,
-        password: passwordInput.value
-      })
-      .then((response) => {
-        localStorage.setItem('token', response.data.token);
-        document.getElementById('root').classList.remove('login-page');
-        document.getElementById('root').classList.remove('hold-transition');
+    setAuthLoading(true);
+    setTimeout(() => {
+      axios
+        .post('/v1/auth/signin', {
+          email: emailInputRef.current.value,
+          password: passwordInputRef.current.value
+        })
+        .then((response) => {
+          localStorage.setItem('token', response.data.token);
+          document.getElementById('root').classList.remove('login-page');
+          document.getElementById('root').classList.remove('hold-transition');
 
-        toast.success('Giriş başarılı');
-        history.push('/');
-      })
-      // eslint-disable-next-line no-unused-vars
-      .catch((error) => {
-        toast.error('Giriş başarısız!');
-      });
+          toast.success('Giriş başarılı');
+          history.push('/');
+          setAuthLoading(false);
+        })
+        // eslint-disable-next-line no-unused-vars
+        .catch((error) => {
+          setAuthLoading(false);
+          toast.error('Giriş başarısız!');
+        });
+    }, 2000);
 
     event.preventDefault();
   };
@@ -54,7 +54,7 @@ const Login = () => {
           <p className="login-box-msg">Sign in to start your session</p>
           <form onSubmit={login}>
             <div className="input-group mb-3">
-              <input type="email" ref={setEmailInputRef} className="form-control" placeholder="Email" />
+              <input type="email" ref={emailInputRef} className="form-control" placeholder="Email" />
               <div className="input-group-append">
                 <div className="input-group-text">
                   <span className="fas fa-envelope" />
@@ -62,7 +62,7 @@ const Login = () => {
               </div>
             </div>
             <div className="input-group mb-3">
-              <input type="password" ref={setPasswordInputRef} className="form-control" placeholder="Password" />
+              <input type="password" ref={passwordInputRef} className="form-control" placeholder="Password" />
               <div className="input-group-append">
                 <div className="input-group-text">
                   <span className="fas fa-lock" />
@@ -77,22 +77,14 @@ const Login = () => {
                 </div>
               </div>
               <div className="col-4">
-                <button type="submit" className="btn btn-primary btn-block">
-                  Sign In
-                </button>
+                <Button block text="Sign In" type="submit" isLoading={isAuthLoading} />
               </div>
             </div>
           </form>
           <div className="social-auth-links text-center mb-3">
             <p>- OR -</p>
-            <button type="button" className="btn btn-block btn-primary">
-              <i className="fab fa-facebook mr-2" />
-              <span> Sign in using Facebook</span>
-            </button>
-            <button type="button" className="btn btn-block btn-danger">
-              <i className="fab fa-google-plus mr-2" />
-              <span> Sign in using Google+</span>
-            </button>
+            <Button block icon="facebook" text="Sign in using Facebook" />
+            <Button block icon="google" text="Sign in using Google" theme="danger" />
           </div>
           <p className="mb-1">
             <Link to="/forgot-password">I forgot my password</Link>
