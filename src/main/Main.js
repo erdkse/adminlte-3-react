@@ -10,23 +10,23 @@ let updateUser = true;
 const Main = () => {
   const user = {
     user: {
-      data: { email: 'mail@example.com', image: null },
-    },
+      data: { email: 'mail@example.com', image: null }
+    }
   };
 
   const [userState, updateUserState] = useState({
     user: {
-      data: { email: '', image: null },
-    },
+      data: { email: '', image: null }
+    }
   });
 
   const [menusidebarState, updateMenusidebarState] = useState({
-    isMenuSidebarCollapsed: false,
+    isMenuSidebarCollapsed: false
   });
 
   const toggleMenuSidebar = () => {
     updateMenusidebarState({
-      isMenuSidebarCollapsed: !menusidebarState.isMenuSidebarCollapsed,
+      isMenuSidebarCollapsed: !menusidebarState.isMenuSidebarCollapsed
     });
   };
 
@@ -34,8 +34,8 @@ const Main = () => {
     if (updateUser) {
       updateUserState({
         user: {
-          data: { email: 'mail@example.com', image: null },
-        },
+          data: { email: 'mail@example.com', image: null }
+        }
       });
     }
 
@@ -44,18 +44,18 @@ const Main = () => {
     };
   }, [user]);
 
-  document.body.classList.remove('register-page');
-  document.body.classList.remove('login-page');
-  document.body.classList.remove('hold-transition');
+  document.getElementById('root').classList.remove('register-page');
+  document.getElementById('root').classList.remove('login-page');
+  document.getElementById('root').classList.remove('hold-transition');
 
-  document.body.className += ' sidebar-mini';
+  document.getElementById('root').className += ' sidebar-mini';
 
   if (menusidebarState.isMenuSidebarCollapsed) {
-    document.body.classList.add('sidebar-collapse');
-    document.body.classList.remove('sidebar-open');
+    document.getElementById('root').classList.add('sidebar-collapse');
+    document.getElementById('root').classList.remove('sidebar-open');
   } else {
-    document.body.classList.add('sidebar-open');
-    document.body.classList.remove('sidebar-collapse');
+    document.getElementById('root').classList.add('sidebar-open');
+    document.getElementById('root').classList.remove('sidebar-collapse');
   }
 
   return (
@@ -73,11 +73,7 @@ const Main = () => {
         </section>
       </div>
       <Footer />
-      <div
-        id="sidebar-overlay"
-        role="complementary"
-        onClick={toggleMenuSidebar}
-      />
+      <div id="sidebar-overlay" role="presentation" onClick={toggleMenuSidebar} onKeyDown={() => {}} />
     </div>
   );
 };

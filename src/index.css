@@ -1,7 +1,12 @@
 @import '../node_modules/admin-lte/plugins/fontawesome-free/css/all.min.css';
-@import '../node_modules/bootstrap/dist/css/bootstrap.css';
+/* @import '../node_modules/bootstrap/dist/css/bootstrap.css'; */
 @import '../node_modules/admin-lte/plugins/icheck-bootstrap/icheck-bootstrap.min.css';
 @import '../node_modules/admin-lte/dist/css/adminlte.min.css';
+
+#root {
+  width: 100vw;
+  height: 100vh;
+}
 
 .main-header .navbar-nav .nav-item .nav-link {
   background: transparent;

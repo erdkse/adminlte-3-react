@@ -4,7 +4,9 @@ import { Link } from 'react-router-dom';
 const NotificationsDropdown = () => {
   const dropdownRef = useRef(null);
 
-  const [dropdownState, updateDropdownState] = useState({ isDropdownOpen: false });
+  const [dropdownState, updateDropdownState] = useState({
+    isDropdownOpen: false
+  });
 
   const toggleDropdown = () => {
     updateDropdownState({ isDropdownOpen: !dropdownState.isDropdownOpen });
@@ -30,7 +32,7 @@ const NotificationsDropdown = () => {
   }
 
   return (
-    <li ref={dropdownRef} className="nav-item dropdown">
+    <li ref={dropdownRef} className="nav-item d-none d-sm-inline-block dropdown">
       <button onClick={toggleDropdown} type="button" className="nav-link" data-toggle="dropdown">
         <i className="far fa-bell" />
         <span className="badge badge-warning navbar-badge">15</span>
