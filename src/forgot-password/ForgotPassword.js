@@ -16,7 +16,7 @@ const ForgotPassword = () => {
     event.preventDefault();
   };
 
-  document.body.classList = 'hold-transition login-page';
+  document.getElementById('root').classList = 'hold-transition login-page';
 
   return (
     <div className="login-box">

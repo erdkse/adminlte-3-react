@@ -51,12 +51,12 @@ MenuSidebar.propTypes = {
 };
 
 MenuSidebar.defaultProps = {
-  user: PropTypes.shape({
-    data: PropTypes.shape({
-      email: PropTypes.string.isRequired,
-      image: PropTypes.string
-    })
-  })
+  user: {
+    data: {
+      email: '',
+      image: null
+    }
+  }
 };
 
 export default MenuSidebar;

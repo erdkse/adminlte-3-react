@@ -3,7 +3,9 @@ import React, { useRef, useEffect, useState } from 'react';
 const LanguagesDropdown = () => {
   const dropdownRef = useRef(null);
 
-  const [dropdownState, updateDropdownState] = useState({ isDropdownOpen: false });
+  const [dropdownState, updateDropdownState] = useState({
+    isDropdownOpen: false
+  });
 
   const toggleDropdown = () => {
     updateDropdownState({ isDropdownOpen: !dropdownState.isDropdownOpen });
@@ -29,7 +31,7 @@ const LanguagesDropdown = () => {
   }
 
   return (
-    <li ref={dropdownRef} className="nav-item dropdown">
+    <li ref={dropdownRef} className="nav-item d-none d-sm-inline-block dropdown">
       <button onClick={toggleDropdown} type="button" className="nav-link" data-toggle="dropdown">
         <i className="flag-icon flag-icon-tr" />
       </button>

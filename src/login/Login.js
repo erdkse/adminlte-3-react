@@ -25,8 +25,8 @@ const Login = () => {
       })
       .then((response) => {
         localStorage.setItem('token', response.data.token);
-        document.body.classList.remove('login-page');
-        document.body.classList.remove('hold-transition');
+        document.getElementById('root').classList.remove('login-page');
+        document.getElementById('root').classList.remove('hold-transition');
 
         toast.success('Giriş başarılı');
         history.push('/');
@@ -39,7 +39,7 @@ const Login = () => {
     event.preventDefault();
   };
 
-  document.body.classList = 'hold-transition login-page';
+  document.getElementById('root').classList = 'hold-transition login-page';
 
   return (
     <div className="login-box">

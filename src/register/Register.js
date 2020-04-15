@@ -31,8 +31,8 @@ const Register = () => {
         })
         .then((response) => {
           // localStorage.setItem('token', response.data.token);
-          document.body.classList.remove('register-page');
-          document.body.classList.remove('hold-transition');
+          document.getElementById('root').classList.remove('register-page');
+          document.getElementById('root').classList.remove('hold-transition');
 
           // eslint-disable-next-line no-console
           console.log('Response', response);
@@ -50,7 +50,7 @@ const Register = () => {
     event.preventDefault();
   };
 
-  document.body.classList = 'hold-transition register-page';
+  document.getElementById('root').classList = 'hold-transition register-page';
 
   return (
     <div className="register-box">
