@@ -8,7 +8,7 @@ const icons = {
 };
 
 const Button = (props) => {
-  const { text, isLoading, icon, block, theme } = props;
+  const { text, isLoading, icon, block, theme, disabled, type } = props;
 
   let spinnerTemplate;
   let iconTemplate;
@@ -22,7 +22,8 @@ const Button = (props) => {
   }
 
   return (
-    <button type="submit" className={`btn btn-${theme} ${block ? 'btn-block' : ''}`}>
+    // eslint-disable-next-line react/button-has-type
+    <button type={type} className={`btn btn-${theme} ${block ? 'btn-block' : ''}`} disabled={isLoading || disabled}>
       {iconTemplate}
       <span className="mr-2">{text}</span>
       {spinnerTemplate}
@@ -35,14 +36,18 @@ Button.propTypes = {
   isLoading: PropTypes.bool,
   icon: PropTypes.string,
   block: PropTypes.bool,
-  theme: PropTypes.string
+  theme: PropTypes.string,
+  disabled: PropTypes.bool,
+  type: PropTypes.string
 };
 
 Button.defaultProps = {
   isLoading: false,
   icon: null,
   block: false,
-  theme: 'primary'
+  theme: 'primary',
+  disabled: false,
+  type: 'button'
 };
 
 export default Button;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from '../utils/axios';
@@ -7,22 +7,14 @@ import Button from '../components/Button';
 const Login = () => {
   const history = useHistory();
 
-  let emailInput = null;
-  let passwordInput = null;
-
-  const setEmailInputRef = (element) => {
-    emailInput = element;
-  };
-
-  const setPasswordInputRef = (element) => {
-    passwordInput = element;
-  };
+  const emailInputRef = useRef(null);
+  const passwordInputRef = useRef(null);
 
   const login = (event) => {
     axios
       .post('/v1/auth/signin', {
-        email: emailInput.value,
-        password: passwordInput.value
+        email: emailInputRef.current.value,
+        password: passwordInputRef.current.value
       })
       .then((response) => {
         localStorage.setItem('token', response.data.token);
@@ -55,7 +47,7 @@ const Login = () => {
           <p className="login-box-msg">Sign in to start your session</p>
           <form onSubmit={login}>
             <div className="input-group mb-3">
-              <input type="email" ref={setEmailInputRef} className="form-control" placeholder="Email" />
+              <input type="email" ref={emailInputRef} className="form-control" placeholder="Email" />
               <div className="input-group-append">
                 <div className="input-group-text">
                   <span className="fas fa-envelope" />
@@ -63,7 +55,7 @@ const Login = () => {
               </div>
             </div>
             <div className="input-group mb-3">
-              <input type="password" ref={setPasswordInputRef} className="form-control" placeholder="Password" />
+              <input type="password" ref={passwordInputRef} className="form-control" placeholder="Password" />
               <div className="input-group-append">
                 <div className="input-group-text">
                   <span className="fas fa-lock" />
@@ -78,7 +70,7 @@ const Login = () => {
                 </div>
               </div>
               <div className="col-4">
-                <Button block text="Sign In" />
+                <Button block text="Sign In" type="submit" />
               </div>
             </div>
           </form>
