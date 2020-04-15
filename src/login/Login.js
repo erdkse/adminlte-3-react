@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from '../utils/axios';
+import Button from '../components/Button';
 
 const Login = () => {
   const history = useHistory();
@@ -77,22 +78,14 @@ const Login = () => {
                 </div>
               </div>
               <div className="col-4">
-                <button type="submit" className="btn btn-primary btn-block">
-                  Sign In
-                </button>
+                <Button block text="Sign In" />
               </div>
             </div>
           </form>
           <div className="social-auth-links text-center mb-3">
             <p>- OR -</p>
-            <button type="button" className="btn btn-block btn-primary">
-              <i className="fab fa-facebook mr-2" />
-              <span> Sign in using Facebook</span>
-            </button>
-            <button type="button" className="btn btn-block btn-danger">
-              <i className="fab fa-google-plus mr-2" />
-              <span> Sign in using Google+</span>
-            </button>
+            <Button block icon="facebook" text="Sign in using Facebook" />
+            <Button block icon="google" text="Sign in using Google" theme="danger" />
           </div>
           <p className="mb-1">
             <Link to="/forgot-password">I forgot my password</Link>
