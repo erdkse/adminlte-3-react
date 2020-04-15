@@ -1,33 +1,40 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from '../utils/axios';
 import Button from '../components/Button';
 
 const Login = () => {
+  const [isAuthLoading, setAuthLoading] = useState(false);
+
   const history = useHistory();
 
   const emailInputRef = useRef(null);
   const passwordInputRef = useRef(null);
 
   const login = (event) => {
-    axios
-      .post('/v1/auth/signin', {
-        email: emailInputRef.current.value,
-        password: passwordInputRef.current.value
-      })
-      .then((response) => {
-        localStorage.setItem('token', response.data.token);
-        document.getElementById('root').classList.remove('login-page');
-        document.getElementById('root').classList.remove('hold-transition');
+    setAuthLoading(true);
+    setTimeout(() => {
+      axios
+        .post('/v1/auth/signin', {
+          email: emailInputRef.current.value,
+          password: passwordInputRef.current.value
+        })
+        .then((response) => {
+          localStorage.setItem('token', response.data.token);
+          document.getElementById('root').classList.remove('login-page');
+          document.getElementById('root').classList.remove('hold-transition');
 
-        toast.success('Giriş başarılı');
-        history.push('/');
-      })
-      // eslint-disable-next-line no-unused-vars
-      .catch((error) => {
-        toast.error('Giriş başarısız!');
-      });
+          toast.success('Giriş başarılı');
+          history.push('/');
+          setAuthLoading(false);
+        })
+        // eslint-disable-next-line no-unused-vars
+        .catch((error) => {
+          setAuthLoading(false);
+          toast.error('Giriş başarısız!');
+        });
+    }, 2000);
 
     event.preventDefault();
   };
@@ -70,7 +77,7 @@ const Login = () => {
                 </div>
               </div>
               <div className="col-4">
-                <Button block text="Sign In" type="submit" />
+                <Button block text="Sign In" type="submit" isLoading={isAuthLoading} />
               </div>
             </div>
           </form>
