@@ -1,10 +1,14 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from '../utils/axios';
 import Button from '../components/Button';
 
 const Register = () => {
+  const [isAuthLoading, setAuthLoading] = useState(false);
+  const [isGoogleAuthLoading, setGoogleAuthLoading] = useState(false);
+  const [isFacebookAuthLoading, setFacebookAuthLoading] = useState(false);
+
   const history = useHistory();
 
   const emailInputRef = useRef(null);
@@ -13,30 +17,51 @@ const Register = () => {
 
   const register = (event) => {
     if (passwordInputRef.current.value === passwordRetypeInputRef.current.value) {
-      axios
-        .post('/v1/auth/signup', {
-          email: emailInputRef.current.value,
-          password: passwordInputRef.current.value
-        })
-        .then((response) => {
-          // localStorage.setItem('token', response.data.token);
-          document.getElementById('root').classList.remove('register-page');
-          document.getElementById('root').classList.remove('hold-transition');
+      setAuthLoading(true);
+      setTimeout(() => {
+        axios
+          .post('/v1/auth/signup', {
+            email: emailInputRef.current.value,
+            password: passwordInputRef.current.value
+          })
+          .then((response) => {
+            // localStorage.setItem('token', response.data.token);
+            document.getElementById('root').classList.remove('register-page');
+            document.getElementById('root').classList.remove('hold-transition');
 
-          // eslint-disable-next-line no-console
-          console.log('Response', response);
-          toast.success('Kayıt başarılı');
-          history.push('/login');
-        })
-        // eslint-disable-next-line no-unused-vars
-        .catch((error) => {
-          toast.error('Kayıt başarısız!');
-        });
+            // eslint-disable-next-line no-console
+            console.log('Response', response);
+            setAuthLoading(false);
+            toast.success('Kayıt başarılı');
+            history.push('/login');
+          })
+          // eslint-disable-next-line no-unused-vars
+          .catch((error) => {
+            setAuthLoading(false);
+            toast.error('Kayıt başarısız!');
+          });
+      }, 2000);
     } else {
       toast.warn('Şifreler uyuşmuyor!');
     }
 
     event.preventDefault();
+  };
+
+  const loginByGoogle = () => {
+    setGoogleAuthLoading(true);
+    setTimeout(() => {
+      toast.warn('Not implemented yet');
+      setGoogleAuthLoading(false);
+    }, 2000);
+  };
+
+  const loginByFacebook = () => {
+    setFacebookAuthLoading(true);
+    setTimeout(() => {
+      toast.warn('Not implemented yet');
+      setFacebookAuthLoading(false);
+    }, 2000);
   };
 
   document.getElementById('root').classList = 'hold-transition register-page';
@@ -88,14 +113,35 @@ const Register = () => {
                 </div>
               </div>
               <div className="col-4">
-                <Button type="submit" block text="Register" />
+                <Button
+                  type="submit"
+                  block
+                  text="Register"
+                  isLoading={isAuthLoading}
+                  disabled={isFacebookAuthLoading || isGoogleAuthLoading}
+                />
               </div>
             </div>
           </form>
           <div className="social-auth-links text-center">
             <p>- OR -</p>
-            <Button block icon="facebook" text="Sign in using Facebook" />
-            <Button block icon="google" text="Sign in using Google" theme="danger" />
+            <Button
+              block
+              icon="facebook"
+              text="Sign in using Facebook"
+              onClick={loginByFacebook}
+              isLoading={isFacebookAuthLoading}
+              disabled={isAuthLoading || isGoogleAuthLoading}
+            />
+            <Button
+              block
+              icon="google"
+              theme="danger"
+              text="Sign in using Google"
+              onClick={loginByGoogle}
+              isLoading={isGoogleAuthLoading}
+              disabled={isAuthLoading || isFacebookAuthLoading}
+            />
           </div>
           <Link to="/login" className="text-center">
             I already have a membership
