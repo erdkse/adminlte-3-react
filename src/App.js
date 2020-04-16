@@ -12,7 +12,7 @@ import ForgetPassword from './forgot-password/ForgotPassword';
 import RecoverPassword from './recover-password/RecoverPassword';
 
 toast.configure({
-  autoClose: 5000,
+  autoClose: 3000,
   draggable: false,
   position: 'top-right',
   hideProgressBar: false,
