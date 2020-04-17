@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from '../utils/axios';
-import Button from '../components/Button';
+import Button from '../components/button/Button';
 
 const Login = () => {
   const [isAuthLoading, setAuthLoading] = useState(false);
@@ -88,13 +88,13 @@ const Login = () => {
               </div>
             </div>
             <div className="row">
-              <div className="col-8">
+              <div className="col-7">
                 <div className="icheck-primary">
                   <input type="checkbox" id="remember" />
                   <label htmlFor="remember">Remember Me</label>
                 </div>
               </div>
-              <div className="col-4">
+              <div className="col-5">
                 <Button
                   block
                   text="Sign In"

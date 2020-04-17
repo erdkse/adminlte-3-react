@@ -1,12 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const ContentHeader = props => {
+const ContentHeader = (props) => {
+  const { title } = props;
   return (
     <section className="content-header">
       <div className="container-fluid">
         <div className="row mb-2">
           <div className="col-sm-6">
-            <h1>{props.title}</h1>
+            <h1>{title}</h1>
           </div>
           <div className="col-sm-6">
             <ol className="breadcrumb float-sm-right">
@@ -18,9 +20,12 @@ const ContentHeader = props => {
           </div>
         </div>
       </div>
-      {/* /.container-fluid */}
     </section>
   );
+};
+
+ContentHeader.propTypes = {
+  title: PropTypes.string.isRequired
 };
 
 export default ContentHeader;
