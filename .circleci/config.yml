@@ -1,19 +1,4 @@
-version: 2.1
-
-orbs:
-  node: circleci/node@1.1.6
-  heroku: circleci/heroku@1.0.1
-
 jobs:
-  build-and-test:
-    executor:
-      name: node/default
-    steps:
-      - checkout
-      - node/with-cache:
-          steps:
-            - run: yarn install
-            - run: yarn test
   deploy:
     executor: heroku/default
     steps:
@@ -24,17 +9,10 @@ jobs:
             echo "The command above installs Heroku, the command below deploys.
             What you do inbetween is up to you!"
       - heroku/deploy-via-git
-
+orbs:
+  heroku: circleci/heroku@1.0.1
+version: 2.1
 workflows:
-  build-and-test:
-    jobs:
-      - build-and-test
   heroku_deploy:
     jobs:
-      - build
-      - heroku/deploy-via-git:
-          requires:
-            - build # only run deploy-via-git job if the build job has completed
-          filters:
-            branches:
-              only: master # only run deploy-via-git job on master branch
+      - deploy
