@@ -2,6 +2,7 @@ version: 2.1
 
 orbs:
   node: circleci/node@1.1.6
+  heroku: circleci/heroku@x.y
 
 jobs:
   build-and-test:
@@ -18,3 +19,12 @@ workflows:
   build-and-test:
     jobs:
       - build-and-test
+  heroku_deploy:
+    jobs:
+      - build
+      - heroku/deploy-via-git:
+          requires:
+            - build # only run deploy-via-git job if the build job has completed
+          filters:
+            branches:
+              only: master # only run deploy-via-git job on master branch
