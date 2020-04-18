@@ -43,18 +43,65 @@ const Login = () => {
 
   const loginByGoogle = () => {
     setGoogleAuthLoading(true);
-    setTimeout(() => {
-      toast.warn('Not implemented yet');
-      setGoogleAuthLoading(false);
-    }, 2000);
+    const auth2 = window.gapi.auth2.getAuthInstance();
+
+    auth2.signIn().then(
+      (res) => {
+        // If authorization pass well, we take profile info
+        const basicProfile = res.getBasicProfile();
+        const data = {};
+        data.identity = {
+          uid: basicProfile.getId(),
+          provider: 'google'
+        };
+        data.user = {
+          email: basicProfile.getEmail(),
+          firstName: basicProfile.getGivenName(),
+          lastName: basicProfile.getFamilyName()
+        };
+        data.auth = res.getAuthResponse();
+
+        // Send data to back end
+        setGoogleAuthLoading(false);
+        // eslint-disable-next-line no-console
+        console.log(data);
+      },
+      (err) => {
+        setGoogleAuthLoading(false);
+        // eslint-disable-next-line no-console
+        console.log('ERROR', err);
+      }
+    );
   };
 
   const loginByFacebook = () => {
     setFacebookAuthLoading(true);
-    setTimeout(() => {
-      toast.warn('Not implemented yet');
-      setFacebookAuthLoading(false);
-    }, 2000);
+
+    window.FB.getLoginStatus((resp) => {
+      // eslint-disable-next-line no-console
+      console.log('FB:status:', resp.status);
+
+      if (resp.status === 'connected') {
+        // Send data to back end
+        // eslint-disable-next-line no-console
+        console.log('SUCCESS', resp);
+        setFacebookAuthLoading(false);
+        return;
+      }
+
+      window.FB.login(
+        (response) => {
+          // eslint-disable-next-line no-console
+          console.log('FB:status:', response.status);
+          if (response.authResponse) {
+            // eslint-disable-next-line no-console
+            console.log('SUCCESS', response);
+            setFacebookAuthLoading(false);
+          }
+        },
+        { scope: 'email' }
+      );
+    });
   };
 
   document.getElementById('root').classList = 'hold-transition login-page';
