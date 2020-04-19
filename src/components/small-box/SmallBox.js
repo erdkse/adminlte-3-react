@@ -37,7 +37,7 @@ const SmallBox = (props) => {
         <i className={iconClass} />
       </div>
       <Link to={navigateTo} className="small-box-footer">
-        <span>More info</span>
+        <span className="mr-2">More info</span>
         <i className="fa fa-arrow-circle-right" />
       </Link>
     </div>
