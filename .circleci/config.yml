@@ -12,6 +12,7 @@ commands:
       - run: git config user.name "github-pipelines"
       - run: git fetch
       - run: git pull
+      - run: git merge
       - run: git add .
       - run: git commit -m "add dist folder"
 
