@@ -113,13 +113,9 @@ const Register = () => {
                 </div>
               </div>
               <div className="col-5">
-                <Button
-                  type="submit"
-                  block
-                  text="Register"
-                  isLoading={isAuthLoading}
-                  disabled={isFacebookAuthLoading || isGoogleAuthLoading}
-                />
+                <Button type="submit" block isLoading={isAuthLoading} disabled={isFacebookAuthLoading || isGoogleAuthLoading}>
+                  Register
+                </Button>
               </div>
             </div>
           </form>
@@ -128,20 +124,22 @@ const Register = () => {
             <Button
               block
               icon="facebook"
-              text="Sign in using Facebook"
               onClick={loginByFacebook}
               isLoading={isFacebookAuthLoading}
               disabled={isAuthLoading || isGoogleAuthLoading}
-            />
+            >
+              Sign in using Facebook
+            </Button>
             <Button
               block
               icon="google"
-              theme="danger"
-              text="Sign in using Google"
+              color="danger"
               onClick={loginByGoogle}
               isLoading={isGoogleAuthLoading}
               disabled={isAuthLoading || isFacebookAuthLoading}
-            />
+            >
+              Sign in using Google
+            </Button>
           </div>
           <Link to="/login" className="text-center">
             I already have a membership

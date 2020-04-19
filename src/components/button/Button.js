@@ -1,5 +1,6 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
+import { Button, Spinner } from 'reactstrap';
 
 const icons = {
   facebook: 'fab fa-facebook',
@@ -7,14 +8,14 @@ const icons = {
   googlePlus: 'fab fa-google-plus'
 };
 
-const Button = (props) => {
-  const { text, isLoading, icon, block, theme, disabled, type, onClick } = props;
+const AppButton = (props) => {
+  const { children, isLoading, icon, block, color, disabled, type, onClick, outline } = props;
 
   let spinnerTemplate;
   let iconTemplate;
 
   if (isLoading) {
-    spinnerTemplate = <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true" />;
+    spinnerTemplate = <Spinner className="ml-2" size="sm" color="light" />;
   }
 
   if (icon && icons[icon]) {
@@ -23,33 +24,35 @@ const Button = (props) => {
 
   return (
     // eslint-disable-next-line react/button-has-type
-    <button type={type} className={`btn btn-${theme} ${block ? 'btn-block' : ''}`} disabled={isLoading || disabled} onClick={onClick}>
+    <Button type={type} color={color} block={block} outline={outline} disabled={isLoading || disabled} onClick={onClick}>
       {iconTemplate}
-      <span className="mr-2">{text}</span>
+      {children}
       {spinnerTemplate}
-    </button>
+    </Button>
   );
 };
 
-Button.propTypes = {
-  text: PropTypes.string.isRequired,
+AppButton.propTypes = {
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
   isLoading: PropTypes.bool,
   icon: PropTypes.string,
   block: PropTypes.bool,
-  theme: PropTypes.string,
+  color: PropTypes.string,
   disabled: PropTypes.bool,
+  outline: PropTypes.bool,
   type: PropTypes.oneOf(['button', 'submit', 'reset']),
   onClick: PropTypes.func
 };
 
-Button.defaultProps = {
+AppButton.defaultProps = {
   isLoading: false,
   icon: null,
   block: false,
-  theme: 'primary',
+  color: 'primary',
   disabled: false,
+  outline: false,
   type: 'button',
   onClick: () => {}
 };
 
-export default Button;
+export default AppButton;
