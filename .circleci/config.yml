@@ -42,7 +42,6 @@ jobs:
         at: ~/app
       - checkout
       - heroku/install
-      - restore_workspace
       - add-dist-folder-to-git
       - heroku/deploy-via-git
 
