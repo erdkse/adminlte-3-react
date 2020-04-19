@@ -13,7 +13,6 @@ commands:
       - run: git pull origin master
       - run: git add .
       - run: git commit -m "add dist folder"
-      - run: git push origin master
 
 jobs:
   build-and-test:
