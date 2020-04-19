@@ -11,6 +11,7 @@ commands:
       - run: git config user.email "commits-noreply@github.com"
       - run: git config user.name "github-pipelines"
       - run: git pull origin master
+      - run: git merge --allow-unrelated-histories
       - run: git add .
       - run: git commit -m "add dist folder"
 
