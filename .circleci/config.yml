@@ -10,9 +10,6 @@ commands:
       - run: cp -r build dist
       - run: git config user.email "commits-noreply@github.com"
       - run: git config user.name "github-pipelines"
-      - run: git fetch
-      - run: git pull
-      - run: git merge
       - run: git add .
       - run: git commit -m "add dist folder"
 
@@ -40,7 +37,8 @@ jobs:
       - attach_workspace:
           at: ./build
       - add-dist-folder-to-git
-      - heroku/deploy-via-git
+      - heroku/deploy-via-git:
+          force: true
 
 workflows:
   heroku_deploy:
