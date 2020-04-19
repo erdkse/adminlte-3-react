@@ -8,15 +8,9 @@ import Dashboard from '../pages/Dashboard';
 let updateUser = true;
 
 const Main = () => {
-  const user = {
-    user: {
-      data: { email: 'mail@example.com', image: null }
-    }
-  };
-
   const [userState, updateUserState] = useState({
     user: {
-      data: { email: '', image: null }
+      data: { email: 'mail@example.com', image: null }
     }
   });
 
@@ -42,7 +36,7 @@ const Main = () => {
     return () => {
       updateUser = false;
     };
-  }, [user]);
+  }, [userState]);
 
   document.getElementById('root').classList.remove('register-page');
   document.getElementById('root').classList.remove('login-page');

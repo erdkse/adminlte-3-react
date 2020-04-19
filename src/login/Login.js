@@ -142,13 +142,9 @@ const Login = () => {
                 </div>
               </div>
               <div className="col-5">
-                <Button
-                  block
-                  text="Sign In"
-                  type="submit"
-                  isLoading={isAuthLoading}
-                  disabled={isFacebookAuthLoading || isGoogleAuthLoading}
-                />
+                <Button block type="submit" isLoading={isAuthLoading} disabled={isFacebookAuthLoading || isGoogleAuthLoading}>
+                  Sign In
+                </Button>
               </div>
             </div>
           </form>
@@ -157,20 +153,22 @@ const Login = () => {
             <Button
               block
               icon="facebook"
-              text="Sign in using Facebook"
               onClick={loginByFacebook}
               isLoading={isFacebookAuthLoading}
               disabled={isAuthLoading || isGoogleAuthLoading}
-            />
+            >
+              Sign in using Facebook
+            </Button>
             <Button
               block
               icon="google"
-              theme="danger"
-              text="Sign in using Google"
+              color="danger"
               onClick={loginByGoogle}
               isLoading={isGoogleAuthLoading}
               disabled={isAuthLoading || isFacebookAuthLoading}
-            />
+            >
+              Sign in using Google
+            </Button>
           </div>
           <p className="mb-1">
             <Link to="/forgot-password">I forgot my password</Link>

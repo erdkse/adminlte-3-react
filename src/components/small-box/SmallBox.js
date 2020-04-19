@@ -46,14 +46,15 @@ const SmallBox = (props) => {
 
 SmallBox.propTypes = {
   type: PropTypes.oneOf(['success', 'warning', 'danger', 'info']),
-  icon: PropTypes.string.isRequired,
+  icon: PropTypes.string,
   count: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   navigateTo: PropTypes.string.isRequired
 };
 
 SmallBox.defaultProps = {
-  type: 'info'
+  type: 'info',
+  icon: 'ion-bag'
 };
 
 export default SmallBox;
