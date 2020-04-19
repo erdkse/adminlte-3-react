@@ -13,7 +13,10 @@ jobs:
       - node/with-cache:
           steps:
             - run: yarn install
+            - run: yarn dev:build
             - run: yarn dev:test
+            - store_artifacts:
+              path: ./build
   deploy:
     executor:
       name: heroku/default
@@ -25,7 +28,6 @@ jobs:
       - run: git config user.name "github-pipelines"
       - run: git add .
       - run: git commit -m "add dist folder"
-
       - heroku/deploy-via-git
 
 workflows:
@@ -35,3 +37,6 @@ workflows:
       - deploy:
           requires:
             - build-and-test # only run deploy-via-git job if the build job has completed
+#          filters:
+#            branches:
+#              only: master # only run deploy-via-git job on master branch
