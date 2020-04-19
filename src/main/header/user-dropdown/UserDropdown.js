@@ -1,11 +1,12 @@
 import React, { useRef, useEffect, useState } from 'react';
+import { useHistory, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 
 const UserDropdown = (props) => {
   const { email, image } = props;
 
   const dropdownRef = useRef(null);
+  const history = useHistory();
 
   const [dropdownState, updateDropdownState] = useState({ isDropdownOpen: false });
 
@@ -17,6 +18,11 @@ const UserDropdown = (props) => {
     if (dropdownRef && dropdownRef.current && !dropdownRef.current.contains(event.target)) {
       updateDropdownState({ isDropdownOpen: false });
     }
+  };
+
+  const logOut = (event) => {
+    event.preventDefault();
+    history.push('/login');
   };
 
   useEffect(() => {
@@ -64,7 +70,7 @@ const UserDropdown = (props) => {
           <Link to="/" className="btn btn-default btn-flat">
             Profile
           </Link>
-          <button type="button" className="btn btn-default btn-flat float-right">
+          <button type="button" className="btn btn-default btn-flat float-right" onClick={logOut}>
             Sign out
           </button>
         </li>
