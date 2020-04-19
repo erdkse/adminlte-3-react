@@ -14,19 +14,6 @@ commands:
       - run: git config user.name "github-pipelines"
       - run: git add .
       - run: git commit -m "add dist folder"
-  restore_workspace:
-    description: 'Restore code, dependencies, and compiled assets from workspace'
-    steps:
-      - attach_workspace:
-          at: ~/app
-
-executors:
-  node:
-    docker:
-      - image: circleci/node@1.1.6
-  heroku:
-    docker:
-      - image: circleci/heroku@1.0.1
 
 jobs:
   build-and-test:
@@ -39,17 +26,25 @@ jobs:
             - run: yarn install
             - run: yarn dev:test
             - run: yarn dev:build
-    working_directory: ~/app
+            - persist_to_workspace:
+              # Must be an absolute path, or relative path from working_directory. This is a directory on the container which is
+              # taken to be the root directory of the workspace.
+              root: app
+              # Must be relative path from root
+              paths:
+                - build
   deploy:
     executor:
       name: heroku/default
     steps:
+      - attach_workspace:
+        # Must be absolute path or relative path from working_directory
+        at: ~/app
       - checkout
       - heroku/install
       - restore_workspace
       - add-dist-folder-to-git
       - heroku/deploy-via-git
-    working_directory: ~/app
 
 workflows:
   heroku_deploy:
