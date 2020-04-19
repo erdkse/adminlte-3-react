@@ -29,17 +29,17 @@ jobs:
             - persist_to_workspace:
                 # Must be an absolute path, or relative path from working_directory. This is a directory on the container which is
                 # taken to be the root directory of the workspace.
-                root: app
+                root: ./
                 # Must be relative path from root
                 paths:
-                  - build
+                  - ./build
   deploy:
     executor:
       name: heroku/default
     steps:
       - attach_workspace:
           # Must be absolute path or relative path from working_directory
-          at: ~/app
+          at: ~/../
       - checkout
       - heroku/install
       - add-dist-folder-to-git
