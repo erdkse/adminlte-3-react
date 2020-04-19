@@ -19,6 +19,7 @@ jobs:
   build-and-test:
     executor:
       name: node/default
+    working_directory: /app
     steps:
       - checkout
       - node/with-cache:
@@ -31,7 +32,7 @@ jobs:
             - persist_to_workspace:
                 # Must be an absolute path, or relative path from working_directory. This is a directory on the container which is
                 # taken to be the root directory of the workspace.
-                root: ./build
+                root: build
                 # Must be relative path from root
                 paths:
                   - ./
@@ -39,11 +40,11 @@ jobs:
     executor:
       name: heroku/default
     steps:
+      - checkout
+      - heroku/install
       - attach_workspace:
           # Must be absolute path or relative path from working_directory
           at: ./build
-      - checkout
-      - heroku/install
       - add-dist-folder-to-git
       - heroku/deploy-via-git
 
