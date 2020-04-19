@@ -38,7 +38,7 @@ jobs:
           at: ./build
       - add-dist-folder-to-git
       - heroku/deploy-via-git:
-          force: 'true'
+          force: true
 
 workflows:
   heroku_deploy:
