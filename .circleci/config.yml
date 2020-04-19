@@ -7,8 +7,6 @@ orbs:
 commands:
   add-dist-folder-to-git:
     steps:
-      - run: ls
-      - run: pwd
       - run: cp -r build dist
       - run: git config user.email "commits-noreply@github.com"
       - run: git config user.name "github-pipelines"
@@ -26,13 +24,8 @@ jobs:
             - run: yarn install
             - run: yarn dev:test
             - run: yarn dev:build
-            - run: ls
-            - run: pwd
             - persist_to_workspace:
-                # Must be an absolute path, or relative path from working_directory. This is a directory on the container which is
-                # taken to be the root directory of the workspace.
                 root: build
-                # Must be relative path from root
                 paths:
                   - ./
   deploy:
@@ -42,7 +35,6 @@ jobs:
       - checkout
       - heroku/install
       - attach_workspace:
-          # Must be absolute path or relative path from working_directory
           at: ./build
       - add-dist-folder-to-git
       - heroku/deploy-via-git
@@ -53,9 +45,8 @@ workflows:
       - build-and-test
       - deploy:
           requires:
-            - build-and-test # only run deploy-via-git job if the build job has completed
+            - build-and-test
           filters:
             branches:
               only:
                 - master
-                - development
