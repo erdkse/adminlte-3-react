@@ -19,7 +19,6 @@ jobs:
   build-and-test:
     executor:
       name: node/default
-    working_directory: /app
     steps:
       - checkout
       - node/with-cache:
