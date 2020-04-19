@@ -16,7 +16,7 @@ jobs:
             - run: yarn dev:build
             - run: yarn dev:test
             - store_artifacts:
-              path: ./build
+                path: ./build
   deploy:
     executor:
       name: heroku/default
