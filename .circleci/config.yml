@@ -21,12 +21,11 @@ jobs:
       - checkout
       - heroku/install
       - run:
-          command: >
-            cp -r build dist
-            git config user.email "commits-noreply@github.com"
-            git config user.name "github-pipelines"
-            git add .
-            git commit -m "add dist folder"
+          - cp -r build dist
+          - git config user.email "commits-noreply@github.com"
+          - git config user.name "github-pipelines"
+          - git add .
+          - git commit -m "add dist folder"
 
       - heroku/deploy-via-git
 
