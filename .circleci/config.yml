@@ -1,6 +1,9 @@
 version: 2.1
+
 orbs:
+  heroku: circleci/heroku@1.0.1 # Use the Heroku orb in your config
   node: circleci/node@1.1.6
+
 jobs:
   build-and-test:
     executor:
@@ -10,8 +13,30 @@ jobs:
       - node/with-cache:
           steps:
             - run: yarn install
-            - run: yarn test
+            - run: yarn dev:test
+  deploy:
+    executor:
+      name: heroku/default
+    steps:
+      - checkout
+      - heroku/install
+      - run:
+          command: >
+            cp -r build dist
+            git config user.email "commits-noreply@github.com"
+            git config user.name "github-pipelines"
+            git add .
+            git commit -m "add dist folder"
+
+      - heroku/deploy-via-git
+
 workflows:
-    build-and-test:
-      jobs:
-        - build-and-test
+  heroku_deploy:
+    jobs:
+      - build-and-test
+      - deploy:
+          requires:
+            - build-and-test # only run deploy-via-git job if the build job has completed
+          filters:
+            branches:
+              only: master # only run deploy-via-git job on master branch

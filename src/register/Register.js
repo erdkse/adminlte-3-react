@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from '../utils/axios';
-import Button from '../components/Button';
+import Button from '../components/button/Button';
 
 const Register = () => {
   const [isAuthLoading, setAuthLoading] = useState(false);
@@ -103,7 +103,7 @@ const Register = () => {
               </div>
             </div>
             <div className="row">
-              <div className="col-8">
+              <div className="col-7">
                 <div className="icheck-primary">
                   <input type="checkbox" id="agreeTerms" name="terms" defaultValue="agree" />
                   <label htmlFor="agreeTerms">
@@ -112,7 +112,7 @@ const Register = () => {
                   </label>
                 </div>
               </div>
-              <div className="col-4">
+              <div className="col-5">
                 <Button
                   type="submit"
                   block

@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^10.0.1",
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
+    "express": "^4.17.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -16,10 +17,11 @@
     "react-toastify": "^5.5.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "node server.js",
+    "dev:start": "react-scripts start",
+    "dev:build": "react-scripts build",
+    "dev:test": "react-scripts test",
+    "dev:eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -55,8 +57,7 @@
   "lint-staged": {
     "**/*.js": [
       "eslint --fix",
-      "prettier-eslint --write",
-      "git add"
+      "prettier-eslint --write"
     ]
   },
   "husky": {

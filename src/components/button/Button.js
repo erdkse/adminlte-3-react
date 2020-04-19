@@ -38,7 +38,7 @@ Button.propTypes = {
   block: PropTypes.bool,
   theme: PropTypes.string,
   disabled: PropTypes.bool,
-  type: PropTypes.string,
+  type: PropTypes.oneOf(['button', 'submit', 'reset']),
   onClick: PropTypes.func
 };
 

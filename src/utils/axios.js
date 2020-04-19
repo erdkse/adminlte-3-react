@@ -1,33 +1,30 @@
 import axios from 'axios';
 
 const intance = axios.create({
-  baseURL: 'http://' + window.location.host
+  baseURL: `http://${window.location.host}`
 });
 
 if (localStorage.getItem('token')) {
-  intance.defaults.headers.common['Authorization'] =
-    'Bearer ' + localStorage.getItem('token');
+  intance.defaults.headers.common.Authorization = `Bearer ${localStorage.getItem('token')}`;
 }
 
 axios.interceptors.request.use(
-  request => {
+  (request) => {
     if (localStorage.getItem('token')) {
-      console.log(request);
-      intance.defaults.headers.common['Authorization'] =
-        'Bearer ' + localStorage.getItem('token');
+      intance.defaults.headers.common.Authorization = `Bearer ${localStorage.getItem('token')}`;
     }
     return request;
   },
-  error => {
+  (error) => {
     return Promise.reject(error);
   }
 );
 
 axios.interceptors.response.use(
-  response => {
+  (response) => {
     return response;
   },
-  error => {
+  (error) => {
     return Promise.reject(error);
   }
 );
