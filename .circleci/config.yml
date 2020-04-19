@@ -20,12 +20,11 @@ jobs:
     steps:
       - checkout
       - heroku/install
-      - run:
-          - cp -r build dist
-          - git config user.email "commits-noreply@github.com"
-          - git config user.name "github-pipelines"
-          - git add .
-          - git commit -m "add dist folder"
+      - run: cp -r build dist
+      - run: git config user.email "commits-noreply@github.com"
+      - run: git config user.name "github-pipelines"
+      - run: git add .
+      - run: git commit -m "add dist folder"
 
       - heroku/deploy-via-git
 
@@ -36,6 +35,3 @@ workflows:
       - deploy:
           requires:
             - build-and-test # only run deploy-via-git job if the build job has completed
-          filters:
-            branches:
-              only: master # only run deploy-via-git job on master branch
