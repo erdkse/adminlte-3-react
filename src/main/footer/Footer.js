@@ -10,8 +10,8 @@ const Footer = () => {
       </div>
       <strong>
         <span>Copyright © 2019-2020 </span>
-        <a href="http://profabric.io/" target="_blank" rel="noopener noreferrer">
-          ProFabric.io
+        <a href="http://adminlte.io" target="_blank" rel="noopener noreferrer">
+          AdminLTE.io
         </a>
         <span>.</span>
       </strong>
