@@ -15,20 +15,24 @@ jobs:
             - run: yarn install
             - run: yarn test
   deploy:
-    executor: heroku/default
+    executor:
+      name: heroku/default
     steps:
       - checkout
       - heroku/install
       - run:
           command: >
-            echo "The command above installs Heroku, the command below deploys.
-            What you do inbetween is up to you!"
+            cp -r build dist
+            git config user.email "commits-noreply@github.com"
+            git config user.name "github-pipelines"
+            git add .
+            git commit -m "add dist folder"
+
       - heroku/deploy-via-git
 
 workflows:
   heroku_deploy:
     jobs:
-      - build-and-test
       - deploy:
           requires:
             - build-and-test # only run deploy-via-git job if the build job has completed
