@@ -1,8 +1,32 @@
 version: 2.1
 
 orbs:
-  heroku: circleci/heroku@1.0.1 # Use the Heroku orb in your config
+  heroku: circleci/heroku@1.0.1
   node: circleci/node@1.1.6
+
+commands:
+  add-dist-folder-to-git:
+    steps:
+      - run: ls
+      - run: pwd
+      - run: cp -r build dist
+      - run: git config user.email "commits-noreply@github.com"
+      - run: git config user.name "github-pipelines"
+      - run: git add .
+      - run: git commit -m "add dist folder"
+  restore_workspace:
+    description: 'Restore code, dependencies, and compiled assets from workspace'
+    steps:
+      - attach_workspace:
+          at: ~/app
+
+executors:
+  node:
+    docker:
+      - image: circleci/node@1.1.6
+  heroku:
+    docker:
+      - image: circleci/heroku@1.0.1
 
 jobs:
   build-and-test:
@@ -13,23 +37,19 @@ jobs:
       - node/with-cache:
           steps:
             - run: yarn install
-            - run: yarn dev:build
             - run: yarn dev:test
-            - store_artifacts:
-                path: ./build
+            - run: yarn dev:build
+    working_directory: ~/app
   deploy:
     executor:
       name: heroku/default
     steps:
       - checkout
       - heroku/install
-      - run: ls
-      - run: cp -r build dist
-      - run: git config user.email "commits-noreply@github.com"
-      - run: git config user.name "github-pipelines"
-      - run: git add .
-      - run: git commit -m "add dist folder"
+      - restore_workspace
+      - add-dist-folder-to-git
       - heroku/deploy-via-git
+    working_directory: ~/app
 
 workflows:
   heroku_deploy:
@@ -38,6 +58,8 @@ workflows:
       - deploy:
           requires:
             - build-and-test # only run deploy-via-git job if the build job has completed
-#          filters:
-#            branches:
-#              only: master # only run deploy-via-git job on master branch
+          filters:
+            branches:
+              only:
+                - master
+                - development
