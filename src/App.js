@@ -12,6 +12,7 @@ import ForgetPassword from './forgot-password/ForgotPassword';
 import RecoverPassword from './recover-password/RecoverPassword';
 
 import { addGoogleScript, addFacebookScript } from './utils/social-auth-scripts';
+import PrivacyPolicy from './privacy-policy/PrivacyPolicy';
 
 toast.configure({
   autoClose: 3000,
@@ -77,8 +78,9 @@ class App extends Component {
           <Route exact path="/register" component={Register} />
           <Route exact path="/forgot-password" component={ForgetPassword} />
           <Route exact path="/recover-password" component={RecoverPassword} />
-          <Route path="/" component={Main} />
           <Route exact path="/callback" render={() => <h1>Callback</h1>} />
+          <Route exact path="/privacy-policy" component={PrivacyPolicy} />
+          <Route path="/" component={Main} />
         </Switch>
       </Router>
     );
