@@ -7,12 +7,13 @@ orbs:
 commands:
   add-dist-folder-to-git:
     steps:
-      - cp -r build dist
-      - git config user.name "github-pipelines"
-      - git config user.email "commits-noreply@github.com"
-      - force="-f"
-      - git add .
-      - git commit -m "add dist folder"
+      - run: cp -r build dist
+      - run: git config user.email "commits-noreply@github.com"
+      - run: git config user.name "github-pipelines"
+      - run: git pull origin master
+      - run: git add .
+      - run: git commit -m "add dist folder"
+      - run: git push origin master
 
 jobs:
   build-and-test:
@@ -22,9 +23,9 @@ jobs:
       - checkout
       - node/with-cache:
           steps:
-            - yarn install
-            - yarn dev:test
-            - yarn dev:build
+            - run: yarn install
+            - run: yarn dev:test
+            - run: yarn dev:build
             - persist_to_workspace:
                 root: build
                 paths:
