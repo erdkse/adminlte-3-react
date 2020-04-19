@@ -7,15 +7,12 @@ orbs:
 commands:
   add-dist-folder-to-git:
     steps:
-      - run: heroku plugins:install heroku-repo
-      - run: heroku repo:reset -a example-app
-      - run: git commit --allow-empty -m "Reset Heroku Repository"
-      - run: cp -r build dist
-      - run: git config user.email "commits-noreply@github.com"
-      - run: git config user.name "github-pipelines"
-      - run: force="-f"
-      - run: git add .
-      - run: git commit -m "add dist folder"
+      - cp -r build dist
+      - git config user.name "github-pipelines"
+      - git config user.email "commits-noreply@github.com"
+      - force="-f"
+      - git add .
+      - git commit -m "add dist folder"
 
 jobs:
   build-and-test:
@@ -25,9 +22,9 @@ jobs:
       - checkout
       - node/with-cache:
           steps:
-            - run: yarn install
-            - run: yarn dev:test
-            - run: yarn dev:build
+            - yarn install
+            - yarn dev:test
+            - yarn dev:build
             - persist_to_workspace:
                 root: build
                 paths:
