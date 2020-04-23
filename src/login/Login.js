@@ -16,27 +16,24 @@ const Login = () => {
 
   const login = (event) => {
     setAuthLoading(true);
-    setTimeout(() => {
-      axios
-        .post('/v1/auth/signin', {
-          email: emailInputRef.current.value,
-          password: passwordInputRef.current.value
-        })
-        .then((response) => {
-          localStorage.setItem('token', response.data.token);
-          document.getElementById('root').classList.remove('login-page');
-          document.getElementById('root').classList.remove('hold-transition');
+    axios
+      .post('/v1/auth/login', {
+        email: emailInputRef.current.value,
+        password: passwordInputRef.current.value
+      })
+      .then((response) => {
+        localStorage.setItem('token', response.data.token);
+        document.getElementById('root').classList.remove('login-page');
+        document.getElementById('root').classList.remove('hold-transition');
 
-          toast.success('Giriş başarılı');
-          history.push('/');
-          setAuthLoading(false);
-        })
-        // eslint-disable-next-line no-unused-vars
-        .catch((error) => {
-          setAuthLoading(false);
-          toast.error('Giriş başarısız!');
-        });
-    }, 2000);
+        toast.success('Login is succeed!');
+        history.push('/');
+        setAuthLoading(false);
+      })
+      .catch(() => {
+        setAuthLoading(false);
+        toast.error('Login is failed!');
+      });
 
     event.preventDefault();
   };
@@ -45,33 +42,31 @@ const Login = () => {
     setGoogleAuthLoading(true);
     const auth2 = window.gapi.auth2.getAuthInstance();
 
-    auth2.signIn().then(
-      (res) => {
-        // If authorization pass well, we take profile info
-        const basicProfile = res.getBasicProfile();
-        const data = {};
-        data.identity = {
-          uid: basicProfile.getId(),
-          provider: 'google'
-        };
-        data.user = {
-          email: basicProfile.getEmail(),
-          firstName: basicProfile.getGivenName(),
-          lastName: basicProfile.getFamilyName()
-        };
-        data.auth = res.getAuthResponse();
+    auth2
+      .signIn()
+      .then(
+        (res) => {
+          const basicProfile = res.getBasicProfile();
+          const data = {};
+          data.uid = basicProfile.getId();
+          data.auth = res.getAuthResponse();
+          return axios.post('/v1/google/login', data);
+        },
+        (err) => Promise.reject(err)
+      )
+      .then((response) => {
+        localStorage.setItem('token', response.data.token);
+        document.getElementById('root').classList.remove('login-page');
+        document.getElementById('root').classList.remove('hold-transition');
 
-        // Send data to back end
-        setGoogleAuthLoading(false);
-        // eslint-disable-next-line no-console
-        console.log(data);
-      },
-      (err) => {
-        setGoogleAuthLoading(false);
-        // eslint-disable-next-line no-console
-        console.log('ERROR', err);
-      }
-    );
+        toast.success('Login is succeeded!');
+        history.push('/');
+        setAuthLoading(false);
+      })
+      .catch(() => {
+        setAuthLoading(false);
+        toast.error('Login is failed!');
+      });
   };
 
   const loginByFacebook = () => {

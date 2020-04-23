@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const intance = axios.create({
-  baseURL: `http://${window.location.host}`
+  baseURL: `${process.env.REACT_APP_GATEKEEPER_URL}`
 });
 
 if (localStorage.getItem('token')) {

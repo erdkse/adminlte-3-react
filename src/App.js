@@ -5,13 +5,13 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from './utils/axios';
 
+import { addGoogleScript, addFacebookScript } from './utils/social-auth-scripts';
+
 import Main from './main/Main';
 import Login from './login/Login';
 import Register from './register/Register';
 import ForgetPassword from './forgot-password/ForgotPassword';
 import RecoverPassword from './recover-password/RecoverPassword';
-
-import { addGoogleScript, addFacebookScript } from './utils/social-auth-scripts';
 import PrivacyPolicy from './privacy-policy/PrivacyPolicy';
 
 toast.configure({
@@ -38,7 +38,7 @@ class App extends Component {
     try {
       await addGoogleScript();
       const params = {
-        client_id: '611648724094-265stq7fvrfshg0b2tbaupmf98khq8gr.apps.googleusercontent.com',
+        client_id: '611723947949-kc52mv7i8t1bt0v8vson1h9nae0rer35.apps.googleusercontent.com',
         scope: 'openid profile email',
         cookie_policy: 'single_host_origin',
         fetch_basic_profile: true

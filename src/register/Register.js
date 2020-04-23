@@ -18,29 +18,27 @@ const Register = () => {
   const register = (event) => {
     if (passwordInputRef.current.value === passwordRetypeInputRef.current.value) {
       setAuthLoading(true);
-      setTimeout(() => {
-        axios
-          .post('/v1/auth/signup', {
-            email: emailInputRef.current.value,
-            password: passwordInputRef.current.value
-          })
-          .then((response) => {
-            // localStorage.setItem('token', response.data.token);
-            document.getElementById('root').classList.remove('register-page');
-            document.getElementById('root').classList.remove('hold-transition');
+      axios
+        .post('/v1/auth/register', {
+          email: emailInputRef.current.value,
+          password: passwordInputRef.current.value
+        })
+        .then((response) => {
+          localStorage.setItem('token', response.data.token);
+          document.getElementById('root').classList.remove('register-page');
+          document.getElementById('root').classList.remove('hold-transition');
 
-            // eslint-disable-next-line no-console
-            console.log('Response', response);
-            setAuthLoading(false);
-            toast.success('Kayıt başarılı');
-            history.push('/login');
-          })
-          // eslint-disable-next-line no-unused-vars
-          .catch((error) => {
-            setAuthLoading(false);
-            toast.error('Kayıt başarısız!');
-          });
-      }, 2000);
+          // eslint-disable-next-line no-console
+          console.log('Response', response);
+          setAuthLoading(false);
+          toast.success('Kayıt başarılı');
+          history.push('/');
+        })
+        // eslint-disable-next-line no-unused-vars
+        .catch((error) => {
+          setAuthLoading(false);
+          toast.error('Kayıt başarısız!');
+        });
     } else {
       toast.warn('Şifreler uyuşmuyor!');
     }
@@ -50,10 +48,38 @@ const Register = () => {
 
   const loginByGoogle = () => {
     setGoogleAuthLoading(true);
-    setTimeout(() => {
-      toast.warn('Not implemented yet');
-      setGoogleAuthLoading(false);
-    }, 2000);
+    const auth2 = window.gapi.auth2.getAuthInstance();
+
+    auth2
+      .signIn()
+      .then(
+        (res) => {
+          // If authorization pass well, we take profile info
+          const basicProfile = res.getBasicProfile();
+          const data = {};
+          data.uid = basicProfile.getId();
+          data.auth = res.getAuthResponse();
+
+          return axios.post('/v1/google/register', data);
+        },
+        (err) => Promise.reject(err)
+      )
+      .then((response) => {
+        localStorage.setItem('token', response.data.token);
+        document.getElementById('root').classList.remove('register-page');
+        document.getElementById('root').classList.remove('hold-transition');
+
+        // eslint-disable-next-line no-console
+        console.log('Response', response);
+        setGoogleAuthLoading(false);
+        toast.success('Authentication is succeed!');
+        history.push('/');
+      })
+      // eslint-disable-next-line no-unused-vars
+      .catch((error) => {
+        setGoogleAuthLoading(false);
+        toast.error('Authentication is failed!');
+      });
   };
 
   const loginByFacebook = () => {
