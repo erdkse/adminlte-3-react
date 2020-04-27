@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
+import axios from '../utils/axios';
 import Header from './header/Header';
 import Footer from './footer/Footer';
 import MenuSidebar from './menu-sidebar/MenuSidebar';
 import Dashboard from '../pages/Dashboard';
 
-let updateUser = true;
+let updateData = true;
 
 const Main = () => {
   const [userState, updateUserState] = useState({
     user: {
-      data: { email: 'mail@example.com', image: null }
+      data: { email: 'mail@example.com', picture: null }
     }
   });
 
@@ -25,16 +26,18 @@ const Main = () => {
   };
 
   useEffect(() => {
-    if (updateUser) {
-      updateUserState({
-        user: {
-          data: { email: 'mail@example.com', image: null }
-        }
+    if (updateData) {
+      axios.get('/v1/users/profile').then((response) => {
+        updateUserState({
+          user: {
+            data: response.data
+          }
+        });
       });
     }
 
     return () => {
-      updateUser = false;
+      updateData = false;
     };
   }, [userState]);
 
@@ -67,7 +70,12 @@ const Main = () => {
         </section>
       </div>
       <Footer />
-      <div id="sidebar-overlay" role="presentation" onClick={toggleMenuSidebar} onKeyDown={() => {}} />
+      <div
+        id="sidebar-overlay"
+        role="presentation"
+        onClick={toggleMenuSidebar}
+        onKeyDown={() => {}}
+      />
     </div>
   );
 };

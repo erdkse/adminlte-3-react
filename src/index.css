@@ -1,7 +1,6 @@
-@import '../node_modules/admin-lte/plugins/fontawesome-free/css/all.min.css';
-/* @import '../node_modules/bootstrap/dist/css/bootstrap.css'; */
-@import '../node_modules/admin-lte/plugins/icheck-bootstrap/icheck-bootstrap.min.css';
-@import '../node_modules/admin-lte/dist/css/adminlte.min.css';
+@import '~admin-lte/plugins/fontawesome-free/css/all.min.css';
+@import '~admin-lte/plugins/icheck-bootstrap/icheck-bootstrap.min.css';
+@import '~admin-lte/dist/css/adminlte.min.css';
 
 #root {
   width: 100vw;
@@ -21,79 +20,3 @@
   margin-right: 0;
   margin-left: -8px;
 }
-
-/* 
-::-webkit-scrollbar {
-  width: 0px;
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #ff0000;
-}
-
-body {
-  min-height: 100vh;
-}
-
-#root {
-  min-height: 100vh;
-}
-
-.content-wrapper {
-  min-height: calc(100vh - 112px);
-}
-
-.main-header button {
-  background: transparent;
-  border: none;
-  outline: none;
-  cursor: pointer;
-}
-
-.main-sidebar {
-  overflow-x: hidden;
-  z-index: 1001;
-}
-
-#sidebar-overlay {
-  z-index: 1000;
-}
-
-.login-card-body,
-.register-card-body {
-  background: #fff;
-  padding: 20px;
-  border-top: 0;
-  color: #666;
-}
-
-.login-card-body .input-group .input-group-text,
-.register-card-body .input-group .input-group-text {
-  color: #777;
-  background-color: transparent;
-}
-
-.login-card-body .input-group .form-control,
-.register-card-body .input-group .form-control {
-  border-right: none;
-}
-
-::-webkit-scrollbar {
-  width: 0px;
-  height: 8px;
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #343a40dd;
-  border-radius: 8px;
-}
-
-.card.user-list tr:hover {
-  cursor: pointer;
-}
-
-.card.card-primary .card-header {
-  background-color: #4f5962;
-} */
