@@ -5,6 +5,7 @@ import Header from './header/Header';
 import Footer from './footer/Footer';
 import MenuSidebar from './menu-sidebar/MenuSidebar';
 import Dashboard from '../pages/Dashboard';
+import PageLoading from '../components/page-loading/PageLoading';
 
 let updateData = true;
 
@@ -14,6 +15,8 @@ const Main = () => {
       data: { email: 'mail@example.com', picture: null }
     }
   });
+
+  const [appLoadingState, updateAppLoading] = useState(false);
 
   const [menusidebarState, updateMenusidebarState] = useState({
     isMenuSidebarCollapsed: false
@@ -27,19 +30,26 @@ const Main = () => {
 
   useEffect(() => {
     if (updateData) {
-      axios.get('/v1/users/profile').then((response) => {
-        updateUserState({
-          user: {
-            data: response.data
-          }
+      updateAppLoading(true);
+      axios
+        .get('/v1/users/profile')
+        .then((response) => {
+          updateAppLoading(false);
+          updateUserState({
+            user: {
+              data: response.data
+            }
+          });
+        })
+        .catch(() => {
+          updateAppLoading(false);
         });
-      });
     }
 
     return () => {
       updateData = false;
     };
-  }, [userState]);
+  }, []);
 
   document.getElementById('root').classList.remove('register-page');
   document.getElementById('root').classList.remove('login-page');
@@ -55,29 +65,37 @@ const Main = () => {
     document.getElementById('root').classList.remove('sidebar-collapse');
   }
 
-  return (
-    <div className="wrapper">
-      <Header toggleMenuSidebar={toggleMenuSidebar} user={userState.user} />
+  let template;
 
-      <MenuSidebar user={userState.user} />
+  if (appLoadingState) {
+    template = <PageLoading />;
+  } else {
+    template = (
+      <>
+        <Header toggleMenuSidebar={toggleMenuSidebar} user={userState.user} />
 
-      <div className="content-wrapper">
-        <div className="pt-3" />
-        <section className="content">
-          <Switch>
-            <Route exact path="/" component={Dashboard} />
-          </Switch>
-        </section>
-      </div>
-      <Footer />
-      <div
-        id="sidebar-overlay"
-        role="presentation"
-        onClick={toggleMenuSidebar}
-        onKeyDown={() => {}}
-      />
-    </div>
-  );
+        <MenuSidebar user={userState.user} />
+
+        <div className="content-wrapper">
+          <div className="pt-3" />
+          <section className="content">
+            <Switch>
+              <Route exact path="/" component={Dashboard} />
+            </Switch>
+          </section>
+        </div>
+        <Footer />
+        <div
+          id="sidebar-overlay"
+          role="presentation"
+          onClick={toggleMenuSidebar}
+          onKeyDown={() => {}}
+        />
+      </>
+    );
+  }
+
+  return <div className="wrapper">{template}</div>;
 };
 
 export default Main;
