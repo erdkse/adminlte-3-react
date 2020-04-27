@@ -16,7 +16,9 @@ const Register = () => {
   const passwordRetypeInputRef = useRef(null);
 
   const register = (event) => {
-    if (passwordInputRef.current.value === passwordRetypeInputRef.current.value) {
+    if (
+      passwordInputRef.current.value === passwordRetypeInputRef.current.value
+    ) {
       setAuthLoading(true);
       axios
         .post('/v1/auth/register', {
@@ -27,20 +29,16 @@ const Register = () => {
           localStorage.setItem('token', response.data.token);
           document.getElementById('root').classList.remove('register-page');
           document.getElementById('root').classList.remove('hold-transition');
-
-          // eslint-disable-next-line no-console
-          console.log('Response', response);
           setAuthLoading(false);
-          toast.success('Kayıt başarılı');
+          toast.success('Registration is success');
           history.push('/');
         })
-        // eslint-disable-next-line no-unused-vars
         .catch((error) => {
           setAuthLoading(false);
-          toast.error('Kayıt başarısız!');
+          toast.error(error.response.data.message);
         });
     } else {
-      toast.warn('Şifreler uyuşmuyor!');
+      toast.warn('Password mismatch!');
     }
 
     event.preventDefault();
@@ -54,13 +52,13 @@ const Register = () => {
       .signIn()
       .then(
         (res) => {
-          // If authorization pass well, we take profile info
           const basicProfile = res.getBasicProfile();
           const data = {};
           data.uid = basicProfile.getId();
           data.auth = res.getAuthResponse();
-
-          return axios.post('/v1/google/register', data);
+          return axios.post('/v1/google/register', {
+            idToken: data.auth.id_token
+          });
         },
         (err) => Promise.reject(err)
       )
@@ -68,26 +66,74 @@ const Register = () => {
         localStorage.setItem('token', response.data.token);
         document.getElementById('root').classList.remove('register-page');
         document.getElementById('root').classList.remove('hold-transition');
-
-        // eslint-disable-next-line no-console
-        console.log('Response', response);
         setGoogleAuthLoading(false);
         toast.success('Authentication is succeed!');
         history.push('/');
       })
-      // eslint-disable-next-line no-unused-vars
       .catch((error) => {
         setGoogleAuthLoading(false);
-        toast.error('Authentication is failed!');
+        toast.error(error.response.data.message);
       });
   };
 
   const loginByFacebook = () => {
     setFacebookAuthLoading(true);
-    setTimeout(() => {
-      toast.warn('Not implemented yet');
-      setFacebookAuthLoading(false);
-    }, 2000);
+
+    window.FB.getLoginStatus((resp) => {
+      if (resp.status === 'connected') {
+        axios
+          .post('/v1/facebook/register', {
+            accessToken: resp.authResponse.accessToken
+          })
+          .then((response) => {
+            localStorage.setItem('token', response.data.token);
+            document.getElementById('root').classList.remove('register-page');
+            document.getElementById('root').classList.remove('hold-transition');
+            setFacebookAuthLoading(false);
+            toast.success('Registration is succeed!');
+            history.push('/');
+          })
+          .catch((error) => {
+            setFacebookAuthLoading(false);
+            toast.error(error.response.data.message);
+          });
+        return;
+      }
+
+      window.FB.login(
+        (data) => {
+          if (data.authResponse) {
+            axios
+              .post('/v1/facebook/register', {
+                accessToken: data.authResponse.accessToken
+              })
+              .then((response) => {
+                localStorage.setItem('token', response.data.token);
+                document
+                  .getElementById('root')
+                  .classList.remove('register-page');
+                document
+                  .getElementById('root')
+                  .classList.remove('hold-transition');
+                setFacebookAuthLoading(false);
+                toast.success('Registration is succeed!');
+                history.push('/');
+              })
+              .catch((error) => {
+                setFacebookAuthLoading(false);
+                toast.error(error.response.data.message);
+              });
+            setFacebookAuthLoading(false);
+          } else {
+            setFacebookAuthLoading(false);
+            toast.error('Registration is failed!');
+            // eslint-disable-next-line no-console
+            console.log('ERROR2', data);
+          }
+        },
+        { scope: 'email' }
+      );
+    });
   };
 
   document.getElementById('root').classList = 'hold-transition register-page';
@@ -105,7 +151,12 @@ const Register = () => {
           <p className="login-box-msg">Register a new membership</p>
           <form onSubmit={register}>
             <div className="input-group mb-3">
-              <input ref={emailInputRef} type="email" className="form-control" placeholder="Email" />
+              <input
+                ref={emailInputRef}
+                type="email"
+                className="form-control"
+                placeholder="Email"
+              />
               <div className="input-group-append">
                 <div className="input-group-text">
                   <span className="fas fa-envelope" />
@@ -113,7 +164,12 @@ const Register = () => {
               </div>
             </div>
             <div className="input-group mb-3">
-              <input ref={passwordInputRef} type="password" className="form-control" placeholder="Password" />
+              <input
+                ref={passwordInputRef}
+                type="password"
+                className="form-control"
+                placeholder="Password"
+              />
               <div className="input-group-append">
                 <div className="input-group-text">
                   <span className="fas fa-lock" />
@@ -121,7 +177,12 @@ const Register = () => {
               </div>
             </div>
             <div className="input-group mb-3">
-              <input ref={passwordRetypeInputRef} type="password" className="form-control" placeholder="Retype password" />
+              <input
+                ref={passwordRetypeInputRef}
+                type="password"
+                className="form-control"
+                placeholder="Retype password"
+              />
               <div className="input-group-append">
                 <div className="input-group-text">
                   <span className="fas fa-lock" />
@@ -131,7 +192,12 @@ const Register = () => {
             <div className="row">
               <div className="col-7">
                 <div className="icheck-primary">
-                  <input type="checkbox" id="agreeTerms" name="terms" defaultValue="agree" />
+                  <input
+                    type="checkbox"
+                    id="agreeTerms"
+                    name="terms"
+                    defaultValue="agree"
+                  />
                   <label htmlFor="agreeTerms">
                     <span>I agree to the </span>
                     <Link to="/">terms</Link>
@@ -139,7 +205,12 @@ const Register = () => {
                 </div>
               </div>
               <div className="col-5">
-                <Button type="submit" block isLoading={isAuthLoading} disabled={isFacebookAuthLoading || isGoogleAuthLoading}>
+                <Button
+                  type="submit"
+                  block
+                  isLoading={isAuthLoading}
+                  disabled={isFacebookAuthLoading || isGoogleAuthLoading}
+                >
                   Register
                 </Button>
               </div>

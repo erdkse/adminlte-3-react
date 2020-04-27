@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import axios from '../utils/axios';
+import * as AuthService from '../services/auth';
 import Button from '../components/button/Button';
 
 const Login = () => {
@@ -16,23 +16,18 @@ const Login = () => {
 
   const login = (event) => {
     setAuthLoading(true);
-    axios
-      .post('/v1/auth/login', {
-        email: emailInputRef.current.value,
-        password: passwordInputRef.current.value
-      })
-      .then((response) => {
-        localStorage.setItem('token', response.data.token);
-        document.getElementById('root').classList.remove('login-page');
-        document.getElementById('root').classList.remove('hold-transition');
-
+    AuthService.loginByAuth(
+      emailInputRef.current.value,
+      passwordInputRef.current.value
+    )
+      .then(() => {
         toast.success('Login is succeed!');
         history.push('/');
         setAuthLoading(false);
       })
-      .catch(() => {
+      .catch((error) => {
         setAuthLoading(false);
-        toast.error('Login is failed!');
+        toast.error(error.response.data.message || 'Login is failed!');
       });
 
     event.preventDefault();
@@ -40,63 +35,31 @@ const Login = () => {
 
   const loginByGoogle = () => {
     setGoogleAuthLoading(true);
-    const auth2 = window.gapi.auth2.getAuthInstance();
-
-    auth2
-      .signIn()
-      .then(
-        (res) => {
-          const basicProfile = res.getBasicProfile();
-          const data = {};
-          data.uid = basicProfile.getId();
-          data.auth = res.getAuthResponse();
-          return axios.post('/v1/google/login', data);
-        },
-        (err) => Promise.reject(err)
-      )
-      .then((response) => {
-        localStorage.setItem('token', response.data.token);
-        document.getElementById('root').classList.remove('login-page');
-        document.getElementById('root').classList.remove('hold-transition');
-
+    AuthService.loginByGoogle()
+      .then(() => {
         toast.success('Login is succeeded!');
         history.push('/');
-        setAuthLoading(false);
+        setGoogleAuthLoading(false);
       })
-      .catch(() => {
-        setAuthLoading(false);
-        toast.error('Login is failed!');
+      .catch((error) => {
+        setGoogleAuthLoading(false);
+        toast.error(error.response.data.message);
       });
   };
 
   const loginByFacebook = () => {
     setFacebookAuthLoading(true);
 
-    window.FB.getLoginStatus((resp) => {
-      // eslint-disable-next-line no-console
-      console.log('FB:status:', resp.status);
-
-      if (resp.status === 'connected') {
-        // Send data to back end
-        // eslint-disable-next-line no-console
-        console.log('SUCCESS', resp);
+    AuthService.loginByFacebook()
+      .then(() => {
+        toast.success('Login is succeeded!');
+        history.push('/');
         setFacebookAuthLoading(false);
-        return;
-      }
-
-      window.FB.login(
-        (response) => {
-          // eslint-disable-next-line no-console
-          console.log('FB:status:', response.status);
-          if (response.authResponse) {
-            // eslint-disable-next-line no-console
-            console.log('SUCCESS', response);
-            setFacebookAuthLoading(false);
-          }
-        },
-        { scope: 'email' }
-      );
-    });
+      })
+      .catch((error) => {
+        setFacebookAuthLoading(false);
+        toast.error(error.response.data.message);
+      });
   };
 
   document.getElementById('root').classList = 'hold-transition login-page';
@@ -114,7 +77,12 @@ const Login = () => {
           <p className="login-box-msg">Sign in to start your session</p>
           <form onSubmit={login}>
             <div className="input-group mb-3">
-              <input type="email" ref={emailInputRef} className="form-control" placeholder="Email" />
+              <input
+                type="email"
+                ref={emailInputRef}
+                className="form-control"
+                placeholder="Email"
+              />
               <div className="input-group-append">
                 <div className="input-group-text">
                   <span className="fas fa-envelope" />
@@ -122,7 +90,12 @@ const Login = () => {
               </div>
             </div>
             <div className="input-group mb-3">
-              <input type="password" ref={passwordInputRef} className="form-control" placeholder="Password" />
+              <input
+                type="password"
+                ref={passwordInputRef}
+                className="form-control"
+                placeholder="Password"
+              />
               <div className="input-group-append">
                 <div className="input-group-text">
                   <span className="fas fa-lock" />
@@ -137,7 +110,12 @@ const Login = () => {
                 </div>
               </div>
               <div className="col-5">
-                <Button block type="submit" isLoading={isAuthLoading} disabled={isFacebookAuthLoading || isGoogleAuthLoading}>
+                <Button
+                  block
+                  type="submit"
+                  isLoading={isAuthLoading}
+                  disabled={isFacebookAuthLoading || isGoogleAuthLoading}
+                >
                   Sign In
                 </Button>
               </div>
