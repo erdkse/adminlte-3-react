@@ -1,5 +1,31 @@
 import axios from '../utils/axios';
-import { addFacebookScript } from '../utils/social-auth-scripts';
+import {
+  addGoogleScript,
+  addFacebookScript
+} from '../utils/social-auth-scripts';
+
+const asyncGoogleGetAuthInstance = () => {
+  return new Promise((resolve, reject) => {
+    addGoogleScript()
+      .then(() => {
+        const params = {
+          client_id:
+            '611723947949-kc52mv7i8t1bt0v8vson1h9nae0rer35.apps.googleusercontent.com',
+          scope: 'openid profile email',
+          cookie_policy: 'single_host_origin',
+          fetch_basic_profile: true
+        };
+
+        window.gapi.load('auth2', () => {
+          if (!window.gapi.auth2.getAuthInstance()) {
+            window.gapi.auth2.init(params);
+          }
+          resolve(window.gapi.auth2.getAuthInstance().signIn());
+        });
+      })
+      .catch(() => reject(new Error('ADD_SCRIPT_ERROR')));
+  });
+};
 
 const asyncFacebookGetLoginStatus = () => {
   return new Promise((resolve, reject) => {
@@ -19,7 +45,7 @@ const asyncFacebookGetLoginStatus = () => {
           resolve(null);
         });
       })
-      .catch((error) => reject(new Error(error)));
+      .catch(() => reject(new Error('ADD_SCRIPT_ERROR')));
   });
 };
 
@@ -52,10 +78,7 @@ export const loginByAuth = (email, password) => {
 };
 
 export const loginByGoogle = () => {
-  const auth2 = window.gapi.auth2.getAuthInstance();
-
-  return auth2
-    .signIn()
+  return asyncGoogleGetAuthInstance()
     .then(
       (res) => {
         const basicProfile = res.getBasicProfile();

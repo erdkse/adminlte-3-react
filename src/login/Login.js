@@ -22,8 +22,8 @@ const Login = () => {
     )
       .then(() => {
         toast.success('Login is succeed!');
-        history.push('/');
         setAuthLoading(false);
+        history.push('/');
       })
       .catch((error) => {
         setAuthLoading(false);
@@ -38,8 +38,8 @@ const Login = () => {
     AuthService.loginByGoogle()
       .then(() => {
         toast.success('Login is succeeded!');
-        history.push('/');
         setGoogleAuthLoading(false);
+        history.push('/');
       })
       .catch((error) => {
         setGoogleAuthLoading(false);
@@ -53,8 +53,8 @@ const Login = () => {
     AuthService.loginByFacebook()
       .then(() => {
         toast.success('Login is succeeded!');
-        history.push('/');
         setFacebookAuthLoading(false);
+        history.push('/');
       })
       .catch((error) => {
         setFacebookAuthLoading(false);

@@ -5,13 +5,17 @@ const intance = axios.create({
 });
 
 if (localStorage.getItem('token')) {
-  intance.defaults.headers.common.Authorization = `Bearer ${localStorage.getItem('token')}`;
+  intance.defaults.headers.common.Authorization = `Bearer ${localStorage.getItem(
+    'token'
+  )}`;
 }
 
 axios.interceptors.request.use(
   (request) => {
     if (localStorage.getItem('token')) {
-      intance.defaults.headers.common.Authorization = `Bearer ${localStorage.getItem('token')}`;
+      intance.defaults.headers.common.Authorization = `Bearer ${localStorage.getItem(
+        'token'
+      )}`;
     }
     return request;
   },
@@ -21,9 +25,7 @@ axios.interceptors.request.use(
 );
 
 axios.interceptors.response.use(
-  (response) => {
-    return response;
-  },
+  (response) => response,
   (error) => {
     return Promise.reject(error);
   }
