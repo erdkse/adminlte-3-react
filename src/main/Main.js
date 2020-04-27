@@ -31,27 +31,25 @@ const Main = () => {
   useEffect(() => {
     if (updateData) {
       updateAppLoading(true);
-      setTimeout(() => {
-        axios
-          .get('/v1/users/profile')
-          .then((response) => {
-            updateAppLoading(false);
-            updateUserState({
-              user: {
-                data: response.data
-              }
-            });
-          })
-          .catch(() => {
-            updateAppLoading(false);
+      axios
+        .get('/v1/users/profile')
+        .then((response) => {
+          updateAppLoading(false);
+          updateUserState({
+            user: {
+              data: response.data
+            }
           });
-      }, 2000);
+        })
+        .catch(() => {
+          updateAppLoading(false);
+        });
     }
 
     return () => {
       updateData = false;
     };
-  }, [userState]);
+  }, []);
 
   document.getElementById('root').classList.remove('register-page');
   document.getElementById('root').classList.remove('login-page');
