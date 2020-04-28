@@ -1,8 +1,8 @@
 import React, { useRef, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import axios from '../utils/axios';
-import Button from '../components/button/Button';
+import Button from '../../components/button/Button';
+import * as AuthService from '../../services/auth';
 
 const Register = () => {
   const [isAuthLoading, setAuthLoading] = useState(false);
@@ -20,22 +20,18 @@ const Register = () => {
       passwordInputRef.current.value === passwordRetypeInputRef.current.value
     ) {
       setAuthLoading(true);
-      axios
-        .post('/v1/auth/register', {
-          email: emailInputRef.current.value,
-          password: passwordInputRef.current.value
-        })
-        .then((response) => {
-          localStorage.setItem('token', response.data.token);
-          document.getElementById('root').classList.remove('register-page');
-          document.getElementById('root').classList.remove('hold-transition');
+      AuthService.registerByAuth(
+        emailInputRef.current.value,
+        passwordInputRef.current.value
+      )
+        .then(() => {
           setAuthLoading(false);
           toast.success('Registration is success');
           history.push('/');
         })
         .catch((error) => {
-          setAuthLoading(false);
           toast.error(error.response.data.message);
+          setAuthLoading(false);
         });
     } else {
       toast.warn('Password mismatch!');
@@ -46,94 +42,31 @@ const Register = () => {
 
   const loginByGoogle = () => {
     setGoogleAuthLoading(true);
-    const auth2 = window.gapi.auth2.getAuthInstance();
-
-    auth2
-      .signIn()
-      .then(
-        (res) => {
-          const basicProfile = res.getBasicProfile();
-          const data = {};
-          data.uid = basicProfile.getId();
-          data.auth = res.getAuthResponse();
-          return axios.post('/v1/google/register', {
-            idToken: data.auth.id_token
-          });
-        },
-        (err) => Promise.reject(err)
-      )
-      .then((response) => {
-        localStorage.setItem('token', response.data.token);
-        document.getElementById('root').classList.remove('register-page');
-        document.getElementById('root').classList.remove('hold-transition');
+    AuthService.registerByGoogle()
+      .then(() => {
         setGoogleAuthLoading(false);
         toast.success('Authentication is succeed!');
         history.push('/');
       })
       .catch((error) => {
-        setGoogleAuthLoading(false);
         toast.error(error.response.data.message);
+        setGoogleAuthLoading(false);
       });
   };
 
   const loginByFacebook = () => {
     setFacebookAuthLoading(true);
 
-    window.FB.getLoginStatus((resp) => {
-      if (resp.status === 'connected') {
-        axios
-          .post('/v1/facebook/register', {
-            accessToken: resp.authResponse.accessToken
-          })
-          .then((response) => {
-            localStorage.setItem('token', response.data.token);
-            document.getElementById('root').classList.remove('register-page');
-            document.getElementById('root').classList.remove('hold-transition');
-            setFacebookAuthLoading(false);
-            toast.success('Registration is succeed!');
-            history.push('/');
-          })
-          .catch((error) => {
-            setFacebookAuthLoading(false);
-            toast.error(error.response.data.message);
-          });
-        return;
-      }
-
-      window.FB.login(
-        (data) => {
-          if (data.authResponse) {
-            axios
-              .post('/v1/facebook/register', {
-                accessToken: data.authResponse.accessToken
-              })
-              .then((response) => {
-                localStorage.setItem('token', response.data.token);
-                document
-                  .getElementById('root')
-                  .classList.remove('register-page');
-                document
-                  .getElementById('root')
-                  .classList.remove('hold-transition');
-                setFacebookAuthLoading(false);
-                toast.success('Registration is succeed!');
-                history.push('/');
-              })
-              .catch((error) => {
-                setFacebookAuthLoading(false);
-                toast.error(error.response.data.message);
-              });
-            setFacebookAuthLoading(false);
-          } else {
-            setFacebookAuthLoading(false);
-            toast.error('Registration is failed!');
-            // eslint-disable-next-line no-console
-            console.log('ERROR2', data);
-          }
-        },
-        { scope: 'email' }
-      );
-    });
+    AuthService.loginByFacebook()
+      .then(() => {
+        toast.success('Register is succeeded!');
+        setFacebookAuthLoading(false);
+        history.push('/');
+      })
+      .catch((error) => {
+        setFacebookAuthLoading(false);
+        toast.error(error.response.data.message);
+      });
   };
 
   document.getElementById('root').classList = 'hold-transition register-page';

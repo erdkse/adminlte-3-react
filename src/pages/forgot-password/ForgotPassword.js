@@ -28,10 +28,18 @@ const ForgotPassword = () => {
       </div>
       <div className="card">
         <div className="card-body login-card-body">
-          <p className="login-box-msg">You forgot your password? Here you can easily retrieve a new password.</p>
+          <p className="login-box-msg">
+            You forgot your password? Here you can easily retrieve a new
+            password.
+          </p>
           <form onSubmit={requestNewPassword}>
             <div className="input-group mb-3">
-              <input ref={setEmailInputRef} type="email" className="form-control" placeholder="Email" />
+              <input
+                ref={setEmailInputRef}
+                type="email"
+                className="form-control"
+                placeholder="Email"
+              />
               <div className="input-group-append">
                 <div className="input-group-text">
                   <span className="fas fa-envelope" />

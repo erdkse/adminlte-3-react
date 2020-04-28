@@ -1,8 +1,8 @@
 import React, { useRef, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import * as AuthService from '../services/auth';
-import Button from '../components/button/Button';
+import * as AuthService from '../../services/auth';
+import Button from '../../components/button/Button';
 
 const Login = () => {
   const [isAuthLoading, setAuthLoading] = useState(false);

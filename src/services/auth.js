@@ -120,3 +120,63 @@ export const loginByFacebook = () => {
       })
   );
 };
+
+export const registerByAuth = (email, password) => {
+  return axios
+    .post('/v1/auth/register', {
+      email,
+      password
+    })
+    .then((response) => {
+      localStorage.setItem('token', response.data.token);
+      document.getElementById('root').classList.remove('register-page');
+      document.getElementById('root').classList.remove('hold-transition');
+      return Promise.resolve(response.data.token);
+    });
+};
+
+export const registerByGoogle = () => {
+  return asyncGoogleGetAuthInstance()
+    .then(
+      (res) => {
+        const basicProfile = res.getBasicProfile();
+        const data = {};
+        data.uid = basicProfile.getId();
+        data.auth = res.getAuthResponse();
+        return axios.post('/v1/google/register', {
+          idToken: data.auth.id_token
+        });
+      },
+      (err) => Promise.reject(err)
+    )
+    .then((response) => {
+      localStorage.setItem('token', response.data.token);
+      document.getElementById('root').classList.remove('register-page');
+      document.getElementById('root').classList.remove('hold-transition');
+      return Promise.resolve({ token: response.data.token });
+    });
+};
+
+export const registerByFacebook = () => {
+  return (
+    asyncFacebookGetLoginStatus()
+      // eslint-disable-next-line consistent-return
+      .then((accessToken) => {
+        if (accessToken) {
+          return Promise.resolve(accessToken);
+        }
+        return asyncFacebookLogin();
+      })
+      .then((accessToken) => {
+        return axios.post('/v1/facebook/register', {
+          accessToken
+        });
+      })
+      .then((response) => {
+        localStorage.setItem('token', response.data.token);
+        document.getElementById('root').classList.remove('register-page');
+        document.getElementById('root').classList.remove('hold-transition');
+        return Promise.resolve({ token: response.data.token });
+      })
+  );
+};

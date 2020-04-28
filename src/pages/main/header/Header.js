@@ -9,7 +9,7 @@ import User from './user-dropdown/UserDropdown';
 const Header = (props) => {
   const {
     user: {
-      data: { email, image }
+      data: { email, picture }
     }
   } = props;
   return (
@@ -17,7 +17,13 @@ const Header = (props) => {
       {/* Left navbar links */}
       <ul className="navbar-nav">
         <li className="nav-item">
-          <button onClick={() => props.toggleMenuSidebar()} type="button" className="nav-link" data-widget="pushmenu" href="#">
+          <button
+            onClick={() => props.toggleMenuSidebar()}
+            type="button"
+            className="nav-link"
+            data-widget="pushmenu"
+            href="#"
+          >
             <i className="fas fa-bars" />
           </button>
         </li>
@@ -34,7 +40,12 @@ const Header = (props) => {
       </ul>
       <form className="form-inline ml-3">
         <div className="input-group input-group-sm">
-          <input className="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search" />
+          <input
+            className="form-control form-control-navbar"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+          />
           <div className="input-group-append">
             <button className="btn btn-navbar" type="submit">
               <i className="fas fa-search" />
@@ -46,9 +57,14 @@ const Header = (props) => {
         <Messages />
         <Notifications />
         <Languages />
-        <User image={image} email={email} />
+        <User picture={picture} email={email} />
         <li className="nav-item">
-          <button className="nav-link" data-widget="control-sidebar" data-slide="true" type="button">
+          <button
+            className="nav-link"
+            data-widget="control-sidebar"
+            data-slide="true"
+            type="button"
+          >
             <i className="fas fa-th-large" />
           </button>
         </li>
@@ -62,7 +78,7 @@ Header.propTypes = {
   user: PropTypes.shape({
     data: PropTypes.shape({
       email: PropTypes.string.isRequired,
-      image: PropTypes.string
+      picture: PropTypes.string
     })
   })
 };
@@ -71,7 +87,7 @@ Header.defaultProps = {
   user: {
     data: {
       email: '',
-      image: null
+      picture: null
     }
   }
 };

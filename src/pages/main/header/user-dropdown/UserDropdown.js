@@ -3,19 +3,25 @@ import { useHistory, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const UserDropdown = (props) => {
-  const { email, image } = props;
+  const { email, picture } = props;
 
   const dropdownRef = useRef(null);
   const history = useHistory();
 
-  const [dropdownState, updateDropdownState] = useState({ isDropdownOpen: false });
+  const [dropdownState, updateDropdownState] = useState({
+    isDropdownOpen: false
+  });
 
   const toggleDropdown = () => {
     updateDropdownState({ isDropdownOpen: !dropdownState.isDropdownOpen });
   };
 
   const handleClickOutside = (event) => {
-    if (dropdownRef && dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+    if (
+      dropdownRef &&
+      dropdownRef.current &&
+      !dropdownRef.current.contains(event.target)
+    ) {
       updateDropdownState({ isDropdownOpen: false });
     }
   };
@@ -40,13 +46,26 @@ const UserDropdown = (props) => {
 
   return (
     <li ref={dropdownRef} className="nav-item dropdown user-menu">
-      <button onClick={toggleDropdown} type="button" className="nav-link dropdown-toggle" data-toggle="dropdown">
-        <img src={image || '/img/default-profile.png'} className="user-image img-circle elevation-2" alt="User" />
+      <button
+        onClick={toggleDropdown}
+        type="button"
+        className="nav-link dropdown-toggle"
+        data-toggle="dropdown"
+      >
+        <img
+          src={picture || '/img/default-profile.png'}
+          className="user-image img-circle elevation-2"
+          alt="User"
+        />
         {/* <span className="d-none d-md-inline">{email}</span> */}
       </button>
       <ul className={className}>
         <li className="user-header bg-primary">
-          <img src={image || '/img/default-profile.png'} className="img-circle elevation-2" alt="User" />
+          <img
+            src={picture || '/img/default-profile.png'}
+            className="img-circle elevation-2"
+            alt="User"
+          />
           <p>
             {/* Alexander Pierce - Web Developer */}
             {email}
@@ -70,7 +89,11 @@ const UserDropdown = (props) => {
           <Link to="/" className="btn btn-default btn-flat">
             Profile
           </Link>
-          <button type="button" className="btn btn-default btn-flat float-right" onClick={logOut}>
+          <button
+            type="button"
+            className="btn btn-default btn-flat float-right"
+            onClick={logOut}
+          >
             Sign out
           </button>
         </li>
@@ -81,11 +104,11 @@ const UserDropdown = (props) => {
 
 UserDropdown.propTypes = {
   email: PropTypes.string.isRequired,
-  image: PropTypes.string
+  picture: PropTypes.string
 };
 
 UserDropdown.defaultProps = {
-  image: null
+  picture: null
 };
 
 export default UserDropdown;

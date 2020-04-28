@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import axios from '../utils/axios';
+import axios from '../../utils/axios';
 import Header from './header/Header';
 import Footer from './footer/Footer';
 import MenuSidebar from './menu-sidebar/MenuSidebar';
-import Dashboard from '../pages/Dashboard';
-import PageLoading from '../components/page-loading/PageLoading';
+import Dashboard from '../../containers/Dashboard';
+import PageLoading from '../../components/page-loading/PageLoading';
 
 let updateData = true;
 
