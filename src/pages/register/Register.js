@@ -30,7 +30,12 @@ const Register = () => {
           history.push('/');
         })
         .catch((error) => {
-          toast.error(error.response.data.message);
+          toast.error(
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+              'Failed'
+          );
           setAuthLoading(false);
         });
     } else {
@@ -49,7 +54,12 @@ const Register = () => {
         history.push('/');
       })
       .catch((error) => {
-        toast.error(error.response.data.message);
+        toast.error(
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+            'Failed'
+        );
         setGoogleAuthLoading(false);
       });
   };
@@ -65,7 +75,12 @@ const Register = () => {
       })
       .catch((error) => {
         setFacebookAuthLoading(false);
-        toast.error(error.response.data.message);
+        toast.error(
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+            'Failed'
+        );
       });
   };
 

@@ -4,7 +4,7 @@ import axios from '../../utils/axios';
 import Header from './header/Header';
 import Footer from './footer/Footer';
 import MenuSidebar from './menu-sidebar/MenuSidebar';
-import Dashboard from '../../containers/Dashboard';
+import Dashboard from '../../views/Dashboard';
 import PageLoading from '../../components/page-loading/PageLoading';
 
 let updateData = true;
