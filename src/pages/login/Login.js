@@ -1,8 +1,8 @@
 import React, { useRef, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import * as AuthService from '../services/auth';
-import Button from '../components/button/Button';
+import * as AuthService from '../../services/auth';
+import Button from '../../components/button/Button';
 
 const Login = () => {
   const [isAuthLoading, setAuthLoading] = useState(false);
@@ -27,7 +27,12 @@ const Login = () => {
       })
       .catch((error) => {
         setAuthLoading(false);
-        toast.error(error.response.data.message || 'Login is failed!');
+        toast.error(
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+            'Failed'
+        );
       });
 
     event.preventDefault();
@@ -43,7 +48,12 @@ const Login = () => {
       })
       .catch((error) => {
         setGoogleAuthLoading(false);
-        toast.error(error.response.data.message);
+        toast.error(
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+            'Failed'
+        );
       });
   };
 
@@ -58,7 +68,12 @@ const Login = () => {
       })
       .catch((error) => {
         setFacebookAuthLoading(false);
-        toast.error(error.response.data.message);
+        toast.error(
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+            'Failed'
+        );
       });
   };
 

@@ -12,7 +12,11 @@ const LanguagesDropdown = () => {
   };
 
   const handleClickOutside = (event) => {
-    if (dropdownRef && dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+    if (
+      dropdownRef &&
+      dropdownRef.current &&
+      !dropdownRef.current.contains(event.target)
+    ) {
       updateDropdownState({ isDropdownOpen: false });
     }
   };
@@ -31,8 +35,16 @@ const LanguagesDropdown = () => {
   }
 
   return (
-    <li ref={dropdownRef} className="nav-item d-none d-sm-inline-block dropdown">
-      <button onClick={toggleDropdown} type="button" className="nav-link" data-toggle="dropdown">
+    <li
+      ref={dropdownRef}
+      className="nav-item d-none d-sm-inline-block dropdown"
+    >
+      <button
+        onClick={toggleDropdown}
+        type="button"
+        className="nav-link"
+        data-toggle="dropdown"
+      >
         <i className="flag-icon flag-icon-tr" />
       </button>
       <div className={className}>

@@ -13,7 +13,11 @@ const NotificationsDropdown = () => {
   };
 
   const handleClickOutside = (event) => {
-    if (dropdownRef && dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+    if (
+      dropdownRef &&
+      dropdownRef.current &&
+      !dropdownRef.current.contains(event.target)
+    ) {
       updateDropdownState({ isDropdownOpen: false });
     }
   };
@@ -32,8 +36,16 @@ const NotificationsDropdown = () => {
   }
 
   return (
-    <li ref={dropdownRef} className="nav-item d-none d-sm-inline-block dropdown">
-      <button onClick={toggleDropdown} type="button" className="nav-link" data-toggle="dropdown">
+    <li
+      ref={dropdownRef}
+      className="nav-item d-none d-sm-inline-block dropdown"
+    >
+      <button
+        onClick={toggleDropdown}
+        type="button"
+        className="nav-link"
+        data-toggle="dropdown"
+      >
         <i className="far fa-bell" />
         <span className="badge badge-warning navbar-badge">15</span>
       </button>

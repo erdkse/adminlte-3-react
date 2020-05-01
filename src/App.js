@@ -3,12 +3,12 @@ import './App.scss';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Main from './main/Main';
-import Login from './login/Login';
-import Register from './register/Register';
-import ForgetPassword from './forgot-password/ForgotPassword';
-import RecoverPassword from './recover-password/RecoverPassword';
-import PrivacyPolicy from './privacy-policy/PrivacyPolicy';
+import Main from './pages/main/Main';
+import Login from './pages/login/Login';
+import Register from './pages/register/Register';
+import ForgetPassword from './pages/forgot-password/ForgotPassword';
+import RecoverPassword from './pages/recover-password/RecoverPassword';
+import PrivacyPolicy from './pages/privacy-policy/PrivacyPolicy';
 
 toast.configure({
   autoClose: 3000,

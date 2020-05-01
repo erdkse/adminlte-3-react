@@ -1,14 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { NavLink, Link } from 'react-router-dom';
 
 const MenuSidebar = (props) => {
-  const {
-    user: {
-      data: { email, picture }
-    }
-  } = props;
-
+  const { user } = props;
   return (
     <aside className="main-sidebar sidebar-dark-primary elevation-4">
       <Link to="/" className="brand-link">
@@ -24,14 +20,14 @@ const MenuSidebar = (props) => {
         <div className="user-panel mt-3 pb-3 mb-3 d-flex">
           <div className="image">
             <img
-              src={picture || '/img/default-profile.png'}
+              src={user.picture || '/img/default-profile.png'}
               className="img-circle elevation-2"
               alt="User"
             />
           </div>
           <div className="info">
             <Link to="/" className="d-block">
-              {email}
+              {user.email}
             </Link>
           </div>
         </div>
@@ -57,20 +53,13 @@ const MenuSidebar = (props) => {
 
 MenuSidebar.propTypes = {
   user: PropTypes.shape({
-    data: PropTypes.shape({
-      email: PropTypes.string.isRequired,
-      picture: PropTypes.string
-    })
-  })
+    email: PropTypes.string.isRequired,
+    picture: PropTypes.string
+  }).isRequired
 };
 
-MenuSidebar.defaultProps = {
-  user: {
-    data: {
-      email: '',
-      picture: null
-    }
-  }
-};
+const mapStateToProps = (state) => ({
+  user: state.auth.currentUser
+});
 
-export default MenuSidebar;
+export default connect(mapStateToProps, null)(MenuSidebar);

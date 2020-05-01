@@ -1,5 +1,5 @@
 import React from 'react';
-import { version } from '../../../package.json';
+import { version } from '../../../../package.json';
 
 const Footer = () => {
   return (
