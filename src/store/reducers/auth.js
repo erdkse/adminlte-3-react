@@ -2,7 +2,10 @@ import * as ActionTypes from '../actions';
 
 const initialState = {
   isLoggedIn: false,
-  currentUser: {}
+  currentUser: {
+    email: 'mail@example.com',
+    picture: null
+  }
 };
 
 const reducer = (state = initialState, action) => {
@@ -16,6 +19,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         isLoggedIn: false
+      };
+    case ActionTypes.LOAD_USER:
+      return {
+        ...state,
+        currentUser: action.currentUser
       };
     default:
       return { ...state };

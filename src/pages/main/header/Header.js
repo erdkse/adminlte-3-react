@@ -7,18 +7,14 @@ import Languages from './languages-dropdown/LanguagesDropdown';
 import User from './user-dropdown/UserDropdown';
 
 const Header = (props) => {
-  const {
-    user: {
-      data: { email, picture }
-    }
-  } = props;
+  const { toggleMenuSidebar } = props;
   return (
     <nav className="main-header navbar navbar-expand navbar-white navbar-light">
       {/* Left navbar links */}
       <ul className="navbar-nav">
         <li className="nav-item">
           <button
-            onClick={() => props.toggleMenuSidebar()}
+            onClick={() => toggleMenuSidebar()}
             type="button"
             className="nav-link"
             data-widget="pushmenu"
@@ -57,7 +53,7 @@ const Header = (props) => {
         <Messages />
         <Notifications />
         <Languages />
-        <User picture={picture} email={email} />
+        <User />
         <li className="nav-item">
           <button
             className="nav-link"
@@ -74,22 +70,7 @@ const Header = (props) => {
 };
 
 Header.propTypes = {
-  toggleMenuSidebar: PropTypes.func.isRequired,
-  user: PropTypes.shape({
-    data: PropTypes.shape({
-      email: PropTypes.string.isRequired,
-      picture: PropTypes.string
-    })
-  })
-};
-
-Header.defaultProps = {
-  user: {
-    data: {
-      email: '',
-      picture: null
-    }
-  }
+  toggleMenuSidebar: PropTypes.func.isRequired
 };
 
 export default Header;

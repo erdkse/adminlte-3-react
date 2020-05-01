@@ -1,21 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
 import axios from '../../utils/axios';
 import Header from './header/Header';
 import Footer from './footer/Footer';
 import MenuSidebar from './menu-sidebar/MenuSidebar';
 import Dashboard from '../../views/Dashboard';
 import PageLoading from '../../components/page-loading/PageLoading';
+import * as ActionTypes from '../../store/actions';
 
-let updateData = true;
-
-const Main = () => {
-  const [userState, updateUserState] = useState({
-    user: {
-      data: { email: 'mail@example.com', picture: null }
-    }
-  });
-
+const Main = (props) => {
+  const { onUserLoad } = props;
   const [appLoadingState, updateAppLoading] = useState(false);
 
   const [menusidebarState, updateMenusidebarState] = useState({
@@ -29,27 +26,19 @@ const Main = () => {
   };
 
   useEffect(() => {
-    if (updateData) {
-      updateAppLoading(true);
-      axios
-        .get('/v1/users/profile')
-        .then((response) => {
-          updateAppLoading(false);
-          updateUserState({
-            user: {
-              data: response.data
-            }
-          });
-        })
-        .catch(() => {
-          updateAppLoading(false);
-        });
-    }
+    updateAppLoading(true);
+    axios
+      .get('/v1/users/profile')
+      .then((response) => {
+        updateAppLoading(false);
+        onUserLoad({ ...response.data });
+      })
+      .catch(() => {
+        updateAppLoading(false);
+      });
 
-    return () => {
-      updateData = false;
-    };
-  }, []);
+    return () => {};
+  }, [onUserLoad]);
 
   document.getElementById('root').classList.remove('register-page');
   document.getElementById('root').classList.remove('login-page');
@@ -72,9 +61,9 @@ const Main = () => {
   } else {
     template = (
       <>
-        <Header toggleMenuSidebar={toggleMenuSidebar} user={userState.user} />
+        <Header toggleMenuSidebar={toggleMenuSidebar} />
 
-        <MenuSidebar user={userState.user} />
+        <MenuSidebar />
 
         <div className="content-wrapper">
           <div className="pt-3" />
@@ -98,4 +87,21 @@ const Main = () => {
   return <div className="wrapper">{template}</div>;
 };
 
-export default Main;
+Main.propTypes = {
+  user: PropTypes.shape({
+    email: PropTypes.string.isRequired,
+    picture: PropTypes.string
+  }).isRequired,
+  onUserLoad: PropTypes.func.isRequired
+};
+
+const mapStateToProps = (state) => ({
+  user: state.auth.currentUser
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onUserLoad: (user) =>
+    dispatch({ type: ActionTypes.LOAD_USER, currentUser: user })
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Main);

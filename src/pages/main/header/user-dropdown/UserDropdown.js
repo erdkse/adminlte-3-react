@@ -1,9 +1,13 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import Moment from 'react-moment';
 
 const UserDropdown = (props) => {
-  const { email, picture } = props;
+  const {
+    user: { email, picture, createdAt }
+  } = props;
 
   const dropdownRef = useRef(null);
   const history = useHistory();
@@ -69,7 +73,12 @@ const UserDropdown = (props) => {
           <p>
             {/* Alexander Pierce - Web Developer */}
             {email}
-            <small>Member since Nov. 2012</small>
+            <small>
+              <span>Member since </span>
+              <Moment format="D MMM YYYY" withTitle>
+                {createdAt}
+              </Moment>
+            </small>
           </p>
         </li>
         <li className="user-body">
@@ -103,12 +112,15 @@ const UserDropdown = (props) => {
 };
 
 UserDropdown.propTypes = {
-  email: PropTypes.string.isRequired,
-  picture: PropTypes.string
+  user: PropTypes.shape({
+    email: PropTypes.string.isRequired,
+    createdAt: PropTypes.string,
+    picture: PropTypes.string
+  }).isRequired
 };
 
-UserDropdown.defaultProps = {
-  picture: null
-};
+const mapStateToProps = (state) => ({
+  user: state.auth.currentUser
+});
 
-export default UserDropdown;
+export default connect(mapStateToProps, null)(UserDropdown);
