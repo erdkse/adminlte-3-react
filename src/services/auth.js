@@ -73,7 +73,7 @@ export const loginByAuth = (email, password) => {
       localStorage.setItem('token', response.data.token);
       document.getElementById('root').classList.remove('login-page');
       document.getElementById('root').classList.remove('hold-transition');
-      return Promise.resolve({ token: response.data.token });
+      return Promise.resolve(response.data.token);
     });
 };
 
@@ -93,7 +93,7 @@ export const loginByGoogle = () => {
       localStorage.setItem('token', response.data.token);
       document.getElementById('root').classList.remove('login-page');
       document.getElementById('root').classList.remove('hold-transition');
-      return Promise.resolve({ token: response.data.token });
+      return Promise.resolve(response.data.token);
     });
 };
 
@@ -116,7 +116,7 @@ export const loginByFacebook = () => {
         localStorage.setItem('token', response.data.token);
         document.getElementById('root').classList.remove('login-page');
         document.getElementById('root').classList.remove('hold-transition');
-        return Promise.resolve({ token: response.data.token });
+        return Promise.resolve(response.data.token);
       })
   );
 };
