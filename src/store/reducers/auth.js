@@ -1,7 +1,8 @@
 import * as ActionTypes from '../actions';
 
 const initialState = {
-  isLoggedIn: false,
+  isLoggedIn: !!localStorage.getItem('token'),
+  token: localStorage.getItem('token'),
   currentUser: {
     email: 'mail@example.com',
     picture: null
@@ -11,14 +12,18 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionTypes.LOGIN_USER:
+      localStorage.setItem('token', action.token);
       return {
         ...state,
-        isLoggedIn: true
+        isLoggedIn: true,
+        token: action.token
       };
     case ActionTypes.LOGOUT_USER:
+      localStorage.removeItem('token');
       return {
         ...state,
-        isLoggedIn: false
+        isLoggedIn: false,
+        token: null
       };
     case ActionTypes.LOAD_USER:
       return {

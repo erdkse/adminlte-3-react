@@ -1,10 +1,16 @@
 import React, { useRef, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
 import * as AuthService from '../../services/auth';
 import Button from '../../components/button/Button';
+import * as ActionTypes from '../../store/actions';
 
-const Login = () => {
+const Login = (props) => {
+  const { onUserLogin } = props;
+
   const [isAuthLoading, setAuthLoading] = useState(false);
   const [isGoogleAuthLoading, setGoogleAuthLoading] = useState(false);
   const [isFacebookAuthLoading, setFacebookAuthLoading] = useState(false);
@@ -20,9 +26,10 @@ const Login = () => {
       emailInputRef.current.value,
       passwordInputRef.current.value
     )
-      .then(() => {
+      .then((token) => {
         toast.success('Login is succeed!');
         setAuthLoading(false);
+        onUserLogin(token);
         history.push('/');
       })
       .catch((error) => {
@@ -41,9 +48,10 @@ const Login = () => {
   const loginByGoogle = () => {
     setGoogleAuthLoading(true);
     AuthService.loginByGoogle()
-      .then(() => {
+      .then((token) => {
         toast.success('Login is succeeded!');
         setGoogleAuthLoading(false);
+        onUserLogin(token);
         history.push('/');
       })
       .catch((error) => {
@@ -61,9 +69,11 @@ const Login = () => {
     setFacebookAuthLoading(true);
 
     AuthService.loginByFacebook()
-      .then(() => {
+      .then((token) => {
         toast.success('Login is succeeded!');
         setFacebookAuthLoading(false);
+        onUserLogin(token);
+
         history.push('/');
       })
       .catch((error) => {
@@ -172,4 +182,12 @@ const Login = () => {
   );
 };
 
-export default Login;
+Login.propTypes = {
+  onUserLogin: PropTypes.func.isRequired
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  onUserLogin: (token) => dispatch({ type: ActionTypes.LOGIN_USER, token })
+});
+
+export default connect(null, mapDispatchToProps)(Login);

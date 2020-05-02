@@ -4,9 +4,12 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Moment from 'react-moment';
 
+import * as ActionTypes from '../../../../store/actions';
+
 const UserDropdown = (props) => {
   const {
-    user: { email, picture, createdAt }
+    user: { email, picture, createdAt },
+    onUserLogout
   } = props;
 
   const dropdownRef = useRef(null);
@@ -32,6 +35,7 @@ const UserDropdown = (props) => {
 
   const logOut = (event) => {
     event.preventDefault();
+    onUserLogout();
     history.push('/login');
   };
 
@@ -116,11 +120,16 @@ UserDropdown.propTypes = {
     email: PropTypes.string.isRequired,
     createdAt: PropTypes.string,
     picture: PropTypes.string
-  }).isRequired
+  }).isRequired,
+  onUserLogout: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
   user: state.auth.currentUser
 });
 
-export default connect(mapStateToProps, null)(UserDropdown);
+const mapDispatchToProps = (dispatch) => ({
+  onUserLogout: () => dispatch({ type: ActionTypes.LOGOUT_USER })
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserDropdown);
