@@ -9,9 +9,14 @@ const addScript = (id, src) => {
       script.setAttribute('type', 'text/javascript');
       script.setAttribute('id', id);
       script.setAttribute('src', src);
+      script.setAttribute('crossorigin', 'anonymous"');
       script.addEventListener('load', resolve);
-      script.addEventListener('error', () => reject(new Error(`Error loading ${id}.`)));
-      script.addEventListener('abort', () => reject(new Error(`${id}  loading aborted.`)));
+      script.addEventListener('error', () =>
+        reject(new Error(`Error loading ${id}.`))
+      );
+      script.addEventListener('abort', () =>
+        reject(new Error(`${id}  loading aborted.`))
+      );
       document.getElementsByTagName('head')[0].appendChild(script);
     } catch (error) {
       return Promise.reject(error);

@@ -29,17 +29,27 @@ const App = () => {
   return (
     <Router>
       <Switch>
-        <PublicRoute exact path="/login" component={Login} />
-        <PublicRoute exact path="/register" component={Register} />
-        <PublicRoute exact path="/forgot-password" component={ForgetPassword} />
-        <PublicRoute
-          exact
-          path="/recover-password"
-          component={RecoverPassword}
-        />
-        <PublicRoute exact path="/privacy-policy" component={PrivacyPolicy} />
-        <PublicRoute exact path="/callback" render={() => <h1>Callback</h1>} />
-        <PrivateRoute path="/" component={Main} />
+        <PublicRoute exact path="/login">
+          <Login />
+        </PublicRoute>
+        <PublicRoute exact path="/register">
+          <Register />
+        </PublicRoute>
+        <PublicRoute exact path="/forgot-password">
+          <ForgetPassword />
+        </PublicRoute>
+        <PublicRoute exact path="/recover-password">
+          <RecoverPassword />
+        </PublicRoute>
+        <PublicRoute exact path="/privacy-policy">
+          <PrivacyPolicy />
+        </PublicRoute>
+        <PublicRoute exact path="/callback">
+          <h1>Callback</h1>
+        </PublicRoute>
+        <PrivateRoute path="/">
+          <Main />
+        </PrivateRoute>
       </Switch>
     </Router>
   );

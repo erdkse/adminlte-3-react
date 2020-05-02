@@ -1,17 +1,34 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 const PublicRoute = (props) => {
-  const { component, isLoggedIn } = props;
-  const Component = component;
+  const { children, isLoggedIn, ...rest } = props;
 
-  return isLoggedIn ? <Redirect to={{ pathname: '/' }} /> : <Component />;
+  return (
+    <Route
+      {...rest}
+      render={({ location }) =>
+        isLoggedIn ? (
+          <Redirect
+            to={{
+              pathname: '/',
+              state: { from: location }
+            }}
+          />
+        ) : (
+          children
+        )}
+    />
+  );
 };
 
 PublicRoute.propTypes = {
-  component: PropTypes.elementType.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]).isRequired,
   isLoggedIn: PropTypes.bool.isRequired
 };
 

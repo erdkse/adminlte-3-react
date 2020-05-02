@@ -23,7 +23,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         isLoggedIn: false,
-        token: null
+        token: null,
+        currentUser: {
+          email: 'mail@example.com',
+          picture: null
+        }
       };
     case ActionTypes.LOAD_USER:
       return {

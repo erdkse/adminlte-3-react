@@ -18,6 +18,7 @@
   "plugins": ["react"],
   "rules": {
     "react/jsx-filename-extension": ["warn", { "extensions": [".js", ".jsx"] }],
+    "react/jsx-props-no-spreading": ["off"],
     "jsx-a11y/label-has-associated-control": ["error", { "assert": "either" }]
   }
 }
