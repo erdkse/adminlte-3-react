@@ -34,6 +34,7 @@ const UserDropdown = (props) => {
   };
 
   const logOut = (event) => {
+    toggleDropdown();
     event.preventDefault();
     onUserLogout();
     history.push('/login');
@@ -99,7 +100,11 @@ const UserDropdown = (props) => {
           </div>
         </li>
         <li className="user-footer">
-          <Link to="/" className="btn btn-default btn-flat">
+          <Link
+            to="/profile"
+            onClick={toggleDropdown}
+            className="btn btn-default btn-flat"
+          >
             Profile
           </Link>
           <button

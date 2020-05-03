@@ -8,6 +8,7 @@ import Header from './header/Header';
 import Footer from './footer/Footer';
 import MenuSidebar from './menu-sidebar/MenuSidebar';
 import Dashboard from '../../views/Dashboard';
+import Profile from '../../views/profile/Profile';
 import PageLoading from '../../components/page-loading/PageLoading';
 import * as ActionTypes from '../../store/actions';
 
@@ -69,6 +70,7 @@ const Main = (props) => {
           <div className="pt-3" />
           <section className="content">
             <Switch>
+              <Route exact path="/profile" component={Profile} />
               <Route exact path="/" component={Dashboard} />
             </Switch>
           </section>
