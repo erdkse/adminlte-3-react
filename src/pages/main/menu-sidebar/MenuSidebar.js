@@ -26,7 +26,7 @@ const MenuSidebar = (props) => {
             />
           </div>
           <div className="info">
-            <Link to="/" className="d-block">
+            <Link to="/profile" className="d-block">
               {user.email}
             </Link>
           </div>

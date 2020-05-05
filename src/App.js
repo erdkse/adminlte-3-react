@@ -2,7 +2,6 @@ import React from 'react';
 import './App.scss';
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import Main from './pages/main/Main';
 import Login from './pages/login/Login';
 import Register from './pages/register/Register';
