@@ -1,6 +1,9 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+
 import Button from '../../components/button/Button';
 import * as AuthService from '../../services/auth';
 
@@ -11,38 +14,23 @@ const Register = () => {
 
   const history = useHistory();
 
-  const emailInputRef = useRef(null);
-  const passwordInputRef = useRef(null);
-  const passwordRetypeInputRef = useRef(null);
-
-  const register = (event) => {
-    if (
-      passwordInputRef.current.value === passwordRetypeInputRef.current.value
-    ) {
-      setAuthLoading(true);
-      AuthService.registerByAuth(
-        emailInputRef.current.value,
-        passwordInputRef.current.value
-      )
-        .then(() => {
-          setAuthLoading(false);
-          toast.success('Registration is success');
-          history.push('/');
-        })
-        .catch((error) => {
-          toast.error(
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-              'Failed'
-          );
-          setAuthLoading(false);
-        });
-    } else {
-      toast.warn('Password mismatch!');
-    }
-
-    event.preventDefault();
+  const register = (email, password) => {
+    setAuthLoading(true);
+    AuthService.registerByAuth(email, password)
+      .then(() => {
+        setAuthLoading(false);
+        toast.success('Registration is success');
+        history.push('/');
+      })
+      .catch((error) => {
+        toast.error(
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+            'Failed'
+        );
+        setAuthLoading(false);
+      });
   };
 
   const loginByGoogle = () => {
@@ -84,6 +72,35 @@ const Register = () => {
       });
   };
 
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+      passwordRetype: ''
+    },
+    validationSchema: Yup.object({
+      email: Yup.string().email('Invalid email address').required('Required'),
+      password: Yup.string()
+        .min(6, 'Must be 6 characters or more')
+        .max(30, 'Must be 30 characters or less')
+        .required('Required'),
+      passwordRetype: Yup.string()
+        .min(6, 'Must be 6 characters or more')
+        .max(30, 'Must be 30 characters or less')
+        .required('Required')
+        .when('password', {
+          is: (val) => !!(val && val.length > 0),
+          then: Yup.string().oneOf(
+            [Yup.ref('password')],
+            'Both password need to be the same'
+          )
+        })
+    }),
+    onSubmit: (values) => {
+      register(values.email, values.password);
+    }
+  });
+
   document.getElementById('root').classList = 'hold-transition register-page';
 
   return (
@@ -97,13 +114,13 @@ const Register = () => {
       <div className="card">
         <div className="card-body register-card-body">
           <p className="login-box-msg">Register a new membership</p>
-          <form onSubmit={register}>
+          <form onSubmit={formik.handleSubmit}>
             <div className="input-group mb-3">
               <input
-                ref={emailInputRef}
                 type="email"
                 className="form-control"
                 placeholder="Email"
+                {...formik.getFieldProps('email')}
               />
               <div className="input-group-append">
                 <div className="input-group-text">
@@ -113,10 +130,10 @@ const Register = () => {
             </div>
             <div className="input-group mb-3">
               <input
-                ref={passwordInputRef}
                 type="password"
                 className="form-control"
                 placeholder="Password"
+                {...formik.getFieldProps('password')}
               />
               <div className="input-group-append">
                 <div className="input-group-text">
@@ -126,10 +143,10 @@ const Register = () => {
             </div>
             <div className="input-group mb-3">
               <input
-                ref={passwordRetypeInputRef}
                 type="password"
                 className="form-control"
                 placeholder="Retype password"
+                {...formik.getFieldProps('passwordRetype')}
               />
               <div className="input-group-append">
                 <div className="input-group-text">

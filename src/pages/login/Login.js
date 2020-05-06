@@ -114,7 +114,6 @@ const Login = (props) => {
           <form onSubmit={formik.handleSubmit}>
             <div className="input-group mb-3">
               <input
-                name="email"
                 type="email"
                 className="form-control"
                 placeholder="Email"
@@ -128,7 +127,6 @@ const Login = (props) => {
             </div>
             <div className="input-group mb-3">
               <input
-                name="password"
                 type="password"
                 className="form-control"
                 placeholder="Password"
