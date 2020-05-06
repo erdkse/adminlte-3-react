@@ -112,32 +112,43 @@ const Login = (props) => {
         <div className="card-body login-card-body">
           <p className="login-box-msg">Sign in to start your session</p>
           <form onSubmit={formik.handleSubmit}>
-            <div className="input-group mb-3">
-              <input
-                type="email"
-                className="form-control"
-                placeholder="Email"
-                {...formik.getFieldProps('email')}
-              />
-              <div className="input-group-append">
-                <div className="input-group-text">
-                  <span className="fas fa-envelope" />
+            <div className="mb-3">
+              <div className="input-group ">
+                <input
+                  type="email"
+                  className="form-control"
+                  placeholder="Email"
+                  {...formik.getFieldProps('email')}
+                />
+                <div className="input-group-append">
+                  <div className="input-group-text">
+                    <span className="fas fa-envelope" />
+                  </div>
                 </div>
               </div>
+              {formik.touched.email && formik.errors.email ? (
+                <div>{formik.errors.email}</div>
+              ) : null}
             </div>
-            <div className="input-group mb-3">
-              <input
-                type="password"
-                className="form-control"
-                placeholder="Password"
-                {...formik.getFieldProps('password')}
-              />
-              <div className="input-group-append">
-                <div className="input-group-text">
-                  <span className="fas fa-lock" />
+            <div className="mb-3">
+              <div className="input-group">
+                <input
+                  type="password"
+                  className="form-control"
+                  placeholder="Password"
+                  {...formik.getFieldProps('password')}
+                />
+                <div className="input-group-append">
+                  <div className="input-group-text">
+                    <span className="fas fa-lock" />
+                  </div>
                 </div>
               </div>
+              {formik.touched.password && formik.errors.password ? (
+                <div>{formik.errors.password}</div>
+              ) : null}
             </div>
+
             <div className="row">
               <div className="col-7">
                 <div className="icheck-primary">
