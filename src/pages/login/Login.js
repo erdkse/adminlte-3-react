@@ -89,7 +89,7 @@ const Login = (props) => {
     validationSchema: Yup.object({
       email: Yup.string().email('Invalid email address').required('Required'),
       password: Yup.string()
-        .min(6, 'Must be 6 characters or more')
+        .min(5, 'Must be 5 characters or more')
         .max(30, 'Must be 30 characters or less')
         .required('Required')
     }),

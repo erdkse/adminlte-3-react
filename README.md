@@ -1,4 +1,9 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Admin LTE 3 - React 16.13.1
+
+To login website use:
+
+username: admin@example.com<br />
+password: admin<br />
 
 ## Available Scripts
 
