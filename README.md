@@ -1,9 +1,9 @@
-# Admin LTE 3 - React 16.13.1
+# Admin LTE 3.0.4 - React 16.13.1
 
 To login website use:
 
-username: admin@example.com<br />
-password: admin<br />
+`username:` admin@example.com<br />
+`password:` admin<br />
 
 ## Available Scripts
 
