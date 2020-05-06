@@ -9,6 +9,7 @@
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
     "express": "^4.17.1",
+    "formik": "^2.1.4",
     "node-sass": "^4.14.0",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
@@ -19,7 +20,8 @@
     "react-scripts": "3.4.1",
     "react-toastify": "^5.5.0",
     "reactstrap": "^8.4.1",
-    "redux": "^4.0.5"
+    "redux": "^4.0.5",
+    "yup": "^0.28.5"
   },
   "scripts": {
     "start": "node server.js",
