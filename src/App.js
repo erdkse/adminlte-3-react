@@ -9,8 +9,8 @@ import ForgetPassword from './pages/forgot-password/ForgotPassword';
 import RecoverPassword from './pages/recover-password/RecoverPassword';
 import PrivacyPolicy from './pages/privacy-policy/PrivacyPolicy';
 
-import PublicRoute from './helpers/routes/PublicRoute';
-import PrivateRoute from './helpers/routes/PrivateRoute';
+import PublicRoute from './routes/PublicRoute';
+import PrivateRoute from './routes/PrivateRoute';
 
 toast.configure({
   autoClose: 3000,

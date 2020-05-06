@@ -1,8 +1,10 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
 import * as AuthService from '../../services/auth';
 import Button from '../../components/button/Button';
@@ -17,15 +19,9 @@ const Login = (props) => {
 
   const history = useHistory();
 
-  const emailInputRef = useRef(null);
-  const passwordInputRef = useRef(null);
-
-  const login = (event) => {
+  const login = (email, password) => {
     setAuthLoading(true);
-    AuthService.loginByAuth(
-      emailInputRef.current.value,
-      passwordInputRef.current.value
-    )
+    AuthService.loginByAuth(email, password)
       .then((token) => {
         toast.success('Login is succeed!');
         setAuthLoading(false);
@@ -41,8 +37,6 @@ const Login = (props) => {
             'Failed'
         );
       });
-
-    event.preventDefault();
   };
 
   const loginByGoogle = () => {
@@ -87,6 +81,23 @@ const Login = (props) => {
       });
   };
 
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: ''
+    },
+    validationSchema: Yup.object({
+      email: Yup.string().email('Invalid email address').required('Required'),
+      password: Yup.string()
+        .min(5, 'Must be 5 characters or more')
+        .max(30, 'Must be 30 characters or less')
+        .required('Required')
+    }),
+    onSubmit: (values) => {
+      login(values.email, values.password);
+    }
+  });
+
   document.getElementById('root').classList = 'hold-transition login-page';
 
   return (
@@ -100,33 +111,44 @@ const Login = (props) => {
       <div className="card">
         <div className="card-body login-card-body">
           <p className="login-box-msg">Sign in to start your session</p>
-          <form onSubmit={login}>
-            <div className="input-group mb-3">
-              <input
-                type="email"
-                ref={emailInputRef}
-                className="form-control"
-                placeholder="Email"
-              />
-              <div className="input-group-append">
-                <div className="input-group-text">
-                  <span className="fas fa-envelope" />
+          <form onSubmit={formik.handleSubmit}>
+            <div className="mb-3">
+              <div className="input-group ">
+                <input
+                  type="email"
+                  className="form-control"
+                  placeholder="Email"
+                  {...formik.getFieldProps('email')}
+                />
+                <div className="input-group-append">
+                  <div className="input-group-text">
+                    <span className="fas fa-envelope" />
+                  </div>
                 </div>
               </div>
+              {formik.touched.email && formik.errors.email ? (
+                <div>{formik.errors.email}</div>
+              ) : null}
             </div>
-            <div className="input-group mb-3">
-              <input
-                type="password"
-                ref={passwordInputRef}
-                className="form-control"
-                placeholder="Password"
-              />
-              <div className="input-group-append">
-                <div className="input-group-text">
-                  <span className="fas fa-lock" />
+            <div className="mb-3">
+              <div className="input-group">
+                <input
+                  type="password"
+                  className="form-control"
+                  placeholder="Password"
+                  {...formik.getFieldProps('password')}
+                />
+                <div className="input-group-append">
+                  <div className="input-group-text">
+                    <span className="fas fa-lock" />
+                  </div>
                 </div>
               </div>
+              {formik.touched.password && formik.errors.password ? (
+                <div>{formik.errors.password}</div>
+              ) : null}
             </div>
+
             <div className="row">
               <div className="col-7">
                 <div className="icheck-primary">
