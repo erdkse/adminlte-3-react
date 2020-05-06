@@ -6,11 +6,13 @@ import PropTypes from 'prop-types';
 const PublicRoute = (props) => {
   const { children, isLoggedIn, ...rest } = props;
 
+  const isAuthenticated = isLoggedIn || localStorage.getItem('token');
+
   return (
     <Route
       {...rest}
       render={({ location }) =>
-        isLoggedIn ? (
+        isAuthenticated ? (
           <Redirect
             to={{
               pathname: '/',
