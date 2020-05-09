@@ -98,27 +98,24 @@ export const loginByGoogle = () => {
 };
 
 export const loginByFacebook = () => {
-  return (
-    asyncFacebookGetLoginStatus()
-      // eslint-disable-next-line consistent-return
-      .then((accessToken) => {
-        if (accessToken) {
-          return Promise.resolve(accessToken);
-        }
-        return asyncFacebookLogin();
-      })
-      .then((accessToken) => {
-        return axios.post('/v1/facebook/login', {
-          accessToken
-        });
-      })
-      .then((response) => {
-        localStorage.setItem('token', response.data.token);
-        document.getElementById('root').classList.remove('login-page');
-        document.getElementById('root').classList.remove('hold-transition');
-        return Promise.resolve(response.data.token);
-      })
-  );
+  return asyncFacebookGetLoginStatus()
+    .then((accessToken) => {
+      if (accessToken) {
+        return Promise.resolve(accessToken);
+      }
+      return asyncFacebookLogin();
+    })
+    .then((accessToken) => {
+      return axios.post('/v1/facebook/login', {
+        accessToken
+      });
+    })
+    .then((response) => {
+      localStorage.setItem('token', response.data.token);
+      document.getElementById('root').classList.remove('login-page');
+      document.getElementById('root').classList.remove('hold-transition');
+      return Promise.resolve(response.data.token);
+    });
 };
 
 export const registerByAuth = (email, password) => {
@@ -153,30 +150,27 @@ export const registerByGoogle = () => {
       localStorage.setItem('token', response.data.token);
       document.getElementById('root').classList.remove('register-page');
       document.getElementById('root').classList.remove('hold-transition');
-      return Promise.resolve({ token: response.data.token });
+      return Promise.resolve(response.data.token);
     });
 };
 
 export const registerByFacebook = () => {
-  return (
-    asyncFacebookGetLoginStatus()
-      // eslint-disable-next-line consistent-return
-      .then((accessToken) => {
-        if (accessToken) {
-          return Promise.resolve(accessToken);
-        }
-        return asyncFacebookLogin();
-      })
-      .then((accessToken) => {
-        return axios.post('/v1/facebook/register', {
-          accessToken
-        });
-      })
-      .then((response) => {
-        localStorage.setItem('token', response.data.token);
-        document.getElementById('root').classList.remove('register-page');
-        document.getElementById('root').classList.remove('hold-transition');
-        return Promise.resolve({ token: response.data.token });
-      })
-  );
+  return asyncFacebookGetLoginStatus()
+    .then((accessToken) => {
+      if (accessToken) {
+        return Promise.resolve(accessToken);
+      }
+      return asyncFacebookLogin();
+    })
+    .then((accessToken) => {
+      return axios.post('/v1/facebook/register', {
+        accessToken
+      });
+    })
+    .then((response) => {
+      localStorage.setItem('token', response.data.token);
+      document.getElementById('root').classList.remove('register-page');
+      document.getElementById('root').classList.remove('hold-transition');
+      return Promise.resolve(response.data.token);
+    });
 };

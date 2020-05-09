@@ -28,16 +28,16 @@ const Main = (props) => {
 
   useEffect(() => {
     updateAppLoading(true);
-    axios
-      .get('/v1/users/profile')
-      .then((response) => {
-        updateAppLoading(false);
+    const fetchProfile = async () => {
+      try {
+        const response = await axios.get('/v1/users/profile');
         onUserLoad({ ...response.data });
-      })
-      .catch(() => {
         updateAppLoading(false);
-      });
-
+      } catch (error) {
+        updateAppLoading(false);
+      }
+    };
+    fetchProfile();
     return () => {};
   }, [onUserLoad]);
 

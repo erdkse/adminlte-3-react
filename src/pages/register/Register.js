@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
 import Button from '../../components/button/Button';
 import * as AuthService from '../../services/auth';
+import * as ActionTypes from '../../store/actions';
 
-const Register = () => {
+const Register = (props) => {
+  const { onUserLogin } = props;
+
   const [isAuthLoading, setAuthLoading] = useState(false);
   const [isGoogleAuthLoading, setGoogleAuthLoading] = useState(false);
   const [isFacebookAuthLoading, setFacebookAuthLoading] = useState(false);
@@ -17,8 +22,9 @@ const Register = () => {
   const register = (email, password) => {
     setAuthLoading(true);
     AuthService.registerByAuth(email, password)
-      .then(() => {
+      .then((token) => {
         setAuthLoading(false);
+        onUserLogin(token);
         toast.success('Registration is success');
         history.push('/');
       })
@@ -36,8 +42,9 @@ const Register = () => {
   const loginByGoogle = () => {
     setGoogleAuthLoading(true);
     AuthService.registerByGoogle()
-      .then(() => {
+      .then((token) => {
         setGoogleAuthLoading(false);
+        onUserLogin(token);
         toast.success('Authentication is succeed!');
         history.push('/');
       })
@@ -56,9 +63,10 @@ const Register = () => {
     setFacebookAuthLoading(true);
 
     AuthService.loginByFacebook()
-      .then(() => {
-        toast.success('Register is succeeded!');
+      .then((token) => {
         setFacebookAuthLoading(false);
+        onUserLogin(token);
+        toast.success('Register is succeeded!');
         history.push('/');
       })
       .catch((error) => {
@@ -228,4 +236,12 @@ const Register = () => {
   );
 };
 
-export default Register;
+Register.propTypes = {
+  onUserLogin: PropTypes.func.isRequired
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  onUserLogin: (token) => dispatch({ type: ActionTypes.LOGIN_USER, token })
+});
+
+export default connect(null, mapDispatchToProps)(Register);
