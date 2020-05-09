@@ -10,12 +10,11 @@ if (localStorage.getItem('token')) {
   )}`;
 }
 
-axios.interceptors.request.use(
+intance.interceptors.request.use(
   (request) => {
-    if (localStorage.getItem('token')) {
-      intance.defaults.headers.common.Authorization = `Bearer ${localStorage.getItem(
-        'token'
-      )}`;
+    const token = localStorage.getItem('token');
+    if (token) {
+      intance.defaults.headers.common.Authorization = `Bearer ${token}`;
     }
     return request;
   },
@@ -24,7 +23,7 @@ axios.interceptors.request.use(
   }
 );
 
-axios.interceptors.response.use(
+intance.interceptors.response.use(
   (response) => response,
   (error) => {
     return Promise.reject(error);
