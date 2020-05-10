@@ -182,7 +182,7 @@ const Login = (props) => {
             <Button
               block
               icon="google"
-              color="danger"
+              theme="danger"
               onClick={loginByGoogle}
               isLoading={isGoogleAuthLoading}
               disabled={isAuthLoading || isFacebookAuthLoading}

@@ -63,9 +63,7 @@ const Profile = () => {
                       <span className="float-right">13,287</span>
                     </li>
                   </ul>
-                  <Button block color="primary">
-                    Follow
-                  </Button>
+                  <Button block>Follow</Button>
                 </div>
                 {/* /.card-body */}
               </div>
