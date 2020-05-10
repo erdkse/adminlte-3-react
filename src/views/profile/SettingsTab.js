@@ -93,7 +93,7 @@ const SettingsTab = (props) => {
         </div>
         <div className="form-group row">
           <div className="offset-sm-2 col-sm-10">
-            <Button type="submit" color="danger">
+            <Button type="submit" theme="danger">
               Submit
             </Button>
           </div>

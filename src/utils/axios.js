@@ -1,20 +1,16 @@
 import axios from 'axios';
+import store from '../store/index';
+import * as ActionTypes from '../store/actions';
 
 const intance = axios.create({
   baseURL: `${process.env.REACT_APP_GATEKEEPER_URL}`
 });
 
-if (localStorage.getItem('token')) {
-  intance.defaults.headers.common.Authorization = `Bearer ${localStorage.getItem(
-    'token'
-  )}`;
-}
-
 intance.interceptors.request.use(
   (request) => {
-    const token = localStorage.getItem('token');
+    const { token } = store.getState().auth;
     if (token) {
-      intance.defaults.headers.common.Authorization = `Bearer ${token}`;
+      request.headers.Authorization = `Bearer ${token}`;
     }
     return request;
   },
@@ -26,6 +22,9 @@ intance.interceptors.request.use(
 intance.interceptors.response.use(
   (response) => response,
   (error) => {
+    if (error.response.data.status === 401) {
+      store.dispatch({ type: ActionTypes.LOGOUT_USER });
+    }
     return Promise.reject(error);
   }
 );
