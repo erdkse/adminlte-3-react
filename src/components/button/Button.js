@@ -18,6 +18,7 @@ const AppButton = (props) => {
   if (isLoading) {
     spinnerTemplate = (
       <Spinner
+        className="ml-2"
         as="span"
         animation="border"
         size="sm"

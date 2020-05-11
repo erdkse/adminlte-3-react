@@ -54,7 +54,7 @@ const Header = (props) => {
         <Notifications />
         <Languages />
         <User />
-        <li className="nav-item">
+        {/* <li className="nav-item">
           <button
             className="nav-link"
             data-widget="control-sidebar"
@@ -63,7 +63,7 @@ const Header = (props) => {
           >
             <i className="fas fa-th-large" />
           </button>
-        </li>
+        </li> */}
       </ul>
     </nav>
   );
