@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { Route, Switch } from 'react-router-dom';
-import { connect } from 'react-redux';
+import React, {useState, useEffect} from 'react';
+import {Route, Switch} from 'react-router-dom';
+import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
 import axios from '../../utils/axios';
@@ -13,97 +13,97 @@ import PageLoading from '../../components/page-loading/PageLoading';
 import * as ActionTypes from '../../store/actions';
 
 const Main = (props) => {
-  const { onUserLoad } = props;
-  const [appLoadingState, updateAppLoading] = useState(false);
+    const {onUserLoad} = props;
+    const [appLoadingState, updateAppLoading] = useState(false);
 
-  const [menusidebarState, updateMenusidebarState] = useState({
-    isMenuSidebarCollapsed: false
-  });
-
-  const toggleMenuSidebar = () => {
-    updateMenusidebarState({
-      isMenuSidebarCollapsed: !menusidebarState.isMenuSidebarCollapsed
+    const [menusidebarState, updateMenusidebarState] = useState({
+        isMenuSidebarCollapsed: false
     });
-  };
 
-  useEffect(() => {
-    updateAppLoading(true);
-    const fetchProfile = async () => {
-      try {
-        const response = await axios.get('/v1/users/profile');
-        onUserLoad({ ...response.data });
-        updateAppLoading(false);
-      } catch (error) {
-        updateAppLoading(false);
-      }
+    const toggleMenuSidebar = () => {
+        updateMenusidebarState({
+            isMenuSidebarCollapsed: !menusidebarState.isMenuSidebarCollapsed
+        });
     };
-    fetchProfile();
-    return () => {};
-  }, [onUserLoad]);
 
-  document.getElementById('root').classList.remove('register-page');
-  document.getElementById('root').classList.remove('login-page');
-  document.getElementById('root').classList.remove('hold-transition');
+    useEffect(() => {
+        updateAppLoading(true);
+        const fetchProfile = async () => {
+            try {
+                const response = await axios.get('/v1/users/profile');
+                onUserLoad({...response.data});
+                updateAppLoading(false);
+            } catch (error) {
+                updateAppLoading(false);
+            }
+        };
+        fetchProfile();
+        return () => {};
+    }, [onUserLoad]);
 
-  document.getElementById('root').className += ' sidebar-mini';
+    document.getElementById('root').classList.remove('register-page');
+    document.getElementById('root').classList.remove('login-page');
+    document.getElementById('root').classList.remove('hold-transition');
 
-  if (menusidebarState.isMenuSidebarCollapsed) {
-    document.getElementById('root').classList.add('sidebar-collapse');
-    document.getElementById('root').classList.remove('sidebar-open');
-  } else {
-    document.getElementById('root').classList.add('sidebar-open');
-    document.getElementById('root').classList.remove('sidebar-collapse');
-  }
+    document.getElementById('root').className += ' sidebar-mini';
 
-  let template;
+    if (menusidebarState.isMenuSidebarCollapsed) {
+        document.getElementById('root').classList.add('sidebar-collapse');
+        document.getElementById('root').classList.remove('sidebar-open');
+    } else {
+        document.getElementById('root').classList.add('sidebar-open');
+        document.getElementById('root').classList.remove('sidebar-collapse');
+    }
 
-  if (appLoadingState) {
-    template = <PageLoading />;
-  } else {
-    template = (
-      <>
-        <Header toggleMenuSidebar={toggleMenuSidebar} />
+    let template;
 
-        <MenuSidebar />
+    if (appLoadingState) {
+        template = <PageLoading />;
+    } else {
+        template = (
+            <>
+                <Header toggleMenuSidebar={toggleMenuSidebar} />
 
-        <div className="content-wrapper">
-          <div className="pt-3" />
-          <section className="content">
-            <Switch>
-              <Route exact path="/profile" component={Profile} />
-              <Route exact path="/" component={Dashboard} />
-            </Switch>
-          </section>
-        </div>
-        <Footer />
-        <div
-          id="sidebar-overlay"
-          role="presentation"
-          onClick={toggleMenuSidebar}
-          onKeyDown={() => {}}
-        />
-      </>
-    );
-  }
+                <MenuSidebar />
 
-  return <div className="wrapper">{template}</div>;
+                <div className="content-wrapper">
+                    <div className="pt-3" />
+                    <section className="content">
+                        <Switch>
+                            <Route exact path="/profile" component={Profile} />
+                            <Route exact path="/" component={Dashboard} />
+                        </Switch>
+                    </section>
+                </div>
+                <Footer />
+                <div
+                    id="sidebar-overlay"
+                    role="presentation"
+                    onClick={toggleMenuSidebar}
+                    onKeyDown={() => {}}
+                />
+            </>
+        );
+    }
+
+    return <div className="wrapper">{template}</div>;
 };
 
 Main.propTypes = {
-  user: PropTypes.shape({
-    email: PropTypes.string.isRequired,
-    picture: PropTypes.string
-  }).isRequired,
-  onUserLoad: PropTypes.func.isRequired
+    user: PropTypes.shape({
+        email: PropTypes.string.isRequired,
+        picture: PropTypes.string
+    }).isRequired,
+    onUserLoad: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
-  user: state.auth.currentUser
+    user: state.auth.currentUser
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onUserLoad: (user) =>
-    dispatch({ type: ActionTypes.LOAD_USER, currentUser: user })
+    onUserLoad: (user) =>
+        dispatch({type: ActionTypes.LOAD_USER, currentUser: user})
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main);
