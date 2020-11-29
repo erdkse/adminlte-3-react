@@ -62,7 +62,7 @@ const Register = (props) => {
     const loginByFacebook = () => {
         setFacebookAuthLoading(true);
 
-        AuthService.loginByFacebook()
+        AuthService.registerByFacebook()
             .then((token) => {
                 setFacebookAuthLoading(false);
                 onUserLogin(token);
