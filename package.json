@@ -1,6 +1,6 @@
 {
     "name": "adminlte-3-react",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "private": true,
     "scripts": {
         "start": "node server.js",
@@ -33,6 +33,7 @@
         "bootstrap": "4.5.3",
         "express": "4.17.1",
         "formik": "2.2.5",
+        "gatekeeper-client-sdk": "0.0.2",
         "node-sass": "4.14.0",
         "prop-types": "15.7.2",
         "react": "17.0.1",

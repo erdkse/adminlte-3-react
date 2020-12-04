@@ -1,3 +1,5 @@
+import gk from 'gatekeeper-client-sdk';
+
 import axios from '../utils/axios';
 import {addGoogleScript, addFacebookScript} from '../utils/social-auth-scripts';
 
@@ -60,18 +62,12 @@ const asyncFacebookLogin = () => {
     });
 };
 
-export const loginByAuth = (email, password) => {
-    return axios
-        .post('/v1/auth/login', {
-            email,
-            password
-        })
-        .then((response) => {
-            localStorage.setItem('token', response.data.token);
-            document.getElementById('root').classList.remove('login-page');
-            document.getElementById('root').classList.remove('hold-transition');
-            return Promise.resolve(response.data.token);
-        });
+export const loginByAuth = async (email, password) => {
+    const token = await gk.loginByAuth(email, password);
+    localStorage.setItem('token', token);
+    document.getElementById('root').classList.remove('login-page');
+    document.getElementById('root').classList.remove('hold-transition');
+    return token;
 };
 
 export const loginByGoogle = () => {
