@@ -115,14 +115,14 @@ const Register = (props) => {
 
     return (
         <div className="register-box">
-            <div className="register-logo">
-                <Link to="/">
-                    <b>Admin</b>
-                    <span>LTE</span>
-                </Link>
-            </div>
-            <div className="card">
-                <div className="card-body register-card-body">
+            <div className="card card-outline card-primary">
+                <div className="card-header text-center">
+                    <Link to="/" className="h1">
+                        <b>Admin</b>
+                        <span>LTE</span>
+                    </Link>
+                </div>
+                <div className="card-body">
                     <p className="login-box-msg">Register a new membership</p>
                     <form onSubmit={formik.handleSubmit}>
                         <div className="mb-3">
@@ -183,7 +183,7 @@ const Register = (props) => {
                             ) : null}
                         </div>
                         <div className="row">
-                            <div className="col-7">
+                            <div className="col-8">
                                 <div className="icheck-primary">
                                     <input
                                         type="checkbox"
@@ -197,7 +197,7 @@ const Register = (props) => {
                                     </label>
                                 </div>
                             </div>
-                            <div className="col-5">
+                            <div className="col-4">
                                 <Button
                                     type="submit"
                                     block
@@ -213,7 +213,6 @@ const Register = (props) => {
                         </div>
                     </form>
                     <div className="social-auth-links text-center">
-                        <p>- OR -</p>
                         <Button
                             block
                             icon="facebook"

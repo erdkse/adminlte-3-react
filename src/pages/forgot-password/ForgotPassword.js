@@ -20,14 +20,14 @@ const ForgotPassword = () => {
 
     return (
         <div className="login-box">
-            <div className="login-logo">
-                <Link to="/">
-                    <b>Admin</b>
-                    <span>LTE</span>
-                </Link>
-            </div>
-            <div className="card">
-                <div className="card-body login-card-body">
+            <div className="card card-outline card-primary">
+                <div className="card-header text-center">
+                    <Link to="/" className="h1">
+                        <b>Admin</b>
+                        <span>LTE</span>
+                    </Link>
+                </div>
+                <div className="card-body">
                     <p className="login-box-msg">
                         You forgot your password? Here you can easily retrieve a
                         new password.
@@ -59,11 +59,6 @@ const ForgotPassword = () => {
                     </form>
                     <p className="mt-3 mb-1">
                         <Link to="/login">Login</Link>
-                    </p>
-                    <p className="mb-0">
-                        <Link to="register" className="text-center">
-                            Register a new membership
-                        </Link>
                     </p>
                 </div>
             </div>

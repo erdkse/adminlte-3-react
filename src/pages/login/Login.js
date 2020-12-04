@@ -104,20 +104,20 @@ const Login = (props) => {
 
     return (
         <div className="login-box">
-            <div className="login-logo">
-                <Link to="/">
-                    <b>Admin</b>
-                    <span>LTE</span>
-                </Link>
-            </div>
-            <div className="card">
-                <div className="card-body login-card-body">
+            <div className="card card-outline card-primary">
+                <div className="card-header text-center">
+                    <Link to="/" className="h1">
+                        <b>Admin</b>
+                        <span>LTE</span>
+                    </Link>
+                </div>
+                <div className="card-body">
                     <p className="login-box-msg">
                         Sign in to start your session
                     </p>
                     <form onSubmit={formik.handleSubmit}>
                         <div className="mb-3">
-                            <div className="input-group ">
+                            <div className="input-group mb-3">
                                 <input
                                     type="email"
                                     className="form-control"
@@ -155,7 +155,7 @@ const Login = (props) => {
                         </div>
 
                         <div className="row">
-                            <div className="col-7">
+                            <div className="col-8">
                                 <div className="icheck-primary">
                                     <input type="checkbox" id="remember" />
                                     <label htmlFor="remember">
@@ -163,7 +163,7 @@ const Login = (props) => {
                                     </label>
                                 </div>
                             </div>
-                            <div className="col-5">
+                            <div className="col-4">
                                 <Button
                                     block
                                     type="submit"
@@ -178,8 +178,7 @@ const Login = (props) => {
                             </div>
                         </div>
                     </form>
-                    <div className="social-auth-links text-center mb-3">
-                        <p>- OR -</p>
+                    <div className="social-auth-links text-center mt-2 mb-3">
                         <Button
                             block
                             icon="facebook"
