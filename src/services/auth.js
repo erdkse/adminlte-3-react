@@ -3,20 +3,6 @@ import gk from 'gatekeeper-client-sdk';
 import axios from '../utils/axios';
 import {addFacebookScript} from '../utils/social-auth-scripts';
 
-const asyncFacebookLogin = () => {
-    return new Promise((resolve, reject) => {
-        window.FB.login(
-            (data) => {
-                if (data.status === 'connected') {
-                    resolve(data.authResponse.accessToken);
-                }
-                reject(new Error('FACEBOOK_ERROR'));
-            },
-            {scope: 'email'}
-        );
-    });
-};
-
 export const loginByAuth = async (email, password) => {
     const token = await gk.loginByAuth(email, password);
     localStorage.setItem('token', token);
@@ -68,6 +54,20 @@ const asyncFacebookGetLoginStatus = () => {
                 });
             })
             .catch(() => reject(new Error('ADD_SCRIPT_ERROR')));
+    });
+};
+
+const asyncFacebookLogin = () => {
+    return new Promise((resolve, reject) => {
+        window.FB.login(
+            (data) => {
+                if (data.status === 'connected') {
+                    resolve(data.authResponse.accessToken);
+                }
+                reject(new Error('FACEBOOK_ERROR'));
+            },
+            {scope: 'email'}
+        );
     });
 };
 
