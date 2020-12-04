@@ -1,29 +1,52 @@
 import gk from 'gatekeeper-client-sdk';
 
 import axios from '../utils/axios';
-import {addGoogleScript, addFacebookScript} from '../utils/social-auth-scripts';
+import {addFacebookScript} from '../utils/social-auth-scripts';
 
-const asyncGoogleGetAuthInstance = () => {
+const asyncFacebookLogin = () => {
     return new Promise((resolve, reject) => {
-        addGoogleScript()
-            .then(() => {
-                const params = {
-                    client_id:
-                        '611723947949-kc52mv7i8t1bt0v8vson1h9nae0rer35.apps.googleusercontent.com',
-                    scope: 'openid profile email',
-                    cookie_policy: 'single_host_origin',
-                    fetch_basic_profile: true
-                };
-
-                window.gapi.load('auth2', () => {
-                    if (!window.gapi.auth2.getAuthInstance()) {
-                        window.gapi.auth2.init(params);
-                    }
-                    resolve(window.gapi.auth2.getAuthInstance().signIn());
-                });
-            })
-            .catch(() => reject(new Error('ADD_SCRIPT_ERROR')));
+        window.FB.login(
+            (data) => {
+                if (data.status === 'connected') {
+                    resolve(data.authResponse.accessToken);
+                }
+                reject(new Error('FACEBOOK_ERROR'));
+            },
+            {scope: 'email'}
+        );
     });
+};
+
+export const loginByAuth = async (email, password) => {
+    const token = await gk.loginByAuth(email, password);
+    localStorage.setItem('token', token);
+    document.getElementById('root').classList.remove('login-page');
+    document.getElementById('root').classList.remove('hold-transition');
+    return token;
+};
+
+export const registerByAuth = async (email, password) => {
+    const token = await gk.registerByAuth(email, password);
+    localStorage.setItem('token', token);
+    document.getElementById('root').classList.remove('register-page');
+    document.getElementById('root').classList.remove('hold-transition');
+    return token;
+};
+
+export const loginByGoogle = async () => {
+    const token = await gk.loginByGoogle();
+    localStorage.setItem('token', token);
+    document.getElementById('root').classList.remove('login-page');
+    document.getElementById('root').classList.remove('hold-transition');
+    return token;
+};
+
+export const registerByGoogle = async () => {
+    const token = await gk.registerByGoogle();
+    localStorage.setItem('token', token);
+    document.getElementById('root').classList.remove('register-page');
+    document.getElementById('root').classList.remove('hold-transition');
+    return token;
 };
 
 const asyncFacebookGetLoginStatus = () => {
@@ -48,36 +71,6 @@ const asyncFacebookGetLoginStatus = () => {
     });
 };
 
-const asyncFacebookLogin = () => {
-    return new Promise((resolve, reject) => {
-        window.FB.login(
-            (data) => {
-                if (data.status === 'connected') {
-                    resolve(data.authResponse.accessToken);
-                }
-                reject(new Error('FACEBOOK_ERROR'));
-            },
-            {scope: 'email'}
-        );
-    });
-};
-
-export const loginByAuth = async (email, password) => {
-    const token = await gk.loginByAuth(email, password);
-    localStorage.setItem('token', token);
-    document.getElementById('root').classList.remove('login-page');
-    document.getElementById('root').classList.remove('hold-transition');
-    return token;
-};
-
-export const loginByGoogle = async () => {
-    const token = await gk.loginByGoogle();
-    localStorage.setItem('token', token);
-    document.getElementById('root').classList.remove('login-page');
-    document.getElementById('root').classList.remove('hold-transition');
-    return token;
-};
-
 export const loginByFacebook = () => {
     return asyncFacebookGetLoginStatus()
         .then((accessToken) => {
@@ -94,42 +87,6 @@ export const loginByFacebook = () => {
         .then((response) => {
             localStorage.setItem('token', response.data.token);
             document.getElementById('root').classList.remove('login-page');
-            document.getElementById('root').classList.remove('hold-transition');
-            return Promise.resolve(response.data.token);
-        });
-};
-
-export const registerByAuth = (email, password) => {
-    return axios
-        .post('/v1/auth/register', {
-            email,
-            password
-        })
-        .then((response) => {
-            localStorage.setItem('token', response.data.token);
-            document.getElementById('root').classList.remove('register-page');
-            document.getElementById('root').classList.remove('hold-transition');
-            return Promise.resolve(response.data.token);
-        });
-};
-
-export const registerByGoogle = () => {
-    return asyncGoogleGetAuthInstance()
-        .then(
-            (res) => {
-                const basicProfile = res.getBasicProfile();
-                const data = {};
-                data.uid = basicProfile.getId();
-                data.auth = res.getAuthResponse();
-                return axios.post('/v1/google/register', {
-                    idToken: data.auth.id_token
-                });
-            },
-            (err) => Promise.reject(err)
-        )
-        .then((response) => {
-            localStorage.setItem('token', response.data.token);
-            document.getElementById('root').classList.remove('register-page');
             document.getElementById('root').classList.remove('hold-transition');
             return Promise.resolve(response.data.token);
         });

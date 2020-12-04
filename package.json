@@ -33,7 +33,7 @@
         "bootstrap": "4.5.3",
         "express": "4.17.1",
         "formik": "2.2.5",
-        "gatekeeper-client-sdk": "0.0.3",
+        "gatekeeper-client-sdk": "0.0.4",
         "node-sass": "4.14.0",
         "prop-types": "15.7.2",
         "react": "17.0.1",
