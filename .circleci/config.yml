@@ -21,7 +21,7 @@ jobs:
       - checkout
       - node/with-cache:
           steps:
-            - run: npm run install
+            - run: npm install
             - run: npm run dev:test
             - run: npm run dev:build
             - persist_to_workspace:
