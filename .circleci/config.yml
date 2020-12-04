@@ -19,15 +19,15 @@ jobs:
             name: node/default
         steps:
             - checkout
-            - node/with-cache:
-                  steps:
-                      - run: npm install
-                      - run: npm run dev:test
-                      - run: npm run dev:build
-                      - persist_to_workspace:
-                            root: build
-                            paths:
-                                - ./
+            - node/install-packages:
+                  cache-path: ~/project/node_modules
+                  override-ci-command: npm install
+            - run: npm run dev:test
+            - run: npm run dev:build
+            - persist_to_workspace:
+                  root: build
+                  paths:
+                      - ./
     deploy:
         executor:
             name: heroku/default
