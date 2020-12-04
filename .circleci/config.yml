@@ -21,9 +21,9 @@ jobs:
       - checkout
       - node/with-cache:
           steps:
-            - run: yarn install
-            - run: yarn dev:test
-            - run: yarn dev:build
+            - run: npm run install
+            - run: npm run dev:test
+            - run: npm run dev:build
             - persist_to_workspace:
                 root: build
                 paths:
