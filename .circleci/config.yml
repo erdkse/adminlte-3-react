@@ -1,53 +1,53 @@
 version: 2.1
 
 orbs:
-  heroku: circleci/heroku@1.0.1
-  node: circleci/node@1.1.6
+    heroku: circleci/heroku@1.0.1
+    node: circleci/node@4.1.0
 
 commands:
-  add-dist-folder-to-git:
-    steps:
-      - run: cp -r build dist
-      - run: git config user.email "commits-noreply@github.com"
-      - run: git config user.name "github-pipelines"
-      - run: git add .
-      - run: git commit -m "add dist folder"
+    add-dist-folder-to-git:
+        steps:
+            - run: cp -r build dist
+            - run: git config user.email "commits-noreply@github.com"
+            - run: git config user.name "github-pipelines"
+            - run: git add .
+            - run: git commit -m "add dist folder"
 
 jobs:
-  build-and-test:
-    executor:
-      name: node/default
-    steps:
-      - checkout
-      - node/with-cache:
-          steps:
-            - run: npm install
-            - run: npm run dev:test
-            - run: npm run dev:build
-            - persist_to_workspace:
-                root: build
-                paths:
-                  - ./
-  deploy:
-    executor:
-      name: heroku/default
-    steps:
-      - checkout
-      - heroku/install
-      - attach_workspace:
-          at: ./build
-      - add-dist-folder-to-git
-      - heroku/deploy-via-git:
-          force: true
+    build-and-test:
+        executor:
+            name: node/default
+        steps:
+            - checkout
+            - node/with-cache:
+                  steps:
+                      - run: npm install
+                      - run: npm run dev:test
+                      - run: npm run dev:build
+                      - persist_to_workspace:
+                            root: build
+                            paths:
+                                - ./
+    deploy:
+        executor:
+            name: heroku/default
+        steps:
+            - checkout
+            - heroku/install
+            - attach_workspace:
+                  at: ./build
+            - add-dist-folder-to-git
+            - heroku/deploy-via-git:
+                  force: true
 
 workflows:
-  heroku_deploy:
-    jobs:
-      - build-and-test
-      - deploy:
-          requires:
+    heroku_deploy:
+        jobs:
             - build-and-test
-          filters:
-            branches:
-              only:
-                - main
+            - deploy:
+                  requires:
+                      - build-and-test
+                  filters:
+                      branches:
+                          only:
+                              - main
