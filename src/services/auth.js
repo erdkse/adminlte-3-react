@@ -70,26 +70,12 @@ export const loginByAuth = async (email, password) => {
     return token;
 };
 
-export const loginByGoogle = () => {
-    return asyncGoogleGetAuthInstance()
-        .then(
-            (res) => {
-                const basicProfile = res.getBasicProfile();
-                const data = {};
-                data.uid = basicProfile.getId();
-                data.auth = res.getAuthResponse();
-                return axios.post('/v1/google/login', {
-                    idToken: data.auth.id_token
-                });
-            },
-            (err) => Promise.reject(err)
-        )
-        .then((response) => {
-            localStorage.setItem('token', response.data.token);
-            document.getElementById('root').classList.remove('login-page');
-            document.getElementById('root').classList.remove('hold-transition');
-            return Promise.resolve(response.data.token);
-        });
+export const loginByGoogle = async () => {
+    const token = await gk.loginByGoogle();
+    localStorage.setItem('token', token);
+    document.getElementById('root').classList.remove('login-page');
+    document.getElementById('root').classList.remove('hold-transition');
+    return token;
 };
 
 export const loginByFacebook = () => {
