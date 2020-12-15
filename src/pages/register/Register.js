@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {toast} from 'react-toastify';
 import {useFormik} from 'formik';
+import {useTranslation} from 'react-i18next';
 import * as Yup from 'yup';
 
 import Button from '../../components/button/Button';
@@ -16,6 +17,7 @@ const Register = (props) => {
     const [isAuthLoading, setAuthLoading] = useState(false);
     const [isGoogleAuthLoading, setGoogleAuthLoading] = useState(false);
     const [isFacebookAuthLoading, setFacebookAuthLoading] = useState(false);
+    const [t] = useTranslation();
 
     const history = useHistory();
 
@@ -123,7 +125,7 @@ const Register = (props) => {
                     </Link>
                 </div>
                 <div className="card-body">
-                    <p className="login-box-msg">Register a new membership</p>
+                    <p className="login-box-msg">{t('register.registernew')}</p>
                     <form onSubmit={formik.handleSubmit}>
                         <div className="mb-3">
                             <div className="input-group">
@@ -207,7 +209,7 @@ const Register = (props) => {
                                         isGoogleAuthLoading
                                     }
                                 >
-                                    Register
+                                    {t('register.label')}
                                 </Button>
                             </div>
                         </div>
@@ -220,7 +222,9 @@ const Register = (props) => {
                             isLoading={isFacebookAuthLoading}
                             disabled={isAuthLoading || isGoogleAuthLoading}
                         >
-                            Sign in using Facebook
+                            {t('login.button.signin.social', {
+                                what: 'Facebook'
+                            })}
                         </Button>
                         <Button
                             block
@@ -230,11 +234,11 @@ const Register = (props) => {
                             isLoading={isGoogleAuthLoading}
                             disabled={isAuthLoading || isFacebookAuthLoading}
                         >
-                            Sign in using Google
+                            {t('login.button.signin.social', {what: 'Google'})}
                         </Button>
                     </div>
                     <Link to="/login" className="text-center">
-                        I already have a membership
+                        {t('register.alreadyhave')}
                     </Link>
                 </div>
             </div>

@@ -1,0 +1,90 @@
+{
+    "login": {
+        "label": {
+            "signin": "Sign in to start your session",
+            "rememberme": "Remember Me",
+            "forgotpass": "I forgot my password",
+            "registernew": "Register a new membership"
+        },
+        "button": {
+            "signin": { 
+                "label": "Sign In",
+                "social": "Sign in using {{what}}"
+            },
+            "signout":  "Sign Out"
+        }
+      },
+      "register": {
+        "alreadyhave": "I already have a membership",
+        "registernew": "Register a new membership",
+        "label": "Register"
+      },
+      "recover": {
+        "forgotyourpassword": "You forgot your password? Here you can easily retrieve a new password.",
+        "onestepaway": "You are only one step a way from your new password, recover your password now.",
+        "changepassword": "Change Password",
+        "requestnewpassword": "Request New Password"
+      },
+      "main": {
+        "label": {
+            "moreInfo": "More info",
+            "follow": "Follow",
+            "aboutme": "About Me",
+            "education": "Education",
+            "location": "Location",
+            "skills": "Skills",
+            "notes": "Notes",
+            "activity": "Activity",
+            "timeline": "Timeline",
+            "settings": "Settings"
+        }
+      },
+      "header": {
+        "label": {
+            "home": "Home",
+            "contact": "Contact"
+        },
+        "language": {
+            "turkish": "Turkish",
+            "english": "English",
+            "german": "German", 
+            "french": "French",
+            "spanish": "Spanish"
+        },
+        "messages": {
+            "ago": "{{quantity}} {{unit}} Ago",
+            "seeall": "See All Messages"
+        },
+        "notifications": {
+            "count": "{{quantity}} Notifications",
+            "newMessagesCount": "{{quantity}} new messages",
+            "friendRequestsCount": "{{quantity}} friend requests",
+            "reportsCount": "{{quantity}} new reports",
+            "seeall": "See All Notifications"
+        },
+        "user": {
+            "profile": "Profile",
+            "followers": "Followers",
+            "sales": "Sales",
+            "friends": "Friends"
+        }
+      },
+      "menusidebar": {
+        "label": {
+            "dashboard": "Dashboard"
+        }
+      },
+      "footer": {
+          "version": "Version",
+          "copyright": "All rights reserved."
+      },
+      "views": {
+        "user": {
+            "profile": "User Profile",
+            "following": "Following"
+        }
+      },
+      "measurement": {
+          "quantityUnit": "{{quantity}} {{unit}}"
+      }
+}

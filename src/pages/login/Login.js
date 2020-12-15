@@ -4,6 +4,8 @@ import {toast} from 'react-toastify';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {useFormik} from 'formik';
+import {useTranslation} from 'react-i18next';
+
 import * as Yup from 'yup';
 
 import * as AuthService from '../../services/auth';
@@ -18,6 +20,7 @@ const Login = (props) => {
     const [isFacebookAuthLoading, setFacebookAuthLoading] = useState(false);
 
     const history = useHistory();
+    const [t] = useTranslation();
 
     const login = (email, password) => {
         setAuthLoading(true);
@@ -112,9 +115,7 @@ const Login = (props) => {
                     </Link>
                 </div>
                 <div className="card-body">
-                    <p className="login-box-msg">
-                        Sign in to start your session
-                    </p>
+                    <p className="login-box-msg">{t('login.label.signin')}</p>
                     <form onSubmit={formik.handleSubmit}>
                         <div className="mb-3">
                             <div className="input-group">
@@ -159,7 +160,7 @@ const Login = (props) => {
                                 <div className="icheck-primary">
                                     <input type="checkbox" id="remember" />
                                     <label htmlFor="remember">
-                                        Remember Me
+                                        {t('login.label.rememberme')}
                                     </label>
                                 </div>
                             </div>
@@ -173,7 +174,7 @@ const Login = (props) => {
                                         isGoogleAuthLoading
                                     }
                                 >
-                                    Sign In
+                                    {t('login.button.signin.label')}
                                 </Button>
                             </div>
                         </div>
@@ -186,7 +187,9 @@ const Login = (props) => {
                             isLoading={isFacebookAuthLoading}
                             disabled={isAuthLoading || isGoogleAuthLoading}
                         >
-                            Sign in using Facebook
+                            {t('login.button.signin.social', {
+                                what: 'Facebook'
+                            })}
                         </Button>
                         <Button
                             block
@@ -196,15 +199,17 @@ const Login = (props) => {
                             isLoading={isGoogleAuthLoading}
                             disabled={isAuthLoading || isFacebookAuthLoading}
                         >
-                            Sign in using Google
+                            {t('login.button.signin.social', {what: 'Google'})}
                         </Button>
                     </div>
                     <p className="mb-1">
-                        <Link to="/forgot-password">I forgot my password</Link>
+                        <Link to="/forgot-password">
+                            {t('login.label.forgotpass')}
+                        </Link>
                     </p>
                     <p className="mb-0">
                         <Link to="/register" className="text-center">
-                            Register a new membership
+                            {t('login.label.registernew')}
                         </Link>
                     </p>
                 </div>

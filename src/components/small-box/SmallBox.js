@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
+import {useTranslation} from 'react-i18next';
 
 const SmallBox = (props) => {
     const {type, icon, count, title, navigateTo} = props;
+    const {t} = useTranslation();
 
     let className = 'small-box';
     let iconClass = 'ion';
@@ -37,7 +39,7 @@ const SmallBox = (props) => {
                 <i className={iconClass} />
             </div>
             <Link to={navigateTo} className="small-box-footer">
-                <span className="mr-2">More info</span>
+                <span className="mr-2">{t('main.label.moreInfo')}</span>
                 <i className="fa fa-arrow-circle-right" />
             </Link>
         </div>

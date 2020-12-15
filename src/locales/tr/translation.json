@@ -1,0 +1,90 @@
+{
+    "login": {
+        "label": {
+            "signin": "Oturumunuzu başlatmak için giriş yapın",
+            "rememberme": "Beni Hatırla",
+            "forgotpass": "Şifremi unuttum",
+            "registernew": "Üye ol"
+        },
+        "button": {
+            "signin": { 
+                "label": "Giriş Yap",
+                "social": "{{what}} kullanarak giriş yap"
+            },
+            "signout":  "Çıkış Yap"
+        }
+      },
+      "register": {
+        "alreadyhave": "Zaten üyeliğim var",
+        "registernew": "Yeni üyelik oluştur",
+        "label": "Üye Ol"
+      },
+      "recover": {
+        "forgotyourpassword": "Şifreni mi unuttun? Kolayca yenisini alabilirsin.",
+        "onestepaway": "Yeni şifrenden sadece bir adım uzaktasın, şifreni şimdi yenile.",
+        "changepassword": "Şifre Değiştir",
+        "requestnewpassword": "Yeni Şifre Talep Et"
+      },
+      "main": {
+        "label": {
+            "moreInfo": "Daha fazla bilgi",
+            "follow": "Takip Et",
+            "aboutme": "Hakkımda",
+            "education": "Eğitim",
+            "location": "Konum",
+            "skills": "Beceriler",
+            "notes": "Notlar",
+            "activity": "Hareketlilik",
+            "timeline": "Zaman Tüneli",
+            "settings": "Ayarlar"
+        }
+      },
+      "header": {
+        "label": {
+            "home": "Anasayfa",
+            "contact": "İletişim"
+        },
+        "language": {
+            "turkish": "Türkçe",
+            "english": "İngilizce",
+            "german": "Almanca", 
+            "french": "Fransızca",
+            "spanish": "İspanyolca"
+        },
+        "messages": {
+            "ago": "{{quantity}} {{unit}} Önce",
+            "seeall": "Tüm Mesajları Gör"
+        },
+        "notifications": {
+            "count": "{{quantity}} Bildirim",
+            "newMessagesCount": "{{quantity}} yeni mesaj",
+            "friendRequestsCount": "{{quantity}} arkadaşlık isteği",
+            "reportsCount": "{{quantity}} yeni rapor",
+            "seeall": "Tüm Bildirimleri Gör"
+        },
+        "user": {
+            "profile": "Profil",
+            "followers": "Takipçi",
+            "sales": "Satış",
+            "friends": "Arkadaşlar"
+        }
+      },
+      "menusidebar": {
+        "label": {
+            "dashboard": "Pano"
+        }
+      },
+      "footer": {
+          "version": "Versiyon",
+          "copyright": "Tüm hakları saklıdır."
+      },
+      "views": {
+        "user": {
+            "profile": "Kullanıcı Profili",
+            "following": "Takip Ettikleri"
+        }
+      },
+      "measurement": {
+          "quantityUnit": "{{quantity}} {{unit}}"
+      }
+}

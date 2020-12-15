@@ -1,10 +1,12 @@
 import React, {useRef} from 'react';
 import {toast} from 'react-toastify';
 import {Link} from 'react-router-dom';
+import {useTranslation} from 'react-i18next';
 
 const RecoverPassword = () => {
     const passwordInput = useRef(null);
     const confirmPasswordInput = useRef(null);
+    const [t] = useTranslation();
 
     const confirm = (event) => {
         toast.warn('Henüz fonksiyonel değil!');
@@ -23,10 +25,7 @@ const RecoverPassword = () => {
                     </Link>
                 </div>
                 <div className="card-body">
-                    <p className="login-box-msg">
-                        You are only one step a way from your new password,
-                        recover your password now.
-                    </p>
+                    <p className="login-box-msg">{t('recover.onestepaway')}</p>
                     <form onSubmit={confirm}>
                         <div className="input-group mb-3">
                             <input
@@ -60,13 +59,15 @@ const RecoverPassword = () => {
                                     type="submit"
                                     className="btn btn-primary btn-block"
                                 >
-                                    Change password
+                                    {t('recover.changepassword')}
                                 </button>
                             </div>
                         </div>
                     </form>
                     <p className="mt-3 mb-1">
-                        <Link to="/login">Login</Link>
+                        <Link to="/login">
+                            {t('login.button.signin.label')}
+                        </Link>
                     </p>
                 </div>
             </div>

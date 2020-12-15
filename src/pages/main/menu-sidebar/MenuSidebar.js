@@ -2,9 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {NavLink, Link} from 'react-router-dom';
+import {useTranslation} from 'react-i18next';
 
 const MenuSidebar = (props) => {
     const {user} = props;
+    const {t} = useTranslation();
+
     return (
         <aside className="main-sidebar sidebar-dark-primary elevation-4">
             <Link to="/" className="brand-link">
@@ -41,7 +44,7 @@ const MenuSidebar = (props) => {
                         <li className="nav-item">
                             <NavLink to="/" exact className="nav-link">
                                 <i className="nav-icon fas fa-tachometer-alt" />
-                                <p>Dashboard</p>
+                                <p>{t('menusidebar.label.dashboard')}</p>
                             </NavLink>
                         </li>
                     </ul>
