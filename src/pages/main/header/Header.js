@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
+import {useTranslation} from 'react-i18next';
 import Messages from './messages-dropdown/MessagesDropdown';
 import Notifications from './notifications-dropdown/NotificationsDropdown';
 import Languages from './languages-dropdown/LanguagesDropdown';
@@ -8,6 +9,7 @@ import User from './user-dropdown/UserDropdown';
 
 const Header = (props) => {
     const {toggleMenuSidebar} = props;
+    const [t] = useTranslation();
     return (
         <nav className="main-header navbar navbar-expand navbar-white navbar-light">
             {/* Left navbar links */}
@@ -25,12 +27,12 @@ const Header = (props) => {
                 </li>
                 <li className="nav-item d-none d-sm-inline-block">
                     <Link to="/" className="nav-link">
-                        Home
+                        {t('header.label.home')}
                     </Link>
                 </li>
                 <li className="nav-item d-none d-sm-inline-block">
                     <Link to="/" className="nav-link">
-                        Contact
+                        {t('header.label.contact')}
                     </Link>
                 </li>
             </ul>

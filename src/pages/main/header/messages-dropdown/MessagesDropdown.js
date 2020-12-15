@@ -1,8 +1,10 @@
 import React, {useState, useRef, useEffect} from 'react';
 import {Link} from 'react-router-dom';
+import {useTranslation} from 'react-i18next';
 
 const MessagesDropdown = () => {
     const dropdownRef = useRef(null);
+    const {t} = useTranslation();
 
     const [dropdownState, updateDropdownState] = useState({
         isDropdownOpen: false
@@ -73,7 +75,12 @@ const MessagesDropdown = () => {
                             </p>
                             <p className="text-sm text-muted">
                                 <i className="far fa-clock mr-1" />
-                                <span> 4 Hours Ago</span>
+                                <span>
+                                    {t('header.messages.ago', {
+                                        quantity: '30',
+                                        unit: 'Minutes'
+                                    })}
+                                </span>
                             </p>
                         </div>
                     </div>
@@ -96,7 +103,12 @@ const MessagesDropdown = () => {
                             <p className="text-sm">I got your message bro</p>
                             <p className="text-sm text-muted">
                                 <i className="far fa-clock mr-1" />
-                                <span> 4 Hours Ago</span>
+                                <span>
+                                    {t('header.messages.ago', {
+                                        quantity: '3',
+                                        unit: 'Hours'
+                                    })}
+                                </span>
                             </p>
                         </div>
                     </div>
@@ -119,14 +131,19 @@ const MessagesDropdown = () => {
                             <p className="text-sm">The subject goes here</p>
                             <p className="text-sm text-muted">
                                 <i className="far fa-clock mr-1" />
-                                <span> 4 Hours Ago</span>
+                                <span>
+                                    {t('header.messages.ago', {
+                                        quantity: '4',
+                                        unit: 'Hours'
+                                    })}
+                                </span>
                             </p>
                         </div>
                     </div>
                 </Link>
                 <div className="dropdown-divider" />
                 <Link to="/" className="dropdown-item dropdown-footer">
-                    See All Messages
+                    {t('header.messages.seeall')}
                 </Link>
             </div>
         </li>

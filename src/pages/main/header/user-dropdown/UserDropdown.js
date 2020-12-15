@@ -3,6 +3,7 @@ import {useHistory, Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Moment from 'react-moment';
+import {useTranslation} from 'react-i18next';
 
 import * as ActionTypes from '../../../../store/actions';
 
@@ -14,6 +15,7 @@ const UserDropdown = (props) => {
 
     const dropdownRef = useRef(null);
     const history = useHistory();
+    const {t} = useTranslation();
 
     const [dropdownState, updateDropdownState] = useState({
         isDropdownOpen: false
@@ -93,13 +95,13 @@ const UserDropdown = (props) => {
                 <li className="user-body">
                     <div className="row">
                         <div className="col-4 text-center">
-                            <Link to="/">Followers</Link>
+                            <Link to="/">{t('header.user.followers')}</Link>
                         </div>
                         <div className="col-4 text-center">
-                            <Link to="/">Sales</Link>
+                            <Link to="/">{t('header.user.sales')}</Link>
                         </div>
                         <div className="col-4 text-center">
-                            <Link to="/">Friends</Link>
+                            <Link to="/">{t('header.user.friends')}</Link>
                         </div>
                     </div>
                 </li>
@@ -109,14 +111,14 @@ const UserDropdown = (props) => {
                         onClick={toggleDropdown}
                         className="btn btn-default btn-flat"
                     >
-                        Profile
+                        {t('header.user.profile')}
                     </Link>
                     <button
                         type="button"
                         className="btn btn-default btn-flat float-right"
                         onClick={logOut}
                     >
-                        Sign out
+                        {t('login.button.signout')}
                     </button>
                 </li>
             </ul>
