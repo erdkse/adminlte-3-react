@@ -28,6 +28,12 @@ module.exports = {
         indent: 'off',
         'react/jsx-indent': 'off',
         'react/jsx-indent-props': 'off',
-        'react/jsx-curly-newline': 'off'
+        'react/jsx-curly-newline': 'off',
+        'prettier/prettier': [
+            'error',
+            {
+                endOfLine: 'auto'
+            }
+        ]
     }
 };
