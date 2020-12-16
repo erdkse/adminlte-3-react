@@ -106,7 +106,7 @@ const NotificationsDropdown = () => {
                 </Link>
                 <div className="dropdown-divider" />
                 <Link to="/" className="dropdown-item dropdown-footer">
-                    {t('header.notifications.seeall')}
+                    {t('header.notifications.seeAll')}
                 </Link>
             </div>
         </li>

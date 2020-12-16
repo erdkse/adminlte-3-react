@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import {toast} from 'react-toastify';
 import {useTranslation} from 'react-i18next';
 
-const ForgotPassword = () => {
+const forgotPassword = () => {
     const [t] = useTranslation();
     let emailInput = null;
 
@@ -31,7 +31,7 @@ const ForgotPassword = () => {
                 </div>
                 <div className="card-body">
                     <p className="login-box-msg">
-                        {t('recover.forgotyourpassword')}
+                        {t('recover.forgotYourPassword')}
                     </p>
                     <form onSubmit={requestNewPassword}>
                         <div className="input-group mb-3">
@@ -53,14 +53,14 @@ const ForgotPassword = () => {
                                     type="submit"
                                     className="btn btn-primary btn-block"
                                 >
-                                    {t('recover.requestnewpassword')}
+                                    {t('recover.requestNewPassword')}
                                 </button>
                             </div>
                         </div>
                     </form>
                     <p className="mt-3 mb-1">
                         <Link to="/login">
-                            {t('login.button.signin.label')}
+                            {t('login.button.signIn.label')}
                         </Link>
                     </p>
                 </div>
@@ -69,4 +69,4 @@ const ForgotPassword = () => {
     );
 };
 
-export default ForgotPassword;
+export default forgotPassword;

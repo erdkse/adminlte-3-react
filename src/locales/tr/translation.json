@@ -1,35 +1,35 @@
 {
     "login": {
         "label": {
-            "signin": "Oturumunuzu başlatmak için giriş yapın",
-            "rememberme": "Beni Hatırla",
-            "forgotpass": "Şifremi unuttum",
-            "registernew": "Üye ol"
+            "signIn": "Oturumunuzu başlatmak için giriş yapın",
+            "rememberMe": "Beni Hatırla",
+            "forgotPass": "Şifremi unuttum",
+            "registerNew": "Üye ol"
         },
         "button": {
-            "signin": { 
+            "signIn": { 
                 "label": "Giriş Yap",
                 "social": "{{what}} kullanarak giriş yap"
             },
-            "signout":  "Çıkış Yap"
+            "signOut":  "Çıkış Yap"
         }
       },
       "register": {
-        "alreadyhave": "Zaten üyeliğim var",
-        "registernew": "Yeni üyelik oluştur",
+        "alreadyHave": "Zaten üyeliğim var",
+        "registerNew": "Yeni üyelik oluştur",
         "label": "Üye Ol"
       },
       "recover": {
-        "forgotyourpassword": "Şifreni mi unuttun? Kolayca yenisini alabilirsin.",
-        "onestepaway": "Yeni şifrenden sadece bir adım uzaktasın, şifreni şimdi yenile.",
-        "changepassword": "Şifre Değiştir",
-        "requestnewpassword": "Yeni Şifre Talep Et"
+        "forgotYourPassword": "Şifreni mi unuttun? Kolayca yenisini alabilirsin.",
+        "oneStepAway": "Yeni şifrenden sadece bir adım uzaktasın, şifreni şimdi yenile.",
+        "changePassword": "Şifre Değiştir",
+        "requestNewPassword": "Yeni Şifre Talep Et"
       },
       "main": {
         "label": {
             "moreInfo": "Daha fazla bilgi",
             "follow": "Takip Et",
-            "aboutme": "Hakkımda",
+            "aboutMe": "Hakkımda",
             "education": "Eğitim",
             "location": "Konum",
             "skills": "Beceriler",
@@ -53,14 +53,14 @@
         },
         "messages": {
             "ago": "{{quantity}} {{unit}} Önce",
-            "seeall": "Tüm Mesajları Gör"
+            "seeAll": "Tüm Mesajları Gör"
         },
         "notifications": {
             "count": "{{quantity}} Bildirim",
             "newMessagesCount": "{{quantity}} yeni mesaj",
             "friendRequestsCount": "{{quantity}} arkadaşlık isteği",
             "reportsCount": "{{quantity}} yeni rapor",
-            "seeall": "Tüm Bildirimleri Gör"
+            "seeAll": "Tüm Bildirimleri Gör"
         },
         "user": {
             "profile": "Profil",

@@ -115,7 +115,7 @@ const Login = (props) => {
                     </Link>
                 </div>
                 <div className="card-body">
-                    <p className="login-box-msg">{t('login.label.signin')}</p>
+                    <p className="login-box-msg">{t('login.label.signIn')}</p>
                     <form onSubmit={formik.handleSubmit}>
                         <div className="mb-3">
                             <div className="input-group">
@@ -160,7 +160,7 @@ const Login = (props) => {
                                 <div className="icheck-primary">
                                     <input type="checkbox" id="remember" />
                                     <label htmlFor="remember">
-                                        {t('login.label.rememberme')}
+                                        {t('login.label.rememberMe')}
                                     </label>
                                 </div>
                             </div>
@@ -174,7 +174,7 @@ const Login = (props) => {
                                         isGoogleAuthLoading
                                     }
                                 >
-                                    {t('login.button.signin.label')}
+                                    {t('login.button.signIn.label')}
                                 </Button>
                             </div>
                         </div>
@@ -187,7 +187,7 @@ const Login = (props) => {
                             isLoading={isFacebookAuthLoading}
                             disabled={isAuthLoading || isGoogleAuthLoading}
                         >
-                            {t('login.button.signin.social', {
+                            {t('login.button.signIn.social', {
                                 what: 'Facebook'
                             })}
                         </Button>
@@ -199,17 +199,17 @@ const Login = (props) => {
                             isLoading={isGoogleAuthLoading}
                             disabled={isAuthLoading || isFacebookAuthLoading}
                         >
-                            {t('login.button.signin.social', {what: 'Google'})}
+                            {t('login.button.signIn.social', {what: 'Google'})}
                         </Button>
                     </div>
                     <p className="mb-1">
                         <Link to="/forgot-password">
-                            {t('login.label.forgotpass')}
+                            {t('login.label.forgotPass')}
                         </Link>
                     </p>
                     <p className="mb-0">
                         <Link to="/register" className="text-center">
-                            {t('login.label.registernew')}
+                            {t('login.label.registerNew')}
                         </Link>
                     </p>
                 </div>

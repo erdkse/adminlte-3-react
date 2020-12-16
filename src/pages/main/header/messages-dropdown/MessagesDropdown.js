@@ -143,7 +143,7 @@ const MessagesDropdown = () => {
                 </Link>
                 <div className="dropdown-divider" />
                 <Link to="/" className="dropdown-item dropdown-footer">
-                    {t('header.messages.seeall')}
+                    {t('header.messages.seeAll')}
                 </Link>
             </div>
         </li>

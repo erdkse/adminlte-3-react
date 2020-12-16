@@ -125,7 +125,7 @@ const Register = (props) => {
                     </Link>
                 </div>
                 <div className="card-body">
-                    <p className="login-box-msg">{t('register.registernew')}</p>
+                    <p className="login-box-msg">{t('register.registerNew')}</p>
                     <form onSubmit={formik.handleSubmit}>
                         <div className="mb-3">
                             <div className="input-group">
@@ -222,7 +222,7 @@ const Register = (props) => {
                             isLoading={isFacebookAuthLoading}
                             disabled={isAuthLoading || isGoogleAuthLoading}
                         >
-                            {t('login.button.signin.social', {
+                            {t('login.button.signIn.social', {
                                 what: 'Facebook'
                             })}
                         </Button>
@@ -234,11 +234,11 @@ const Register = (props) => {
                             isLoading={isGoogleAuthLoading}
                             disabled={isAuthLoading || isFacebookAuthLoading}
                         >
-                            {t('login.button.signin.social', {what: 'Google'})}
+                            {t('login.button.signIn.social', {what: 'Google'})}
                         </Button>
                     </div>
                     <Link to="/login" className="text-center">
-                        {t('register.alreadyhave')}
+                        {t('register.alreadyHave')}
                     </Link>
                 </div>
             </div>

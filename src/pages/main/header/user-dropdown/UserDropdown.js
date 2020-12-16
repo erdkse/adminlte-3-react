@@ -118,7 +118,7 @@ const UserDropdown = (props) => {
                         className="btn btn-default btn-flat float-right"
                         onClick={logOut}
                     >
-                        {t('login.button.signout')}
+                        {t('login.button.signOut')}
                     </button>
                 </li>
             </ul>
