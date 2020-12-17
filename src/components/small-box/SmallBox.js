@@ -1,10 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import {useTranslation} from 'react-i18next';
 
-const SmallBox = (props) => {
-    const {type, icon, count, title, navigateTo} = props;
+const SmallBox = ({
+    type = 'info',
+    icon = 'ion-bag',
+    count,
+    title,
+    navigateTo
+}) => {
     const {t} = useTranslation();
 
     let className = 'small-box';
@@ -44,19 +48,6 @@ const SmallBox = (props) => {
             </Link>
         </div>
     );
-};
-
-SmallBox.propTypes = {
-    type: PropTypes.oneOf(['success', 'warning', 'danger', 'info']),
-    icon: PropTypes.string,
-    count: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    navigateTo: PropTypes.string.isRequired
-};
-
-SmallBox.defaultProps = {
-    type: 'info',
-    icon: 'ion-bag'
 };
 
 export default SmallBox;

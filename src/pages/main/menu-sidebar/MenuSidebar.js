@@ -1,11 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {NavLink, Link} from 'react-router-dom';
 import {useTranslation} from 'react-i18next';
 
-const MenuSidebar = (props) => {
-    const {user} = props;
+const MenuSidebar = ({user}) => {
     const {t} = useTranslation();
 
     return (
@@ -52,13 +50,6 @@ const MenuSidebar = (props) => {
             </div>
         </aside>
     );
-};
-
-MenuSidebar.propTypes = {
-    user: PropTypes.shape({
-        email: PropTypes.string.isRequired,
-        picture: PropTypes.string
-    }).isRequired
 };
 
 const mapStateToProps = (state) => ({

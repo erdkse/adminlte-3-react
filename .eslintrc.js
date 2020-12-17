@@ -29,6 +29,7 @@ module.exports = {
         'react/jsx-indent': 'off',
         'react/jsx-indent-props': 'off',
         'react/jsx-curly-newline': 'off',
+        'react/prop-types': 'off',
         'prettier/prettier': [
             'error',
             {

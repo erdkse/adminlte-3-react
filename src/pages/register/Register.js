@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import {Link, useHistory} from 'react-router-dom';
 import {connect} from 'react-redux';
-import PropTypes from 'prop-types';
 import {toast} from 'react-toastify';
 import {useFormik} from 'formik';
 import {useTranslation} from 'react-i18next';
@@ -11,9 +10,7 @@ import Button from '../../components/button/Button';
 import * as AuthService from '../../services/auth';
 import * as ActionTypes from '../../store/actions';
 
-const Register = (props) => {
-    const {onUserLogin} = props;
-
+const Register = ({onUserLogin}) => {
     const [isAuthLoading, setAuthLoading] = useState(false);
     const [isGoogleAuthLoading, setGoogleAuthLoading] = useState(false);
     const [isFacebookAuthLoading, setFacebookAuthLoading] = useState(false);
@@ -244,10 +241,6 @@ const Register = (props) => {
             </div>
         </div>
     );
-};
-
-Register.propTypes = {
-    onUserLogin: PropTypes.func.isRequired
 };
 
 const mapDispatchToProps = (dispatch) => ({

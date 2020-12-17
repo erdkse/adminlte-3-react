@@ -1,8 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-const ContentHeader = (props) => {
-    const {title} = props;
+const ContentHeader = ({title}) => {
     return (
         <section className="content-header">
             <div className="container-fluid">
@@ -24,10 +22,6 @@ const ContentHeader = (props) => {
             </div>
         </section>
     );
-};
-
-ContentHeader.propTypes = {
-    title: PropTypes.string.isRequired
 };
 
 export default ContentHeader;

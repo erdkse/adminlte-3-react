@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import {Link, useHistory} from 'react-router-dom';
 import {toast} from 'react-toastify';
 import {connect} from 'react-redux';
-import PropTypes from 'prop-types';
 import {useFormik} from 'formik';
 import {useTranslation} from 'react-i18next';
 
@@ -12,9 +11,7 @@ import * as AuthService from '../../services/auth';
 import Button from '../../components/button/Button';
 import * as ActionTypes from '../../store/actions';
 
-const Login = (props) => {
-    const {onUserLogin} = props;
-
+const Login = ({onUserLogin}) => {
     const [isAuthLoading, setAuthLoading] = useState(false);
     const [isGoogleAuthLoading, setGoogleAuthLoading] = useState(false);
     const [isFacebookAuthLoading, setFacebookAuthLoading] = useState(false);
@@ -216,10 +213,6 @@ const Login = (props) => {
             </div>
         </div>
     );
-};
-
-Login.propTypes = {
-    onUserLogin: PropTypes.func.isRequired
 };
 
 const mapDispatchToProps = (dispatch) => ({

@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import {useTranslation} from 'react-i18next';
 import Messages from './messages-dropdown/MessagesDropdown';
@@ -7,8 +6,7 @@ import Notifications from './notifications-dropdown/NotificationsDropdown';
 import Languages from './languages-dropdown/LanguagesDropdown';
 import User from './user-dropdown/UserDropdown';
 
-const Header = (props) => {
-    const {toggleMenuSidebar} = props;
+const Header = ({toggleMenuSidebar}) => {
     const [t] = useTranslation();
     return (
         <nav className="main-header navbar navbar-expand navbar-white navbar-light">
@@ -69,10 +67,6 @@ const Header = (props) => {
             </ul>
         </nav>
     );
-};
-
-Header.propTypes = {
-    toggleMenuSidebar: PropTypes.func.isRequired
 };
 
 export default Header;

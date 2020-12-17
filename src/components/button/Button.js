@@ -1,5 +1,4 @@
 import React from 'react';
-import {PropTypes} from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Spinner from 'react-bootstrap/Spinner';
 
@@ -9,9 +8,14 @@ const icons = {
     googlePlus: 'fab fa-google-plus'
 };
 
-const AppButton = (props) => {
-    const {children, isLoading, icon, theme, disabled, ...otherProps} = props;
-
+const AppButton = ({
+    children,
+    isLoading,
+    icon,
+    theme = 'primary',
+    disabled,
+    ...otherProps
+}) => {
     let spinnerTemplate;
     let iconTemplate;
 
@@ -44,24 +48,6 @@ const AppButton = (props) => {
             {spinnerTemplate}
         </Button>
     );
-};
-
-AppButton.propTypes = {
-    children: PropTypes.oneOfType([
-        PropTypes.arrayOf(PropTypes.node),
-        PropTypes.node
-    ]).isRequired,
-    isLoading: PropTypes.bool,
-    icon: PropTypes.string,
-    theme: PropTypes.string,
-    disabled: PropTypes.bool
-};
-
-AppButton.defaultProps = {
-    isLoading: false,
-    icon: null,
-    theme: 'primary',
-    disabled: false
 };
 
 export default AppButton;

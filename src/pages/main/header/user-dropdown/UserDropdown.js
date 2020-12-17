@@ -1,18 +1,12 @@
 import React, {useRef, useEffect, useState} from 'react';
 import {useHistory, Link} from 'react-router-dom';
-import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Moment from 'react-moment';
 import {useTranslation} from 'react-i18next';
 
 import * as ActionTypes from '../../../../store/actions';
 
-const UserDropdown = (props) => {
-    const {
-        user: {email, picture, createdAt},
-        onUserLogout
-    } = props;
-
+const UserDropdown = ({user, onUserLogout}) => {
     const dropdownRef = useRef(null);
     const history = useHistory();
     const {t} = useTranslation();
@@ -68,7 +62,7 @@ const UserDropdown = (props) => {
                 data-toggle="dropdown"
             >
                 <img
-                    src={picture || '/img/default-profile.png'}
+                    src={user.picture || '/img/default-profile.png'}
                     className="user-image img-circle elevation-2"
                     alt="User"
                 />
@@ -77,17 +71,16 @@ const UserDropdown = (props) => {
             <ul className={className}>
                 <li className="user-header bg-primary">
                     <img
-                        src={picture || '/img/default-profile.png'}
+                        src={user.picture || '/img/default-profile.png'}
                         className="img-circle elevation-2"
                         alt="User"
                     />
                     <p>
-                        {/* Alexander Pierce - Web Developer */}
-                        {email}
+                        {user.email}
                         <small>
                             <span>Member since </span>
                             <Moment format="D MMM YYYY" withTitle>
-                                {createdAt}
+                                {user.createdAt}
                             </Moment>
                         </small>
                     </p>
@@ -124,15 +117,6 @@ const UserDropdown = (props) => {
             </ul>
         </li>
     );
-};
-
-UserDropdown.propTypes = {
-    user: PropTypes.shape({
-        email: PropTypes.string.isRequired,
-        createdAt: PropTypes.string,
-        picture: PropTypes.string
-    }).isRequired,
-    onUserLogout: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({

@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import {toast} from 'react-toastify';
 import {useTranslation} from 'react-i18next';
 
-const forgotPassword = () => {
+const ForgotPassword = () => {
     const [t] = useTranslation();
     let emailInput = null;
 
@@ -69,4 +69,4 @@ const forgotPassword = () => {
     );
 };
 
-export default forgotPassword;
+export default ForgotPassword;
