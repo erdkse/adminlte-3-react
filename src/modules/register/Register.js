@@ -6,7 +6,7 @@ import {useFormik} from 'formik';
 import {useTranslation} from 'react-i18next';
 import * as Yup from 'yup';
 
-import Button from '../../components/button/Button';
+import {Button} from '@components';
 import * as AuthService from '../../services/auth';
 import * as ActionTypes from '../../store/actions';
 

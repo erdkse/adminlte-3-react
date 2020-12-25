@@ -20,6 +20,18 @@ module.exports = {
         react: {
             version: 'detect'
         }
+        // 'import/resolver': {
+        //     alias: {
+        //         'import/resolver': {
+        //             node: {
+        //                 moduleDirectory: ['node_modules', 'src']
+        //             },
+        //             webpack: {
+        //                 config: `${__dirname}/craco.config.js`
+        //             }
+        //         }
+        //     }
+        // }
     },
     rules: {
         'react/jsx-filename-extension': ['warn', {extensions: ['.js', '.jsx']}],
@@ -30,6 +42,7 @@ module.exports = {
         'react/jsx-indent-props': 'off',
         'react/jsx-curly-newline': 'off',
         'react/prop-types': 'off',
+        'import/no-unresolved': 'off',
         'prettier/prettier': [
             'error',
             {

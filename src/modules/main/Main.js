@@ -1,13 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import {Route, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
+import Dashboard from '@pages/Dashboard';
+import Profile from '@pages/profile/Profile';
 
 import axios from '../../utils/axios';
 import Header from './header/Header';
 import Footer from './footer/Footer';
 import MenuSidebar from './menu-sidebar/MenuSidebar';
-import Dashboard from '../../views/Dashboard';
-import Profile from '../../views/profile/Profile';
 import PageLoading from '../../components/page-loading/PageLoading';
 import * as ActionTypes from '../../store/actions';
 

@@ -1,8 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 
-import Button from '../../components/button/Button';
+import {Button} from '@components';
 
 const SettingsTab = (props) => {
     const {isActive} = props;
@@ -116,14 +115,6 @@ const SettingsTab = (props) => {
             </form>
         </div>
     );
-};
-
-SettingsTab.propTypes = {
-    isActive: PropTypes.bool
-};
-
-SettingsTab.defaultProps = {
-    isActive: false
 };
 
 export default SettingsTab;

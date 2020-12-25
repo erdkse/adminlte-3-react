@@ -1,16 +1,17 @@
 import React from 'react';
-import './App.scss';
 import {BrowserRouter as Router, Switch} from 'react-router-dom';
 import {toast} from 'react-toastify';
-import Main from './pages/main/Main';
-import Login from './pages/login/Login';
-import Register from './pages/register/Register';
-import ForgetPassword from './pages/forgot-password/ForgotPassword';
-import RecoverPassword from './pages/recover-password/RecoverPassword';
-import PrivacyPolicy from './pages/privacy-policy/PrivacyPolicy';
+import Main from '@modules/main/Main';
+import Login from '@modules/login/Login';
+import Register from '@modules/register/Register';
+import ForgetPassword from '@modules/forgot-password/ForgotPassword';
+import RecoverPassword from '@modules/recover-password/RecoverPassword';
+import PrivacyPolicy from '@modules/privacy-policy/PrivacyPolicy';
 
 import PublicRoute from './routes/PublicRoute';
 import PrivateRoute from './routes/PrivateRoute';
+
+import './App.scss';
 
 toast.configure({
     autoClose: 3000,
