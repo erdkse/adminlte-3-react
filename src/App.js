@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.scss';
 import {BrowserRouter as Router, Switch} from 'react-router-dom';
 import {toast} from 'react-toastify';
 import Main from '@modules/main/Main';
@@ -11,6 +10,8 @@ import PrivacyPolicy from '@modules/privacy-policy/PrivacyPolicy';
 
 import PublicRoute from './routes/PublicRoute';
 import PrivateRoute from './routes/PrivateRoute';
+
+import './App.scss';
 
 toast.configure({
     autoClose: 3000,

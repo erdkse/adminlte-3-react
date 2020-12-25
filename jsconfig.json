@@ -5,9 +5,10 @@
         "jsx": "react",
         "paths": {
             "@app/*": ["./*"],
-            "@store/*": ["./store/index"],
-            "@components/*": ["./components/index"],
-            "@modules/*": ["./modules/*"]
+            "@store": ["./store/index"],
+            "@components": ["./components/index"],
+            "@modules/*": ["./modules/*"],
+            "@pages/*": ["./pages/*"]
         }
     },
     "exclude": ["node_modules", "**/node_modules/*", "build"]
