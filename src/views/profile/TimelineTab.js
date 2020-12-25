@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 
 const TimelineTab = (props) => {
@@ -119,14 +118,6 @@ const TimelineTab = (props) => {
             </div>
         </div>
     );
-};
-
-TimelineTab.propTypes = {
-    isActive: PropTypes.bool
-};
-
-TimelineTab.defaultProps = {
-    isActive: false
 };
 
 export default TimelineTab;

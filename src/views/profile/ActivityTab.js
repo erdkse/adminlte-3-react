@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Post from './Post';
 
 const ActivityTab = (props) => {
@@ -11,14 +10,6 @@ const ActivityTab = (props) => {
             <Post />
         </div>
     );
-};
-
-ActivityTab.propTypes = {
-    isActive: PropTypes.bool
-};
-
-ActivityTab.defaultProps = {
-    isActive: false
 };
 
 export default ActivityTab;
