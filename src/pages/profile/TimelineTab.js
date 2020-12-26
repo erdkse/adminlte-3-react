@@ -1,9 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-const TimelineTab = (props) => {
-    const {isActive} = props;
-
+const TimelineTab = ({isActive}) => {
     return (
         <div className={`tab-pane ${isActive ? 'active' : ''}`}>
             {/* The timeline */}

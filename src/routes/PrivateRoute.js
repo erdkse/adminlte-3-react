@@ -2,9 +2,7 @@ import React from 'react';
 import {Redirect, Route} from 'react-router-dom';
 import {connect} from 'react-redux';
 
-const PrivateRoute = (props) => {
-    const {children, isLoggedIn, ...rest} = props;
-
+const PrivateRoute = ({children, isLoggedIn, ...rest}) => {
     return (
         <Route
             {...rest}

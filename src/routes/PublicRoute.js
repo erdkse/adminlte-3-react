@@ -2,9 +2,7 @@ import React from 'react';
 import {Redirect, Route} from 'react-router-dom';
 import {connect} from 'react-redux';
 
-const PublicRoute = (props) => {
-    const {children, isLoggedIn, ...rest} = props;
-
+const PublicRoute = ({children, isLoggedIn, ...rest}) => {
     const isAuthenticated = isLoggedIn || localStorage.getItem('token');
 
     return (

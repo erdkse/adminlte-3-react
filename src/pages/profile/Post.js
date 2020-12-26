@@ -1,8 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-const Post = (props) => {
-    const {isClearfix} = props;
+const Post = ({isClearfix}) => {
     return (
         <div className={`post ${isClearfix ? 'clearfix' : ''}`}>
             <div className="user-block">

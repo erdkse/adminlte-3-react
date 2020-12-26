@@ -3,9 +3,7 @@ import {Link} from 'react-router-dom';
 
 import {Button} from '@components';
 
-const SettingsTab = (props) => {
-    const {isActive} = props;
-
+const SettingsTab = ({isActive}) => {
     return (
         <div className={`tab-pane ${isActive ? 'active' : ''}`}>
             <form className="form-horizontal">

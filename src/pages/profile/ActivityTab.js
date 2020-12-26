@@ -1,8 +1,7 @@
 import React from 'react';
 import Post from './Post';
 
-const ActivityTab = (props) => {
-    const {isActive} = props;
+const ActivityTab = ({isActive}) => {
     return (
         <div className={`tab-pane ${isActive ? 'active' : ''}`}>
             <Post />
