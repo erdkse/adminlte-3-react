@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import {Route, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
+import {Gatekeeper} from 'gatekeeper-client-sdk';
+
 import Dashboard from '@pages/Dashboard';
 import Profile from '@pages/profile/Profile';
 
-import axios from '../../utils/axios';
 import Header from './header/Header';
 import Footer from './footer/Footer';
 import MenuSidebar from './menu-sidebar/MenuSidebar';
@@ -27,8 +28,8 @@ const Main = ({onUserLoad}) => {
         updateAppLoading(true);
         const fetchProfile = async () => {
             try {
-                const response = await axios.get('/v1/users/profile');
-                onUserLoad({...response.data});
+                const response = await Gatekeeper.getProfile();
+                onUserLoad({...response});
                 updateAppLoading(false);
             } catch (error) {
                 updateAppLoading(false);

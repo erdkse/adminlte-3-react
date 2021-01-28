@@ -1,10 +1,10 @@
-import gk from 'gatekeeper-client-sdk';
+import {Gatekeeper} from 'gatekeeper-client-sdk';
 
 import axios from '../utils/axios';
 import {addFacebookScript} from '../utils/social-auth-scripts';
 
 export const loginByAuth = async (email, password) => {
-    const token = await gk.loginByAuth(email, password);
+    const token = await Gatekeeper.loginByAuth(email, password);
     localStorage.setItem('token', token);
     document.getElementById('root').classList.remove('login-page');
     document.getElementById('root').classList.remove('hold-transition');
@@ -12,7 +12,7 @@ export const loginByAuth = async (email, password) => {
 };
 
 export const registerByAuth = async (email, password) => {
-    const token = await gk.registerByAuth(email, password);
+    const token = await Gatekeeper.registerByAuth(email, password);
     localStorage.setItem('token', token);
     document.getElementById('root').classList.remove('register-page');
     document.getElementById('root').classList.remove('hold-transition');
@@ -20,7 +20,7 @@ export const registerByAuth = async (email, password) => {
 };
 
 export const loginByGoogle = async () => {
-    const token = await gk.loginByGoogle();
+    const token = await Gatekeeper.loginByGoogle();
     localStorage.setItem('token', token);
     document.getElementById('root').classList.remove('login-page');
     document.getElementById('root').classList.remove('hold-transition');
@@ -28,7 +28,7 @@ export const loginByGoogle = async () => {
 };
 
 export const registerByGoogle = async () => {
-    const token = await gk.registerByGoogle();
+    const token = await Gatekeeper.registerByGoogle();
     localStorage.setItem('token', token);
     document.getElementById('root').classList.remove('register-page');
     document.getElementById('root').classList.remove('hold-transition');

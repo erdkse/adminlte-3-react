@@ -1,6 +1,5 @@
 import React from 'react';
 import {BrowserRouter as Router, Switch} from 'react-router-dom';
-import {toast} from 'react-toastify';
 import Main from '@modules/main/Main';
 import Login from '@modules/login/Login';
 import Register from '@modules/register/Register';
@@ -12,18 +11,6 @@ import PublicRoute from './routes/PublicRoute';
 import PrivateRoute from './routes/PrivateRoute';
 
 import './App.scss';
-
-toast.configure({
-    autoClose: 3000,
-    draggable: false,
-    position: 'top-right',
-    hideProgressBar: false,
-    newestOnTop: true,
-    closeOnClick: true,
-    rtl: false,
-    pauseOnVisibilityChange: true,
-    pauseOnHover: true
-});
 
 const App = () => {
     return (
