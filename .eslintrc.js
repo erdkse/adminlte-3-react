@@ -15,7 +15,7 @@ module.exports = {
         ecmaVersion: 12,
         sourceType: 'module'
     },
-    plugins: ['react'],
+    plugins: ['react', 'react-hooks'],
     settings: {
         react: {
             version: 'detect'
@@ -48,6 +48,7 @@ module.exports = {
             {
                 endOfLine: 'auto'
             }
-        ]
+        ],
+        'react-hooks/rules-of-hooks': 'error'
     }
 };

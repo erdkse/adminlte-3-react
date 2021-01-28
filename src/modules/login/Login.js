@@ -14,7 +14,7 @@ import * as ActionTypes from '../../store/actions';
 const Login = ({onUserLogin}) => {
     const [isAuthLoading, setAuthLoading] = useState(false);
     const [isGoogleAuthLoading, setGoogleAuthLoading] = useState(false);
-    const [isFacebookAuthLoading, setFacebookAuthLoading] = useState(false);
+    // const [isFacebookAuthLoading, setFacebookAuthLoading] = useState(false);
 
     const history = useHistory();
     const [t] = useTranslation();
@@ -59,27 +59,27 @@ const Login = ({onUserLogin}) => {
             });
     };
 
-    const loginByFacebook = () => {
-        setFacebookAuthLoading(true);
+    // const loginByFacebook = () => {
+    //     setFacebookAuthLoading(true);
 
-        AuthService.loginByFacebook()
-            .then((token) => {
-                toast.success('Login is succeeded!');
-                setFacebookAuthLoading(false);
-                onUserLogin(token);
+    //     AuthService.loginByFacebook()
+    //         .then((token) => {
+    //             toast.success('Login is succeeded!');
+    //             setFacebookAuthLoading(false);
+    //             onUserLogin(token);
 
-                history.push('/');
-            })
-            .catch((error) => {
-                setFacebookAuthLoading(false);
-                toast.error(
-                    (error.response &&
-                        error.response.data &&
-                        error.response.data.message) ||
-                        'Failed'
-                );
-            });
-    };
+    //             history.push('/');
+    //         })
+    //         .catch((error) => {
+    //             setFacebookAuthLoading(false);
+    //             toast.error(
+    //                 (error.response &&
+    //                     error.response.data &&
+    //                     error.response.data.message) ||
+    //                     'Failed'
+    //             );
+    //         });
+    // };
 
     const formik = useFormik({
         initialValues: {
@@ -166,10 +166,11 @@ const Login = ({onUserLogin}) => {
                                     block
                                     type="submit"
                                     isLoading={isAuthLoading}
-                                    disabled={
-                                        isFacebookAuthLoading ||
-                                        isGoogleAuthLoading
-                                    }
+                                    // disabled={
+                                    //     isFacebookAuthLoading ||
+                                    //     isGoogleAuthLoading
+                                    // }
+                                    disabled={isGoogleAuthLoading}
                                 >
                                     {t('login.button.signIn.label')}
                                 </Button>
@@ -177,7 +178,7 @@ const Login = ({onUserLogin}) => {
                         </div>
                     </form>
                     <div className="social-auth-links text-center mt-2 mb-3">
-                        <Button
+                        {/* <Button
                             block
                             icon="facebook"
                             onClick={loginByFacebook}
@@ -187,14 +188,15 @@ const Login = ({onUserLogin}) => {
                             {t('login.button.signIn.social', {
                                 what: 'Facebook'
                             })}
-                        </Button>
+                        </Button> */}
                         <Button
                             block
                             icon="google"
                             theme="danger"
                             onClick={loginByGoogle}
                             isLoading={isGoogleAuthLoading}
-                            disabled={isAuthLoading || isFacebookAuthLoading}
+                            // disabled={isAuthLoading || isFacebookAuthLoading}
+                            disabled={isAuthLoading}
                         >
                             {t('login.button.signIn.social', {what: 'Google'})}
                         </Button>
