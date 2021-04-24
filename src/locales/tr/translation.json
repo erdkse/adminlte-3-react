@@ -7,25 +7,25 @@
             "registerNew": "Üye ol"
         },
         "button": {
-            "signIn": { 
+            "signIn": {
                 "label": "Giriş Yap",
                 "social": "{{what}} kullanarak giriş yap"
             },
-            "signOut":  "Çıkış Yap"
+            "signOut": "Çıkış Yap"
         }
-      },
-      "register": {
+    },
+    "register": {
         "alreadyHave": "Zaten üyeliğim var",
         "registerNew": "Yeni üyelik oluştur",
         "label": "Üye Ol"
-      },
-      "recover": {
+    },
+    "recover": {
         "forgotYourPassword": "Şifreni mi unuttun? Kolayca yenisini alabilirsin.",
         "oneStepAway": "Yeni şifrenden sadece bir adım uzaktasın, şifreni şimdi yenile.",
         "changePassword": "Şifre Değiştir",
         "requestNewPassword": "Yeni Şifre Talep Et"
-      },
-      "main": {
+    },
+    "main": {
         "label": {
             "moreInfo": "Daha fazla bilgi",
             "follow": "Takip Et",
@@ -38,8 +38,8 @@
             "timeline": "Zaman Tüneli",
             "settings": "Ayarlar"
         }
-      },
-      "header": {
+    },
+    "header": {
         "label": {
             "home": "Anasayfa",
             "contact": "İletişim"
@@ -47,7 +47,7 @@
         "language": {
             "turkish": "Türkçe",
             "english": "İngilizce",
-            "german": "Almanca", 
+            "german": "Almanca",
             "french": "Fransızca",
             "spanish": "İspanyolca"
         },
@@ -68,23 +68,24 @@
             "sales": "Satış",
             "friends": "Arkadaşlar"
         }
-      },
-      "menusidebar": {
+    },
+    "menusidebar": {
         "label": {
-            "dashboard": "Pano"
+            "dashboard": "Pano",
+            "profile": "Profil"
         }
-      },
-      "footer": {
-          "version": "Versiyon",
-          "copyright": "Tüm hakları saklıdır."
-      },
-      "views": {
+    },
+    "footer": {
+        "version": "Versiyon",
+        "copyright": "Tüm hakları saklıdır."
+    },
+    "views": {
         "user": {
             "profile": "Kullanıcı Profili",
             "following": "Takip Ettikleri"
         }
-      },
-      "measurement": {
-          "quantityUnit": "{{quantity}} {{unit}}"
-      }
+    },
+    "measurement": {
+        "quantityUnit": "{{quantity}} {{unit}}"
+    }
 }

@@ -45,6 +45,12 @@ const MenuSidebar = ({user}) => {
                                 <p>{t('menusidebar.label.dashboard')}</p>
                             </NavLink>
                         </li>
+                        <li className="nav-item">
+                            <NavLink to="/profile" exact className="nav-link">
+                                <i className="nav-icon fas fa-user" />
+                                <p>{t('menusidebar.label.profile')}</p>
+                            </NavLink>
+                        </li>
                     </ul>
                 </nav>
             </div>
