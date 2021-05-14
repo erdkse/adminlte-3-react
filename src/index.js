@@ -22,9 +22,10 @@ toast.configure({
     pauseOnHover: true
 });
 
-Gatekeeper.configure('10fb0126-384b-40b6-8945-cb7c249b4937', {
+Gatekeeper.configure('96986219-ce08-4a28-b537-adae8dc44ff3', {
     googleClientID:
-        '816324818723-e2hokn0pvjgkf8jcks6quido903ukeri.apps.googleusercontent.com'
+        '816324818723-e2hokn0pvjgkf8jcks6quido903ukeri.apps.googleusercontent.com',
+    facebookAppID: '243170807046422'
 });
 
 ReactDOM.render(

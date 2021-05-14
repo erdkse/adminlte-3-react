@@ -11,6 +11,10 @@
                 "label": "Sign In",
                 "social": "Sign in using {{what}}"
             },
+            "signUp": {
+                "label": "Sign Up",
+                "social": "Sign up using {{what}}"
+            },
             "signOut": "Sign Out"
         }
     },

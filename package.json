@@ -33,7 +33,7 @@
         "axios": "0.21.1",
         "express": "4.17.1",
         "formik": "2.2.6",
-        "gatekeeper-client-sdk": "0.1.0",
+        "gatekeeper-client-sdk": "0.1.1",
         "i18next": "19.8.4",
         "i18next-browser-languagedetector": "6.0.1",
         "node-sass": "4.14.0",

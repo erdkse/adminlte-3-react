@@ -18,65 +18,62 @@ const Register = ({onUserLogin}) => {
 
     const history = useHistory();
 
-    const register = (email, password) => {
-        setAuthLoading(true);
-        AuthService.registerByAuth(email, password)
-            .then((token) => {
-                setAuthLoading(false);
-                onUserLogin(token);
-                toast.success('Registration is success');
-                history.push('/');
-            })
-            .catch((error) => {
-                toast.error(
-                    (error.response &&
-                        error.response.data &&
-                        error.response.data.message) ||
-                        'Failed'
-                );
-                setAuthLoading(false);
-            });
+    const register = async (email, password) => {
+        try {
+            setAuthLoading(true);
+            const token = await AuthService.registerByAuth(email, password);
+            setAuthLoading(false);
+            onUserLogin(token);
+            toast.success('Registration is success');
+            history.push('/');
+        } catch (error) {
+            toast.error(
+                (error.response &&
+                    error.response.data &&
+                    error.response.data.message) ||
+                    'Failed'
+            );
+            setAuthLoading(false);
+        }
     };
 
-    const loginByGoogle = () => {
-        setGoogleAuthLoading(true);
-        AuthService.registerByGoogle()
-            .then((token) => {
-                setGoogleAuthLoading(false);
-                onUserLogin(token);
-                toast.success('Authentication is succeed!');
-                history.push('/');
-            })
-            .catch((error) => {
-                toast.error(
-                    (error.response &&
-                        error.response.data &&
-                        error.response.data.message) ||
-                        'Failed'
-                );
-                setGoogleAuthLoading(false);
-            });
+    const loginByGoogle = async () => {
+        try {
+            setGoogleAuthLoading(true);
+            const token = await AuthService.registerByGoogle();
+            setGoogleAuthLoading(false);
+            onUserLogin(token);
+            toast.success('Authentication is succeed!');
+            history.push('/');
+        } catch (error) {
+            toast.error(
+                (error.response &&
+                    error.response.data &&
+                    error.response.data.message) ||
+                    'Failed'
+            );
+            setGoogleAuthLoading(false);
+        }
     };
 
-    const loginByFacebook = () => {
-        setFacebookAuthLoading(true);
+    const loginByFacebook = async () => {
+        try {
+            setFacebookAuthLoading(true);
 
-        AuthService.registerByFacebook()
-            .then((token) => {
-                setFacebookAuthLoading(false);
-                onUserLogin(token);
-                toast.success('Register is succeeded!');
-                history.push('/');
-            })
-            .catch((error) => {
-                setFacebookAuthLoading(false);
-                toast.error(
-                    (error.response &&
-                        error.response.data &&
-                        error.response.data.message) ||
-                        'Failed'
-                );
-            });
+            const token = await AuthService.registerByFacebook();
+            setFacebookAuthLoading(false);
+            onUserLogin(token);
+            toast.success('Register is succeeded!');
+            history.push('/');
+        } catch (error) {
+            setFacebookAuthLoading(false);
+            toast.error(
+                (error.response &&
+                    error.response.data &&
+                    error.response.data.message) ||
+                    'Failed'
+            );
+        }
     };
 
     const formik = useFormik({
@@ -219,7 +216,7 @@ const Register = ({onUserLogin}) => {
                             isLoading={isFacebookAuthLoading}
                             disabled={isAuthLoading || isGoogleAuthLoading}
                         >
-                            {t('login.button.signIn.social', {
+                            {t('login.button.signUp.social', {
                                 what: 'Facebook'
                             })}
                         </Button>
@@ -231,7 +228,7 @@ const Register = ({onUserLogin}) => {
                             isLoading={isGoogleAuthLoading}
                             disabled={isAuthLoading || isFacebookAuthLoading}
                         >
-                            {t('login.button.signIn.social', {what: 'Google'})}
+                            {t('login.button.signUp.social', {what: 'Google'})}
                         </Button>
                     </div>
                     <Link to="/login" className="text-center">
