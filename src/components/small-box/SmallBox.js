@@ -11,27 +11,8 @@ const SmallBox = ({
 }) => {
     const [t] = useTranslation();
 
-    let className = 'small-box';
-    let iconClass = 'ion';
-    switch (type) {
-        case 'success':
-            className += ' bg-success';
-            break;
-        case 'warning':
-            className += ' bg-warning';
-            break;
-        case 'danger':
-            className += ' bg-danger';
-            break;
-        case 'info':
-            className += ' bg-info';
-            break;
-        default:
-            className += ' bg-info';
-            break;
-    }
-
-    iconClass += icon ? ` ${icon}` : ' ion-bag';
+    const className = `small-box bg-${type}`;
+    const iconClass = `ion ${icon || 'ion-bag'}`;
 
     return (
         <div className={className}>

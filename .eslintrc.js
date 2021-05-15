@@ -25,7 +25,7 @@ module.exports = {
         'react/jsx-filename-extension': ['warn', {extensions: ['.js', '.jsx']}],
         'react/jsx-props-no-spreading': ['off'],
         'jsx-a11y/label-has-associated-control': ['error', {assert: 'either'}],
-        indent: 'off',
+        indent: [2, 4],
         'react/jsx-indent': 'off',
         'react/jsx-indent-props': 'off',
         'react/jsx-curly-newline': 'off',
