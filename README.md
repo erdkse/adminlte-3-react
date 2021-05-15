@@ -1,6 +1,6 @@
 [![Run on Repl.it](https://repl.it/badge/github/erdkse/adminlte-3-react)](https://repl.it/github/erdkse/adminlte-3-react)
 
-# Admin LTE 3.1.0-rc - React 17.0.1
+# Admin LTE 3.1.0 - React 17.0.2
 
 To login website use:
 
@@ -11,7 +11,7 @@ To login website use:
 
 In the project directory, you can run:
 
-### `npm run dev:start`
+### `npm run start`
 
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -19,12 +19,12 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
-### `npm run dev:test`
+### `npm run test`
 
 Launches the test runner in the interactive watch mode.<br />
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run dev:build`
+### `npm run build`
 
 Builds the app for production to the `build` folder.<br />
 It correctly bundles React in production mode and optimizes the build for the best performance.
@@ -34,7 +34,7 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run dev:eject`
+### `npm run eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 

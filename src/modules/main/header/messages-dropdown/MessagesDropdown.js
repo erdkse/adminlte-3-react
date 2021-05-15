@@ -4,7 +4,7 @@ import {useTranslation} from 'react-i18next';
 
 const MessagesDropdown = () => {
     const dropdownRef = useRef(null);
-    const {t} = useTranslation();
+    const [t] = useTranslation();
 
     const [dropdownState, updateDropdownState] = useState({
         isDropdownOpen: false

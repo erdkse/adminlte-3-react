@@ -9,7 +9,7 @@ import * as ActionTypes from '../../../../store/actions';
 const UserDropdown = ({user, onUserLogout}) => {
     const dropdownRef = useRef(null);
     const history = useHistory();
-    const {t} = useTranslation();
+    const [t] = useTranslation();
 
     const [dropdownState, updateDropdownState] = useState({
         isDropdownOpen: false

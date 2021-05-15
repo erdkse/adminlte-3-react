@@ -20,18 +20,6 @@ module.exports = {
         react: {
             version: 'detect'
         }
-        // 'import/resolver': {
-        //     alias: {
-        //         'import/resolver': {
-        //             node: {
-        //                 moduleDirectory: ['node_modules', 'src']
-        //             },
-        //             webpack: {
-        //                 config: `${__dirname}/craco.config.js`
-        //             }
-        //         }
-        //     }
-        // }
     },
     rules: {
         'react/jsx-filename-extension': ['warn', {extensions: ['.js', '.jsx']}],

@@ -4,7 +4,7 @@ import {NavLink, Link} from 'react-router-dom';
 import {useTranslation} from 'react-i18next';
 
 const MenuSidebar = ({user}) => {
-    const {t} = useTranslation();
+    const [t] = useTranslation();
 
     return (
         <aside className="main-sidebar sidebar-dark-primary elevation-4">

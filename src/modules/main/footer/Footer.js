@@ -3,7 +3,7 @@ import {useTranslation} from 'react-i18next';
 import {version} from '../../../../package.json';
 
 const Footer = () => {
-    const {t} = useTranslation();
+    const [t] = useTranslation();
 
     return (
         <footer className="main-footer">

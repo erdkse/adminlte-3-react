@@ -9,7 +9,7 @@ const SmallBox = ({
     title,
     navigateTo
 }) => {
-    const {t} = useTranslation();
+    const [t] = useTranslation();
 
     let className = 'small-box';
     let iconClass = 'ion';
