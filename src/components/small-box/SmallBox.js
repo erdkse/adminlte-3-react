@@ -11,17 +11,14 @@ const SmallBox = ({
 }) => {
     const [t] = useTranslation();
 
-    const className = `small-box bg-${type}`;
-    const iconClass = `ion ${icon || 'ion-bag'}`;
-
     return (
-        <div className={className}>
+        <div className={`small-box bg-${type}`}>
             <div className="inner">
                 <h3>{count}</h3>
                 <p>{title}</p>
             </div>
             <div className="icon">
-                <i className={iconClass} />
+                <i className={`ion ${icon || 'ion-bag'}`} />
             </div>
             <Link to={navigateTo} className="small-box-footer">
                 <span className="mr-2">{t('main.label.moreInfo')}</span>

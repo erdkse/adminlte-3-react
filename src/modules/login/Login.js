@@ -76,6 +76,13 @@ const Login = ({onUserLogin}) => {
         }
     };
 
+    const printFormError = (formik, key) => {
+        if (formik.touched[key] && formik.errors[key]) {
+            return <div>{formik.errors[key]}</div>;
+        }
+        return null;
+    };
+
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -141,10 +148,7 @@ const Login = ({onUserLogin}) => {
                                     </div>
                                 </div>
                             </div>
-                            {formik.touched.password &&
-                            formik.errors.password ? (
-                                <div>{formik.errors.password}</div>
-                            ) : null}
+                            {printFormError(formik, 'password')}
                         </div>
 
                         <div className="row">

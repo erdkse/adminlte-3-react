@@ -76,6 +76,13 @@ const Register = ({onUserLogin}) => {
         }
     };
 
+    const printFormError = (formik, key) => {
+        if (formik.touched[key] && formik.errors[key]) {
+            return <div>{formik.errors[key]}</div>;
+        }
+        return null;
+    };
+
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -153,10 +160,7 @@ const Register = ({onUserLogin}) => {
                                     </div>
                                 </div>
                             </div>
-                            {formik.touched.password &&
-                            formik.errors.password ? (
-                                <div>{formik.errors.password}</div>
-                            ) : null}
+                            {printFormError(formik, 'password')}
                         </div>
 
                         <div className="mb-3">
@@ -173,10 +177,8 @@ const Register = ({onUserLogin}) => {
                                     </div>
                                 </div>
                             </div>
-                            {formik.touched.passwordRetype &&
-                            formik.errors.passwordRetype ? (
-                                <div>{formik.errors.passwordRetype}</div>
-                            ) : null}
+
+                            {printFormError(formik, 'passwordRetype')}
                         </div>
                         <div className="row">
                             <div className="col-8">

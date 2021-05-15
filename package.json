@@ -7,7 +7,8 @@
         "build": "craco build",
         "dev": "craco test",
         "eject": "react-scripts eject",
-        "format": "prettier-eslint $PWD/'src/**/*.{js,json}' --write"
+        "format": "prettier-eslint $PWD/'src/**/*.{js,json}' --write",
+        "lint": "eslint src/**/*.js"
     },
     "eslintConfig": {
         "extends": "react-app"
