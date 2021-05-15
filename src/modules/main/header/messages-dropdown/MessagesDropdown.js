@@ -59,7 +59,7 @@ const MessagesDropdown = () => {
                 <Link to="/" className="dropdown-item">
                     <div className="media">
                         <img
-                            src="https://adminlte.io/themes/dev/AdminLTE/dist/img/user2-160x160.jpg"
+                            src="/img/default-profile.png"
                             alt="User Avatar"
                             className="img-size-50 mr-3 img-circle"
                         />
@@ -89,7 +89,7 @@ const MessagesDropdown = () => {
                 <Link to="/" className="dropdown-item">
                     <div className="media">
                         <img
-                            src="https://adminlte.io/themes/dev/AdminLTE/dist/img/user2-160x160.jpg"
+                            src="/img/default-profile.png"
                             alt="User Avatar"
                             className="img-size-50 img-circle mr-3"
                         />
@@ -117,7 +117,7 @@ const MessagesDropdown = () => {
                 <Link to="/" className="dropdown-item">
                     <div className="media">
                         <img
-                            src="https://adminlte.io/themes/dev/AdminLTE/dist/img/user2-160x160.jpg"
+                            src="/img/default-profile.png"
                             alt="User Avatar"
                             className="img-size-50 img-circle mr-3"
                         />

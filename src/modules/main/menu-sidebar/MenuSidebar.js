@@ -32,7 +32,7 @@ const MenuSidebar = ({user}) => {
                         </Link>
                     </div>
                 </div>
-                <nav className="mt-2">
+                <nav className="mt-2" style={{overflowY: 'hidden'}}>
                     <ul
                         className="nav nav-pills nav-sidebar flex-column"
                         data-widget="treeview"
