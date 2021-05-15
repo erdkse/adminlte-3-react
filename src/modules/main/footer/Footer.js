@@ -1,5 +1,6 @@
 import React from 'react';
 import {useTranslation} from 'react-i18next';
+import {DateTime} from 'luxon';
 import {version} from '../../../../package.json';
 
 const Footer = () => {
@@ -13,13 +14,13 @@ const Footer = () => {
                 <span>{version}</span>
             </div>
             <strong>
-                <span>Copyright © 2019-2020 </span>
+                <span>Copyright © {DateTime.now().toFormat('y')} </span>
                 <a
-                    href="http://adminlte.io"
+                    href="https://erdkse.com"
                     target="_blank"
                     rel="noopener noreferrer"
                 >
-                    AdminLTE.io
+                    erdkse.com
                 </a>
                 <span>.</span>
             </strong>

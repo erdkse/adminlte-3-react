@@ -1,7 +1,7 @@
 import React, {useRef, useEffect, useState} from 'react';
 import {useHistory, Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import Moment from 'react-moment';
+import {DateTime} from 'luxon';
 import {useTranslation} from 'react-i18next';
 
 import * as ActionTypes from '../../../../store/actions';
@@ -79,9 +79,11 @@ const UserDropdown = ({user, onUserLogout}) => {
                         {user.email}
                         <small>
                             <span>Member since </span>
-                            <Moment format="D MMM YYYY" withTitle>
-                                {user.createdAt}
-                            </Moment>
+                            <span>
+                                {DateTime.fromISO(user.createdAt).toFormat(
+                                    'dd LLL yyyy'
+                                )}
+                            </span>
                         </small>
                     </p>
                 </li>
