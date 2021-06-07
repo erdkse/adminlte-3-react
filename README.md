@@ -1,4 +1,7 @@
 [![Run on Repl.it](https://repl.it/badge/github/erdkse/adminlte-3-react)](https://repl.it/github/erdkse/adminlte-3-react)
+<a href="https://trackgit.com">
+<img src="https://us-central1-trackgit-analytics.cloudfunctions.net/token/ping/kpmqtfdbchpwiudt7cbk" alt="trackgit-views" />
+</a>
 
 # Admin LTE 3.1.0 - React 17.0.2
 
