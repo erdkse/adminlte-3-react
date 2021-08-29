@@ -31,6 +31,7 @@ module.exports = {
         'react/jsx-curly-newline': 'off',
         'react/prop-types': 'off',
         'import/no-unresolved': 'off',
+        'no-param-reassign': 'off',
         'prettier/prettier': [
             'error',
             {

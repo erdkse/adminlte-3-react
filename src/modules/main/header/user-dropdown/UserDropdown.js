@@ -1,15 +1,16 @@
 import React, {useRef, useEffect, useState} from 'react';
 import {useHistory, Link} from 'react-router-dom';
-import {connect} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {DateTime} from 'luxon';
 import {useTranslation} from 'react-i18next';
+import {logoutUser} from '@store/reducers/auth';
 
-import * as ActionTypes from '../../../../store/actions';
-
-const UserDropdown = ({user, onUserLogout}) => {
+const UserDropdown = () => {
     const dropdownRef = useRef(null);
     const history = useHistory();
     const [t] = useTranslation();
+    const dispatch = useDispatch();
+    const user = useSelector((state) => state.auth.currentUser);
 
     const [dropdownState, updateDropdownState] = useState({
         isDropdownOpen: false
@@ -32,7 +33,7 @@ const UserDropdown = ({user, onUserLogout}) => {
     const logOut = (event) => {
         toggleDropdown();
         event.preventDefault();
-        onUserLogout();
+        dispatch(logoutUser());
         history.push('/login');
     };
 
@@ -121,12 +122,4 @@ const UserDropdown = ({user, onUserLogout}) => {
     );
 };
 
-const mapStateToProps = (state) => ({
-    user: state.auth.currentUser
-});
-
-const mapDispatchToProps = (dispatch) => ({
-    onUserLogout: () => dispatch({type: ActionTypes.LOGOUT_USER})
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(UserDropdown);
+export default UserDropdown;

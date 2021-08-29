@@ -1,20 +1,21 @@
 import React, {useState} from 'react';
 import {Link, useHistory} from 'react-router-dom';
-import {connect} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {toast} from 'react-toastify';
 import {useFormik} from 'formik';
 import {useTranslation} from 'react-i18next';
 import * as Yup from 'yup';
+import {loginUser} from '@store/reducers/auth';
 
 import {Button} from '@components';
 import * as AuthService from '../../services/auth';
-import * as ActionTypes from '../../store/actions';
 
-const Register = ({onUserLogin}) => {
+const Register = () => {
     const [isAuthLoading, setAuthLoading] = useState(false);
     const [isGoogleAuthLoading, setGoogleAuthLoading] = useState(false);
     const [isFacebookAuthLoading, setFacebookAuthLoading] = useState(false);
     const [t] = useTranslation();
+    const dispatch = useDispatch();
 
     const history = useHistory();
 
@@ -23,7 +24,7 @@ const Register = ({onUserLogin}) => {
             setAuthLoading(true);
             const token = await AuthService.registerByAuth(email, password);
             setAuthLoading(false);
-            onUserLogin(token);
+            dispatch(loginUser(token));
             toast.success('Registration is success');
             history.push('/');
         } catch (error) {
@@ -42,7 +43,7 @@ const Register = ({onUserLogin}) => {
             setGoogleAuthLoading(true);
             const token = await AuthService.registerByGoogle();
             setGoogleAuthLoading(false);
-            onUserLogin(token);
+            dispatch(loginUser(token));
             toast.success('Authentication is succeed!');
             history.push('/');
         } catch (error) {
@@ -62,7 +63,7 @@ const Register = ({onUserLogin}) => {
 
             const token = await AuthService.registerByFacebook();
             setFacebookAuthLoading(false);
-            onUserLogin(token);
+            dispatch(loginUser(token));
             toast.success('Register is succeeded!');
             history.push('/');
         } catch (error) {
@@ -242,8 +243,4 @@ const Register = ({onUserLogin}) => {
     );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-    onUserLogin: (token) => dispatch({type: ActionTypes.LOGIN_USER, token})
-});
-
-export default connect(null, mapDispatchToProps)(Register);
+export default Register;

@@ -1,20 +1,21 @@
 import React, {useState} from 'react';
+import {useDispatch} from 'react-redux';
 import {Link, useHistory} from 'react-router-dom';
 import {toast} from 'react-toastify';
-import {connect} from 'react-redux';
 import {useFormik} from 'formik';
 import {useTranslation} from 'react-i18next';
+import {loginUser} from '@store/reducers/auth';
 
 import * as Yup from 'yup';
 
 import * as AuthService from '../../services/auth';
 import Button from '../../components/button/Button';
-import * as ActionTypes from '../../store/actions';
 
-const Login = ({onUserLogin}) => {
+const Login = () => {
     const [isAuthLoading, setAuthLoading] = useState(false);
     const [isGoogleAuthLoading, setGoogleAuthLoading] = useState(false);
     const [isFacebookAuthLoading, setFacebookAuthLoading] = useState(false);
+    const dispatch = useDispatch();
 
     const history = useHistory();
     const [t] = useTranslation();
@@ -25,7 +26,7 @@ const Login = ({onUserLogin}) => {
             const token = await AuthService.loginByAuth(email, password);
             toast.success('Login is succeed!');
             setAuthLoading(false);
-            onUserLogin(token);
+            dispatch(loginUser(token));
             history.push('/');
         } catch (error) {
             setAuthLoading(false);
@@ -44,7 +45,7 @@ const Login = ({onUserLogin}) => {
             const token = await AuthService.loginByGoogle();
             toast.success('Login is succeeded!');
             setGoogleAuthLoading(false);
-            onUserLogin(token);
+            dispatch(loginUser(token));
             history.push('/');
         } catch (error) {
             setGoogleAuthLoading(false);
@@ -63,7 +64,7 @@ const Login = ({onUserLogin}) => {
             const token = await AuthService.loginByFacebook();
             toast.success('Login is succeeded!');
             setFacebookAuthLoading(false);
-            onUserLogin(token);
+            dispatch(loginUser(token));
             history.push('/');
         } catch (error) {
             setFacebookAuthLoading(false);
@@ -214,8 +215,4 @@ const Login = ({onUserLogin}) => {
     );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-    onUserLogin: (token) => dispatch({type: ActionTypes.LOGIN_USER, token})
-});
-
-export default connect(null, mapDispatchToProps)(Login);
+export default Login;
