@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import {Route, Switch} from 'react-router-dom';
-import {connect} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {Gatekeeper} from 'gatekeeper-client-sdk';
+import {loadUser, logoutUser} from '@store/reducers/auth';
 
 import Dashboard from '@pages/Dashboard';
 import Profile from '@pages/profile/Profile';
@@ -10,9 +11,8 @@ import Header from './header/Header';
 import Footer from './footer/Footer';
 import MenuSidebar from './menu-sidebar/MenuSidebar';
 import PageLoading from '../../components/page-loading/PageLoading';
-import * as ActionTypes from '../../store/actions';
 
-const Main = ({onUserLoad}) => {
+const Main = () => {
     const [appLoadingState, updateAppLoading] = useState(false);
     const [menusidebarState, updateMenusidebarState] = useState({
         isMenuSidebarCollapsed: false
@@ -23,21 +23,23 @@ const Main = ({onUserLoad}) => {
             isMenuSidebarCollapsed: !menusidebarState.isMenuSidebarCollapsed
         });
     };
+    const dispatch = useDispatch();
 
     useEffect(() => {
         updateAppLoading(true);
         const fetchProfile = async () => {
             try {
                 const response = await Gatekeeper.getProfile();
-                onUserLoad({...response});
+                dispatch(loadUser(response));
                 updateAppLoading(false);
             } catch (error) {
+                dispatch(logoutUser());
                 updateAppLoading(false);
             }
         };
         fetchProfile();
         return () => {};
-    }, [onUserLoad]);
+    }, []);
 
     document.getElementById('root').classList.remove('register-page');
     document.getElementById('root').classList.remove('login-page');
@@ -87,13 +89,4 @@ const Main = ({onUserLoad}) => {
     return <div className="wrapper">{template}</div>;
 };
 
-const mapStateToProps = (state) => ({
-    user: state.auth.currentUser
-});
-
-const mapDispatchToProps = (dispatch) => ({
-    onUserLoad: (user) =>
-        dispatch({type: ActionTypes.LOAD_USER, currentUser: user})
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Main);
+export default Main;

@@ -1,8 +1,9 @@
 import React from 'react';
 import {Redirect, Route} from 'react-router-dom';
-import {connect} from 'react-redux';
+import {useSelector} from 'react-redux';
 
-const PublicRoute = ({children, isLoggedIn, ...rest}) => {
+const PublicRoute = ({children, ...rest}) => {
+    const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
     const isAuthenticated = isLoggedIn || localStorage.getItem('token');
 
     return (
@@ -24,8 +25,4 @@ const PublicRoute = ({children, isLoggedIn, ...rest}) => {
     );
 };
 
-const mapStateToProps = (state) => ({
-    isLoggedIn: state.auth.isLoggedIn
-});
-
-export default connect(mapStateToProps)(PublicRoute);
+export default PublicRoute;

@@ -27,6 +27,7 @@
     },
     "dependencies": {
         "@craco/craco": "6.1.2",
+        "@reduxjs/toolkit": "^1.6.1",
         "@testing-library/jest-dom": "5.12.0",
         "@testing-library/react": "11.2.7",
         "@testing-library/user-event": "13.1.9",
@@ -46,6 +47,7 @@
         "react-scripts": "4.0.3",
         "react-toastify": "7.0.4",
         "redux": "4.1.0",
+        "craco-alias": "^3.0.1",
         "yup": "0.32.9"
     },
     "devDependencies": {

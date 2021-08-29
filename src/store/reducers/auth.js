@@ -1,4 +1,4 @@
-import * as ActionTypes from '../actions';
+import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = {
     isLoggedIn: !!localStorage.getItem('token'),
@@ -9,36 +9,27 @@ const initialState = {
     }
 };
 
-const reducer = (state = initialState, action) => {
-    if (action.type === ActionTypes.LOGIN_USER) {
-        localStorage.setItem('token', action.token);
-        return {
-            ...state,
-            isLoggedIn: true,
-            token: action.token
-        };
+export const authSlice = createSlice({
+    name: 'auth',
+    initialState,
+    reducers: {
+        loginUser: (state, {payload}) => {
+            localStorage.setItem('token', payload);
+            state.isLoggedIn = true;
+            state.token = payload;
+        },
+        logoutUser: (state) => {
+            localStorage.removeItem('token');
+            state.currentUser = {};
+            state.isLoggedIn = false;
+            state.token = null;
+        },
+        loadUser: (state, {payload}) => {
+            state.currentUser = payload;
+        }
     }
+});
 
-    if (action.type === ActionTypes.LOGOUT_USER) {
-        localStorage.removeItem('token');
-        return {
-            ...state,
-            isLoggedIn: false,
-            token: null,
-            currentUser: {
-                email: 'mail@example.com',
-                picture: null
-            }
-        };
-    }
-    if (action.type === ActionTypes.LOAD_USER) {
-        return {
-            ...state,
-            currentUser: action.currentUser
-        };
-    }
+export const {loginUser, logoutUser, loadUser} = authSlice.actions;
 
-    return {...state};
-};
-
-export default reducer;
+export default authSlice.reducer;

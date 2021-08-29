@@ -1,6 +1,6 @@
 import axios from 'axios';
-import store from '../store/index';
-import * as ActionTypes from '../store/actions';
+import store from '@store/store';
+import {logoutUser} from '@store/reducers/auth';
 
 const intance = axios.create({
     baseURL: `${process.env.REACT_APP_GATEKEEPER_URL}`
@@ -23,7 +23,7 @@ intance.interceptors.response.use(
     (response) => response,
     (error) => {
         if (error.response.data.status === 401) {
-            store.dispatch({type: ActionTypes.LOGOUT_USER});
+            store.dispatch(logoutUser());
         }
         return Promise.reject(error);
     }

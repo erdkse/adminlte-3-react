@@ -1,10 +1,11 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {NavLink, Link} from 'react-router-dom';
 import {useTranslation} from 'react-i18next';
 
-const MenuSidebar = ({user}) => {
+const MenuSidebar = () => {
     const [t] = useTranslation();
+    const user = useSelector((state) => state.auth.currentUser);
 
     return (
         <aside className="main-sidebar sidebar-dark-primary elevation-4">
@@ -58,8 +59,4 @@ const MenuSidebar = ({user}) => {
     );
 };
 
-const mapStateToProps = (state) => ({
-    user: state.auth.currentUser
-});
-
-export default connect(mapStateToProps, null)(MenuSidebar);
+export default MenuSidebar;

@@ -101,6 +101,7 @@ const LanguagesDropdown = () => {
                 {languages.map((language) => (
                     <button
                         type="button"
+                        key={language.key}
                         className={`dropdown-item ${isActiveLanguage(
                             language
                         )}`}

@@ -4,7 +4,7 @@ import {Provider} from 'react-redux';
 import {toast} from 'react-toastify';
 import {Gatekeeper} from 'gatekeeper-client-sdk';
 import App from '@app/App';
-import store from '@store';
+import store from '@store/store';
 
 import './index.scss';
 import './i18n';
