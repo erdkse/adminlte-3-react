@@ -76,7 +76,10 @@
     "menusidebar": {
         "label": {
             "dashboard": "Pano",
-            "profile": "Profil"
+            "profile": "Profil",
+            "blank": "Boş",
+            "mainMenu": "Ana Menü",
+            "subMenu": "Alt Menü"
         }
     },
     "footer": {

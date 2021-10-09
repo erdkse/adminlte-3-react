@@ -76,7 +76,10 @@
     "menusidebar": {
         "label": {
             "dashboard": "Dashboard",
-            "profile": "Profile"
+            "profile": "Profile",
+            "blank": "Blank",
+            "mainMenu": "Main Menu",
+            "subMenu": "Sub Menu"
         }
     },
     "footer": {

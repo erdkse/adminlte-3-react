@@ -1,5 +1,6 @@
-import React, {useRef, useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {useTranslation} from 'react-i18next';
+import {Dropdown} from '@components';
 
 const languages = [
     {
@@ -30,43 +31,8 @@ const languages = [
 ];
 
 const LanguagesDropdown = () => {
-    const dropdownRef = useRef(null);
+    const [dropdownOpen, setDropdownOpen] = useState(false);
     const {t, i18n} = useTranslation();
-
-    const [dropdownState, setDropdownState] = useState({
-        isDropdownOpen: false
-    });
-
-    const toggleDropdown = () => {
-        setDropdownState({isDropdownOpen: !dropdownState.isDropdownOpen});
-    };
-
-    const handleClickOutside = (event) => {
-        if (
-            dropdownRef &&
-            dropdownRef.current &&
-            !dropdownRef.current.contains(event.target)
-        ) {
-            setDropdownState({isDropdownOpen: false});
-        }
-    };
-
-    useEffect(() => {
-        document.addEventListener('mousedown', handleClickOutside, false);
-        return () => {
-            document.removeEventListener(
-                'mousedown',
-                handleClickOutside,
-                false
-            );
-        };
-    });
-
-    let className = 'dropdown-menu dropdown-menu-right p-0';
-
-    if (dropdownState.isDropdownOpen) {
-        className += ' show';
-    }
 
     const changeLanguage = (lng) => {
         i18n.changeLanguage(lng);
@@ -90,32 +56,26 @@ const LanguagesDropdown = () => {
     };
 
     return (
-        <li
-            ref={dropdownRef}
-            className="nav-item d-none d-sm-inline-block dropdown"
-        >
-            <button onClick={toggleDropdown} type="button" className="nav-link">
+        <Dropdown
+            isOpen={dropdownOpen}
+            buttonTemplate={
                 <i className={`flag-icon ${getCurrentLanguage().icon}`} />
-            </button>
-            <div className={className}>
-                {languages.map((language) => (
-                    <button
-                        type="button"
-                        key={language.key}
-                        className={`dropdown-item ${isActiveLanguage(
-                            language
-                        )}`}
-                        onClick={() => {
-                            changeLanguage(language.key);
-                            setDropdownState(false);
-                        }}
-                    >
-                        <i className={`flag-icon ${language.icon} mr-2`} />
-                        <span>{t(language.label)}</span>
-                    </button>
-                ))}
-            </div>
-        </li>
+            }
+            menuTemplate={languages.map((language) => (
+                <button
+                    type="button"
+                    key={language.key}
+                    className={`dropdown-item ${isActiveLanguage(language)}`}
+                    onClick={() => {
+                        changeLanguage(language.key);
+                        setDropdownOpen(false);
+                    }}
+                >
+                    <i className={`flag-icon ${language.icon} mr-2`} />
+                    <span>{t(language.label)}</span>
+                </button>
+            ))}
+        />
     );
 };
 

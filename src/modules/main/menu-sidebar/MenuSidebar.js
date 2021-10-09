@@ -1,10 +1,34 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
-import {NavLink, Link} from 'react-router-dom';
-import {useTranslation} from 'react-i18next';
+import {Link} from 'react-router-dom';
+import {MenuItem} from '@components';
+
+export const MENU = [
+    {
+        name: 'menusidebar.label.dashboard',
+        path: '/'
+    },
+    {
+        name: 'menusidebar.label.blank',
+        path: '/blank'
+    },
+    {
+        name: 'menusidebar.label.mainMenu',
+        children: [
+            {
+                name: 'menusidebar.label.subMenu',
+                path: '/sub-menu-1'
+            },
+
+            {
+                name: 'menusidebar.label.blank',
+                path: '/sub-menu-2'
+            }
+        ]
+    }
+];
 
 const MenuSidebar = () => {
-    const [t] = useTranslation();
     const user = useSelector((state) => state.auth.currentUser);
 
     return (
@@ -36,22 +60,11 @@ const MenuSidebar = () => {
                 <nav className="mt-2" style={{overflowY: 'hidden'}}>
                     <ul
                         className="nav nav-pills nav-sidebar flex-column"
-                        data-widget="treeview"
                         role="menu"
-                        data-accordion="false"
                     >
-                        <li className="nav-item">
-                            <NavLink to="/" exact className="nav-link">
-                                <i className="nav-icon fas fa-tachometer-alt" />
-                                <p>{t('menusidebar.label.dashboard')}</p>
-                            </NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink to="/profile" exact className="nav-link">
-                                <i className="nav-icon fas fa-user" />
-                                <p>{t('menusidebar.label.profile')}</p>
-                            </NavLink>
-                        </li>
+                        {MENU.map((menuItem) => (
+                            <MenuItem key={menuItem.name} menuItem={menuItem} />
+                        ))}
                     </ul>
                 </nav>
             </div>

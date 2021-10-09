@@ -1,10 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import {Route, Switch} from 'react-router-dom';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {Gatekeeper} from 'gatekeeper-client-sdk';
 import {loadUser, logoutUser} from '@store/reducers/auth';
+import {toggleSidebarMenu} from '@app/store/reducers/ui';
 
 import Dashboard from '@pages/Dashboard';
+import Blank from '@pages/Blank';
+import SubMenu from '@pages/SubMenu';
 import Profile from '@pages/profile/Profile';
 
 import Header from './header/Header';
@@ -13,20 +16,26 @@ import MenuSidebar from './menu-sidebar/MenuSidebar';
 import PageLoading from '../../components/page-loading/PageLoading';
 
 const Main = () => {
-    const [appLoadingState, updateAppLoading] = useState(false);
-    const [menusidebarState, updateMenusidebarState] = useState({
-        isMenuSidebarCollapsed: false
-    });
-
-    const toggleMenuSidebar = () => {
-        updateMenusidebarState({
-            isMenuSidebarCollapsed: !menusidebarState.isMenuSidebarCollapsed
-        });
-    };
     const dispatch = useDispatch();
+    const isSidebarMenuCollapsed = useSelector(
+        (state) => state.ui.isSidebarMenuCollapsed
+    );
+    const screenSize = useSelector((state) => state.ui.screenSize);
+    const [appLoadingState, updateAppLoading] = useState(false);
+
+    const handleToggleMenuSidebar = () => {
+        dispatch(toggleSidebarMenu());
+    };
 
     useEffect(() => {
         updateAppLoading(true);
+
+        document.getElementById('root').classList.remove('register-page');
+        document.getElementById('root').classList.remove('login-page');
+        document.getElementById('root').classList.remove('hold-transition');
+
+        document.getElementById('root').classList.add('sidebar-mini');
+        document.getElementById('root').classList.add('layout-fixed');
         const fetchProfile = async () => {
             try {
                 const response = await Gatekeeper.getProfile();
@@ -38,22 +47,25 @@ const Main = () => {
             }
         };
         fetchProfile();
-        return () => {};
+        return () => {
+            document.getElementById('root').classList.remove('sidebar-mini');
+            document.getElementById('root').classList.remove('layout-fixed');
+        };
     }, []);
 
-    document.getElementById('root').classList.remove('register-page');
-    document.getElementById('root').classList.remove('login-page');
-    document.getElementById('root').classList.remove('hold-transition');
-
-    document.getElementById('root').className += ' sidebar-mini';
-
-    if (menusidebarState.isMenuSidebarCollapsed) {
-        document.getElementById('root').classList.add('sidebar-collapse');
-        document.getElementById('root').classList.remove('sidebar-open');
-    } else {
-        document.getElementById('root').classList.add('sidebar-open');
+    useEffect(() => {
+        document.getElementById('root').classList.remove('sidebar-closed');
         document.getElementById('root').classList.remove('sidebar-collapse');
-    }
+        document.getElementById('root').classList.remove('sidebar-open');
+        if (isSidebarMenuCollapsed && screenSize === 'lg') {
+            document.getElementById('root').classList.add('sidebar-collapse');
+        } else if (isSidebarMenuCollapsed && screenSize === 'xs') {
+            document.getElementById('root').classList.add('sidebar-open');
+        } else if (!isSidebarMenuCollapsed && screenSize !== 'lg') {
+            document.getElementById('root').classList.add('sidebar-closed');
+            document.getElementById('root').classList.add('sidebar-collapse');
+        }
+    }, [screenSize, isSidebarMenuCollapsed]);
 
     let template;
 
@@ -62,7 +74,7 @@ const Main = () => {
     } else {
         template = (
             <>
-                <Header toggleMenuSidebar={toggleMenuSidebar} />
+                <Header toggleMenuSidebar={handleToggleMenuSidebar} />
 
                 <MenuSidebar />
 
@@ -70,6 +82,13 @@ const Main = () => {
                     <div className="pt-3" />
                     <section className="content">
                         <Switch>
+                            <Route exact path="/sub-menu-2" component={Blank} />
+                            <Route
+                                exact
+                                path="/sub-menu-1"
+                                component={SubMenu}
+                            />
+                            <Route exact path="/blank" component={Blank} />
                             <Route exact path="/profile" component={Profile} />
                             <Route exact path="/" component={Dashboard} />
                         </Switch>
@@ -79,7 +98,7 @@ const Main = () => {
                 <div
                     id="sidebar-overlay"
                     role="presentation"
-                    onClick={toggleMenuSidebar}
+                    onClick={handleToggleMenuSidebar}
                     onKeyDown={() => {}}
                 />
             </>
