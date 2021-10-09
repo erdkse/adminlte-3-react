@@ -5,6 +5,8 @@ import {Gatekeeper} from 'gatekeeper-client-sdk';
 import {loadUser, logoutUser} from '@store/reducers/auth';
 
 import Dashboard from '@pages/Dashboard';
+import Blank from '@pages/Blank';
+import SubMenu from '@pages/SubMenu';
 import Profile from '@pages/profile/Profile';
 
 import Header from './header/Header';
@@ -70,6 +72,13 @@ const Main = () => {
                     <div className="pt-3" />
                     <section className="content">
                         <Switch>
+                            <Route exact path="/sub-menu-2" component={Blank} />
+                            <Route
+                                exact
+                                path="/sub-menu-1"
+                                component={SubMenu}
+                            />
+                            <Route exact path="/blank" component={Blank} />
                             <Route exact path="/profile" component={Profile} />
                             <Route exact path="/" component={Dashboard} />
                         </Switch>
