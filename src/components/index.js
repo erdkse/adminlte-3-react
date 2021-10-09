@@ -4,5 +4,6 @@ import ContentHeader from './content-header/ContentHeader';
 import PageLoading from './page-loading/PageLoading';
 import SmallBox from './small-box/SmallBox';
 import Dropdown from './dropdown/Dropdown';
+import MenuItem from './menu-item/MenuItem';
 
-export {Button, ContentHeader, PageLoading, SmallBox, Dropdown};
+export {Button, ContentHeader, PageLoading, SmallBox, Dropdown, MenuItem};
