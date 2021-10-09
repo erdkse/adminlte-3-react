@@ -5,11 +5,11 @@ import {toast} from 'react-toastify';
 import {useFormik} from 'formik';
 import {useTranslation} from 'react-i18next';
 import {loginUser} from '@store/reducers/auth';
+import {Checkbox, Button} from '@components';
 
 import * as Yup from 'yup';
 
 import * as AuthService from '../../services/auth';
-import Button from '../../components/button/Button';
 
 const Login = () => {
     const [isAuthLoading, setAuthLoading] = useState(false);
@@ -154,12 +154,10 @@ const Login = () => {
 
                         <div className="row">
                             <div className="col-8">
-                                <div className="icheck-primary">
-                                    <input type="checkbox" id="remember" />
-                                    <label htmlFor="remember">
-                                        {t('login.label.rememberMe')}
-                                    </label>
-                                </div>
+                                <Checkbox
+                                    checked={false}
+                                    label={t('login.label.rememberMe')}
+                                />
                             </div>
                             <div className="col-4">
                                 <Button

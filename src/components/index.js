@@ -5,5 +5,14 @@ import PageLoading from './page-loading/PageLoading';
 import SmallBox from './small-box/SmallBox';
 import Dropdown from './dropdown/Dropdown';
 import MenuItem from './menu-item/MenuItem';
+import Checkbox from './checkbox/Checkbox';
 
-export {Button, ContentHeader, PageLoading, SmallBox, Dropdown, MenuItem};
+export {
+    Button,
+    ContentHeader,
+    PageLoading,
+    SmallBox,
+    Dropdown,
+    MenuItem,
+    Checkbox
+};

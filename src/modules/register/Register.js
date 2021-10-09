@@ -6,8 +6,8 @@ import {useFormik} from 'formik';
 import {useTranslation} from 'react-i18next';
 import * as Yup from 'yup';
 import {loginUser} from '@store/reducers/auth';
+import {Button, Checkbox} from '@components';
 
-import {Button} from '@components';
 import * as AuthService from '../../services/auth';
 
 const Register = () => {
@@ -183,18 +183,15 @@ const Register = () => {
                         </div>
                         <div className="row">
                             <div className="col-8">
-                                <div className="icheck-primary">
-                                    <input
-                                        type="checkbox"
-                                        id="agreeTerms"
-                                        name="terms"
-                                        defaultValue="agree"
-                                    />
-                                    <label htmlFor="agreeTerms">
-                                        <span>I agree to the </span>
-                                        <Link to="/">terms</Link>
-                                    </label>
-                                </div>
+                                <Checkbox
+                                    checked={false}
+                                    label={
+                                        <>
+                                            <span>I agree to the </span>
+                                            <Link to="/">terms</Link>
+                                        </>
+                                    }
+                                />
                             </div>
                             <div className="col-4">
                                 <Button
