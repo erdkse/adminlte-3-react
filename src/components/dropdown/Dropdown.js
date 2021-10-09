@@ -5,7 +5,9 @@ const Dropdown = ({
     isOpen = false,
     size = 'md',
     buttonTemplate,
-    menuTemplate
+    menuTemplate,
+    className,
+    menuContainerTag = 'div'
 }) => {
     const dropdownRef = useRef(null);
     const [dropdownOpen, setDropdownOpen] = useState(isOpen);
@@ -25,6 +27,10 @@ const Dropdown = ({
     };
 
     useEffect(() => {
+        setDropdownOpen(isOpen);
+    }, [isOpen]);
+
+    useEffect(() => {
         document.addEventListener('mousedown', handleClickOutside, false);
         return () => {
             document.removeEventListener(
@@ -36,12 +42,17 @@ const Dropdown = ({
     });
 
     return (
-        <li ref={dropdownRef} className="nav-item dropdown">
+        <li
+            ref={dropdownRef}
+            className={`nav-item dropdown${className ? ` ${className}` : ''}`}
+        >
             <button onClick={toggleDropdown} type="button" className="nav-link">
                 {buttonTemplate}
             </button>
             {dropdownOpen ? (
-                <DropdownMenu size={size}>{menuTemplate}</DropdownMenu>
+                <DropdownMenu size={size} containerTag={menuContainerTag}>
+                    {menuTemplate}
+                </DropdownMenu>
             ) : null}
         </li>
     );

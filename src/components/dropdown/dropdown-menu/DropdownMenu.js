@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
 
-const DropdownMenu = ({size, children}) => {
+const DropdownMenu = ({size, children, containerTag}) => {
     const dropdownMenuRef = useRef(null);
     const [styles, setStyles] = useState({left: 'inherit', right: `0px`});
     const [classes, setClasses] = useState(
@@ -28,6 +28,14 @@ const DropdownMenu = ({size, children}) => {
             }
         }
     }, [dropdownMenuRef.current, size]);
+
+    if (containerTag === 'ul') {
+        return (
+            <ul ref={dropdownMenuRef} className={classes} style={styles}>
+                {children}
+            </ul>
+        );
+    }
 
     return (
         <div ref={dropdownMenuRef} className={classes} style={styles}>
