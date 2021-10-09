@@ -38,6 +38,7 @@ module.exports = {
                 endOfLine: 'auto'
             }
         ],
-        'react-hooks/rules-of-hooks': 'error'
+        'react-hooks/rules-of-hooks': 'error',
+        'import/prefer-default-export': 'off'
     }
 };
