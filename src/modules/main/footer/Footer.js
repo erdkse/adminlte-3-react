@@ -8,11 +8,6 @@ const Footer = () => {
 
     return (
         <footer className="main-footer">
-            <div className="float-right d-none d-sm-block">
-                <b>{t('footer.version')}</b>
-                <b> </b>
-                <span>{version}</span>
-            </div>
             <strong>
                 <span>Copyright © {DateTime.now().toFormat('y')} </span>
                 <a
@@ -24,8 +19,10 @@ const Footer = () => {
                 </a>
                 <span>.</span>
             </strong>
-            <span> </span>
-            <span>{t('footer.copyright')}</span>
+            <div className="float-right d-none d-sm-inline-block">
+                <b>{t('footer.version')}</b>
+                <span>&nbsp;{version}</span>
+            </div>
         </footer>
     );
 };
