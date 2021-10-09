@@ -7,7 +7,8 @@ const Dropdown = ({
     buttonTemplate,
     menuTemplate,
     className,
-    menuContainerTag = 'div'
+    menuContainerTag = 'div',
+    onChange
 }) => {
     const dropdownRef = useRef(null);
     const [dropdownOpen, setDropdownOpen] = useState(isOpen);
@@ -25,6 +26,12 @@ const Dropdown = ({
             setDropdownOpen(false);
         }
     };
+
+    useEffect(() => {
+        if (onChange) {
+            onChange(dropdownOpen);
+        }
+    }, [dropdownOpen]);
 
     useEffect(() => {
         setDropdownOpen(isOpen);

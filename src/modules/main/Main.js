@@ -54,8 +54,6 @@ const Main = () => {
     }, []);
 
     useEffect(() => {
-        // eslint-disable-next-line no-console
-        console.log(screenSize, isSidebarMenuCollapsed);
         document.getElementById('root').classList.remove('sidebar-closed');
         document.getElementById('root').classList.remove('sidebar-collapse');
         document.getElementById('root').classList.remove('sidebar-open');

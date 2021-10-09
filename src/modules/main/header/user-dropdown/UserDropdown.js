@@ -29,6 +29,7 @@ const UserDropdown = () => {
     return (
         <Dropdown
             isOpen={dropdownOpen}
+            onChange={(open) => setDropdownOpen(open)}
             className="user-menu"
             menuContainerTag="ul"
             buttonTemplate={

@@ -10,6 +10,12 @@ const Checkbox = ({checked = false, label = '', onChange}) => {
     };
 
     useEffect(() => {
+        if (value !== checked) {
+            setValue(checked);
+        }
+    }, [checked]);
+
+    useEffect(() => {
         if (onChange && value !== checked) {
             onChange(value);
         }
