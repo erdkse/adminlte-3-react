@@ -78,13 +78,6 @@ const Login = () => {
         }
     };
 
-    const printFormError = (formik, key) => {
-        if (formik.touched[key] && formik.errors[key]) {
-            return <div>{formik.errors[key]}</div>;
-        }
-        return null;
-    };
-
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -123,20 +116,20 @@ const Login = () => {
                                 icon={faEnvelope}
                                 placeholder="Email"
                                 type="email"
-                                {...formik.getFieldProps('email')}
+                                formik={formik}
+                                formikFieldProps={formik.getFieldProps('email')}
                             />
-                            {formik.touched.email && formik.errors.email ? (
-                                <div>{formik.errors.email}</div>
-                            ) : null}
                         </div>
                         <div className="mb-3">
                             <Input
                                 icon={faLock}
                                 placeholder="Password"
                                 type="password"
-                                {...formik.getFieldProps('password')}
+                                formik={formik}
+                                formikFieldProps={formik.getFieldProps(
+                                    'password'
+                                )}
                             />
-                            {printFormError(formik, 'password')}
                         </div>
 
                         <div className="row">

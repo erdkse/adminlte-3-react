@@ -78,13 +78,6 @@ const Register = () => {
         }
     };
 
-    const printFormError = (formik, key) => {
-        if (formik.touched[key] && formik.errors[key]) {
-            return <div>{formik.errors[key]}</div>;
-        }
-        return null;
-    };
-
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -131,37 +124,24 @@ const Register = () => {
                     <p className="login-box-msg">{t('register.registerNew')}</p>
                     <form onSubmit={formik.handleSubmit}>
                         <div className="mb-3">
-                            {/* <div className="input-group">
-                                <input
-                                    type="email"
-                                    className="form-control"
-                                    placeholder="Email"
-                                    {...formik.getFieldProps('email')}
-                                />
-                                <div className="input-group-append">
-                                    <div className="input-group-text">
-                                        <span className="fas fa-envelope" />
-                                    </div>
-                                </div>
-                            </div> */}
                             <Input
                                 type="email"
                                 placeholder="Email"
                                 icon={faEnvelope}
-                                {...formik.getFieldProps('email')}
+                                formik={formik}
+                                formikFieldProps={formik.getFieldProps('email')}
                             />
-                            {formik.touched.email && formik.errors.email ? (
-                                <div>{formik.errors.email}</div>
-                            ) : null}
                         </div>
                         <div className="mb-3">
                             <Input
                                 type="password"
                                 placeholder="Password"
                                 icon={faLock}
-                                {...formik.getFieldProps('password')}
+                                formik={formik}
+                                formikFieldProps={formik.getFieldProps(
+                                    'password'
+                                )}
                             />
-                            {printFormError(formik, 'password')}
                         </div>
 
                         <div className="mb-3">
@@ -169,13 +149,14 @@ const Register = () => {
                                 type="password"
                                 placeholder="Retype password"
                                 icon={faLock}
-                                {...formik.getFieldProps('passwordRetype')}
+                                formik={formik}
+                                formikFieldProps={formik.getFieldProps(
+                                    'passwordRetype'
+                                )}
                             />
-
-                            {printFormError(formik, 'passwordRetype')}
                         </div>
                         <div className="row">
-                            <div className="col-8">
+                            <div className="col-7">
                                 <Checkbox
                                     checked={false}
                                     label={
@@ -186,7 +167,7 @@ const Register = () => {
                                     }
                                 />
                             </div>
-                            <div className="col-4">
+                            <div className="col-5">
                                 <Button
                                     type="submit"
                                     block
