@@ -6,7 +6,8 @@ import {useFormik} from 'formik';
 import {useTranslation} from 'react-i18next';
 import * as Yup from 'yup';
 import {loginUser} from '@store/reducers/auth';
-import {Button, Checkbox} from '@components';
+import {Button, Checkbox, Input} from '@components';
+import {faEnvelope, faLock} from '@fortawesome/free-solid-svg-icons';
 
 import * as AuthService from '../../services/auth';
 
@@ -130,7 +131,7 @@ const Register = () => {
                     <p className="login-box-msg">{t('register.registerNew')}</p>
                     <form onSubmit={formik.handleSubmit}>
                         <div className="mb-3">
-                            <div className="input-group">
+                            {/* <div className="input-group">
                                 <input
                                     type="email"
                                     className="form-control"
@@ -142,42 +143,34 @@ const Register = () => {
                                         <span className="fas fa-envelope" />
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
+                            <Input
+                                type="email"
+                                placeholder="Email"
+                                icon={faEnvelope}
+                                {...formik.getFieldProps('email')}
+                            />
                             {formik.touched.email && formik.errors.email ? (
                                 <div>{formik.errors.email}</div>
                             ) : null}
                         </div>
                         <div className="mb-3">
-                            <div className="input-group">
-                                <input
-                                    type="password"
-                                    className="form-control"
-                                    placeholder="Password"
-                                    {...formik.getFieldProps('password')}
-                                />
-                                <div className="input-group-append">
-                                    <div className="input-group-text">
-                                        <span className="fas fa-lock" />
-                                    </div>
-                                </div>
-                            </div>
+                            <Input
+                                type="password"
+                                placeholder="Password"
+                                icon={faLock}
+                                {...formik.getFieldProps('password')}
+                            />
                             {printFormError(formik, 'password')}
                         </div>
 
                         <div className="mb-3">
-                            <div className="input-group">
-                                <input
-                                    type="password"
-                                    className="form-control"
-                                    placeholder="Retype password"
-                                    {...formik.getFieldProps('passwordRetype')}
-                                />
-                                <div className="input-group-append">
-                                    <div className="input-group-text">
-                                        <span className="fas fa-lock" />
-                                    </div>
-                                </div>
-                            </div>
+                            <Input
+                                type="password"
+                                placeholder="Retype password"
+                                icon={faLock}
+                                {...formik.getFieldProps('passwordRetype')}
+                            />
 
                             {printFormError(formik, 'passwordRetype')}
                         </div>

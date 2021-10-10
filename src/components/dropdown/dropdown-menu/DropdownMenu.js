@@ -31,14 +31,22 @@ const DropdownMenu = ({size, children, containerTag}) => {
 
     if (containerTag === 'ul') {
         return (
-            <ul ref={dropdownMenuRef} className={classes} style={styles}>
+            <ul
+                ref={dropdownMenuRef}
+                className={classes}
+                style={{...styles, padding: 0}}
+            >
                 {children}
             </ul>
         );
     }
 
     return (
-        <div ref={dropdownMenuRef} className={classes} style={styles}>
+        <div
+            ref={dropdownMenuRef}
+            className={classes}
+            style={{...styles, padding: 0}}
+        >
             {children}
         </div>
     );

@@ -2,6 +2,8 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {toast} from 'react-toastify';
 import {useTranslation} from 'react-i18next';
+import {Input, Button} from '@components';
+import {faEnvelope} from '@fortawesome/free-solid-svg-icons';
 
 const ForgotPassword = () => {
     const [t] = useTranslation();
@@ -12,7 +14,7 @@ const ForgotPassword = () => {
     };
 
     const requestNewPassword = (event) => {
-        toast.warn('Henüz fonksiyonel değil!');
+        toast.warn('Not yet functional');
         // eslint-disable-next-line no-console
         console.log(emailInput);
         event.preventDefault();
@@ -34,27 +36,18 @@ const ForgotPassword = () => {
                         {t('recover.forgotYourPassword')}
                     </p>
                     <form onSubmit={requestNewPassword}>
-                        <div className="input-group mb-3">
-                            <input
-                                ref={setEmailInputRef}
-                                type="email"
-                                className="form-control"
-                                placeholder="Email"
-                            />
-                            <div className="input-group-append">
-                                <div className="input-group-text">
-                                    <span className="fas fa-envelope" />
-                                </div>
-                            </div>
-                        </div>
+                        <Input
+                            className="mb-3"
+                            icon={faEnvelope}
+                            ref={setEmailInputRef}
+                            type="email"
+                            placeholder="Email"
+                        />
                         <div className="row">
                             <div className="col-12">
-                                <button
-                                    type="submit"
-                                    className="btn btn-primary btn-block"
-                                >
+                                <Button type="submit" block>
                                     {t('recover.requestNewPassword')}
-                                </button>
+                                </Button>
                             </div>
                         </div>
                     </form>

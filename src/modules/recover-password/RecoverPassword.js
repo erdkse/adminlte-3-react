@@ -2,6 +2,8 @@ import React, {useRef} from 'react';
 import {toast} from 'react-toastify';
 import {Link} from 'react-router-dom';
 import {useTranslation} from 'react-i18next';
+import {Input, Button} from '@components';
+import {faLock} from '@fortawesome/free-solid-svg-icons';
 
 const RecoverPassword = () => {
     const passwordInput = useRef(null);
@@ -9,8 +11,8 @@ const RecoverPassword = () => {
     const [t] = useTranslation();
 
     const confirm = (event) => {
-        toast.warn('Henüz fonksiyonel değil!');
         event.preventDefault();
+        toast.warn('Not yet functional');
     };
 
     document.getElementById('root').classList = 'hold-transition login-page';
@@ -27,40 +29,25 @@ const RecoverPassword = () => {
                 <div className="card-body">
                     <p className="login-box-msg">{t('recover.oneStepAway')}</p>
                     <form onSubmit={confirm}>
-                        <div className="input-group mb-3">
-                            <input
-                                ref={passwordInput}
-                                type="password"
-                                className="form-control"
-                                placeholder="Password"
-                            />
-                            <div className="input-group-append">
-                                <div className="input-group-text">
-                                    <span className="fas fa-lock" />
-                                </div>
-                            </div>
-                        </div>
-                        <div className="input-group mb-3">
-                            <input
-                                ref={confirmPasswordInput}
-                                type="password"
-                                className="form-control"
-                                placeholder="Confirm Password"
-                            />
-                            <div className="input-group-append">
-                                <div className="input-group-text">
-                                    <span className="fas fa-lock" />
-                                </div>
-                            </div>
-                        </div>
+                        <Input
+                            ref={passwordInput}
+                            className="mb-3"
+                            type="password"
+                            placeholder="Password"
+                            icon={faLock}
+                        />
+                        <Input
+                            ref={confirmPasswordInput}
+                            className="mb-3"
+                            type="password"
+                            placeholder="Confirm Password"
+                            icon={faLock}
+                        />
                         <div className="row">
                             <div className="col-12">
-                                <button
-                                    type="submit"
-                                    className="btn btn-primary btn-block"
-                                >
+                                <Button type="submit" block>
                                     {t('recover.changePassword')}
-                                </button>
+                                </Button>
                             </div>
                         </div>
                     </form>

@@ -58,6 +58,7 @@ const LanguagesDropdown = () => {
     return (
         <Dropdown
             isOpen={dropdownOpen}
+            onChange={(open) => setDropdownOpen(open)}
             buttonTemplate={
                 <i className={`flag-icon ${getCurrentLanguage().icon}`} />
             }
