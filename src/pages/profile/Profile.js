@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
-import {Link} from 'react-router-dom';
 import {useTranslation} from 'react-i18next';
-import {Button} from '@components';
+import {ContentHeader, Button} from '@components';
 import ActivityTab from './ActivityTab';
 import TimelineTab from './TimelineTab';
 import SettingsTab from './SettingsTab';
@@ -16,25 +15,7 @@ const Profile = () => {
 
     return (
         <>
-            <section className="content-header">
-                <div className="container-fluid">
-                    <div className="row mb-2">
-                        <div className="col-sm-6">
-                            <h1>{t('header.user.profile')}</h1>
-                        </div>
-                        <div className="col-sm-6">
-                            <ol className="breadcrumb float-sm-right">
-                                <li className="breadcrumb-item">
-                                    <Link to="/">{t('header.label.home')}</Link>
-                                </li>
-                                <li className="breadcrumb-item active">
-                                    {t('views.user.profile')}
-                                </li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <ContentHeader title="Profile" />
             <section className="content">
                 <div className="container-fluid">
                     <div className="row">
