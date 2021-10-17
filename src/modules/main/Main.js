@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import {Route, Switch} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {Gatekeeper} from 'gatekeeper-client-sdk';
@@ -21,31 +21,31 @@ const Main = () => {
         (state) => state.ui.isSidebarMenuCollapsed
     );
     const screenSize = useSelector((state) => state.ui.screenSize);
-    const [appLoadingState, updateAppLoading] = useState(false);
+    const [isAppLoaded, setIsAppLoaded] = useState(false);
 
     const handleToggleMenuSidebar = () => {
         dispatch(toggleSidebarMenu());
     };
 
-    useEffect(() => {
-        updateAppLoading(true);
+    const fetchProfile = async () => {
+        try {
+            const response = await Gatekeeper.getProfile();
+            dispatch(loadUser(response));
+            setIsAppLoaded(true);
+        } catch (error) {
+            dispatch(logoutUser());
+            setIsAppLoaded(true);
+        }
+    };
 
+    useEffect(() => {
         document.getElementById('root').classList.remove('register-page');
         document.getElementById('root').classList.remove('login-page');
         document.getElementById('root').classList.remove('hold-transition');
 
         document.getElementById('root').classList.add('sidebar-mini');
         document.getElementById('root').classList.add('layout-fixed');
-        const fetchProfile = async () => {
-            try {
-                const response = await Gatekeeper.getProfile();
-                dispatch(loadUser(response));
-                updateAppLoading(false);
-            } catch (error) {
-                dispatch(logoutUser());
-                updateAppLoading(false);
-            }
-        };
+
         fetchProfile();
         return () => {
             document.getElementById('root').classList.remove('sidebar-mini');
@@ -67,12 +67,11 @@ const Main = () => {
         }
     }, [screenSize, isSidebarMenuCollapsed]);
 
-    let template;
-
-    if (appLoadingState) {
-        template = <PageLoading />;
-    } else {
-        template = (
+    const getAppTemplate = useCallback(() => {
+        if (!isAppLoaded) {
+            return <PageLoading />;
+        }
+        return (
             <>
                 <Header toggleMenuSidebar={handleToggleMenuSidebar} />
 
@@ -103,9 +102,9 @@ const Main = () => {
                 />
             </>
         );
-    }
+    }, [isAppLoaded]);
 
-    return <div className="wrapper">{template}</div>;
+    return <div className="wrapper">{getAppTemplate()}</div>;
 };
 
 export default Main;
