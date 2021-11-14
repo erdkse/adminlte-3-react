@@ -29,17 +29,12 @@ const Register = () => {
             toast.success('Registration is success');
             history.push('/');
         } catch (error) {
-            toast.error(
-                (error.response &&
-                    error.response.data &&
-                    error.response.data.message) ||
-                    'Failed'
-            );
+            toast.error(error.message || 'Failed');
             setAuthLoading(false);
         }
     };
 
-    const loginByGoogle = async () => {
+    const registerByGoogle = async () => {
         try {
             setGoogleAuthLoading(true);
             const token = await AuthService.registerByGoogle();
@@ -48,17 +43,12 @@ const Register = () => {
             toast.success('Authentication is succeed!');
             history.push('/');
         } catch (error) {
-            toast.error(
-                (error.response &&
-                    error.response.data &&
-                    error.response.data.message) ||
-                    'Failed'
-            );
+            toast.error(error.message || 'Failed');
             setGoogleAuthLoading(false);
         }
     };
 
-    const loginByFacebook = async () => {
+    const registerByFacebook = async () => {
         try {
             setFacebookAuthLoading(true);
 
@@ -69,12 +59,7 @@ const Register = () => {
             history.push('/');
         } catch (error) {
             setFacebookAuthLoading(false);
-            toast.error(
-                (error.response &&
-                    error.response.data &&
-                    error.response.data.message) ||
-                    'Failed'
-            );
+            toast.error(error.message || 'Failed');
         }
     };
 
@@ -186,7 +171,7 @@ const Register = () => {
                         <Button
                             block
                             icon="facebook"
-                            onClick={loginByFacebook}
+                            onClick={registerByFacebook}
                             isLoading={isFacebookAuthLoading}
                             disabled={isAuthLoading || isGoogleAuthLoading}
                         >
@@ -198,7 +183,7 @@ const Register = () => {
                             block
                             icon="google"
                             theme="danger"
-                            onClick={loginByGoogle}
+                            onClick={registerByGoogle}
                             isLoading={isGoogleAuthLoading}
                             disabled={isAuthLoading || isFacebookAuthLoading}
                         >

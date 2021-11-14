@@ -31,12 +31,7 @@ const Login = () => {
             history.push('/');
         } catch (error) {
             setAuthLoading(false);
-            toast.error(
-                (error.response &&
-                    error.response.data &&
-                    error.response.data.message) ||
-                    'Failed'
-            );
+            toast.error(error.message || 'Failed');
         }
     };
 
@@ -50,12 +45,7 @@ const Login = () => {
             history.push('/');
         } catch (error) {
             setGoogleAuthLoading(false);
-            toast.error(
-                (error.response &&
-                    error.response.data &&
-                    error.response.data.message) ||
-                    'Failed'
-            );
+            toast.error(error.message || 'Failed');
         }
     };
 
@@ -69,12 +59,7 @@ const Login = () => {
             history.push('/');
         } catch (error) {
             setFacebookAuthLoading(false);
-            toast.error(
-                (error.response &&
-                    error.response.data &&
-                    error.response.data.message) ||
-                    'Failed'
-            );
+            toast.error(error.message || 'Failed');
         }
     };
 
