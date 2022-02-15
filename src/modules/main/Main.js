@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useCallback} from 'react';
-import {Route, Switch} from 'react-router-dom';
+import {Route, Routes} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {Gatekeeper} from 'gatekeeper-client-sdk';
 import {loadUser, logoutUser} from '@store/reducers/auth';
@@ -80,7 +80,7 @@ const Main = () => {
                 <div className="content-wrapper">
                     <div className="pt-3" />
                     <section className="content">
-                        <Switch>
+                        <Routes>
                             <Route exact path="/sub-menu-2" component={Blank} />
                             <Route
                                 exact
@@ -90,7 +90,7 @@ const Main = () => {
                             <Route exact path="/blank" component={Blank} />
                             <Route exact path="/profile" component={Profile} />
                             <Route exact path="/" component={Dashboard} />
-                        </Switch>
+                        </Routes>
                     </section>
                 </div>
                 <Footer />

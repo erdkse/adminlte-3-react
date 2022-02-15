@@ -1,27 +1,29 @@
 import React from 'react';
-import {Redirect, Route} from 'react-router-dom';
+import {Navigate, Outlet} from 'react-router-dom';
 import {useSelector} from 'react-redux';
 
-const PrivateRoute = ({children, ...rest}) => {
+const PrivateRoute = () => {
     const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
-    return (
-        <Route
-            {...rest}
-            render={({location}) =>
-                isLoggedIn ? (
-                    children
-                ) : (
-                    <Redirect
-                        to={{
-                            pathname: '/login',
-                            state: {from: location}
-                        }}
-                    />
-                )
-            }
-        />
-    );
+    return isLoggedIn ? <Outlet /> : <Navigate to="/login" />;
+
+    // return (
+    //     <Route
+    //         {...rest}
+    //         render={({location}) =>
+    //             isLoggedIn ? (
+    //                 children
+    //             ) : (
+    //                 <Navigate
+    //                     to={{
+    //                         pathname: '/login',
+    //                         state: {from: location}
+    //                     }}
+    //                 />
+    //             )
+    //         }
+    //     />
+    // );
 };
 
 export default PrivateRoute;

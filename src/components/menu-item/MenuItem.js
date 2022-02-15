@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/interactive-supports-focus */
 import React, {useEffect, useState} from 'react';
-import {NavLink, useHistory} from 'react-router-dom';
+import {NavLink, useNavigate, useHistory} from 'react-router-dom';
 import {useTranslation} from 'react-i18next';
 
 const MenuItem = ({menuItem}) => {
@@ -12,7 +12,7 @@ const MenuItem = ({menuItem}) => {
     const [isMainActive, setIsMainActive] = useState(false);
     const [isOneOfChildrenActive, setIsOneOfChildrenActive] = useState(false);
     const history = useHistory();
-
+    const navigate = useNavigate();
     // eslint-disable-next-line no-unused-vars
     const toggleMenu = () => {
         setIsMenuExtended(!isMenuExtended);
@@ -23,7 +23,7 @@ const MenuItem = ({menuItem}) => {
             toggleMenu();
             return;
         }
-        history.push(menuItem.path);
+        navigate(menuItem.path);
     };
 
     const calculateIsActive = (url) => {

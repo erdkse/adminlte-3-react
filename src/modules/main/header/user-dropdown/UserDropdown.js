@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {useHistory, Link} from 'react-router-dom';
+import {useNavigate, Link} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {DateTime} from 'luxon';
 import {useTranslation} from 'react-i18next';
@@ -7,7 +7,7 @@ import {logoutUser} from '@store/reducers/auth';
 import {Dropdown} from '@components';
 
 const UserDropdown = () => {
-    const history = useHistory();
+    const navigate = useNavigate();
     const [t] = useTranslation();
     const dispatch = useDispatch();
     const user = useSelector((state) => state.auth.currentUser);
@@ -17,13 +17,13 @@ const UserDropdown = () => {
         event.preventDefault();
         setDropdownOpen(false);
         dispatch(logoutUser());
-        history.push('/login');
+        navigate('/login');
     };
 
     const navigateToProfile = (event) => {
         event.preventDefault();
         setDropdownOpen(false);
-        history.push('/profile');
+        navigate('/profile');
     };
 
     return (

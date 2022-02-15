@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Link, useHistory} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
 import {toast} from 'react-toastify';
 import {useFormik} from 'formik';
@@ -18,7 +18,7 @@ const Register = () => {
     const [t] = useTranslation();
     const dispatch = useDispatch();
 
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const register = async (email, password) => {
         try {
@@ -27,7 +27,7 @@ const Register = () => {
             setAuthLoading(false);
             dispatch(loginUser(token));
             toast.success('Registration is success');
-            history.push('/');
+            navigate('/');
         } catch (error) {
             toast.error(error.message || 'Failed');
             setAuthLoading(false);
@@ -41,7 +41,7 @@ const Register = () => {
             setGoogleAuthLoading(false);
             dispatch(loginUser(token));
             toast.success('Authentication is succeed!');
-            history.push('/');
+            navigate('/');
         } catch (error) {
             toast.error(error.message || 'Failed');
             setGoogleAuthLoading(false);
@@ -56,7 +56,7 @@ const Register = () => {
             setFacebookAuthLoading(false);
             dispatch(loginUser(token));
             toast.success('Register is succeeded!');
-            history.push('/');
+            navigate('/');
         } catch (error) {
             setFacebookAuthLoading(false);
             toast.error(error.message || 'Failed');

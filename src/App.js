@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {BrowserRouter as Router, Switch} from 'react-router-dom';
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import Main from '@modules/main/Main';
 import Login from '@modules/login/Login';
 import Register from '@modules/register/Register';
@@ -30,29 +30,41 @@ const App = () => {
 
     return (
         <Router>
-            <Switch>
-                <PublicRoute exact path="/login">
-                    <Login />
-                </PublicRoute>
-                <PublicRoute exact path="/register">
-                    <Register />
-                </PublicRoute>
-                <PublicRoute exact path="/forgot-password">
-                    <ForgetPassword />
-                </PublicRoute>
-                <PublicRoute exact path="/recover-password">
-                    <RecoverPassword />
-                </PublicRoute>
-                <PublicRoute exact path="/privacy-policy">
-                    <PrivacyPolicy />
-                </PublicRoute>
-                <PublicRoute exact path="/callback">
-                    <h1>Callback</h1>
-                </PublicRoute>
-                <PrivateRoute path="/">
-                    <Main />
-                </PrivateRoute>
-            </Switch>
+            <Routes>
+                <Route exact path="/login" element={<PublicRoute />}>
+                    <Route exact path="/login" element={<Login />} />
+                </Route>
+                <Route exact path="/register" element={<PublicRoute />}>
+                    <Route exact path="/register" element={<Register />} />
+                </Route>
+                <Route exact path="/forgot-password" element={<PublicRoute />}>
+                    <Route
+                        exact
+                        path="/forgot-password"
+                        element={<ForgetPassword />}
+                    />
+                </Route>
+                <Route exact path="/recover-password" element={<PublicRoute />}>
+                    <Route
+                        exact
+                        path="/recover-password"
+                        element={<RecoverPassword />}
+                    />
+                </Route>
+                <Route exact path="/privacy-policy" element={<PublicRoute />}>
+                    <Route
+                        exact
+                        path="/privacy-policy"
+                        element={<PrivacyPolicy />}
+                    />
+                </Route>
+                <Route exact path="/callback" element={<PublicRoute />}>
+                    <Route exact path="/callback" element={<h1>Callback</h1>} />
+                </Route>
+                <Route path="/" element={<PrivateRoute />}>
+                    <Route exact path="/" element={<Main />} />
+                </Route>
+            </Routes>
         </Router>
     );
 };

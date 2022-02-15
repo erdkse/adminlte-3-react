@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
-import {Link, useHistory} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import {toast} from 'react-toastify';
 import {useFormik} from 'formik';
 import {useTranslation} from 'react-i18next';
@@ -18,7 +18,7 @@ const Login = () => {
     const [isFacebookAuthLoading, setFacebookAuthLoading] = useState(false);
     const dispatch = useDispatch();
 
-    const history = useHistory();
+    const navigate = useNavigate();
     const [t] = useTranslation();
 
     const login = async (email, password) => {
@@ -28,7 +28,7 @@ const Login = () => {
             toast.success('Login is succeed!');
             setAuthLoading(false);
             dispatch(loginUser(token));
-            history.push('/');
+            navigate('/');
         } catch (error) {
             setAuthLoading(false);
             toast.error(error.message || 'Failed');
@@ -42,7 +42,7 @@ const Login = () => {
             toast.success('Login is succeeded!');
             setGoogleAuthLoading(false);
             dispatch(loginUser(token));
-            history.push('/');
+            navigate('/');
         } catch (error) {
             setGoogleAuthLoading(false);
             toast.error(error.message || 'Failed');
@@ -56,7 +56,7 @@ const Login = () => {
             toast.success('Login is succeeded!');
             setFacebookAuthLoading(false);
             dispatch(loginUser(token));
-            history.push('/');
+            navigate('/');
         } catch (error) {
             setFacebookAuthLoading(false);
             toast.error(error.message || 'Failed');
