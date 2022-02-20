@@ -1,6 +1,6 @@
 [![Run on Repl.it](https://repl.it/badge/github/erdkse/adminlte-3-react)](https://repl.it/github/erdkse/adminlte-3-react)
 
-# Admin LTE 3.1.0 - React 17.0.2
+# Admin LTE 3.2.0 - React 17.0.2
 
 To login website use:
 
