@@ -6,6 +6,7 @@ import Dropdown from './dropdown/Dropdown';
 import MenuItem from './menu-item/MenuItem';
 import Checkbox from './checkbox/Checkbox';
 import Input from './input/Input';
+import Select from './select/Select';
 
 export {
     Button,
@@ -15,5 +16,6 @@ export {
     Dropdown,
     MenuItem,
     Checkbox,
-    Input
+    Input,
+    Select
 };
