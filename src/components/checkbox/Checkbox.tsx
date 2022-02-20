@@ -1,13 +1,19 @@
-import React, {ReactNode, useEffect, useState} from 'react';
+import React, {ReactNode, useCallback, useEffect, useState} from 'react';
 import {v4 as uuidv4} from 'uuid';
 
 export interface CheckboxProps {
     checked: boolean;
     label: string | ReactNode;
+    type?: 'icheck' | 'default' | 'custom';
     onChange?: Function;
 }
 
-const Checkbox = ({checked = false, label = '', onChange}: CheckboxProps) => {
+const Checkbox = ({
+    checked = false,
+    label = '',
+    onChange,
+    type = 'default'
+}: CheckboxProps) => {
     const [ID] = useState(uuidv4());
     const [value, setValue] = useState(checked);
 
@@ -27,15 +33,42 @@ const Checkbox = ({checked = false, label = '', onChange}: CheckboxProps) => {
         }
     }, [value]);
 
+    const getDivClassName = useCallback(() => {
+        if (type === 'icheck') {
+            return 'icheck-primary';
+        }
+        if (type === 'custom') {
+            return 'custom-control custom-checkbox';
+        }
+        return 'form-check';
+    }, [type]);
+
+    const getInputClassName = useCallback(() => {
+        if (type === 'custom') {
+            return 'custom-control-input';
+        }
+        return 'form-check-input';
+    }, [type]);
+
+    const getLabelClassName = useCallback(() => {
+        if (type === 'custom') {
+            return 'custom-control-label';
+        }
+        return 'form-check-label';
+    }, [type]);
+
     return (
-        <div className="icheck-primary">
+        <div className={getDivClassName()}>
             <input
                 type="checkbox"
+                className={getInputClassName()}
                 id={ID}
                 checked={value}
                 onChange={handleOnChange}
             />
-            <label htmlFor={ID}>{label}</label>
+            <label htmlFor={ID} className={getLabelClassName()}>
+                {label}
+            </label>
         </div>
     );
 };

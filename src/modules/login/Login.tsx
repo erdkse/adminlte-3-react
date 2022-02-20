@@ -121,6 +121,7 @@ const Login = () => {
                         <div className="row">
                             <div className="col-8">
                                 <Checkbox
+                                    type="icheck"
                                     checked={false}
                                     label={t('login.label.rememberMe')}
                                 />

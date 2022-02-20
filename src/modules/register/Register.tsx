@@ -144,6 +144,7 @@ const Register = () => {
                         <div className="row">
                             <div className="col-7">
                                 <Checkbox
+                                    type="icheck"
                                     checked={false}
                                     label={
                                         <>
