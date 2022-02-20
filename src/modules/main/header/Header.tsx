@@ -1,20 +1,27 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {useTranslation} from 'react-i18next';
+import {useDispatch} from 'react-redux';
+import {toggleSidebarMenu} from '@app/store/reducers/ui';
+
 import Messages from './messages-dropdown/MessagesDropdown';
 import Notifications from './notifications-dropdown/NotificationsDropdown';
 import Languages from './languages-dropdown/LanguagesDropdown';
 import User from './user-dropdown/UserDropdown';
 
-const Header = ({toggleMenuSidebar}: {toggleMenuSidebar: Function}) => {
+const Header = () => {
     const [t] = useTranslation();
+    const dispatch = useDispatch();
+
+    const handleToggleMenuSidebar = () => {
+        dispatch(toggleSidebarMenu());
+    };
     return (
         <nav className="main-header navbar navbar-expand navbar-white navbar-light">
-            {/* Left navbar links */}
             <ul className="navbar-nav">
                 <li className="nav-item">
                     <button
-                        onClick={() => toggleMenuSidebar()}
+                        onClick={handleToggleMenuSidebar}
                         type="button"
                         className="nav-link"
                     >

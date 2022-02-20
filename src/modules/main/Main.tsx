@@ -13,8 +13,8 @@ import PageLoading from '../../components/page-loading/PageLoading';
 
 const Main = () => {
     const dispatch = useDispatch();
-    const isSidebarMenuCollapsed = useSelector(
-        (state: any) => state.ui.isSidebarMenuCollapsed
+    const menuSidebarCollapsed = useSelector(
+        (state: any) => state.ui.menuSidebarCollapsed
     );
     const screenSize = useSelector((state: any) => state.ui.screenSize);
     const [isAppLoaded, setIsAppLoaded] = useState(false);
@@ -53,15 +53,15 @@ const Main = () => {
         removeWindowClass('sidebar-closed');
         removeWindowClass('sidebar-collapse');
         removeWindowClass('sidebar-open');
-        if (isSidebarMenuCollapsed && screenSize === 'lg') {
+        if (menuSidebarCollapsed && screenSize === 'lg') {
             addWindowClass('sidebar-collapse');
-        } else if (isSidebarMenuCollapsed && screenSize === 'xs') {
+        } else if (menuSidebarCollapsed && screenSize === 'xs') {
             addWindowClass('sidebar-open');
-        } else if (!isSidebarMenuCollapsed && screenSize !== 'lg') {
+        } else if (!menuSidebarCollapsed && screenSize !== 'lg') {
             addWindowClass('sidebar-closed');
             addWindowClass('sidebar-collapse');
         }
-    }, [screenSize, isSidebarMenuCollapsed]);
+    }, [screenSize, menuSidebarCollapsed]);
 
     const getAppTemplate = useCallback(() => {
         if (!isAppLoaded) {
@@ -69,7 +69,7 @@ const Main = () => {
         }
         return (
             <>
-                <Header toggleMenuSidebar={handleToggleMenuSidebar} />
+                <Header />
 
                 <MenuSidebar />
 

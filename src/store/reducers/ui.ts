@@ -2,13 +2,21 @@ import {createSlice} from '@reduxjs/toolkit';
 import {calculateWindowSize} from '@app/utils/helpers';
 
 export interface UiState {
-    isSidebarMenuCollapsed: boolean;
     screenSize: string;
+    menuSidebarCollapsed: boolean;
+    controlSidebarCollapsed: boolean;
+    darkMode: boolean;
+    navbarVariant: string;
+    sidebarSkin: string;
 }
 
 const initialState: UiState = {
-    isSidebarMenuCollapsed: false,
-    screenSize: calculateWindowSize(window.innerWidth)
+    screenSize: calculateWindowSize(window.innerWidth),
+    darkMode: false,
+    navbarVariant: 'navbar-light',
+    sidebarSkin: 'sidebar-dark-primary',
+    menuSidebarCollapsed: false,
+    controlSidebarCollapsed: true
 };
 
 export const uiSlice = createSlice({
@@ -16,7 +24,7 @@ export const uiSlice = createSlice({
     initialState,
     reducers: {
         toggleSidebarMenu: (state) => {
-            state.isSidebarMenuCollapsed = !state.isSidebarMenuCollapsed;
+            state.menuSidebarCollapsed = !state.menuSidebarCollapsed;
         },
         setWindowSize: (state, {payload}) => {
             state.screenSize = payload;

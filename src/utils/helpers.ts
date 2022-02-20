@@ -33,6 +33,6 @@ export const removeWindowClass = (classList: string) => {
         document && document.getElementById('root');
     if (window) {
         // @ts-ignore
-        window.classList.add(classList);
+        window.classList.remove(classList);
     }
 };
