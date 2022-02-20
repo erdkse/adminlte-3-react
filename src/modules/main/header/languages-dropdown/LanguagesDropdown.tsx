@@ -2,7 +2,13 @@ import React, {useState} from 'react';
 import {useTranslation} from 'react-i18next';
 import {Dropdown} from '@components';
 
-const languages = [
+export interface Language {
+    key: string;
+    icon: string;
+    label: string;
+}
+
+const languages: Language[] = [
     {
         key: 'en',
         icon: 'flag-icon-us',
@@ -34,21 +40,22 @@ const LanguagesDropdown = () => {
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const {t, i18n} = useTranslation();
 
-    const changeLanguage = (lng) => {
+    const changeLanguage = (lng: string) => {
         i18n.changeLanguage(lng);
     };
 
-    const getCurrentLanguage = () => {
+    const getCurrentLanguage = (): Language => {
         const currentLanguage = i18n.language;
         if (currentLanguage) {
-            return languages.find(
-                (language) => language.key === currentLanguage
+            const language = languages.find(
+                (language: Language) => language.key === currentLanguage
             );
+            return language || languages[0];
         }
-        return {};
+        return languages[0];
     };
 
-    const isActiveLanguage = (language) => {
+    const isActiveLanguage = (language: Language) => {
         if (language) {
             return getCurrentLanguage().key === language.key ? 'active' : '';
         }
@@ -58,7 +65,7 @@ const LanguagesDropdown = () => {
     return (
         <Dropdown
             isOpen={dropdownOpen}
-            onChange={(open) => setDropdownOpen(open)}
+            onChange={(open: boolean) => setDropdownOpen(open)}
             buttonTemplate={
                 <i className={`flag-icon ${getCurrentLanguage().icon}`} />
             }

@@ -9,7 +9,7 @@ const Profile = () => {
     const [activeTab, setActiveTab] = useState('ACTIVITY');
     const [t] = useTranslation();
 
-    const toggle = (tab) => {
+    const toggle = (tab: string) => {
         if (activeTab !== tab) setActiveTab(tab);
     };
 

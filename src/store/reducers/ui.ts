@@ -1,7 +1,12 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {calculateWindowSize} from '@app/utils/helpers';
 
-const initialState = {
+export interface UiState {
+    isSidebarMenuCollapsed: boolean;
+    screenSize: string;
+}
+
+const initialState: UiState = {
     isSidebarMenuCollapsed: false,
     screenSize: calculateWindowSize(window.innerWidth)
 };

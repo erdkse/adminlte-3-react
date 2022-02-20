@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-const TimelineTab = ({isActive}) => {
+const TimelineTab = ({isActive}: {isActive: boolean}) => {
     return (
         <div className={`tab-pane ${isActive ? 'active' : ''}`}>
             {/* The timeline */}
@@ -102,10 +102,26 @@ const TimelineTab = ({isActive}) => {
                             <span> uploaded new photos</span>
                         </h3>
                         <div className="timeline-body">
-                            <img src="http://placehold.it/150x100" alt="..." />
-                            <img src="http://placehold.it/150x100" alt="..." />
-                            <img src="http://placehold.it/150x100" alt="..." />
-                            <img src="http://placehold.it/150x100" alt="..." />
+                            <img
+                                src="/img/default-profile.png"
+                                style={{width: '1.6rem', height: '1.6rem'}}
+                                alt="..."
+                            />
+                            <img
+                                src="/img/default-profile.png"
+                                style={{width: '1.6rem', height: '1.6rem'}}
+                                alt="..."
+                            />
+                            <img
+                                src="/img/default-profile.png"
+                                style={{width: '1.6rem', height: '1.6rem'}}
+                                alt="..."
+                            />
+                            <img
+                                src="/img/default-profile.png"
+                                style={{width: '1.6rem', height: '1.6rem'}}
+                                alt="..."
+                            />
                         </div>
                     </div>
                 </div>

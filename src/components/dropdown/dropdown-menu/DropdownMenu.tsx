@@ -1,11 +1,26 @@
 import React, {useEffect, useRef, useState} from 'react';
 
-const DropdownMenu = ({size, children, containerTag}) => {
-    const dropdownMenuRef = useRef(null);
+export interface DropdownMenuProps {
+    size: string;
+    children: React.ReactChildren;
+    containerTag: string;
+}
+
+const DropdownMenu = ({size, children, containerTag}: DropdownMenuProps) => {
+    const dropdownMenuRef = useRef<any>(null);
     const [styles, setStyles] = useState({left: 'inherit', right: `0px`});
     const [classes, setClasses] = useState(
         `dropdown-menu dropdown-menu-right dropdown-menu-${size} show`
     );
+
+    const geWindowOffsetWidth = () => {
+        const root: HTMLElement | null =
+            document && document.getElementById('root');
+        if (root) {
+            return root.offsetWidth;
+        }
+        return 0;
+    };
 
     useEffect(() => {
         setClasses(
@@ -13,7 +28,7 @@ const DropdownMenu = ({size, children, containerTag}) => {
         );
         const dropdownMenuElement = dropdownMenuRef.current;
         if (dropdownMenuElement) {
-            const windowWidth = document.getElementById('root').offsetWidth;
+            const windowWidth = geWindowOffsetWidth();
             const offsetLeft = dropdownMenuElement.getBoundingClientRect().left;
             const {offsetWidth} = dropdownMenuElement;
             const visiblePart = windowWidth - offsetLeft;

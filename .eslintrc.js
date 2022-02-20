@@ -22,7 +22,10 @@ module.exports = {
         }
     },
     rules: {
-        'react/jsx-filename-extension': ['warn', {extensions: ['.js', '.jsx']}],
+        'react/jsx-filename-extension': [
+            2,
+            {extensions: ['.js', '.jsx', '.ts', '.tsx']}
+        ],
         'react/jsx-props-no-spreading': ['off'],
         'jsx-a11y/label-has-associated-control': ['error', {assert: 'either'}],
         indent: [2, 4],
@@ -40,6 +43,9 @@ module.exports = {
         ],
         'react-hooks/rules-of-hooks': 'error',
         'import/prefer-default-export': 'off',
-        'react/function-component-definition': 'off'
+        'react/function-component-definition': 'off',
+        'no-unused-vars ': ['off'],
+        'import/extensions': 'off',
+        'no-shadow': 'off'
     }
 };

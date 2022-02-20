@@ -1,5 +1,15 @@
-import React, {useRef, useState, useEffect} from 'react';
+import React, {useRef, useState, useEffect, ReactElement} from 'react';
 import DropdownMenu from './dropdown-menu/DropdownMenu';
+
+export interface DropdownProps {
+    isOpen: boolean;
+    size?: string;
+    buttonTemplate: React.ReactChildren | ReactElement;
+    menuTemplate: any;
+    className?: string;
+    menuContainerTag?: string;
+    onChange?: Function;
+}
 
 const Dropdown = ({
     isOpen = false,
@@ -9,15 +19,15 @@ const Dropdown = ({
     className,
     menuContainerTag = 'div',
     onChange
-}) => {
-    const dropdownRef = useRef(null);
+}: DropdownProps) => {
+    const dropdownRef = useRef<any>(null);
     const [dropdownOpen, setDropdownOpen] = useState(isOpen);
 
     const toggleDropdown = () => {
         setDropdownOpen(!dropdownOpen);
     };
 
-    const handleClickOutside = (event) => {
+    const handleClickOutside = (event: any) => {
         if (
             dropdownRef &&
             dropdownRef.current &&

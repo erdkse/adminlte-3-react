@@ -29,7 +29,7 @@ export const MENU = [
 ];
 
 const MenuSidebar = () => {
-    const user = useSelector((state) => state.auth.currentUser);
+    const user = useSelector((state: any) => state.auth.currentUser);
 
     return (
         <aside className="main-sidebar sidebar-dark-primary elevation-4">

@@ -6,7 +6,7 @@ import Notifications from './notifications-dropdown/NotificationsDropdown';
 import Languages from './languages-dropdown/LanguagesDropdown';
 import User from './user-dropdown/UserDropdown';
 
-const Header = ({toggleMenuSidebar}) => {
+const Header = ({toggleMenuSidebar}: {toggleMenuSidebar: Function}) => {
     const [t] = useTranslation();
     return (
         <nav className="main-header navbar navbar-expand navbar-white navbar-light">

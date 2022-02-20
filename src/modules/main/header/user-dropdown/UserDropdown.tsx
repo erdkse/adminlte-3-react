@@ -13,14 +13,14 @@ const UserDropdown = () => {
     const user = useSelector((state) => state.auth.currentUser);
     const [dropdownOpen, setDropdownOpen] = useState(false);
 
-    const logOut = (event) => {
+    const logOut = (event: any) => {
         event.preventDefault();
         setDropdownOpen(false);
         dispatch(logoutUser());
         navigate('/login');
     };
 
-    const navigateToProfile = (event) => {
+    const navigateToProfile = (event: any) => {
         event.preventDefault();
         setDropdownOpen(false);
         navigate('/profile');
@@ -29,7 +29,7 @@ const UserDropdown = () => {
     return (
         <Dropdown
             isOpen={dropdownOpen}
-            onChange={(open) => setDropdownOpen(open)}
+            onChange={(open: boolean) => setDropdownOpen(open)}
             className="user-menu"
             menuContainerTag="ul"
             buttonTemplate={

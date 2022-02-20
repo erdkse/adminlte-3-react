@@ -1,8 +1,7 @@
 {
     "compilerOptions": {
-        "target": "esnext",
-        "baseUrl": "./",
-        "jsx": "react",
+        "esModuleInterop": true,
+
         "paths": {
             "@app/*": ["src/*"],
             "@store/*": ["src/store/*"],
@@ -11,6 +10,5 @@
             "@modules/*": ["src/modules/*"],
             "@pages/*": ["src/pages/*"]
         }
-    },
-    "exclude": ["node_modules", "**/node_modules/*", "build"]
+    }
 }

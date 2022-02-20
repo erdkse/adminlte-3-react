@@ -2,13 +2,21 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {useTranslation} from 'react-i18next';
 
+export interface SmallBoxProps {
+    type: string;
+    icon: string;
+    count: number;
+    title: string;
+    navigateTo: string;
+}
+
 const SmallBox = ({
     type = 'info',
     icon = 'ion-bag',
     count,
     title,
     navigateTo
-}) => {
+}: SmallBoxProps) => {
     const [t] = useTranslation();
 
     return (

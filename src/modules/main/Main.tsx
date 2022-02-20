@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {Gatekeeper} from 'gatekeeper-client-sdk';
 import {loadUser, logoutUser} from '@store/reducers/auth';
 import {toggleSidebarMenu} from '@app/store/reducers/ui';
+import {addWindowClass, removeWindowClass} from '@app/utils/helpers';
 
 import Header from './header/Header';
 import Footer from './footer/Footer';
@@ -13,9 +14,9 @@ import PageLoading from '../../components/page-loading/PageLoading';
 const Main = () => {
     const dispatch = useDispatch();
     const isSidebarMenuCollapsed = useSelector(
-        (state) => state.ui.isSidebarMenuCollapsed
+        (state: any) => state.ui.isSidebarMenuCollapsed
     );
-    const screenSize = useSelector((state) => state.ui.screenSize);
+    const screenSize = useSelector((state: any) => state.ui.screenSize);
     const [isAppLoaded, setIsAppLoaded] = useState(false);
 
     const handleToggleMenuSidebar = () => {
@@ -34,31 +35,31 @@ const Main = () => {
     };
 
     useEffect(() => {
-        document.getElementById('root').classList.remove('register-page');
-        document.getElementById('root').classList.remove('login-page');
-        document.getElementById('root').classList.remove('hold-transition');
+        removeWindowClass('register-page');
+        removeWindowClass('login-page');
+        removeWindowClass('hold-transition');
 
-        document.getElementById('root').classList.add('sidebar-mini');
-        document.getElementById('root').classList.add('layout-fixed');
+        addWindowClass('sidebar-mini');
+        addWindowClass('layout-fixed');
 
         fetchProfile();
         return () => {
-            document.getElementById('root').classList.remove('sidebar-mini');
-            document.getElementById('root').classList.remove('layout-fixed');
+            removeWindowClass('sidebar-mini');
+            removeWindowClass('layout-fixed');
         };
     }, []);
 
     useEffect(() => {
-        document.getElementById('root').classList.remove('sidebar-closed');
-        document.getElementById('root').classList.remove('sidebar-collapse');
-        document.getElementById('root').classList.remove('sidebar-open');
+        removeWindowClass('sidebar-closed');
+        removeWindowClass('sidebar-collapse');
+        removeWindowClass('sidebar-open');
         if (isSidebarMenuCollapsed && screenSize === 'lg') {
-            document.getElementById('root').classList.add('sidebar-collapse');
+            addWindowClass('sidebar-collapse');
         } else if (isSidebarMenuCollapsed && screenSize === 'xs') {
-            document.getElementById('root').classList.add('sidebar-open');
+            addWindowClass('sidebar-open');
         } else if (!isSidebarMenuCollapsed && screenSize !== 'lg') {
-            document.getElementById('root').classList.add('sidebar-closed');
-            document.getElementById('root').classList.add('sidebar-collapse');
+            addWindowClass('sidebar-closed');
+            addWindowClass('sidebar-collapse');
         }
     }, [screenSize, isSidebarMenuCollapsed]);
 

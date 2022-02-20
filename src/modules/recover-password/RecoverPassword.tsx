@@ -4,19 +4,19 @@ import {Link} from 'react-router-dom';
 import {useTranslation} from 'react-i18next';
 import {Input, Button} from '@components';
 import {faLock} from '@fortawesome/free-solid-svg-icons';
+import {setWindowClass} from '@app/utils/helpers';
 
 const RecoverPassword = () => {
     const passwordInput = useRef(null);
     const confirmPasswordInput = useRef(null);
     const [t] = useTranslation();
 
-    const confirm = (event) => {
+    const confirm = (event: any) => {
         event.preventDefault();
         toast.warn('Not yet functional');
     };
 
-    document.getElementById('root').classList = 'hold-transition login-page';
-
+    setWindowClass('hold-transition login-page');
     return (
         <div className="login-box">
             <div className="card card-outline card-primary">
@@ -46,6 +46,7 @@ const RecoverPassword = () => {
                         <div className="row">
                             <div className="col-12">
                                 <Button type="submit" block>
+                                    {/* @ts-ignore */}
                                     {t('recover.changePassword')}
                                 </Button>
                             </div>

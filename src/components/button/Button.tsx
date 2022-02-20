@@ -1,12 +1,20 @@
 import React from 'react';
-import Button from 'react-bootstrap/Button';
+import Button, {ButtonProps} from 'react-bootstrap/Button';
 import Spinner from 'react-bootstrap/Spinner';
 
-const icons = {
+const icons: any = {
     facebook: 'fab fa-facebook',
     google: 'fab fa-google',
     googlePlus: 'fab fa-google-plus'
 };
+
+export interface AppButtonProps extends ButtonProps {
+    children: boolean;
+    isLoading: boolean;
+    disabled: boolean;
+    icon: string;
+    theme: string;
+}
 
 const AppButton = ({
     children,
@@ -15,7 +23,7 @@ const AppButton = ({
     theme = 'primary',
     disabled,
     ...otherProps
-}) => {
+}: AppButtonProps) => {
     let spinnerTemplate;
     let iconTemplate;
 

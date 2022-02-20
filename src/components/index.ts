@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import Button from './button/Button';
 import ContentHeader from './content-header/ContentHeader';
 import PageLoading from './page-loading/PageLoading';

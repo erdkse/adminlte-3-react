@@ -5,7 +5,8 @@ module.exports = {
         {
             plugin: CracoAlias,
             options: {
-                source: 'jsconfig',
+                source: 'tsconfig',
+                tsConfigPath: './paths.json',
                 baseUrl: './'
             }
         }

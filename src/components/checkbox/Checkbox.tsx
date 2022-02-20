@@ -1,11 +1,17 @@
-import React, {useEffect, useState} from 'react';
+import React, {ReactNode, useEffect, useState} from 'react';
 import {v4 as uuidv4} from 'uuid';
 
-const Checkbox = ({checked = false, label = '', onChange}) => {
+export interface CheckboxProps {
+    checked: boolean;
+    label: string | ReactNode;
+    onChange?: Function;
+}
+
+const Checkbox = ({checked = false, label = '', onChange}: CheckboxProps) => {
     const [ID] = useState(uuidv4());
     const [value, setValue] = useState(checked);
 
-    const handleOnChange = (event) => {
+    const handleOnChange = (event: any) => {
         setValue(event.target.checked);
     };
 

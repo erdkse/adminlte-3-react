@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ContentHeader = ({title}) => {
+const ContentHeader = ({title}: {title: string}) => {
     return (
         <section className="content-header">
             <div className="container-fluid">

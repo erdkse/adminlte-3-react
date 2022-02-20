@@ -1,6 +1,12 @@
 import {createSlice} from '@reduxjs/toolkit';
 
-const initialState = {
+export interface AuthState {
+    isLoggedIn: boolean;
+    token: string | null;
+    currentUser: any;
+}
+
+const initialState: AuthState = {
     isLoggedIn: !!localStorage.getItem('token'),
     token: localStorage.getItem('token'),
     currentUser: {
