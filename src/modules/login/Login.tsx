@@ -120,11 +120,9 @@ const Login = () => {
 
                         <div className="row">
                             <div className="col-8">
-                                <Checkbox
-                                    type="icheck"
-                                    checked={false}
-                                    label={t('login.label.rememberMe')}
-                                />
+                                <Checkbox type="icheck" checked={false}>
+                                    {t('login.label.rememberMe')}
+                                </Checkbox>
                             </div>
                             <div className="col-4">
                                 <Button

@@ -40,11 +40,9 @@ const ControlSidebar = () => {
             <hr className="mb-2" />
 
             <div style={{padding: '8px 0'}}>
-                <Checkbox
-                    checked={darkMode}
-                    onChange={handleDarkModeChange}
-                    label="Dark mode"
-                />
+                <Checkbox checked={darkMode} onChange={handleDarkModeChange}>
+                    Dark mode
+                </Checkbox>
                 <Select
                     className="mt-3"
                     value={navbarVariant}

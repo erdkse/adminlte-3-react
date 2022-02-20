@@ -1,18 +1,18 @@
-import React, {ReactNode, useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {v4 as uuidv4} from 'uuid';
 
 export interface CheckboxProps {
     checked: boolean;
-    label: string | ReactNode;
     type?: 'icheck' | 'default' | 'custom';
     onChange?: Function;
+    children: any;
 }
 
 const Checkbox = ({
     checked = false,
-    label = '',
     onChange,
-    type = 'default'
+    type = 'default',
+    children
 }: CheckboxProps) => {
     const [ID] = useState(uuidv4());
     const [value, setValue] = useState(checked);
@@ -67,7 +67,7 @@ const Checkbox = ({
                 onChange={handleOnChange}
             />
             <label htmlFor={ID} className={getLabelClassName()}>
-                {label}
+                {children}
             </label>
         </div>
     );

@@ -143,16 +143,10 @@ const Register = () => {
                         </div>
                         <div className="row">
                             <div className="col-7">
-                                <Checkbox
-                                    type="icheck"
-                                    checked={false}
-                                    label={
-                                        <>
-                                            <span>I agree to the </span>
-                                            <Link to="/">terms</Link>
-                                        </>
-                                    }
-                                />
+                                <Checkbox type="icheck" checked={false}>
+                                    <span>I agree to the </span>
+                                    <Link to="/">terms</Link>
+                                </Checkbox>
                             </div>
                             <div className="col-5">
                                 <Button
