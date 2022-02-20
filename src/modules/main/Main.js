@@ -1,14 +1,9 @@
 import React, {useState, useEffect, useCallback} from 'react';
-import {Route, Routes} from 'react-router-dom';
+import {Outlet} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {Gatekeeper} from 'gatekeeper-client-sdk';
 import {loadUser, logoutUser} from '@store/reducers/auth';
 import {toggleSidebarMenu} from '@app/store/reducers/ui';
-
-import Dashboard from '@pages/Dashboard';
-import Blank from '@pages/Blank';
-import SubMenu from '@pages/SubMenu';
-import Profile from '@pages/profile/Profile';
 
 import Header from './header/Header';
 import Footer from './footer/Footer';
@@ -80,17 +75,7 @@ const Main = () => {
                 <div className="content-wrapper">
                     <div className="pt-3" />
                     <section className="content">
-                        <Routes>
-                            <Route exact path="/sub-menu-2" component={Blank} />
-                            <Route
-                                exact
-                                path="/sub-menu-1"
-                                component={SubMenu}
-                            />
-                            <Route exact path="/blank" component={Blank} />
-                            <Route exact path="/profile" component={Profile} />
-                            <Route exact path="/" component={Dashboard} />
-                        </Routes>
+                        <Outlet />
                     </section>
                 </div>
                 <Footer />

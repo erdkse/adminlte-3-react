@@ -1,8 +1,9 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/interactive-supports-focus */
 import React, {useEffect, useState} from 'react';
-import {NavLink, useNavigate, useHistory} from 'react-router-dom';
+import {NavLink, useNavigate, useLocation} from 'react-router-dom';
 import {useTranslation} from 'react-i18next';
 
 const MenuItem = ({menuItem}) => {
@@ -11,9 +12,9 @@ const MenuItem = ({menuItem}) => {
     const [isExpandable, setIsExpandable] = useState(false);
     const [isMainActive, setIsMainActive] = useState(false);
     const [isOneOfChildrenActive, setIsOneOfChildrenActive] = useState(false);
-    const history = useHistory();
     const navigate = useNavigate();
-    // eslint-disable-next-line no-unused-vars
+    const location = useLocation();
+
     const toggleMenu = () => {
         setIsMenuExtended(!isMenuExtended);
     };
@@ -31,15 +32,21 @@ const MenuItem = ({menuItem}) => {
         setIsOneOfChildrenActive(false);
         if (isExpandable) {
             menuItem.children.forEach((item) => {
-                if (item.path === url) {
+                if (item.path === url.pathname) {
                     setIsOneOfChildrenActive(true);
                     setIsMenuExtended(true);
                 }
             });
-        } else if (menuItem.path === url) {
+        } else if (menuItem.path === url.pathname) {
             setIsMainActive(true);
         }
     };
+
+    useEffect(() => {
+        if (location) {
+            calculateIsActive(location);
+        }
+    }, [location, isExpandable, menuItem]);
 
     useEffect(() => {
         if (!isMainActive && !isOneOfChildrenActive) {
@@ -52,13 +59,6 @@ const MenuItem = ({menuItem}) => {
             menuItem && menuItem.children && menuItem.children.length > 0
         );
     }, [menuItem]);
-
-    useEffect(() => {
-        calculateIsActive(history.location.pathname);
-        return history.listen((location) => {
-            calculateIsActive(location.pathname);
-        });
-    }, [history, isExpandable, menuItem]);
 
     return (
         <li className={`nav-item${isMenuExtended ? ' menu-open' : ''}`}>
@@ -81,11 +81,7 @@ const MenuItem = ({menuItem}) => {
                 menuItem.children.map((item) => (
                     <ul key={item.name} className="nav nav-treeview">
                         <li className="nav-item">
-                            <NavLink
-                                className="nav-link"
-                                exact
-                                to={`${item.path}`}
-                            >
+                            <NavLink className="nav-link" to={`${item.path}`}>
                                 <i className="far fa-circle nav-icon" />
                                 <p>{t(item.name)}</p>
                             </NavLink>
