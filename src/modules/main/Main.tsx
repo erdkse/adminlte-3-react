@@ -5,17 +5,21 @@ import {Gatekeeper} from 'gatekeeper-client-sdk';
 import {loadUser, logoutUser} from '@store/reducers/auth';
 import {toggleSidebarMenu} from '@app/store/reducers/ui';
 import {addWindowClass, removeWindowClass} from '@app/utils/helpers';
-
-import Header from './header/Header';
-import Footer from './footer/Footer';
-import MenuSidebar from './menu-sidebar/MenuSidebar';
-import PageLoading from '../../components/page-loading/PageLoading';
+import ControlSidebar from '@app/modules/main/control-sidebar/ControlSidebar';
+import Header from '@app/modules/main/header/Header';
+import MenuSidebar from '@app/modules/main/menu-sidebar/MenuSidebar';
+import Footer from '@app/modules/main/footer/Footer';
+import {PageLoading} from '@app/components';
 
 const Main = () => {
     const dispatch = useDispatch();
     const menuSidebarCollapsed = useSelector(
         (state: any) => state.ui.menuSidebarCollapsed
     );
+    const controlSidebarCollapsed = useSelector(
+        (state: any) => state.ui.controlSidebarCollapsed
+    );
+    const darkMode = useSelector((state: any) => state.ui.darkMode);
     const screenSize = useSelector((state: any) => state.ui.screenSize);
     const [isAppLoaded, setIsAppLoaded] = useState(false);
 
@@ -63,6 +67,22 @@ const Main = () => {
         }
     }, [screenSize, menuSidebarCollapsed]);
 
+    useEffect(() => {
+        if (controlSidebarCollapsed) {
+            removeWindowClass('control-sidebar-slide-open');
+        } else {
+            addWindowClass('control-sidebar-slide-open');
+        }
+    }, [screenSize, controlSidebarCollapsed]);
+
+    useEffect(() => {
+        if (darkMode) {
+            addWindowClass('dark-mode');
+        } else {
+            removeWindowClass('dark-mode');
+        }
+    }, [darkMode]);
+
     const getAppTemplate = useCallback(() => {
         if (!isAppLoaded) {
             return <PageLoading />;
@@ -80,6 +100,7 @@ const Main = () => {
                     </section>
                 </div>
                 <Footer />
+                <ControlSidebar />
                 <div
                     id="sidebar-overlay"
                     role="presentation"

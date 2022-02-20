@@ -36,9 +36,10 @@ export const MENU: IMenuItem[] = [
 
 const MenuSidebar = () => {
     const user = useSelector((state: any) => state.auth.currentUser);
+    const sidebarSkin = useSelector((state: any) => state.ui.sidebarSkin);
 
     return (
-        <aside className="main-sidebar sidebar-dark-primary elevation-4">
+        <aside className={`main-sidebar elevation-4 ${sidebarSkin}`}>
             <Link to="/" className="brand-link">
                 <img
                     src="/img/logo.png"
