@@ -3,10 +3,11 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/interactive-supports-focus */
 import React, {useEffect, useState} from 'react';
-import {NavLink, useNavigate, useLocation} from 'react-router-dom';
+import {NavLink, useNavigate, useLocation, Location} from 'react-router-dom';
 import {useTranslation} from 'react-i18next';
+import {IMenuItem} from '@app/modules/main/menu-sidebar/MenuSidebar';
 
-const MenuItem = ({menuItem}) => {
+const MenuItem = ({menuItem}: {menuItem: IMenuItem}) => {
     const [t] = useTranslation();
     const [isMenuExtended, setIsMenuExtended] = useState(false);
     const [isExpandable, setIsExpandable] = useState(false);
@@ -24,13 +25,13 @@ const MenuItem = ({menuItem}) => {
             toggleMenu();
             return;
         }
-        navigate(menuItem.path);
+        navigate(menuItem.path ? menuItem.path : '/');
     };
 
-    const calculateIsActive = (url) => {
+    const calculateIsActive = (url: Location) => {
         setIsMainActive(false);
         setIsOneOfChildrenActive(false);
-        if (isExpandable) {
+        if (isExpandable && menuItem && menuItem.children) {
             menuItem.children.forEach((item) => {
                 if (item.path === url.pathname) {
                     setIsOneOfChildrenActive(true);
@@ -56,7 +57,9 @@ const MenuItem = ({menuItem}) => {
 
     useEffect(() => {
         setIsExpandable(
-            menuItem && menuItem.children && menuItem.children.length > 0
+            Boolean(
+                menuItem && menuItem.children && menuItem.children.length > 0
+            )
         );
     }, [menuItem]);
 
@@ -78,6 +81,8 @@ const MenuItem = ({menuItem}) => {
             </a>
 
             {isExpandable &&
+                menuItem &&
+                menuItem.children &&
                 menuItem.children.map((item) => (
                     <ul key={item.name} className="nav nav-treeview">
                         <li className="nav-item">

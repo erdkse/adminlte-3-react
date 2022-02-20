@@ -9,11 +9,11 @@ const icons: any = {
 };
 
 export interface AppButtonProps extends ButtonProps {
-    children: boolean;
-    isLoading: boolean;
-    disabled: boolean;
-    icon: string;
-    theme: string;
+    children: any;
+    isLoading?: boolean;
+    disabled?: boolean;
+    icon?: string;
+    theme?: string;
 }
 
 const AppButton = ({

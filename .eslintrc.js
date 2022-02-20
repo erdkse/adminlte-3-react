@@ -8,6 +8,7 @@ module.exports = {
         'airbnb',
         'plugin:prettier/recommended'
     ],
+    parser: '@typescript-eslint/parser',
     parserOptions: {
         ecmaFeatures: {
             jsx: true
@@ -15,7 +16,13 @@ module.exports = {
         ecmaVersion: 12,
         sourceType: 'module'
     },
-    plugins: ['react', 'react-hooks'],
+    plugins: [
+        'react',
+        '@typescript-eslint',
+        'react-hooks',
+        'unused-imports',
+        'prettier'
+    ],
     settings: {
         react: {
             version: 'detect'
@@ -46,6 +53,8 @@ module.exports = {
         'react/function-component-definition': 'off',
         'no-unused-vars ': ['off'],
         'import/extensions': 'off',
-        'no-shadow': 'off'
+        'no-shadow': 'off',
+        'no-use-before-define': 'off',
+        'react/require-default-props': 'off'
     }
 };

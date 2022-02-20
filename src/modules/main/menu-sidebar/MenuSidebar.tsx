@@ -3,7 +3,13 @@ import {useSelector} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {MenuItem} from '@components';
 
-export const MENU = [
+export interface IMenuItem {
+    name: string;
+    path?: string;
+    children?: Array<IMenuItem>;
+}
+
+export const MENU: IMenuItem[] = [
     {
         name: 'menusidebar.label.dashboard',
         path: '/'
@@ -62,7 +68,7 @@ const MenuSidebar = () => {
                         className="nav nav-pills nav-sidebar flex-column"
                         role="menu"
                     >
-                        {MENU.map((menuItem) => (
+                        {MENU.map((menuItem: IMenuItem) => (
                             <MenuItem key={menuItem.name} menuItem={menuItem} />
                         ))}
                     </ul>

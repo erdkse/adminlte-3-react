@@ -1,26 +1,27 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import {toast} from 'react-toastify';
 import {useTranslation} from 'react-i18next';
 import {Input, Button} from '@components';
 import {faEnvelope} from '@fortawesome/free-solid-svg-icons';
+import {setWindowClass} from '@app/utils/helpers';
 
 const ForgotPassword = () => {
     const [t] = useTranslation();
-    let emailInput = null;
+    const [emailInput, setEmailInput] = useState<string>();
 
-    const setEmailInputRef = (element) => {
-        emailInput = element;
+    const setEmailInputRef = (element: string) => {
+        setEmailInput(element);
     };
 
-    const requestNewPassword = (event) => {
+    const requestNewPassword = (event: any) => {
         toast.warn('Not yet functional');
         // eslint-disable-next-line no-console
         console.log(emailInput);
         event.preventDefault();
     };
 
-    document.getElementById('root').classList = 'hold-transition login-page';
+    setWindowClass('hold-transition login-page');
 
     return (
         <div className="login-box">
@@ -46,6 +47,7 @@ const ForgotPassword = () => {
                         <div className="row">
                             <div className="col-12">
                                 <Button type="submit" block>
+                                    {/* @ts-ignore */}
                                     {t('recover.requestNewPassword')}
                                 </Button>
                             </div>

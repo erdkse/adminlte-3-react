@@ -4,7 +4,7 @@ import {useTranslation} from 'react-i18next';
 
 export interface SmallBoxProps {
     type: string;
-    icon: string;
+    icon?: string;
     count: number;
     title: string;
     navigateTo: string;

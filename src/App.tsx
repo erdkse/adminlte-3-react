@@ -23,7 +23,7 @@ import './App.scss';
 
 const App = () => {
     const windowSize = useWindowSize();
-    const screenSize = useSelector((state) => state.ui.screenSize);
+    const screenSize = useSelector((state: any) => state.ui.screenSize);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -36,43 +36,37 @@ const App = () => {
     return (
         <BrowserRouter>
             <Routes>
-                <Route exact path="/login" element={<PublicRoute />}>
-                    <Route exact path="/login" element={<Login />} />
+                <Route path="/login" element={<PublicRoute />}>
+                    <Route path="/login" element={<Login />} />
                 </Route>
-                <Route exact path="/register" element={<PublicRoute />}>
-                    <Route exact path="/register" element={<Register />} />
+                <Route path="/register" element={<PublicRoute />}>
+                    <Route path="/register" element={<Register />} />
                 </Route>
-                <Route exact path="/forgot-password" element={<PublicRoute />}>
+                <Route path="/forgot-password" element={<PublicRoute />}>
                     <Route
-                        exact
                         path="/forgot-password"
                         element={<ForgetPassword />}
                     />
                 </Route>
-                <Route exact path="/recover-password" element={<PublicRoute />}>
+                <Route path="/recover-password" element={<PublicRoute />}>
                     <Route
-                        exact
                         path="/recover-password"
                         element={<RecoverPassword />}
                     />
                 </Route>
-                <Route exact path="/privacy-policy" element={<PublicRoute />}>
-                    <Route
-                        exact
-                        path="/privacy-policy"
-                        element={<PrivacyPolicy />}
-                    />
+                <Route path="/privacy-policy" element={<PublicRoute />}>
+                    <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                 </Route>
-                <Route exact path="/callback" element={<PublicRoute />}>
-                    <Route exact path="/callback" element={<h1>Callback</h1>} />
+                <Route path="/callback" element={<PublicRoute />}>
+                    <Route path="/callback" element={<h1>Callback</h1>} />
                 </Route>
                 <Route path="/" element={<PrivateRoute />}>
                     <Route path="/" element={<Main />}>
-                        <Route exact path="/sub-menu-2" element={<Blank />} />
-                        <Route exact path="/sub-menu-1" element={<SubMenu />} />
-                        <Route exact path="/blank" element={<Blank />} />
-                        <Route exact path="/profile" element={<Profile />} />
-                        <Route exact path="/" element={<Dashboard />} />
+                        <Route path="/sub-menu-2" element={<Blank />} />
+                        <Route path="/sub-menu-1" element={<SubMenu />} />
+                        <Route path="/blank" element={<Blank />} />
+                        <Route path="/profile" element={<Profile />} />
+                        <Route path="/" element={<Dashboard />} />
                     </Route>
                 </Route>
             </Routes>

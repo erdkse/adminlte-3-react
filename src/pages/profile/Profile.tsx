@@ -57,6 +57,7 @@ const Profile = () => {
                                         </li>
                                     </ul>
                                     <Button block>
+                                        {/* @ts-ignore */}
                                         {t('main.label.follow')}
                                     </Button>
                                 </div>

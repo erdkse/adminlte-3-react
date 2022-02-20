@@ -7,11 +7,11 @@ import {useTranslation} from 'react-i18next';
 import {loginUser} from '@store/reducers/auth';
 import {Checkbox, Button, Input} from '@components';
 import {faEnvelope, faLock} from '@fortawesome/free-solid-svg-icons';
+import {setWindowClass} from '@app/utils/helpers';
 
 import * as Yup from 'yup';
 
 import * as AuthService from '../../services/auth';
-import {setWindowClass} from '@app/utils/helpers';
 
 const Login = () => {
     const [isAuthLoading, setAuthLoading] = useState(false);

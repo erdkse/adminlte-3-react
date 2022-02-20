@@ -8,9 +8,9 @@ import * as Yup from 'yup';
 import {loginUser} from '@store/reducers/auth';
 import {Button, Checkbox, Input} from '@components';
 import {faEnvelope, faLock} from '@fortawesome/free-solid-svg-icons';
+import {setWindowClass} from '@app/utils/helpers';
 
 import * as AuthService from '../../services/auth';
-import {setWindowClass} from '@app/utils/helpers';
 
 const Register = () => {
     const [isAuthLoading, setAuthLoading] = useState(false);
