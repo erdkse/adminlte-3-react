@@ -5,13 +5,13 @@ import {uiSlice} from '@app/store/reducers/ui';
 import {createLogger} from 'redux-logger';
 
 const store = configureStore({
-    reducer: {
-        auth: authSlice.reducer,
-        ui: uiSlice.reducer
-    },
-    middleware: (getDefaultMiddleware) => [
-        ...getDefaultMiddleware().concat(createLogger())
-    ]
+  reducer: {
+    auth: authSlice.reducer,
+    ui: uiSlice.reducer
+  },
+  middleware: (getDefaultMiddleware) => [
+    ...getDefaultMiddleware().concat(createLogger())
+  ]
 });
 
 export default store;

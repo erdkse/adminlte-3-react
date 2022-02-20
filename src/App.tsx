@@ -22,56 +22,50 @@ import PrivateRoute from './routes/PrivateRoute';
 import './App.scss';
 
 const App = () => {
-    const windowSize = useWindowSize();
-    const screenSize = useSelector((state: any) => state.ui.screenSize);
-    const dispatch = useDispatch();
+  const windowSize = useWindowSize();
+  const screenSize = useSelector((state: any) => state.ui.screenSize);
+  const dispatch = useDispatch();
 
-    useEffect(() => {
-        const size = calculateWindowSize(windowSize.width);
-        if (screenSize !== size) {
-            dispatch(setWindowSize(size));
-        }
-    }, [windowSize]);
+  useEffect(() => {
+    const size = calculateWindowSize(windowSize.width);
+    if (screenSize !== size) {
+      dispatch(setWindowSize(size));
+    }
+  }, [windowSize]);
 
-    return (
-        <BrowserRouter>
-            <Routes>
-                <Route path="/login" element={<PublicRoute />}>
-                    <Route path="/login" element={<Login />} />
-                </Route>
-                <Route path="/register" element={<PublicRoute />}>
-                    <Route path="/register" element={<Register />} />
-                </Route>
-                <Route path="/forgot-password" element={<PublicRoute />}>
-                    <Route
-                        path="/forgot-password"
-                        element={<ForgetPassword />}
-                    />
-                </Route>
-                <Route path="/recover-password" element={<PublicRoute />}>
-                    <Route
-                        path="/recover-password"
-                        element={<RecoverPassword />}
-                    />
-                </Route>
-                <Route path="/privacy-policy" element={<PublicRoute />}>
-                    <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-                </Route>
-                <Route path="/callback" element={<PublicRoute />}>
-                    <Route path="/callback" element={<h1>Callback</h1>} />
-                </Route>
-                <Route path="/" element={<PrivateRoute />}>
-                    <Route path="/" element={<Main />}>
-                        <Route path="/sub-menu-2" element={<Blank />} />
-                        <Route path="/sub-menu-1" element={<SubMenu />} />
-                        <Route path="/blank" element={<Blank />} />
-                        <Route path="/profile" element={<Profile />} />
-                        <Route path="/" element={<Dashboard />} />
-                    </Route>
-                </Route>
-            </Routes>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<PublicRoute />}>
+          <Route path="/login" element={<Login />} />
+        </Route>
+        <Route path="/register" element={<PublicRoute />}>
+          <Route path="/register" element={<Register />} />
+        </Route>
+        <Route path="/forgot-password" element={<PublicRoute />}>
+          <Route path="/forgot-password" element={<ForgetPassword />} />
+        </Route>
+        <Route path="/recover-password" element={<PublicRoute />}>
+          <Route path="/recover-password" element={<RecoverPassword />} />
+        </Route>
+        <Route path="/privacy-policy" element={<PublicRoute />}>
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        </Route>
+        <Route path="/callback" element={<PublicRoute />}>
+          <Route path="/callback" element={<h1>Callback</h1>} />
+        </Route>
+        <Route path="/" element={<PrivateRoute />}>
+          <Route path="/" element={<Main />}>
+            <Route path="/sub-menu-2" element={<Blank />} />
+            <Route path="/sub-menu-1" element={<SubMenu />} />
+            <Route path="/blank" element={<Blank />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/" element={<Dashboard />} />
+          </Route>
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
 };
 
 export default App;

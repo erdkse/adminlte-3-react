@@ -10,89 +10,54 @@ import LanguagesDropdown from '@app/modules/main/header/languages-dropdown/Langu
 import UserDropdown from '@app/modules/main/header/user-dropdown/UserDropdown';
 
 const Header = () => {
-    const [t] = useTranslation();
-    const dispatch = useDispatch();
-    const navbarVariant = useSelector((state: any) => state.ui.navbarVariant);
+  const [t] = useTranslation();
+  const dispatch = useDispatch();
+  const navbarVariant = useSelector((state: any) => state.ui.navbarVariant);
 
-    const handleToggleMenuSidebar = () => {
-        dispatch(toggleSidebarMenu());
-    };
+  const handleToggleMenuSidebar = () => {
+    dispatch(toggleSidebarMenu());
+  };
 
-    const handleToggleControlSidebar = () => {
-        dispatch(toggleControlSidebar());
-    };
+  const handleToggleControlSidebar = () => {
+    dispatch(toggleControlSidebar());
+  };
 
-    return (
-        <nav className={`main-header navbar navbar-expand ${navbarVariant}`}>
-            <ul className="navbar-nav">
-                <li className="nav-item">
-                    <button
-                        onClick={handleToggleMenuSidebar}
-                        type="button"
-                        className="nav-link"
-                    >
-                        <i className="fas fa-bars" />
-                    </button>
-                </li>
-                <li className="nav-item d-none d-sm-inline-block">
-                    <Link to="/" className="nav-link">
-                        {t('header.label.home')}
-                    </Link>
-                </li>
-                <li className="nav-item d-none d-sm-inline-block">
-                    <Link to="/" className="nav-link">
-                        {t('header.label.contact')}
-                    </Link>
-                </li>
-            </ul>
-            <ul className="navbar-nav ml-auto">
-                {/* <li className="nav-item">
-                    <button className="nav-link" type="button">
-                        <i className="fas fa-search" />
-                    </button>
-                    <div className="navbar-search-block">
-                        <form className="form-inline">
-                            <div className="input-group input-group-sm">
-                                <input
-                                    className="form-control form-control-navbar"
-                                    type="search"
-                                    placeholder="Search"
-                                    aria-label="Search"
-                                />
-                                <div className="input-group-append">
-                                    <button
-                                        className="btn btn-navbar"
-                                        type="submit"
-                                    >
-                                        <i className="fas fa-search" />
-                                    </button>
-                                    <button
-                                        className="btn btn-navbar"
-                                        type="button"
-                                        data-widget="navbar-search"
-                                    >
-                                        <i className="fas fa-times" />
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </li> */}
-                <MessagesDropdown />
-                <NotificationsDropdown />
-                <LanguagesDropdown />
-                <UserDropdown />
-                <li className="nav-item">
-                    <Button
-                        className="nav-link"
-                        onClick={handleToggleControlSidebar}
-                    >
-                        <i className="fas fa-th-large" />
-                    </Button>
-                </li>
-            </ul>
-        </nav>
-    );
+  return (
+    <nav className={`main-header navbar navbar-expand ${navbarVariant}`}>
+      <ul className="navbar-nav">
+        <li className="nav-item">
+          <button
+            onClick={handleToggleMenuSidebar}
+            type="button"
+            className="nav-link"
+          >
+            <i className="fas fa-bars" />
+          </button>
+        </li>
+        <li className="nav-item d-none d-sm-inline-block">
+          <Link to="/" className="nav-link">
+            {t('header.label.home')}
+          </Link>
+        </li>
+        <li className="nav-item d-none d-sm-inline-block">
+          <Link to="/" className="nav-link">
+            {t('header.label.contact')}
+          </Link>
+        </li>
+      </ul>
+      <ul className="navbar-nav ml-auto">
+        <MessagesDropdown />
+        <NotificationsDropdown />
+        <LanguagesDropdown />
+        <UserDropdown />
+        <li className="nav-item">
+          <Button className="nav-link" onClick={handleToggleControlSidebar}>
+            <i className="fas fa-th-large" />
+          </Button>
+        </li>
+      </ul>
+    </nav>
+  );
 };
 
 export default Header;

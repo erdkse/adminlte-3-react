@@ -9,33 +9,34 @@ import translationFR from './locales/fr/translation.json';
 
 // the translations
 const resources = {
-    en: {
-        translation: translationEN
-    },
-    tr: {
-        translation: translationTR
-    },
-    es: {
-        translation: translationES
-    },
-    fr: {
-        translation: translationFR
-    },
-    de: {
-        translation: translationDE
-    }
+  en: {
+    translation: translationEN
+  },
+  tr: {
+    translation: translationTR
+  },
+  es: {
+    translation: translationES
+  },
+  fr: {
+    translation: translationFR
+  },
+  de: {
+    translation: translationDE
+  }
 };
 
-i18n.use(initReactI18next) // passes i18n down to react-i18next
-    .init({
-        resources,
-        lng: 'en',
-        interpolation: {
-            escapeValue: false // react already safes from xss
-        },
-        react: {
-            wait: true
-        }
-    });
+i18n
+  .use(initReactI18next) // passes i18n down to react-i18next
+  .init({
+    resources,
+    lng: 'en',
+    interpolation: {
+      escapeValue: false // react already safes from xss
+    },
+    react: {
+      wait: true
+    }
+  });
 
 export default i18n;

@@ -9,20 +9,20 @@
 @import '~react-toastify/scss/main';
 
 #root {
-    width: 100vw;
-    height: 100vh;
+  width: 100vw;
+  height: 100vh;
 }
 
 .main-header .navbar-nav .nav-item .nav-link {
-    background: transparent;
-    border: none;
-    outline: none;
-    cursor: pointer;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
 }
 
 .navbar-nav > .user-menu .user-image {
-    height: 1.6rem;
-    width: 1.6rem;
-    margin-right: 0;
-    margin-left: -8px;
+  height: 1.6rem;
+  width: 1.6rem;
+  margin-right: 0;
+  margin-left: -8px;
 }

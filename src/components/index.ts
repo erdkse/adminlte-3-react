@@ -5,17 +5,15 @@ import SmallBox from './small-box/SmallBox';
 import Dropdown from './dropdown/Dropdown';
 import MenuItem from './menu-item/MenuItem';
 import Checkbox from './checkbox/Checkbox';
-import Input from './input/Input';
 import Select from './select/Select';
 
 export {
-    Button,
-    ContentHeader,
-    PageLoading,
-    SmallBox,
-    Dropdown,
-    MenuItem,
-    Checkbox,
-    Input,
-    Select
+  Button,
+  ContentHeader,
+  PageLoading,
+  SmallBox,
+  Dropdown,
+  MenuItem,
+  Checkbox,
+  Select
 };

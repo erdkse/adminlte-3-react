@@ -11,24 +11,24 @@ import './i18n';
 import * as serviceWorker from './serviceWorker';
 
 toast.configure({
-    autoClose: 3000,
-    draggable: false,
-    position: 'top-right',
-    hideProgressBar: false,
-    newestOnTop: true,
-    closeOnClick: true,
-    rtl: false,
-    pauseOnVisibilityChange: true,
-    pauseOnHover: true
+  autoClose: 3000,
+  draggable: false,
+  position: 'top-right',
+  hideProgressBar: false,
+  newestOnTop: true,
+  closeOnClick: true,
+  rtl: false,
+  pauseOnVisibilityChange: true,
+  pauseOnHover: true
 });
 
 Gatekeeper.initialize('08401b7e-da7e-4bf3-a9bf-6f594ae5fb02');
 
 ReactDOM.render(
-    <Provider store={store}>
-        <App />
-    </Provider>,
-    document.getElementById('root')
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change

@@ -1,31 +1,31 @@
 /* common */
 .loading {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 96px;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 800;
-    text-align: center;
-    span {
-        display: inline-block;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 96px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  text-align: center;
+  span {
+    display: inline-block;
+  }
+  span {
+    margin: 0 0.075em;
+    animation: loadingShrink 0.7s infinite alternate;
+    @for $i from 1 through 7 {
+      &:nth-child(#{$i + 1}) {
+        animation-delay: #{$i * 0.1}s;
+      }
     }
-    span {
-        margin: 0 0.075em;
-        animation: loadingShrink 0.7s infinite alternate;
-        @for $i from 1 through 7 {
-            &:nth-child(#{$i + 1}) {
-                animation-delay: #{$i * 0.1}s;
-            }
-        }
-    }
+  }
 }
 @keyframes loadingShrink {
-    0% {
-        transform: scale(1);
-    }
-    100% {
-        transform: scale(0.8);
-    }
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.8);
+  }
 }
