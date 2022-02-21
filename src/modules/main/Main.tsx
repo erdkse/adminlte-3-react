@@ -4,12 +4,11 @@ import {useDispatch, useSelector} from 'react-redux';
 import {Gatekeeper} from 'gatekeeper-client-sdk';
 import {loadUser, logoutUser} from '@store/reducers/auth';
 import {toggleSidebarMenu} from '@app/store/reducers/ui';
-import {addWindowClass, removeWindowClass} from '@app/utils/helpers';
+import {addWindowClass, removeWindowClass, sleep} from '@app/utils/helpers';
 import ControlSidebar from '@app/modules/main/control-sidebar/ControlSidebar';
 import Header from '@app/modules/main/header/Header';
 import MenuSidebar from '@app/modules/main/menu-sidebar/MenuSidebar';
 import Footer from '@app/modules/main/footer/Footer';
-import {PageLoading} from '@app/components';
 
 const Main = () => {
   const dispatch = useDispatch();
@@ -31,9 +30,11 @@ const Main = () => {
     try {
       const response = await Gatekeeper.getProfile();
       dispatch(loadUser(response));
+      await sleep(1000);
       setIsAppLoaded(true);
     } catch (error) {
       dispatch(logoutUser());
+      await sleep(1000);
       setIsAppLoaded(true);
     }
   };
@@ -85,7 +86,17 @@ const Main = () => {
 
   const getAppTemplate = useCallback(() => {
     if (!isAppLoaded) {
-      return <PageLoading />;
+      return (
+        <div className="preloader flex-column justify-content-center align-items-center">
+          <img
+            className="animation__shake"
+            src="/img/logo.png"
+            alt="AdminLTELogo"
+            height="60"
+            width="60"
+          />
+        </div>
+      );
     }
     return (
       <>

@@ -1,3 +1,6 @@
+export const sleep = (time: number) =>
+  new Promise((res) => setTimeout(res, time));
+
 export const calculateWindowSize = (windowWidth: number) => {
   if (windowWidth >= 1200) {
     return 'lg';
