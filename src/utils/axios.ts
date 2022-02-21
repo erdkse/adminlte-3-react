@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, {AxiosRequestConfig} from 'axios';
 import store from '@store/store';
 import {logoutUser} from '@store/reducers/auth';
 
@@ -7,10 +7,10 @@ const intance = axios.create({
 });
 
 intance.interceptors.request.use(
-  (request) => {
+  (request: AxiosRequestConfig<any>) => {
     const {token} = store.getState().auth;
     if (token) {
-      request.headers.Authorization = `Bearer ${token}`;
+      request.headers = {...request.headers, Authorization: `Bearer ${token}`};
     }
     return request;
   },
