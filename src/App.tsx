@@ -5,7 +5,6 @@ import Login from '@modules/login/Login';
 import Register from '@modules/register/Register';
 import ForgetPassword from '@modules/forgot-password/ForgotPassword';
 import RecoverPassword from '@modules/recover-password/RecoverPassword';
-import PrivacyPolicy from '@modules/privacy-policy/PrivacyPolicy';
 import {useWindowSize} from '@app/hooks/useWindowSize';
 import {calculateWindowSize} from '@app/utils/helpers';
 import {useDispatch, useSelector} from 'react-redux';
@@ -47,12 +46,6 @@ const App = () => {
         </Route>
         <Route path="/recover-password" element={<PublicRoute />}>
           <Route path="/recover-password" element={<RecoverPassword />} />
-        </Route>
-        <Route path="/privacy-policy" element={<PublicRoute />}>
-          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-        </Route>
-        <Route path="/callback" element={<PublicRoute />}>
-          <Route path="/callback" element={<h1>Callback</h1>} />
         </Route>
         <Route path="/" element={<PrivateRoute />}>
           <Route path="/" element={<Main />}>

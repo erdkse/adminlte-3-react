@@ -119,6 +119,7 @@ const Register = () => {
                   onChange={handleChange}
                   value={values.email}
                   isValid={touched.email && !errors.email}
+                  isInvalid={touched.email && !!errors.email}
                 />
                 {touched.email && errors.email ? (
                   <Form.Control.Feedback type="invalid">
