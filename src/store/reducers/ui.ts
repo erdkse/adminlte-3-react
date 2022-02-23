@@ -29,7 +29,7 @@ const initialState: UiState = {
   controlSidebarCollapsed: true,
   headerBorder: false,
   headerFixed: false,
-  footerFixed: false,
+  footerFixed: true,
   layoutBoxed: false
 };
 

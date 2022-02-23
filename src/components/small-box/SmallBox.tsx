@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import {useTranslation} from 'react-i18next';
 
 export interface SmallBoxProps {
-  type: string;
+  type: 'info' | 'success' | 'warning' | 'danger';
   icon?: string;
   count: number;
   title: string;
