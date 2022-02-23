@@ -13,12 +13,14 @@
 
 <span align="center">
 
+
 [![Run on Repl.it](https://repl.it/badge/github/erdkse/adminlte-3-react)](https://repl.it/github/erdkse/adminlte-3-react)
-![GitHub repo size](https://img.shields.io/github/deployments/erdkse/adminlte-3-react/production.svg?logo=vercel&label=vercel)
+![Vercel](https://img.shields.io/github/deployments/erdkse/adminlte-3-react/production.svg?logo=vercel&label=vercel)
+![Issues](https://img.shields.io/github/issues/erdkse/adminlte-3-react)
+![Forks](https://img.shields.io/github/forks/erdkse/adminlte-3-react)
+![Stars](https://img.shields.io/github/stars/erdkse/adminlte-3-react)
 [![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 ![GitHub last commit](https://img.shields.io/github/last-commit/erdkse/adminlte-3-react.svg)
-![GitHub repo size](https://img.shields.io/github/repo-size/erdkse/adminlte-3-react.svg)
-![Dependencies](https://img.shields.io/librariesio/github/erdkse/adminlte-3-react.svg)
 [![License](https://img.shields.io/github/license/erdkse/adminlte-3-react.svg)](LICENSE)
 ![Sponsors](https://img.shields.io/github/sponsors/erdkse.svg)
 
