@@ -12,6 +12,10 @@ export interface UiState {
   menuSidebarCollapsed: boolean;
   controlSidebarCollapsed: boolean;
   darkMode: boolean;
+  headerBorder: boolean;
+  headerFixed: boolean;
+  footerFixed: boolean;
+  layoutBoxed: boolean;
   navbarVariant: string;
   sidebarSkin: string;
 }
@@ -22,7 +26,11 @@ const initialState: UiState = {
   navbarVariant: 'navbar-light',
   sidebarSkin: 'sidebar-dark-primary',
   menuSidebarCollapsed: false,
-  controlSidebarCollapsed: true
+  controlSidebarCollapsed: true,
+  headerBorder: false,
+  headerFixed: false,
+  footerFixed: false,
+  layoutBoxed: false
 };
 
 export const uiSlice = createSlice({
@@ -34,6 +42,18 @@ export const uiSlice = createSlice({
     },
     toggleControlSidebar: (state) => {
       state.controlSidebarCollapsed = !state.controlSidebarCollapsed;
+    },
+    toggleHeaderBorder: (state) => {
+      state.headerBorder = !state.headerBorder;
+    },
+    toggleHeaderFixed: (state) => {
+      state.headerFixed = !state.headerFixed;
+    },
+    toggleFooterFixed: (state) => {
+      state.footerFixed = !state.footerFixed;
+    },
+    toggleLayoutBoxed: (state) => {
+      state.layoutBoxed = !state.layoutBoxed;
     },
     toggleDarkMode: (state) => {
       state.darkMode = !state.darkMode;
@@ -71,7 +91,11 @@ export const {
   toggleControlSidebar,
   toggleDarkMode,
   setNavbarVariant,
-  setSidebarSkin
+  setSidebarSkin,
+  toggleHeaderBorder,
+  toggleHeaderFixed,
+  toggleFooterFixed,
+  toggleLayoutBoxed
 } = uiSlice.actions;
 
 export default uiSlice.reducer;

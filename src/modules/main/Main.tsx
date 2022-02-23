@@ -19,7 +19,10 @@ const Main = () => {
     (state: any) => state.ui.controlSidebarCollapsed
   );
   const darkMode = useSelector((state: any) => state.ui.darkMode);
+  const headerFixed = useSelector((state: any) => state.ui.headerFixed);
+  const footerFixed = useSelector((state: any) => state.ui.footerFixed);
   const screenSize = useSelector((state: any) => state.ui.screenSize);
+  const layoutBoxed = useSelector((state: any) => state.ui.layoutBoxed);
   const [isAppLoaded, setIsAppLoaded] = useState(false);
 
   const handleToggleMenuSidebar = () => {
@@ -45,12 +48,10 @@ const Main = () => {
     removeWindowClass('hold-transition');
 
     addWindowClass('sidebar-mini');
-    addWindowClass('layout-fixed');
 
     fetchProfile();
     return () => {
       removeWindowClass('sidebar-mini');
-      removeWindowClass('layout-fixed');
     };
   }, []);
 
@@ -83,6 +84,32 @@ const Main = () => {
       removeWindowClass('dark-mode');
     }
   }, [darkMode]);
+
+  useEffect(() => {
+    if (headerFixed) {
+      addWindowClass('layout-navbar-fixed');
+    } else {
+      removeWindowClass('layout-navbar-fixed');
+    }
+  }, [headerFixed]);
+
+  useEffect(() => {
+    if (footerFixed) {
+      addWindowClass('layout-footer-fixed');
+    } else {
+      removeWindowClass('layout-footer-fixed');
+    }
+  }, [footerFixed]);
+
+  useEffect(() => {
+    if (layoutBoxed) {
+      removeWindowClass('layout-fixed');
+      addWindowClass('layout-boxed');
+    } else {
+      removeWindowClass('layout-boxed');
+      addWindowClass('layout-fixed');
+    }
+  }, [layoutBoxed]);
 
   const getAppTemplate = useCallback(() => {
     if (!isAppLoaded) {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {Link} from 'react-router-dom';
 import {useTranslation} from 'react-i18next';
 import {useDispatch, useSelector} from 'react-redux';
@@ -13,6 +13,7 @@ const Header = () => {
   const [t] = useTranslation();
   const dispatch = useDispatch();
   const navbarVariant = useSelector((state: any) => state.ui.navbarVariant);
+  const headerBorder = useSelector((state: any) => state.ui.headerBorder);
 
   const handleToggleMenuSidebar = () => {
     dispatch(toggleSidebarMenu());
@@ -22,8 +23,16 @@ const Header = () => {
     dispatch(toggleControlSidebar());
   };
 
+  const getContainerClasses = useCallback(() => {
+    let classes = `main-header navbar navbar-expand ${navbarVariant}`;
+    if (headerBorder) {
+      classes = `${classes} border-bottom-0`;
+    }
+    return classes;
+  }, [navbarVariant, headerBorder]);
+
   return (
-    <nav className={`main-header navbar navbar-expand ${navbarVariant}`}>
+    <nav className={getContainerClasses()}>
       <ul className="navbar-nav">
         <li className="nav-item">
           <button
