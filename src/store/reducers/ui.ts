@@ -1,5 +1,9 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {calculateWindowSize} from '@app/utils/helpers';
+import {
+  addWindowClass,
+  calculateWindowSize,
+  removeWindowClass
+} from '@app/utils/helpers';
 import {
   NAVBAR_DARK_VARIANTS,
   NAVBAR_LIGHT_VARIANTS,
@@ -16,6 +20,9 @@ export interface UiState {
   headerFixed: boolean;
   footerFixed: boolean;
   layoutBoxed: boolean;
+  layoutFixed: boolean;
+  menuItemFlat: boolean;
+  menuChildIndent: boolean;
   navbarVariant: string;
   sidebarSkin: string;
 }
@@ -30,7 +37,10 @@ const initialState: UiState = {
   headerBorder: false,
   headerFixed: false,
   footerFixed: true,
-  layoutBoxed: false
+  layoutBoxed: false,
+  menuItemFlat: false,
+  menuChildIndent: false,
+  layoutFixed: false
 };
 
 export const uiSlice = createSlice({
@@ -48,12 +58,41 @@ export const uiSlice = createSlice({
     },
     toggleHeaderFixed: (state) => {
       state.headerFixed = !state.headerFixed;
+      if (state.headerFixed) {
+        addWindowClass('layout-navbar-fixed');
+      } else {
+        removeWindowClass('layout-navbar-fixed');
+      }
     },
     toggleFooterFixed: (state) => {
       state.footerFixed = !state.footerFixed;
+      if (state.footerFixed) {
+        addWindowClass('layout-footer-fixed');
+      } else {
+        removeWindowClass('layout-footer-fixed');
+      }
     },
     toggleLayoutBoxed: (state) => {
       state.layoutBoxed = !state.layoutBoxed;
+      if (state.layoutBoxed) {
+        addWindowClass('layout-boxed');
+      } else {
+        removeWindowClass('layout-boxed');
+      }
+    },
+    toggleLayoutFixed: (state) => {
+      state.layoutFixed = !state.layoutFixed;
+      if (state.layoutFixed) {
+        removeWindowClass('layout-fixed');
+      } else {
+        addWindowClass('layout-fixed');
+      }
+    },
+    toggleMenuItemFlat: (state) => {
+      state.menuItemFlat = !state.menuItemFlat;
+    },
+    toggleMenuChildIndent: (state) => {
+      state.menuChildIndent = !state.menuChildIndent;
     },
     toggleDarkMode: (state) => {
       state.darkMode = !state.darkMode;
@@ -63,6 +102,11 @@ export const uiSlice = createSlice({
       } else {
         state.navbarVariant = NAVBAR_LIGHT_VARIANTS[0].value;
         state.sidebarSkin = SIDEBAR_LIGHT_SKINS[0].value;
+      }
+      if (state.darkMode) {
+        addWindowClass('dark-mode');
+      } else {
+        removeWindowClass('dark-mode');
       }
     },
     setNavbarVariant: (state, {payload}) => {
@@ -95,7 +139,10 @@ export const {
   toggleHeaderBorder,
   toggleHeaderFixed,
   toggleFooterFixed,
-  toggleLayoutBoxed
+  toggleLayoutBoxed,
+  toggleMenuItemFlat,
+  toggleMenuChildIndent,
+  toggleLayoutFixed
 } = uiSlice.actions;
 
 export default uiSlice.reducer;

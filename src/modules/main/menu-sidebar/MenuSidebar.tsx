@@ -37,6 +37,8 @@ export const MENU: IMenuItem[] = [
 const MenuSidebar = () => {
   const user = useSelector((state: any) => state.auth.currentUser);
   const sidebarSkin = useSelector((state: any) => state.ui.sidebarSkin);
+  const menuItemFlat = useSelector((state: any) => state.ui.menuItemFlat);
+  const menuChildIndent = useSelector((state: any) => state.ui.menuChildIndent);
 
   return (
     <aside className={`main-sidebar elevation-4 ${sidebarSkin}`}>
@@ -65,7 +67,12 @@ const MenuSidebar = () => {
           </div>
         </div>
         <nav className="mt-2" style={{overflowY: 'hidden'}}>
-          <ul className="nav nav-pills nav-sidebar flex-column" role="menu">
+          <ul
+            className={`nav nav-pills nav-sidebar flex-column${
+              menuItemFlat ? ' nav-flat' : ''
+            }${menuChildIndent ? ' nav-child-indent' : ''}`}
+            role="menu"
+          >
             {MENU.map((menuItem: IMenuItem) => (
               <MenuItem key={menuItem.name} menuItem={menuItem} />
             ))}

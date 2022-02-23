@@ -8,7 +8,11 @@ import {
   toggleFooterFixed,
   toggleHeaderBorder,
   toggleHeaderFixed,
-  toggleLayoutBoxed
+  toggleLayoutBoxed,
+  toggleLayoutFixed,
+  toggleMenuChildIndent,
+  toggleMenuItemFlat,
+  toggleSidebarMenu
 } from '@app/store/reducers/ui';
 import {
   NAVBAR_DARK_VARIANTS,
@@ -27,6 +31,12 @@ const ControlSidebar = () => {
   const navbarVariant = useSelector((state: any) => state.ui.navbarVariant);
   const sidebarSkin = useSelector((state: any) => state.ui.sidebarSkin);
   const layoutBoxed = useSelector((state: any) => state.ui.layoutBoxed);
+  const layoutFixed = useSelector((state: any) => state.ui.layoutFixed);
+  const menuItemFlat = useSelector((state: any) => state.ui.menuItemFlat);
+  const menuChildIndent = useSelector((state: any) => state.ui.menuChildIndent);
+  const menuSidebarCollapsed = useSelector(
+    (state: any) => state.ui.menuSidebarCollapsed
+  );
   const scrollPosition = useScrollPosition();
 
   const handleDarkModeChange = () => {
@@ -49,12 +59,28 @@ const ControlSidebar = () => {
     dispatch(toggleLayoutBoxed());
   };
 
+  const handleLayoutFixedChange = () => {
+    dispatch(toggleLayoutFixed());
+  };
+
   const onNavbarVariantChange = (value: string) => {
     dispatch(setNavbarVariant(value));
   };
 
   const onSidebarSkinChange = (value: string) => {
     dispatch(setSidebarSkin(value));
+  };
+
+  const handleMenuItemFlatChange = () => {
+    dispatch(toggleMenuItemFlat());
+  };
+
+  const handleMenuChildIndentChange = () => {
+    dispatch(toggleMenuChildIndent());
+  };
+
+  const handleMenuSidebarCollapsed = () => {
+    dispatch(toggleSidebarMenu());
   };
 
   const getContainerPaddingTop = useCallback(() => {
@@ -95,6 +121,29 @@ const ControlSidebar = () => {
           </Checkbox>
           <Checkbox checked={headerBorder} onChange={handleHeaderBorderChange}>
             No Border
+          </Checkbox>
+        </div>
+
+        <h6>Sidebar Options</h6>
+
+        <div className="mb-4">
+          <Checkbox
+            checked={menuSidebarCollapsed}
+            onChange={handleMenuSidebarCollapsed}
+          >
+            Collapse
+          </Checkbox>
+          <Checkbox checked={layoutFixed} onChange={handleLayoutFixedChange}>
+            Fixed
+          </Checkbox>
+          <Checkbox checked={menuItemFlat} onChange={handleMenuItemFlatChange}>
+            Nav Flat Style
+          </Checkbox>
+          <Checkbox
+            checked={menuChildIndent}
+            onChange={handleMenuChildIndentChange}
+          >
+            Nav Child Indent
           </Checkbox>
         </div>
 
