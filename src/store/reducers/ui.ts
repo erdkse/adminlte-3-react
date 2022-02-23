@@ -43,6 +43,8 @@ const initialState: UiState = {
   layoutFixed: false
 };
 
+addWindowClass('layout-footer-fixed');
+
 export const uiSlice = createSlice({
   name: 'ui',
   initialState,

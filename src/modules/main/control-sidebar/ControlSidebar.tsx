@@ -94,7 +94,7 @@ const ControlSidebar = () => {
     <aside
       className="control-sidebar control-sidebar-dark"
       style={{
-        top: headerFixed ? '57px' : '0px',
+        top: 0,
         bottom: footerFixed ? '57px' : '0px',
         padding: `${getContainerPaddingTop()} 16px 16px 16px`,
         overflowY: 'scroll'
