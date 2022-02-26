@@ -18,8 +18,6 @@ import Profile from '@pages/profile/Profile';
 import PublicRoute from './routes/PublicRoute';
 import PrivateRoute from './routes/PrivateRoute';
 
-import './App.scss';
-
 const App = () => {
   const windowSize = useWindowSize();
   const screenSize = useSelector((state: any) => state.ui.screenSize);

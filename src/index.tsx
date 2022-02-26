@@ -6,9 +6,10 @@ import {Gatekeeper} from 'gatekeeper-client-sdk';
 import App from '@app/App';
 import store from '@store/store';
 
-import './index.scss';
 import './i18n';
 import * as serviceWorker from './serviceWorker';
+
+import './index.css';
 
 toast.configure({
   autoClose: 3000,
