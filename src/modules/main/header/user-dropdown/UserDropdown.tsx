@@ -5,6 +5,14 @@ import {DateTime} from 'luxon';
 import {useTranslation} from 'react-i18next';
 import {logoutUser} from '@store/reducers/auth';
 import {Dropdown} from '@components';
+import styled from 'styled-components';
+
+const StyledUserImage = styled.img`
+  height: 1.6rem !important;
+  width: 1.6rem !important;
+  margin-right: 0 !important;
+  margin-left: -8px !important;
+`;
 
 const UserDropdown = () => {
   const navigate = useNavigate();
@@ -33,7 +41,7 @@ const UserDropdown = () => {
       className="user-menu"
       menuContainerTag="ul"
       buttonTemplate={
-        <img
+        <StyledUserImage
           src={user.picture || '/img/default-profile.png'}
           className="user-image img-circle elevation-2"
           alt="User"

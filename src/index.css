@@ -19,10 +19,3 @@
   outline: none;
   cursor: pointer;
 }
-
-.navbar-nav > .user-menu .user-image {
-  height: 1.6rem;
-  width: 1.6rem;
-  margin-right: 0;
-  margin-left: -8px;
-}
