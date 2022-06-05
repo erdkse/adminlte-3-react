@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {useTranslation} from 'react-i18next';
-import {ContentHeader, Button} from '@components';
+import {ContentHeader} from '@components';
+import {PfButton} from '@profabric/react-components';
 import ActivityTab from './ActivityTab';
 import TimelineTab from './TimelineTab';
 import SettingsTab from './SettingsTab';
@@ -48,10 +49,10 @@ const Profile = () => {
                       <span className="float-right">13,287</span>
                     </li>
                   </ul>
-                  <Button block>
+                  <PfButton block>
                     {/* @ts-ignore */}
                     {t<string>('main.label.follow')}
-                  </Button>
+                  </PfButton>
                 </div>
                 {/* /.card-body */}
               </div>

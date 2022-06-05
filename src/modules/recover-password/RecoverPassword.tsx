@@ -2,13 +2,13 @@ import React from 'react';
 import {toast} from 'react-toastify';
 import {Link} from 'react-router-dom';
 import {useTranslation} from 'react-i18next';
-import {Button} from '@components';
 import {faLock} from '@fortawesome/free-solid-svg-icons';
 import {setWindowClass} from '@app/utils/helpers';
 import {useFormik} from 'formik';
 import * as Yup from 'yup';
 import {Form, InputGroup} from 'react-bootstrap';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {PfButton} from '@profabric/react-components';
 
 const RecoverPassword = () => {
   const [t] = useTranslation();
@@ -109,10 +109,10 @@ const RecoverPassword = () => {
             </div>
             <div className="row">
               <div className="col-12">
-                <Button type="submit" block>
+                <PfButton type="submit" block>
                   {/* @ts-ignore */}
                   {t<string>('recover.changePassword')}
-                </Button>
+                </PfButton>
               </div>
             </div>
           </form>

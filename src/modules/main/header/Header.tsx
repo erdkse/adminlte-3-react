@@ -3,11 +3,11 @@ import {Link} from 'react-router-dom';
 import {useTranslation} from 'react-i18next';
 import {useDispatch, useSelector} from 'react-redux';
 import {toggleControlSidebar, toggleSidebarMenu} from '@app/store/reducers/ui';
-import {Button} from '@app/components';
 import MessagesDropdown from '@app/modules/main/header/messages-dropdown/MessagesDropdown';
 import NotificationsDropdown from '@app/modules/main/header/notifications-dropdown/NotificationsDropdown';
 import LanguagesDropdown from '@app/modules/main/header/languages-dropdown/LanguagesDropdown';
 import UserDropdown from '@app/modules/main/header/user-dropdown/UserDropdown';
+import {PfButton} from '@profabric/react-components';
 
 const Header = () => {
   const [t] = useTranslation();
@@ -60,9 +60,9 @@ const Header = () => {
         <LanguagesDropdown />
         <UserDropdown />
         <li className="nav-item">
-          <Button className="nav-link" onClick={handleToggleControlSidebar}>
+          <PfButton className="nav-link" onClick={handleToggleControlSidebar}>
             <i className="fas fa-th-large" />
-          </Button>
+          </PfButton>
         </li>
       </ul>
     </nav>

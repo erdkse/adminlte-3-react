@@ -1,7 +1,6 @@
+import {PfButton} from '@profabric/react-components';
 import React from 'react';
 import {Link} from 'react-router-dom';
-
-import {Button} from '@components';
 
 const SettingsTab = ({isActive}: {isActive: boolean}) => {
   return (
@@ -90,9 +89,9 @@ const SettingsTab = ({isActive}: {isActive: boolean}) => {
         </div>
         <div className="form-group row">
           <div className="offset-sm-2 col-sm-10">
-            <Button type="submit" theme="danger">
+            <PfButton type="submit" theme="danger">
               Submit
-            </Button>
+            </PfButton>
           </div>
         </div>
       </form>
