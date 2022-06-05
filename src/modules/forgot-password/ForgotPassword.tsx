@@ -21,9 +21,9 @@ const ForgotPassword = () => {
       email: Yup.string().email('Invalid email address').required('Required')
     }),
     onSubmit: (values) => {
-      // eslint-disable-next-line no-console
-      console.log(values);
       toast.warn('Not yet functional');
+      // eslint-disable-next-line no-console
+      console.log('values', values);
     }
   });
 

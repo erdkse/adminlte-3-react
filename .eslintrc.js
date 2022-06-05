@@ -55,6 +55,7 @@ module.exports = {
     'no-shadow': 'off',
     'no-use-before-define': 'off',
     'react/require-default-props': 'off',
-    'no-promise-executor-return': 'off'
+    'no-promise-executor-return': 'off',
+    'no-unused-vars': 'off'
   }
 };

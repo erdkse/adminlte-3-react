@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import {ToastContainer} from 'react-toastify';
 import Main from '@modules/main/Main';
 import Login from '@modules/login/Login';
 import Register from '@modules/register/Register';
@@ -55,6 +56,16 @@ const App = () => {
           </Route>
         </Route>
       </Routes>
+      <ToastContainer
+        autoClose={3000}
+        draggable={false}
+        position="top-right"
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnHover
+      />
     </BrowserRouter>
   );
 };
