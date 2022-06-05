@@ -7,7 +7,6 @@ import MessagesDropdown from '@app/modules/main/header/messages-dropdown/Message
 import NotificationsDropdown from '@app/modules/main/header/notifications-dropdown/NotificationsDropdown';
 import LanguagesDropdown from '@app/modules/main/header/languages-dropdown/LanguagesDropdown';
 import UserDropdown from '@app/modules/main/header/user-dropdown/UserDropdown';
-import {PfButton} from '@profabric/react-components';
 
 const Header = () => {
   const [t] = useTranslation();
@@ -60,9 +59,13 @@ const Header = () => {
         <LanguagesDropdown />
         <UserDropdown />
         <li className="nav-item">
-          <PfButton className="nav-link" onClick={handleToggleControlSidebar}>
+          <button
+            type="button"
+            className="nav-link"
+            onClick={handleToggleControlSidebar}
+          >
             <i className="fas fa-th-large" />
-          </PfButton>
+          </button>
         </li>
       </ul>
     </nav>
