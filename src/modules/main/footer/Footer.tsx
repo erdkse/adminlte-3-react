@@ -16,7 +16,7 @@ const Footer = () => {
         <span>.</span>
       </strong>
       <div className="float-right d-none d-sm-inline-block">
-        <b>{t('footer.version')}</b>
+        <b>{t<string>('footer.version')}</b>
         <span>&nbsp;{version}</span>
       </div>
     </footer>

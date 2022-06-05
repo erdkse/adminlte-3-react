@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState} from 'react';
 
 export interface DropdownMenuProps {
   size: string;
-  children: React.ReactChildren;
+  children: React.ReactNode;
   containerTag: string;
 }
 

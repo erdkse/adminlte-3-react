@@ -4,7 +4,7 @@ import DropdownMenu from './dropdown-menu/DropdownMenu';
 export interface DropdownProps {
   isOpen: boolean;
   size?: string;
-  buttonTemplate: React.ReactChildren | ReactElement;
+  buttonTemplate: React.ReactNode | ReactElement;
   menuTemplate: any;
   className?: string;
   menuContainerTag?: string;

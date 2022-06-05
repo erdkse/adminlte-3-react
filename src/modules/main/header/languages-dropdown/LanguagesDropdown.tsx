@@ -80,7 +80,7 @@ const LanguagesDropdown = () => {
           }}
         >
           <i className={`flag-icon ${language.icon} mr-2`} />
-          <span>{t(language.label)}</span>
+          <span>{t<string>(language.label)}</span>
         </button>
       ))}
     />

@@ -53,7 +53,7 @@ const RecoverPassword = () => {
           </Link>
         </div>
         <div className="card-body">
-          <p className="login-box-msg">{t('recover.oneStepAway')}</p>
+          <p className="login-box-msg">{t<string>('recover.oneStepAway')}</p>
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
               <InputGroup className="mb-3">
@@ -111,13 +111,13 @@ const RecoverPassword = () => {
               <div className="col-12">
                 <Button type="submit" block>
                   {/* @ts-ignore */}
-                  {t('recover.changePassword')}
+                  {t<string>('recover.changePassword')}
                 </Button>
               </div>
             </div>
           </form>
           <p className="mt-3 mb-1">
-            <Link to="/login">{t('login.button.signIn.label')}</Link>
+            <Link to="/login">{t<string>('login.button.signIn.label')}</Link>
           </p>
         </div>
       </div>

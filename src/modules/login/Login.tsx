@@ -5,10 +5,11 @@ import {toast} from 'react-toastify';
 import {useFormik} from 'formik';
 import {useTranslation} from 'react-i18next';
 import {loginUser} from '@store/reducers/auth';
-import {Checkbox, Button} from '@components';
+import {Checkbox} from '@components';
 import {faEnvelope, faLock} from '@fortawesome/free-solid-svg-icons';
 import {setWindowClass} from '@app/utils/helpers';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {PfButton} from '@profabric/react-components';
 
 import * as Yup from 'yup';
 
@@ -95,7 +96,7 @@ const Login = () => {
           </Link>
         </div>
         <div className="card-body">
-          <p className="login-box-msg">{t('login.label.signIn')}</p>
+          <p className="login-box-msg">{t<string>('login.label.signIn')}</p>
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
               <InputGroup className="mb-3">
@@ -151,53 +152,53 @@ const Login = () => {
             <div className="row">
               <div className="col-8">
                 <Checkbox type="icheck" checked={false}>
-                  {t('login.label.rememberMe')}
+                  {t<string>('login.label.rememberMe')}
                 </Checkbox>
               </div>
               <div className="col-4">
-                <Button
+                <PfButton
                   block
                   type="submit"
-                  isLoading={isAuthLoading}
+                  loading={isAuthLoading}
                   disabled={isFacebookAuthLoading || isGoogleAuthLoading}
                 >
-                  {/* @ts-ignore */}
-                  {t('login.button.signIn.label')}
-                </Button>
+                  {t<string>('login.button.signIn.label')}
+                </PfButton>
               </div>
             </div>
           </form>
           <div className="social-auth-links text-center mt-2 mb-3">
-            <Button
+            <PfButton
               block
-              icon="facebook"
+              className="mb-2"
               onClick={loginByFacebook}
-              isLoading={isFacebookAuthLoading}
+              loading={isFacebookAuthLoading}
               disabled={isAuthLoading || isGoogleAuthLoading}
             >
-              {/* @ts-ignore */}
-              {t('login.button.signIn.social', {
+              <i className="fab fa-facebook mr-2" />
+              {t<string>('login.button.signIn.social', {
                 what: 'Facebook'
               })}
-            </Button>
-            <Button
+            </PfButton>
+            <PfButton
               block
-              icon="google"
               theme="danger"
               onClick={loginByGoogle}
-              isLoading={isGoogleAuthLoading}
+              loading={isGoogleAuthLoading}
               disabled={isAuthLoading || isFacebookAuthLoading}
             >
-              {/* @ts-ignore */}
-              {t('login.button.signIn.social', {what: 'Google'})}
-            </Button>
+              <i className="fab fa-google mr-2" />
+              {t<string>('login.button.signIn.social', {what: 'Google'})}
+            </PfButton>
           </div>
           <p className="mb-1">
-            <Link to="/forgot-password">{t('login.label.forgotPass')}</Link>
+            <Link to="/forgot-password">
+              {t<string>('login.label.forgotPass')}
+            </Link>
           </p>
           <p className="mb-0">
             <Link to="/register" className="text-center">
-              {t('login.label.registerNew')}
+              {t<string>('login.label.registerNew')}
             </Link>
           </p>
         </div>

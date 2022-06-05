@@ -45,12 +45,12 @@ const Header = () => {
         </li>
         <li className="nav-item d-none d-sm-inline-block">
           <Link to="/" className="nav-link">
-            {t('header.label.home')}
+            {t<string>('header.label.home')}
           </Link>
         </li>
         <li className="nav-item d-none d-sm-inline-block">
           <Link to="/" className="nav-link">
-            {t('header.label.contact')}
+            {t<string>('header.label.contact')}
           </Link>
         </li>
       </ul>

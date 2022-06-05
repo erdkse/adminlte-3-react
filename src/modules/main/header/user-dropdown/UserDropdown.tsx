@@ -68,13 +68,13 @@ const UserDropdown = () => {
           <li className="user-body">
             <div className="row">
               <div className="col-4 text-center">
-                <Link to="/">{t('header.user.followers')}</Link>
+                <Link to="/">{t<string>('header.user.followers')}</Link>
               </div>
               <div className="col-4 text-center">
-                <Link to="/">{t('header.user.sales')}</Link>
+                <Link to="/">{t<string>('header.user.sales')}</Link>
               </div>
               <div className="col-4 text-center">
-                <Link to="/">{t('header.user.friends')}</Link>
+                <Link to="/">{t<string>('header.user.friends')}</Link>
               </div>
             </div>
           </li>
@@ -84,14 +84,14 @@ const UserDropdown = () => {
               className="btn btn-default btn-flat"
               onClick={navigateToProfile}
             >
-              {t('header.user.profile')}
+              {t<string>('header.user.profile')}
             </button>
             <button
               type="button"
               className="btn btn-default btn-flat float-right"
               onClick={logOut}
             >
-              {t('login.button.signOut')}
+              {t<string>('login.button.signOut')}
             </button>
           </li>
         </>

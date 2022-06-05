@@ -107,7 +107,7 @@ const Register = () => {
           </Link>
         </div>
         <div className="card-body">
-          <p className="login-box-msg">{t('register.registerNew')}</p>
+          <p className="login-box-msg">{t<string>('register.registerNew')}</p>
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
               <InputGroup className="mb-3">
@@ -202,7 +202,7 @@ const Register = () => {
                   disabled={isFacebookAuthLoading || isGoogleAuthLoading}
                 >
                   {/* @ts-ignore */}
-                  {t('register.label')}
+                  {t<string>('register.label')}
                 </Button>
               </div>
             </div>
@@ -216,7 +216,7 @@ const Register = () => {
               disabled={isAuthLoading || isGoogleAuthLoading}
             >
               {/* @ts-ignore */}
-              {t('login.button.signUp.social', {
+              {t<string>('login.button.signUp.social', {
                 what: 'Facebook'
               })}
             </Button>
@@ -229,11 +229,11 @@ const Register = () => {
               disabled={isAuthLoading || isFacebookAuthLoading}
             >
               {/* @ts-ignore */}
-              {t('login.button.signUp.social', {what: 'Google'})}
+              {t<string>('login.button.signUp.social', {what: 'Google'})}
             </Button>
           </div>
           <Link to="/login" className="text-center">
-            {t('register.alreadyHave')}
+            {t<string>('register.alreadyHave')}
           </Link>
         </div>
       </div>

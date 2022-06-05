@@ -36,7 +36,7 @@ const MessagesDropdown = () => {
                 <p className="text-sm text-muted">
                   <i className="far fa-clock mr-1" />
                   <span>
-                    {t('header.messages.ago', {
+                    {t<string>('header.messages.ago', {
                       quantity: '30',
                       unit: 'Minutes'
                     })}
@@ -64,7 +64,7 @@ const MessagesDropdown = () => {
                 <p className="text-sm text-muted">
                   <i className="far fa-clock mr-1" />
                   <span>
-                    {t('header.messages.ago', {
+                    {t<string>('header.messages.ago', {
                       quantity: '3',
                       unit: 'Hours'
                     })}
@@ -92,7 +92,7 @@ const MessagesDropdown = () => {
                 <p className="text-sm text-muted">
                   <i className="far fa-clock mr-1" />
                   <span>
-                    {t('header.messages.ago', {
+                    {t<string>('header.messages.ago', {
                       quantity: '4',
                       unit: 'Hours'
                     })}
@@ -103,7 +103,7 @@ const MessagesDropdown = () => {
           </Link>
           <div className="dropdown-divider" />
           <Link to="/" className="dropdown-item dropdown-footer">
-            {t('header.messages.seeAll')}
+            {t<string>('header.messages.seeAll')}
           </Link>
         </>
       }

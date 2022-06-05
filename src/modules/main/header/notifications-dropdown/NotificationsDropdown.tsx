@@ -19,18 +19,18 @@ const NotificationsDropdown = () => {
       menuTemplate={
         <>
           <span className="dropdown-item dropdown-header">
-            {t('header.notifications.count', {quantity: '15'})}
+            {t<string>('header.notifications.count', {quantity: '15'})}
           </span>
           <div className="dropdown-divider" />
           <Link to="/" className="dropdown-item">
             <i className="fas fa-envelope mr-2" />
             <span>
-              {t('header.notifications.newMessagesCount', {
+              {t<string>('header.notifications.newMessagesCount', {
                 quantity: '4'
               })}
             </span>
             <span className="float-right text-muted text-sm">
-              {t('measurement.quantityUnit', {
+              {t<string>('measurement.quantityUnit', {
                 quantity: '3',
                 unit: 'mins'
               })}
@@ -40,12 +40,12 @@ const NotificationsDropdown = () => {
           <Link to="/" className="dropdown-item">
             <i className="fas fa-users mr-2" />
             <span>
-              {t('header.notifications.friendRequestsCount', {
+              {t<string>('header.notifications.friendRequestsCount', {
                 quantity: '5'
               })}
             </span>
             <span className="float-right text-muted text-sm">
-              {t('measurement.quantityUnit', {
+              {t<string>('measurement.quantityUnit', {
                 quantity: '12',
                 unit: 'hours'
               })}
@@ -55,12 +55,12 @@ const NotificationsDropdown = () => {
           <Link to="/" className="dropdown-item">
             <i className="fas fa-file mr-2" />
             <span>
-              {t('header.notifications.reportsCount', {
+              {t<string>('header.notifications.reportsCount', {
                 quantity: '3'
               })}
             </span>
             <span className="float-right text-muted text-sm">
-              {t('measurement.quantityUnit', {
+              {t<string>('measurement.quantityUnit', {
                 quantity: '2',
                 unit: 'days'
               })}
@@ -68,7 +68,7 @@ const NotificationsDropdown = () => {
           </Link>
           <div className="dropdown-divider" />
           <Link to="/" className="dropdown-item dropdown-footer">
-            {t('header.notifications.seeAll')}
+            {t<string>('header.notifications.seeAll')}
           </Link>
         </>
       }

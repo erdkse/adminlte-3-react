@@ -10,5 +10,10 @@ module.exports = {
         baseUrl: './'
       }
     }
-  ]
+  ],
+  webpack: {
+    configure: (webpackConfig) => {
+      return webpackConfig;
+    }
+  }
 };

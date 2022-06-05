@@ -39,7 +39,9 @@ const ForgotPassword = () => {
           </Link>
         </div>
         <div className="card-body">
-          <p className="login-box-msg">{t('recover.forgotYourPassword')}</p>
+          <p className="login-box-msg">
+            {t<string>('recover.forgotYourPassword')}
+          </p>
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
               <InputGroup className="mb-3">
@@ -70,13 +72,13 @@ const ForgotPassword = () => {
               <div className="col-12">
                 <Button type="submit" block>
                   {/* @ts-ignore */}
-                  {t('recover.requestNewPassword')}
+                  {t<string>('recover.requestNewPassword')}
                 </Button>
               </div>
             </div>
           </form>
           <p className="mt-3 mb-1">
-            <Link to="/login">{t('login.button.signIn.label')}</Link>
+            <Link to="/login">{t<string>('login.button.signIn.label')}</Link>
           </p>
         </div>
       </div>
