@@ -5,11 +5,10 @@ import {toast} from 'react-toastify';
 import {useFormik} from 'formik';
 import {useTranslation} from 'react-i18next';
 import {loginUser} from '@store/reducers/auth';
-import {Checkbox} from '@components';
 import {faEnvelope, faLock} from '@fortawesome/free-solid-svg-icons';
 import {setWindowClass} from '@app/utils/helpers';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {PfButton} from '@profabric/react-components';
+import {PfButton, PfCheckbox} from '@profabric/react-components';
 
 import * as Yup from 'yup';
 
@@ -151,9 +150,9 @@ const Login = () => {
 
             <div className="row">
               <div className="col-8">
-                <Checkbox type="icheck" checked={false}>
+                <PfCheckbox checked={false}>
                   {t<string>('login.label.rememberMe')}
-                </Checkbox>
+                </PfCheckbox>
               </div>
               <div className="col-4">
                 <PfButton

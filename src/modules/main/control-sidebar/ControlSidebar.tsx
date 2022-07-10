@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, {useCallback} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {Checkbox} from '@app/components';
 import {
   setNavbarVariant,
   setSidebarSkin,
@@ -22,7 +21,7 @@ import {
   SIDEBAR_LIGHT_SKINS
 } from '@app/utils/themes';
 import useScrollPosition from '@app/hooks/useScrollPosition';
-import {PfSelect} from '@profabric/react-components';
+import {PfCheckbox, PfSelect} from '@profabric/react-components';
 
 const ControlSidebar = () => {
   const dispatch = useDispatch();
@@ -107,54 +106,60 @@ const ControlSidebar = () => {
 
       <div style={{padding: '8px 0'}}>
         <div className="mb-4">
-          <Checkbox checked={darkMode} onChange={handleDarkModeChange}>
+          <PfCheckbox checked={darkMode} onChange={handleDarkModeChange}>
             Dark mode
-          </Checkbox>
-          <Checkbox checked={layoutBoxed} onChange={handleLayoutBoxedChange}>
+          </PfCheckbox>
+          <PfCheckbox checked={layoutBoxed} onChange={handleLayoutBoxedChange}>
             Boxed (Broken when header or footer is fixed)
-          </Checkbox>
+          </PfCheckbox>
         </div>
 
         <h6>Header Options</h6>
 
         <div className="mb-4">
-          <Checkbox checked={headerFixed} onChange={handleHeaderFixedChange}>
+          <PfCheckbox checked={headerFixed} onChange={handleHeaderFixedChange}>
             Fixed
-          </Checkbox>
-          <Checkbox checked={headerBorder} onChange={handleHeaderBorderChange}>
+          </PfCheckbox>
+          <PfCheckbox
+            checked={headerBorder}
+            onChange={handleHeaderBorderChange}
+          >
             No Border
-          </Checkbox>
+          </PfCheckbox>
         </div>
 
         <h6>Sidebar Options</h6>
 
         <div className="mb-4">
-          <Checkbox
+          <PfCheckbox
             checked={menuSidebarCollapsed}
             onChange={handleMenuSidebarCollapsed}
           >
             Collapse
-          </Checkbox>
-          <Checkbox checked={layoutFixed} onChange={handleLayoutFixedChange}>
+          </PfCheckbox>
+          <PfCheckbox checked={layoutFixed} onChange={handleLayoutFixedChange}>
             Fixed
-          </Checkbox>
-          <Checkbox checked={menuItemFlat} onChange={handleMenuItemFlatChange}>
+          </PfCheckbox>
+          <PfCheckbox
+            checked={menuItemFlat}
+            onChange={handleMenuItemFlatChange}
+          >
             Nav Flat Style
-          </Checkbox>
-          <Checkbox
+          </PfCheckbox>
+          <PfCheckbox
             checked={menuChildIndent}
             onChange={handleMenuChildIndentChange}
           >
             Nav Child Indent
-          </Checkbox>
+          </PfCheckbox>
         </div>
 
         <h6>Footer Options</h6>
 
         <div className="mb-4">
-          <Checkbox checked={footerFixed} onChange={handleFooterFixedChange}>
+          <PfCheckbox checked={footerFixed} onChange={handleFooterFixedChange}>
             Fixed
-          </Checkbox>
+          </PfCheckbox>
         </div>
 
         <PfSelect

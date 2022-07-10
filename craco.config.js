@@ -22,6 +22,15 @@ module.exports = {
         path: require.resolve('path-browserify'),
         fs: false
       };
+      webpackConfig.module.rules = [
+        ...webpackConfig.module.rules,
+        {
+          test: /\.m?js/,
+          resolve: {
+            fullySpecified: false
+          }
+        }
+      ];
       return webpackConfig;
     }
   }

@@ -6,12 +6,11 @@ import {useFormik} from 'formik';
 import {useTranslation} from 'react-i18next';
 import * as Yup from 'yup';
 import {loginUser} from '@store/reducers/auth';
-import {Checkbox} from '@components';
 import {faEnvelope, faLock} from '@fortawesome/free-solid-svg-icons';
 import {setWindowClass} from '@app/utils/helpers';
 import {Form, InputGroup} from 'react-bootstrap';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {PfButton} from '@profabric/react-components';
+import {PfButton, PfCheckbox} from '@profabric/react-components';
 
 import * as AuthService from '../../services/auth';
 
@@ -190,10 +189,10 @@ const Register = () => {
 
             <div className="row">
               <div className="col-7">
-                <Checkbox type="icheck" checked={false}>
+                <PfCheckbox checked={false}>
                   <span>I agree to the </span>
                   <Link to="/">terms</Link>
-                </Checkbox>
+                </PfCheckbox>
               </div>
               <div className="col-5">
                 <PfButton

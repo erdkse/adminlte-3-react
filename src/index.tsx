@@ -16,7 +16,7 @@ import './index.css';
   }
 };
 
-Gatekeeper.initialize('08401b7e-da7e-4bf3-a9bf-6f594ae5fb02');
+Gatekeeper.initialize('0d0805b8-4fc4-4b37-9f86-3af19acf89f8');
 
 const container: any = document.getElementById('root');
 const root = createRoot(container);
