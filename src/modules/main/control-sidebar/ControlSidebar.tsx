@@ -167,7 +167,7 @@ const ControlSidebar = () => {
           value={navbarVariant}
           label="Light Navbar Variants"
           options={NAVBAR_LIGHT_VARIANTS}
-          onInput={(e: any) => onNavbarVariantChange(e.target.value)}
+          onChange={(e: any) => onNavbarVariantChange(e.target.value)}
           type="custom"
         />
         <PfSelect
@@ -176,7 +176,7 @@ const ControlSidebar = () => {
           value={navbarVariant}
           options={NAVBAR_DARK_VARIANTS}
           type="custom"
-          onInput={(e: any) => onNavbarVariantChange(e.target.value)}
+          onChange={(e: any) => onNavbarVariantChange(e.target.value)}
         />
         <PfSelect
           className="mt-3"
@@ -191,7 +191,7 @@ const ControlSidebar = () => {
           value={sidebarSkin}
           options={SIDEBAR_LIGHT_SKINS}
           type="custom"
-          onInput={(e: any) => onSidebarSkinChange(e.target.value)}
+          onChange={(e: any) => onSidebarSkinChange(e.target.value)}
         />
         <PfSelect
           className="mt-3"
@@ -199,7 +199,7 @@ const ControlSidebar = () => {
           value={sidebarSkin}
           options={SIDEBAR_DARK_SKINS}
           type="custom"
-          onInput={(e: any) => onSidebarSkinChange(e.target.value)}
+          onChange={(e: any) => onSidebarSkinChange(e.target.value)}
         />
         <PfSelect
           className="mt-3"
