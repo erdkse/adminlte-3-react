@@ -1,10 +1,17 @@
 import React, {useState} from 'react';
 import {useTranslation} from 'react-i18next';
 import {ContentHeader} from '@components';
-import {PfButton} from '@profabric/react-components';
+import {PfButton, PfImage} from '@profabric/react-components';
+import styled from 'styled-components';
+
 import ActivityTab from './ActivityTab';
 import TimelineTab from './TimelineTab';
 import SettingsTab from './SettingsTab';
+
+const StyledUserImage = styled(PfImage)`
+  --pf-border: 3px solid #adb5bd;
+  --pf-padding: 3px;
+`;
 
 const Profile = () => {
   const [activeTab, setActiveTab] = useState('ACTIVITY');
@@ -24,8 +31,10 @@ const Profile = () => {
               <div className="card card-primary card-outline">
                 <div className="card-body box-profile">
                   <div className="text-center">
-                    <img
-                      className="profile-user-img img-fluid img-circle"
+                    <StyledUserImage
+                      width={100}
+                      height={100}
+                      rounded
                       src="/img/default-profile.png"
                       alt="User profile"
                     />

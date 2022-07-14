@@ -6,12 +6,16 @@ import {useTranslation} from 'react-i18next';
 import {logoutUser} from '@store/reducers/auth';
 import {Dropdown} from '@components';
 import styled from 'styled-components';
+import {PfImage} from '@profabric/react-components';
 
-const StyledUserImage = styled.img`
-  height: 1.6rem !important;
-  width: 1.6rem !important;
-  margin-right: 0 !important;
-  margin-left: -8px !important;
+const StyledSmallUserImage = styled(PfImage)`
+  margin: -2px 0 0 -8px;
+  --pf-box-shadow: 0 3px 6px #00000029, 0 3px 6px #0000003b !important;
+`;
+
+const StyledBigUserImage = styled(PfImage)`
+  --pf-box-shadow: 0 3px 6px #00000029, 0 3px 6px #0000003b !important;
+  --pf-border: 3px solid #fff3;
 `;
 
 const UserDropdown = () => {
@@ -41,19 +45,25 @@ const UserDropdown = () => {
       className="user-menu"
       menuContainerTag="ul"
       buttonTemplate={
-        <StyledUserImage
-          src={user.picture || '/img/default-profile.png'}
-          className="user-image img-circle elevation-2"
+        <StyledSmallUserImage
+          src={user.picture}
+          fallbackSrc="/img/default-profile.png"
           alt="User"
+          width={25}
+          height={25}
+          rounded
         />
       }
       menuTemplate={
         <>
           <li className="user-header bg-primary">
-            <img
-              src={user.picture || '/img/default-profile.png'}
-              className="img-circle elevation-2"
+            <StyledBigUserImage
+              src={user.picture}
+              fallbackSrc="/img/default-profile.png"
               alt="User"
+              width={90}
+              height={90}
+              rounded
             />
             <p>
               {user.email}

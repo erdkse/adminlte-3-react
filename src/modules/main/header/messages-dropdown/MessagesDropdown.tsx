@@ -2,6 +2,10 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {useTranslation} from 'react-i18next';
 import {Dropdown} from '@components';
+import {PfImage} from '@profabric/react-components';
+
+// const StyledUserImage = styled(PfImage)`
+// `;
 
 const MessagesDropdown = () => {
   const [t] = useTranslation();
@@ -20,10 +24,12 @@ const MessagesDropdown = () => {
         <>
           <Link to="/" className="dropdown-item">
             <div className="media">
-              <img
+              <PfImage
                 src="/img/default-profile.png"
                 alt="User Avatar"
-                className="img-size-50 mr-3 img-circle"
+                width={50}
+                rounded
+                className="mr-2"
               />
               <div className="media-body">
                 <h3 className="dropdown-item-title">
@@ -48,10 +54,12 @@ const MessagesDropdown = () => {
           <div className="dropdown-divider" />
           <Link to="/" className="dropdown-item">
             <div className="media">
-              <img
+              <PfImage
                 src="/img/default-profile.png"
                 alt="User Avatar"
-                className="img-size-50 img-circle mr-3"
+                width={50}
+                rounded
+                className="mr-2"
               />
               <div className="media-body">
                 <h3 className="dropdown-item-title">
@@ -76,10 +84,12 @@ const MessagesDropdown = () => {
           <div className="dropdown-divider" />
           <Link to="/" className="dropdown-item">
             <div className="media">
-              <img
+              <PfImage
                 src="/img/default-profile.png"
                 alt="User Avatar"
-                className="img-size-50 img-circle mr-3"
+                width={50}
+                rounded
+                className="mr-2"
               />
               <div className="media-body">
                 <h3 className="dropdown-item-title">
