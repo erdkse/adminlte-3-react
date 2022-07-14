@@ -4,9 +4,6 @@ import {useTranslation} from 'react-i18next';
 import {Dropdown} from '@components';
 import {PfImage} from '@profabric/react-components';
 
-// const StyledUserImage = styled(PfImage)`
-// `;
-
 const MessagesDropdown = () => {
   const [t] = useTranslation();
 
