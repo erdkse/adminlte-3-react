@@ -1,6 +1,27 @@
 import React, {useState} from 'react';
 import {useTranslation} from 'react-i18next';
-import {Dropdown} from '@components';
+import {PfDropdown} from '@profabric/react-components';
+import styled from 'styled-components';
+
+export const StyledDropdown = styled(PfDropdown)`
+  border: none;
+  width: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  --pf-dropdown-min-width: 10rem;
+
+  .dropdown-item {
+    padding: 0.5rem 1rem;
+  }
+
+  .text-sm {
+    margin-bottom: 0;
+  }
+  .dropdown-divider {
+    margin: 0;
+  }
+`;
 
 export interface Language {
   key: string;
@@ -63,27 +84,27 @@ const LanguagesDropdown = () => {
   };
 
   return (
-    <Dropdown
-      isOpen={dropdownOpen}
-      onChange={(open: boolean) => setDropdownOpen(open)}
-      buttonTemplate={
+    <StyledDropdown isOpen={dropdownOpen} hideArrow>
+      <div className="nav-link" slot="button">
         <i className={`flag-icon ${getCurrentLanguage().icon}`} />
-      }
-      menuTemplate={languages.map((language) => (
-        <button
-          type="button"
-          key={language.key}
-          className={`dropdown-item ${isActiveLanguage(language)}`}
-          onClick={() => {
-            changeLanguage(language.key);
-            setDropdownOpen(false);
-          }}
-        >
-          <i className={`flag-icon ${language.icon} mr-2`} />
-          <span>{t<string>(language.label)}</span>
-        </button>
-      ))}
-    />
+      </div>
+      <div slot="menu">
+        {languages.map((language) => (
+          <button
+            type="button"
+            key={language.key}
+            className={`dropdown-item ${isActiveLanguage(language)}`}
+            onClick={() => {
+              changeLanguage(language.key);
+              setDropdownOpen(false);
+            }}
+          >
+            <i className={`flag-icon ${language.icon} mr-2`} />
+            <span>{t<string>(language.label)}</span>
+          </button>
+        ))}
+      </div>
+    </StyledDropdown>
   );
 };
 
