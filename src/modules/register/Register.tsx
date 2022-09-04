@@ -6,11 +6,11 @@ import {useFormik} from 'formik';
 import {useTranslation} from 'react-i18next';
 import * as Yup from 'yup';
 import {loginUser} from '@store/reducers/auth';
-import {Button, Checkbox} from '@components';
 import {faEnvelope, faLock} from '@fortawesome/free-solid-svg-icons';
 import {setWindowClass} from '@app/utils/helpers';
 import {Form, InputGroup} from 'react-bootstrap';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {PfButton, PfCheckbox} from '@profabric/react-components';
 
 import * as AuthService from '../../services/auth';
 
@@ -107,7 +107,7 @@ const Register = () => {
           </Link>
         </div>
         <div className="card-body">
-          <p className="login-box-msg">{t('register.registerNew')}</p>
+          <p className="login-box-msg">{t<string>('register.registerNew')}</p>
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
               <InputGroup className="mb-3">
@@ -189,51 +189,49 @@ const Register = () => {
 
             <div className="row">
               <div className="col-7">
-                <Checkbox type="icheck" checked={false}>
+                <PfCheckbox checked={false}>
                   <span>I agree to the </span>
                   <Link to="/">terms</Link>
-                </Checkbox>
+                </PfCheckbox>
               </div>
               <div className="col-5">
-                <Button
+                <PfButton
                   type="submit"
                   block
-                  isLoading={isAuthLoading}
+                  loading={isAuthLoading}
                   disabled={isFacebookAuthLoading || isGoogleAuthLoading}
                 >
-                  {/* @ts-ignore */}
-                  {t('register.label')}
-                </Button>
+                  {t<string>('register.label')}
+                </PfButton>
               </div>
             </div>
           </form>
           <div className="social-auth-links text-center">
-            <Button
+            <PfButton
+              className="mb-2"
               block
-              icon="facebook"
               onClick={registerByFacebook}
-              isLoading={isFacebookAuthLoading}
+              loading={isFacebookAuthLoading}
               disabled={isAuthLoading || isGoogleAuthLoading}
             >
-              {/* @ts-ignore */}
-              {t('login.button.signUp.social', {
+              <i className="fab fa-facebook mr-2" />
+              {t<string>('login.button.signUp.social', {
                 what: 'Facebook'
               })}
-            </Button>
-            <Button
+            </PfButton>
+            <PfButton
               block
-              icon="google"
               theme="danger"
               onClick={registerByGoogle}
-              isLoading={isGoogleAuthLoading}
+              loading={isGoogleAuthLoading}
               disabled={isAuthLoading || isFacebookAuthLoading}
             >
-              {/* @ts-ignore */}
-              {t('login.button.signUp.social', {what: 'Google'})}
-            </Button>
+              <i className="fab fa-google mr-2" />
+              {t<string>('login.button.signUp.social', {what: 'Google'})}
+            </PfButton>
           </div>
           <Link to="/login" className="text-center">
-            {t('register.alreadyHave')}
+            {t<string>('register.alreadyHave')}
           </Link>
         </div>
       </div>

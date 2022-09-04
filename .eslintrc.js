@@ -54,6 +54,8 @@ module.exports = {
     'import/extensions': 'off',
     'no-shadow': 'off',
     'no-use-before-define': 'off',
-    'react/require-default-props': 'off'
+    'react/require-default-props': 'off',
+    'no-promise-executor-return': 'off',
+    'no-unused-vars': 'off'
   }
 };

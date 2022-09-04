@@ -3,7 +3,6 @@ import {Link} from 'react-router-dom';
 import {useTranslation} from 'react-i18next';
 import {useDispatch, useSelector} from 'react-redux';
 import {toggleControlSidebar, toggleSidebarMenu} from '@app/store/reducers/ui';
-import {Button} from '@app/components';
 import MessagesDropdown from '@app/modules/main/header/messages-dropdown/MessagesDropdown';
 import NotificationsDropdown from '@app/modules/main/header/notifications-dropdown/NotificationsDropdown';
 import LanguagesDropdown from '@app/modules/main/header/languages-dropdown/LanguagesDropdown';
@@ -45,12 +44,12 @@ const Header = () => {
         </li>
         <li className="nav-item d-none d-sm-inline-block">
           <Link to="/" className="nav-link">
-            {t('header.label.home')}
+            {t<string>('header.label.home')}
           </Link>
         </li>
         <li className="nav-item d-none d-sm-inline-block">
           <Link to="/" className="nav-link">
-            {t('header.label.contact')}
+            {t<string>('header.label.contact')}
           </Link>
         </li>
       </ul>
@@ -60,9 +59,13 @@ const Header = () => {
         <LanguagesDropdown />
         <UserDropdown />
         <li className="nav-item">
-          <Button className="nav-link" onClick={handleToggleControlSidebar}>
+          <button
+            type="button"
+            className="nav-link"
+            onClick={handleToggleControlSidebar}
+          >
             <i className="fas fa-th-large" />
-          </Button>
+          </button>
         </li>
       </ul>
     </nav>

@@ -2,13 +2,13 @@ import React from 'react';
 import {toast} from 'react-toastify';
 import {Link} from 'react-router-dom';
 import {useTranslation} from 'react-i18next';
-import {Button} from '@components';
 import {faLock} from '@fortawesome/free-solid-svg-icons';
 import {setWindowClass} from '@app/utils/helpers';
 import {useFormik} from 'formik';
 import * as Yup from 'yup';
 import {Form, InputGroup} from 'react-bootstrap';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {PfButton} from '@profabric/react-components';
 
 const RecoverPassword = () => {
   const [t] = useTranslation();
@@ -38,7 +38,7 @@ const RecoverPassword = () => {
     onSubmit: (values) => {
       toast.warn('Not yet functional');
       // eslint-disable-next-line no-console
-      console.log(values);
+      console.log('values', values);
     }
   });
 
@@ -53,7 +53,7 @@ const RecoverPassword = () => {
           </Link>
         </div>
         <div className="card-body">
-          <p className="login-box-msg">{t('recover.oneStepAway')}</p>
+          <p className="login-box-msg">{t<string>('recover.oneStepAway')}</p>
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
               <InputGroup className="mb-3">
@@ -109,15 +109,15 @@ const RecoverPassword = () => {
             </div>
             <div className="row">
               <div className="col-12">
-                <Button type="submit" block>
+                <PfButton type="submit" block>
                   {/* @ts-ignore */}
-                  {t('recover.changePassword')}
-                </Button>
+                  {t<string>('recover.changePassword')}
+                </PfButton>
               </div>
             </div>
           </form>
           <p className="mt-3 mb-1">
-            <Link to="/login">{t('login.button.signIn.label')}</Link>
+            <Link to="/login">{t<string>('login.button.signIn.label')}</Link>
           </p>
         </div>
       </div>

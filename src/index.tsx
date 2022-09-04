@@ -1,7 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import {createRoot} from 'react-dom/client';
 import {Provider} from 'react-redux';
-import {toast} from 'react-toastify';
 import {Gatekeeper} from 'gatekeeper-client-sdk';
 import App from '@app/App';
 import store from '@store/store';
@@ -11,24 +10,20 @@ import * as serviceWorker from './serviceWorker';
 
 import './index.css';
 
-toast.configure({
-  autoClose: 3000,
-  draggable: false,
-  position: 'top-right',
-  hideProgressBar: false,
-  newestOnTop: true,
-  closeOnClick: true,
-  rtl: false,
-  pauseOnHover: true
-});
+(window as any).PF = {
+  config: {
+    mode: 'bs4'
+  }
+};
 
-Gatekeeper.initialize('08401b7e-da7e-4bf3-a9bf-6f594ae5fb02');
+Gatekeeper.initialize('0d0805b8-4fc4-4b37-9f86-3af19acf89f8');
 
-ReactDOM.render(
+const container: any = document.getElementById('root');
+const root = createRoot(container);
+root.render(
   <Provider store={store}>
     <App />
-  </Provider>,
-  document.getElementById('root')
+  </Provider>
 );
 
 // If you want your app to work offline and load faster, you can change

@@ -1,14 +1,24 @@
+import {PfImage} from '@profabric/react-components';
 import React from 'react';
 import {Link} from 'react-router-dom';
+import styled from 'styled-components';
+
+const StyledUserImage = styled(PfImage)`
+  --pf-border: 2px solid #adb5bd;
+  --pf-padding: 2px;
+  float: left;
+`;
 
 const Post = ({isClearfix = false}: {isClearfix?: boolean}) => {
   return (
     <div className={`post ${isClearfix ? 'clearfix' : ''}`}>
       <div className="user-block">
-        <img
-          className="img-circle img-bordered-sm"
+        <StyledUserImage
           src="/img/default-profile.png"
           alt="User"
+          width={40}
+          height={40}
+          rounded
         />
         <span className="username">
           <Link to="/">Jonathan Burke Jr.</Link>

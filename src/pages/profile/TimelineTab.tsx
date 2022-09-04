@@ -1,5 +1,15 @@
+import {PfImage} from '@profabric/react-components';
 import React from 'react';
 import {Link} from 'react-router-dom';
+import styled from 'styled-components';
+
+const StyledContentImage = styled(PfImage)`
+  display: inline-block;
+  margin-left: 5px;
+  &:first-child {
+    margin-left: 0;
+  }
+`;
 
 const TimelineTab = ({isActive}: {isActive: boolean}) => {
   return (
@@ -97,26 +107,10 @@ const TimelineTab = ({isActive}: {isActive: boolean}) => {
               <span> uploaded new photos</span>
             </h3>
             <div className="timeline-body">
-              <img
-                src="/img/default-profile.png"
-                style={{width: '1.6rem', height: '1.6rem'}}
-                alt="..."
-              />
-              <img
-                src="/img/default-profile.png"
-                style={{width: '1.6rem', height: '1.6rem'}}
-                alt="..."
-              />
-              <img
-                src="/img/default-profile.png"
-                style={{width: '1.6rem', height: '1.6rem'}}
-                alt="..."
-              />
-              <img
-                src="/img/default-profile.png"
-                style={{width: '1.6rem', height: '1.6rem'}}
-                alt="..."
-              />
+              <StyledContentImage src="/img/default-profile.png" width={25} />
+              <StyledContentImage src="/img/default-profile.png" width={25} />
+              <StyledContentImage src="/img/default-profile.png" width={25} />
+              <StyledContentImage src="/img/default-profile.png" width={25} />
             </div>
           </div>
         </div>

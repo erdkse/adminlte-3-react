@@ -1,9 +1,17 @@
 import React, {useState} from 'react';
 import {useTranslation} from 'react-i18next';
-import {ContentHeader, Button} from '@components';
+import {ContentHeader} from '@components';
+import {PfButton, PfImage} from '@profabric/react-components';
+import styled from 'styled-components';
+
 import ActivityTab from './ActivityTab';
 import TimelineTab from './TimelineTab';
 import SettingsTab from './SettingsTab';
+
+const StyledUserImage = styled(PfImage)`
+  --pf-border: 3px solid #adb5bd;
+  --pf-padding: 3px;
+`;
 
 const Profile = () => {
   const [activeTab, setActiveTab] = useState('ACTIVITY');
@@ -23,8 +31,10 @@ const Profile = () => {
               <div className="card card-primary card-outline">
                 <div className="card-body box-profile">
                   <div className="text-center">
-                    <img
-                      className="profile-user-img img-fluid img-circle"
+                    <StyledUserImage
+                      width={100}
+                      height={100}
+                      rounded
                       src="/img/default-profile.png"
                       alt="User profile"
                     />
@@ -35,34 +45,36 @@ const Profile = () => {
                   <p className="text-muted text-center">Software Engineer</p>
                   <ul className="list-group list-group-unbordered mb-3">
                     <li className="list-group-item">
-                      <b>{t('header.user.followers')}</b>
+                      <b>{t<string>('header.user.followers')}</b>
 
                       <span className="float-right">1,322</span>
                     </li>
                     <li className="list-group-item">
-                      <b>{t('views.user.following')}</b>
+                      <b>{t<string>('views.user.following')}</b>
                       <span className="float-right">543</span>
                     </li>
                     <li className="list-group-item">
-                      <b>{t('header.user.friends')}</b>
+                      <b>{t<string>('header.user.friends')}</b>
                       <span className="float-right">13,287</span>
                     </li>
                   </ul>
-                  <Button block>
+                  <PfButton block>
                     {/* @ts-ignore */}
-                    {t('main.label.follow')}
-                  </Button>
+                    {t<string>('main.label.follow')}
+                  </PfButton>
                 </div>
                 {/* /.card-body */}
               </div>
               <div className="card card-primary">
                 <div className="card-header">
-                  <h3 className="card-title">{t('main.label.aboutMe')}</h3>
+                  <h3 className="card-title">
+                    {t<string>('main.label.aboutMe')}
+                  </h3>
                 </div>
                 <div className="card-body">
                   <strong>
                     <i className="fas fa-book mr-1" />
-                    {t('main.label.education')}
+                    {t<string>('main.label.education')}
                   </strong>
                   <p className="text-muted">
                     B.S. in Computer Science from the University of Tennessee at
@@ -71,13 +83,13 @@ const Profile = () => {
                   <hr />
                   <strong>
                     <i className="fas fa-map-marker-alt mr-1" />
-                    {t('main.label.location')}
+                    {t<string>('main.label.location')}
                   </strong>
                   <p className="text-muted">Malibu, California</p>
                   <hr />
                   <strong>
                     <i className="fas fa-pencil-alt mr-1" />
-                    {t('main.label.skills')}
+                    {t<string>('main.label.skills')}
                   </strong>
                   <p className="text-muted">
                     <span className="tag tag-danger">UI Design</span>
@@ -89,7 +101,7 @@ const Profile = () => {
                   <hr />
                   <strong>
                     <i className="far fa-file-alt mr-1" />
-                    {t('main.label.notes')}
+                    {t<string>('main.label.notes')}
                   </strong>
                   <p className="text-muted">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -110,7 +122,7 @@ const Profile = () => {
                         }`}
                         onClick={() => toggle('ACTIVITY')}
                       >
-                        {t('main.label.activity')}
+                        {t<string>('main.label.activity')}
                       </button>
                     </li>
                     <li className="nav-item">
@@ -121,7 +133,7 @@ const Profile = () => {
                         }`}
                         onClick={() => toggle('TIMELINE')}
                       >
-                        {t('main.label.timeline')}
+                        {t<string>('main.label.timeline')}
                       </button>
                     </li>
                     <li className="nav-item">
@@ -132,7 +144,7 @@ const Profile = () => {
                         }`}
                         onClick={() => toggle('SETTINGS')}
                       >
-                        {t('main.label.settings')}
+                        {t<string>('main.label.settings')}
                       </button>
                     </li>
                   </ul>

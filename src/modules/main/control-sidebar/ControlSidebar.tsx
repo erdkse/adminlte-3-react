@@ -1,6 +1,6 @@
+/* eslint-disable no-unused-vars */
 import React, {useCallback} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {Checkbox, Select} from '@app/components';
 import {
   setNavbarVariant,
   setSidebarSkin,
@@ -21,6 +21,7 @@ import {
   SIDEBAR_LIGHT_SKINS
 } from '@app/utils/themes';
 import useScrollPosition from '@app/hooks/useScrollPosition';
+import {PfCheckbox, PfSelect} from '@profabric/react-components';
 
 const ControlSidebar = () => {
   const dispatch = useDispatch();
@@ -105,98 +106,108 @@ const ControlSidebar = () => {
 
       <div style={{padding: '8px 0'}}>
         <div className="mb-4">
-          <Checkbox checked={darkMode} onChange={handleDarkModeChange}>
+          <PfCheckbox checked={darkMode} onChange={handleDarkModeChange}>
             Dark mode
-          </Checkbox>
-          <Checkbox checked={layoutBoxed} onChange={handleLayoutBoxedChange}>
+          </PfCheckbox>
+          <PfCheckbox checked={layoutBoxed} onChange={handleLayoutBoxedChange}>
             Boxed (Broken when header or footer is fixed)
-          </Checkbox>
+          </PfCheckbox>
         </div>
 
         <h6>Header Options</h6>
 
         <div className="mb-4">
-          <Checkbox checked={headerFixed} onChange={handleHeaderFixedChange}>
+          <PfCheckbox checked={headerFixed} onChange={handleHeaderFixedChange}>
             Fixed
-          </Checkbox>
-          <Checkbox checked={headerBorder} onChange={handleHeaderBorderChange}>
+          </PfCheckbox>
+          <PfCheckbox
+            checked={headerBorder}
+            onChange={handleHeaderBorderChange}
+          >
             No Border
-          </Checkbox>
+          </PfCheckbox>
         </div>
 
         <h6>Sidebar Options</h6>
 
         <div className="mb-4">
-          <Checkbox
+          <PfCheckbox
             checked={menuSidebarCollapsed}
             onChange={handleMenuSidebarCollapsed}
           >
             Collapse
-          </Checkbox>
-          <Checkbox checked={layoutFixed} onChange={handleLayoutFixedChange}>
+          </PfCheckbox>
+          <PfCheckbox checked={layoutFixed} onChange={handleLayoutFixedChange}>
             Fixed
-          </Checkbox>
-          <Checkbox checked={menuItemFlat} onChange={handleMenuItemFlatChange}>
+          </PfCheckbox>
+          <PfCheckbox
+            checked={menuItemFlat}
+            onChange={handleMenuItemFlatChange}
+          >
             Nav Flat Style
-          </Checkbox>
-          <Checkbox
+          </PfCheckbox>
+          <PfCheckbox
             checked={menuChildIndent}
             onChange={handleMenuChildIndentChange}
           >
             Nav Child Indent
-          </Checkbox>
+          </PfCheckbox>
         </div>
 
         <h6>Footer Options</h6>
 
         <div className="mb-4">
-          <Checkbox checked={footerFixed} onChange={handleFooterFixedChange}>
+          <PfCheckbox checked={footerFixed} onChange={handleFooterFixedChange}>
             Fixed
-          </Checkbox>
+          </PfCheckbox>
         </div>
 
-        <Select
+        <PfSelect
           className="mt-3"
           value={navbarVariant}
+          label="Light Navbar Variants"
           options={NAVBAR_LIGHT_VARIANTS}
+          onChange={(e: any) => onNavbarVariantChange(e.target.value)}
           type="custom"
-          onChange={onNavbarVariantChange}
-        >
-          Light Navbar Variants
-        </Select>
-        <Select
+        />
+        <PfSelect
           className="mt-3"
+          label="Dark Navbar Variants"
           value={navbarVariant}
           options={NAVBAR_DARK_VARIANTS}
           type="custom"
-          onChange={onNavbarVariantChange}
-        >
-          Dark Navbar Variants
-        </Select>
-        <Select className="mt-3" options={[]} type="custom" disabled>
-          Accent Color Variants
-        </Select>
-        <Select
+          onChange={(e: any) => onNavbarVariantChange(e.target.value)}
+        />
+        <PfSelect
           className="mt-3"
+          label="Accent Color Variants"
+          options={[]}
+          type="custom"
+          disabled
+        />
+        <PfSelect
+          className="mt-3"
+          label="Light Sidebar Variants"
           value={sidebarSkin}
           options={SIDEBAR_LIGHT_SKINS}
           type="custom"
-          onChange={onSidebarSkinChange}
-        >
-          Light Sidebar Variants
-        </Select>
-        <Select
+          onChange={(e: any) => onSidebarSkinChange(e.target.value)}
+        />
+        <PfSelect
           className="mt-3"
+          label="Dark Sidebar Variants"
           value={sidebarSkin}
           options={SIDEBAR_DARK_SKINS}
           type="custom"
-          onChange={onSidebarSkinChange}
-        >
-          Dark Sidebar Variants
-        </Select>
-        <Select className="mt-3" options={[]} type="custom" disabled>
-          Brand Logo Variants
-        </Select>
+          onChange={(e: any) => onSidebarSkinChange(e.target.value)}
+        />
+        <PfSelect
+          className="mt-3"
+          label="Brand Logo Variants"
+          options={[]}
+          type="custom"
+          disabled
+        />
       </div>
     </aside>
   );

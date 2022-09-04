@@ -72,7 +72,7 @@ const MenuItem = ({menuItem}: {menuItem: IMenuItem}) => {
         style={{cursor: 'pointer'}}
       >
         <i className="nav-icon fas fa-tachometer-alt" />
-        <p>{t(menuItem.name)}</p>
+        <p>{t<string>(menuItem.name)}</p>
         {isExpandable ? <i className="right fas fa-angle-left" /> : null}
       </a>
 
@@ -84,7 +84,7 @@ const MenuItem = ({menuItem}: {menuItem: IMenuItem}) => {
             <li className="nav-item">
               <NavLink className="nav-link" to={`${item.path}`}>
                 <i className="far fa-circle nav-icon" />
-                <p>{t(item.name)}</p>
+                <p>{t<string>(item.name)}</p>
               </NavLink>
             </li>
           </ul>

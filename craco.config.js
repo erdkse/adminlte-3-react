@@ -1,4 +1,6 @@
 const CracoAlias = require('craco-alias');
+// eslint-disable-next-line import/no-extraneous-dependencies
+// const {DefinePlugin} = require('webpack');
 
 module.exports = {
   plugins: [
@@ -10,5 +12,26 @@ module.exports = {
         baseUrl: './'
       }
     }
-  ]
+  ],
+  webpack: {
+    configure: (webpackConfig) => {
+      webpackConfig.node = {__dirname: false};
+      webpackConfig.resolve.fallback = {
+        ...webpackConfig.resolve.fallback,
+        os: require.resolve('os-browserify/browser'),
+        path: require.resolve('path-browserify'),
+        fs: false
+      };
+      webpackConfig.module.rules = [
+        ...webpackConfig.module.rules,
+        {
+          test: /\.m?js/,
+          resolve: {
+            fullySpecified: false
+          }
+        }
+      ];
+      return webpackConfig;
+    }
+  }
 };
