@@ -2,12 +2,10 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {toast} from 'react-toastify';
 import {useTranslation} from 'react-i18next';
-import {faEnvelope} from '@fortawesome/free-solid-svg-icons';
 import {setWindowClass} from '@app/utils/helpers';
 import * as Yup from 'yup';
 import {useFormik} from 'formik';
 import {Form, InputGroup} from 'react-bootstrap';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {PfButton} from '@profabric/react-components';
 
 const ForgotPassword = () => {
@@ -62,7 +60,7 @@ const ForgotPassword = () => {
                 ) : (
                   <InputGroup.Append>
                     <InputGroup.Text>
-                      <FontAwesomeIcon icon={faEnvelope} />
+                      <i className="fas fa-envelope" />
                     </InputGroup.Text>
                   </InputGroup.Append>
                 )}

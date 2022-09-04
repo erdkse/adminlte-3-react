@@ -6,10 +6,8 @@ import {useFormik} from 'formik';
 import {useTranslation} from 'react-i18next';
 import * as Yup from 'yup';
 import {loginUser} from '@store/reducers/auth';
-import {faEnvelope, faLock} from '@fortawesome/free-solid-svg-icons';
 import {setWindowClass} from '@app/utils/helpers';
 import {Form, InputGroup} from 'react-bootstrap';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {PfButton, PfCheckbox} from '@profabric/react-components';
 
 import * as AuthService from '../../services/auth';
@@ -128,7 +126,7 @@ const Register = () => {
                 ) : (
                   <InputGroup.Append>
                     <InputGroup.Text>
-                      <FontAwesomeIcon icon={faEnvelope} />
+                      <i className="fas fa-envelope" />
                     </InputGroup.Text>
                   </InputGroup.Append>
                 )}
@@ -153,7 +151,7 @@ const Register = () => {
                 ) : (
                   <InputGroup.Append>
                     <InputGroup.Text>
-                      <FontAwesomeIcon icon={faLock} />
+                      <i className="fas fa-lock" />
                     </InputGroup.Text>
                   </InputGroup.Append>
                 )}
@@ -180,7 +178,7 @@ const Register = () => {
                 ) : (
                   <InputGroup.Append>
                     <InputGroup.Text>
-                      <FontAwesomeIcon icon={faLock} />
+                      <i className="fas fa-lock" />
                     </InputGroup.Text>
                   </InputGroup.Append>
                 )}
