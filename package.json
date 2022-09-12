@@ -43,7 +43,7 @@
     "axios": "0.27.2",
     "craco-alias": "3.0.1",
     "formik": "2.2.9",
-    "gatekeeper-client-sdk": "0.4.3",
+    "gatekeeper-client-sdk": "0.4.2",
     "i18next": "21.9.1",
     "i18next-browser-languagedetector": "6.1.5",
     "luxon": "3.0.3",
