@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "craco start",
-    "build": "craco build",
-    "dev": "craco test",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "dev": "react-app-rewired test",
     "eject": "react-scripts eject",
     "format": "prettier-eslint $PWD/'src/**/*.{js,json}' --write",
     "lint": "eslint src/**/*.js"
@@ -35,6 +35,7 @@
     "@fortawesome/free-regular-svg-icons": "6.2.0",
     "@fortawesome/free-solid-svg-icons": "6.2.0",
     "@fortawesome/react-fontawesome": "0.2.0",
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.7",
     "@profabric/react-components": "0.1.1",
     "@reduxjs/toolkit": "1.8.5",
     "@testing-library/jest-dom": "5.16.5",
@@ -42,12 +43,17 @@
     "@testing-library/user-event": "14.4.3",
     "axios": "0.27.2",
     "craco-alias": "3.0.1",
+    "craco-babel-loader": "^1.0.3",
+    "dotenv-webpack": "^8.0.1",
     "formik": "2.2.9",
     "gatekeeper-client-sdk": "0.4.2",
+    "html-webpack-plugin": "^5.5.0",
     "i18next": "21.9.1",
     "i18next-browser-languagedetector": "6.1.5",
     "luxon": "3.0.3",
+    "node-polyfill-webpack-plugin": "^2.0.1",
     "react": "0.0.0-experimental-f0efa1164-20220901",
+    "react-app-rewire-alias": "^1.1.7",
     "react-bootstrap": "1.6.1",
     "react-dom": "0.0.0-experimental-f0efa1164-20220901",
     "react-i18next": "11.18.5",
@@ -59,6 +65,7 @@
     "redux-logger": "3.0.6",
     "styled-components": "5.3.5",
     "summernote": "./summernote",
+    "tsconfig-paths-webpack-plugin": "^4.0.0",
     "uuid": "9.0.0",
     "web-vitals": "3.0.1",
     "yup": "0.32.11"
@@ -83,11 +90,15 @@
     "eslint-plugin-unused-imports": "2.0.0",
     "husky": "8.0.1",
     "lint-staged": "13.0.3",
+    "mini-css-extract-plugin": "^2.6.1",
     "os-browserify": "0.3.0",
     "path-browserify": "1.0.1",
     "prettier": "2.7.1",
+    "react-app-rewired": "^2.2.1",
+    "react-refresh": "^0.14.0",
+    "sass": "^1.54.9",
+    "sass-loader": "^13.0.2",
     "typescript": "4.8.3"
-    
   },
   "lint-staged": {
     "**/*.js": [
