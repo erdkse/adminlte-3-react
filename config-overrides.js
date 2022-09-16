@@ -5,6 +5,7 @@ const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin'
 const path = require('path');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const InterpolateHtmlPlugin = require('interpolate-html-plugin');
 
 const aliasMap = configPaths('./paths.json');
 
@@ -25,7 +26,10 @@ module.exports = function override(config, env) {
       favicon: path.join(PUBLIC, 'favicon.ico')
     }),
     isDevelopment && new ReactRefreshWebpackPlugin(),
-    new MiniCssExtractPlugin()
+    new MiniCssExtractPlugin(),
+    new InterpolateHtmlPlugin({
+      PUBLIC_URL: ''
+    })
   ].filter(Boolean);
   config.resolve = {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
@@ -55,6 +59,11 @@ module.exports = function override(config, env) {
       test: /\.json$/,
       type: 'json'
     },
+    {
+      test: /\.(png|svg|jpg|jpeg|gif|ico)$/,
+      exclude: /node_modules/,
+      use: ['file-loader?name=[name].[ext]'] // ?name=[name].[ext] is only necessary to preserve the original file name
+    }
   ];
   return config;
 };
