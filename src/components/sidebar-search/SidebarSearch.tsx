@@ -119,9 +119,9 @@ export const SidebarSearch = () => {
               onClick={() => handleIconClick()}
             >
               <i
-                className={`fas ${
-                  searchText && searchText.length === 0 && 'fa-search'
-                } ${searchText && searchText.length > 0 && 'fa-times'} fa-fw`}
+                className={`fas ${searchText.length === 0 && 'fa-search'} ${
+                  searchText.length > 0 && 'fa-times'
+                } fa-fw`}
               />
             </button>
           </div>
