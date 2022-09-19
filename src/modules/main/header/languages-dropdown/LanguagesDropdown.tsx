@@ -9,7 +9,7 @@ export const StyledDropdown = styled(PfDropdown)`
   display: flex;
   justify-content: center;
   align-items: center;
-  --pf-dropdown-min-width: 10rem;
+  --pf-dropdown-menu-min-width:: 10rem;
 
   .dropdown-item {
     padding: 0.5rem 1rem;

@@ -1,11 +1,11 @@
 import i18n from 'i18next';
 import {initReactI18next} from 'react-i18next';
 
-import translationEN from './locales/en/translation.json';
-import translationTR from './locales/tr/translation.json';
-import translationDE from './locales/de/translation.json';
-import translationES from './locales/es/translation.json';
-import translationFR from './locales/fr/translation.json';
+import translationEN from '../locales/en/translation.json';
+import translationTR from '../locales/tr/translation.json';
+import translationDE from '../locales/de/translation.json';
+import translationES from '../locales/es/translation.json';
+import translationFR from '../locales/fr/translation.json';
 
 // the translations
 const resources = {
@@ -27,7 +27,7 @@ const resources = {
 };
 
 i18n
-  .use(initReactI18next) // passes i18n down to react-i18next
+  .use(initReactI18next as any) // passes i18n down to react-i18next
   .init({
     resources,
     lng: 'en',
@@ -37,6 +37,6 @@ i18n
     react: {
       wait: true
     }
-  });
+  } as any);
 
 export default i18n;

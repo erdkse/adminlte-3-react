@@ -4,6 +4,8 @@ import {Link} from 'react-router-dom';
 import {MenuItem} from '@components';
 import {PfImage} from '@profabric/react-components';
 import styled from 'styled-components';
+import {SidebarSearch} from '@app/components/sidebar-search/SidebarSearch';
+import i18n from '@app/utils/i18n';
 
 export interface IMenuItem {
   name: string;
@@ -13,23 +15,23 @@ export interface IMenuItem {
 
 export const MENU: IMenuItem[] = [
   {
-    name: 'menusidebar.label.dashboard',
+    name: i18n.t('menusidebar.label.dashboard'),
     path: '/'
   },
   {
-    name: 'menusidebar.label.blank',
+    name: i18n.t('menusidebar.label.blank'),
     path: '/blank'
   },
   {
-    name: 'menusidebar.label.mainMenu',
+    name: i18n.t('menusidebar.label.mainMenu'),
     children: [
       {
-        name: 'menusidebar.label.subMenu',
+        name: i18n.t('menusidebar.label.subMenu'),
         path: '/sub-menu-1'
       },
 
       {
-        name: 'menusidebar.label.blank',
+        name: i18n.t('menusidebar.label.blank'),
         path: '/sub-menu-2'
       }
     ]
@@ -85,6 +87,11 @@ const MenuSidebar = () => {
             </Link>
           </div>
         </div>
+
+        <div className="form-inline">
+          <SidebarSearch />
+        </div>
+
         <nav className="mt-2" style={{overflowY: 'hidden'}}>
           <ul
             className={`nav nav-pills nav-sidebar flex-column${
@@ -93,7 +100,10 @@ const MenuSidebar = () => {
             role="menu"
           >
             {MENU.map((menuItem: IMenuItem) => (
-              <MenuItem key={menuItem.name} menuItem={menuItem} />
+              <MenuItem
+                key={menuItem.name + menuItem.path}
+                menuItem={menuItem}
+              />
             ))}
           </ul>
         </nav>

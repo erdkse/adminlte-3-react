@@ -5,7 +5,7 @@ import {Gatekeeper} from 'gatekeeper-client-sdk';
 import App from '@app/App';
 import store from '@store/store';
 
-import './i18n';
+import './utils/i18n';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 
