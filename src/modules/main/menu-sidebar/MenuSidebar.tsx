@@ -9,6 +9,7 @@ import i18n from '@app/utils/i18n';
 
 export interface IMenuItem {
   name: string;
+  icon?: string;
   path?: string;
   children?: Array<IMenuItem>;
 }
@@ -16,22 +17,27 @@ export interface IMenuItem {
 export const MENU: IMenuItem[] = [
   {
     name: i18n.t('menusidebar.label.dashboard'),
+    icon: 'fas fa-tachometer-alt nav-icon" />',
     path: '/'
   },
   {
     name: i18n.t('menusidebar.label.blank'),
+    icon: 'fas fa-wrench nav-icon',
     path: '/blank'
   },
   {
     name: i18n.t('menusidebar.label.mainMenu'),
+    icon: 'far fa-caret-square-down nav-icon',
     children: [
       {
         name: i18n.t('menusidebar.label.subMenu'),
+        icon: 'fas fa-hammer nav-icon',
         path: '/sub-menu-1'
       },
 
       {
         name: i18n.t('menusidebar.label.blank'),
+        icon: 'fas fa-cogs nav-icon',
         path: '/sub-menu-2'
       }
     ]
