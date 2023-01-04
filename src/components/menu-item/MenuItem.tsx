@@ -71,7 +71,7 @@ const MenuItem = ({menuItem}: {menuItem: IMenuItem}) => {
         onClick={handleMainMenuAction}
         style={{cursor: 'pointer'}}
       >
-        <i className="nav-icon fas fa-tachometer-alt" />
+        <i className={`${menuItem.icon}`} />
         <p>{t<string>(menuItem.name)}</p>
         {isExpandable ? <i className="right fas fa-angle-left" /> : null}
       </a>
@@ -83,7 +83,7 @@ const MenuItem = ({menuItem}: {menuItem: IMenuItem}) => {
           <ul key={item.name} className="nav nav-treeview">
             <li className="nav-item">
               <NavLink className="nav-link" to={`${item.path}`}>
-                <i className="far fa-circle nav-icon" />
+                <i className={`${item.icon}`} />
                 <p>{t<string>(item.name)}</p>
               </NavLink>
             </li>
