@@ -47,7 +47,7 @@
     "html-webpack-plugin": "^5.5.0",
     "i18next": "22.0.7",
     "i18next-browser-languagedetector": "7.0.1",
-    "luxon": "3.1.1",
+    "luxon": "3.2.1",
     "node-polyfill-webpack-plugin": "^2.0.1",
     "react": "0.0.0-experimental-353c30252-20221202",
     "react-app-rewire-alias": "^1.1.7",
