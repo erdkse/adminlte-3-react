@@ -1,0 +1,80 @@
+@import url('https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.3.0/css/flag-icon.min.css');
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700');
+
+@import '~admin-lte/plugins/fontawesome-free/css/all.min.css';
+@import '~admin-lte/plugins/icheck-bootstrap/icheck-bootstrap.min.css';
+@import '~admin-lte/dist/css/adminlte.min.css';
+
+@import '~react-toastify/dist/ReactToastify.min.css';
+
+#root {
+  width: 100vw;
+  height: 100vh;
+}
+
+.main-header .navbar-nav .nav-item .nav-link {
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+body {
+  font-family: sans-serif;
+}
+
+.margin {
+  background-color: #dbd5cf;
+  border: 1px solid black;
+  text-align: center;
+  padding: 5%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.border {
+  background-color: #fff4c3;
+  border: 1px solid black;
+  text-align: center;
+  padding: 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.padding {
+  background-color: #bbd6af;
+  border: 1px solid black;
+  text-align: center;
+  padding: 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.element {
+  background-color: #9abfe2;
+  border: 1px solid black;
+  text-align: center;
+  padding: 5%;
+}
+.head{
+  width: 50%;
+  padding: 20px;
+  border: 1px solid black;
+box-shadow: #f9cc9d;
+}
+.center{
+    height: 550px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.row{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
