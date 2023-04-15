@@ -17,7 +17,7 @@ export interface IMenuItem {
 export const MENU: IMenuItem[] = [
   {
     name: i18n.t('menusidebar.label.dashboard'),
-    icon: 'fas fa-tachometer-alt nav-icon" />',
+    icon: 'fas fa-tachometer-alt nav-icon',
     path: '/'
   },
   {

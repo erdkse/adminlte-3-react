@@ -8,10 +8,10 @@ import {setAuthentication} from '@store/reducers/auth';
 import {setWindowClass} from '@app/utils/helpers';
 import {PfButton, PfCheckbox} from '@profabric/react-components';
 import * as Yup from 'yup';
+import {FacebookProvider, GoogleProvider} from '@app/utils/oidc-providers';
 
 import {Form, InputGroup} from 'react-bootstrap';
 import * as AuthService from '../../services/auth';
-import {GoogleProvider} from '@app/utils/oidc-providers';
 
 const Login = () => {
   const [isAuthLoading, setAuthLoading] = useState(false);
@@ -41,7 +41,6 @@ const Login = () => {
       setGoogleAuthLoading(true);
       const response = await GoogleProvider.signinPopup();
       dispatch(setAuthentication(response));
-      console.log('response', response);
       toast.success('Login is succeeded!');
       setGoogleAuthLoading(false);
       navigate('/');
@@ -54,7 +53,8 @@ const Login = () => {
   const loginByFacebook = async () => {
     try {
       setFacebookAuthLoading(true);
-      const token = await AuthService.loginByFacebook();
+      const response = await FacebookProvider.signinPopup();
+      dispatch(setAuthentication(response));
       toast.success('Login is succeeded!');
       setFacebookAuthLoading(false);
       // dispatch(loginUser(token));
