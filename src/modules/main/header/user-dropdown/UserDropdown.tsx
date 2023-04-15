@@ -6,6 +6,7 @@ import {useTranslation} from 'react-i18next';
 import styled from 'styled-components';
 import {PfDropdown, PfImage} from '@profabric/react-components';
 import {setAuthentication} from '@app/store/reducers/auth';
+import {GoogleProvider} from '@app/utils/oidc-providers';
 
 const StyledSmallUserImage = styled(PfImage)`
   margin-top: 3px;
@@ -109,9 +110,11 @@ const UserDropdown = () => {
   const authentication = useSelector((state: any) => state.auth.authentication);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
-  const logOut = (event: any) => {
+  const logOut = async (event: any) => {
     event.preventDefault();
     setDropdownOpen(false);
+    const response = await GoogleProvider.signoutPopup();
+    console.log('response', response);
     dispatch(setAuthentication());
     navigate('/login');
   };

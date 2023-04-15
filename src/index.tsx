@@ -17,16 +17,6 @@ window.PF = {
     mode: 'bs4'
   }
 };
-
-const oidcConfig = {
-  authority: 'https://accounts.google.com',
-  client_id:
-    '533830427279-cspigijdu0g50c7imca5pvdbrcn2buaq.apps.googleusercontent.com',
-  client_secret: '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',
-  redirect_uri: 'http://localhost:5173/callback'
-  // ...
-};
-
 GoogleProvider.getUser().then((response) => {
   store.dispatch(setAuthentication(response));
 });

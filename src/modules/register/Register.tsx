@@ -11,11 +11,12 @@ import {Form, InputGroup} from 'react-bootstrap';
 import {PfButton, PfCheckbox} from '@profabric/react-components';
 
 import * as AuthService from '../../services/auth';
+import {GoogleProvider} from '@app/utils/oidc-providers';
+import {setAuthentication} from '@app/store/reducers/auth';
 
 const Register = () => {
   const [isAuthLoading, setAuthLoading] = useState(false);
   const [isGoogleAuthLoading, setGoogleAuthLoading] = useState(false);
-  const [isFacebookAuthLoading, setFacebookAuthLoading] = useState(false);
   const [t] = useTranslation();
   const dispatch = useDispatch();
 
@@ -38,7 +39,8 @@ const Register = () => {
   const registerByGoogle = async () => {
     try {
       setGoogleAuthLoading(true);
-      const token = await AuthService.registerByGoogle();
+      const response = await GoogleProvider.signinPopup();
+      dispatch(setAuthentication(response));
       setGoogleAuthLoading(false);
       // dispatch(loginUser(token));
       toast.success('Authentication is succeed!');
@@ -46,21 +48,6 @@ const Register = () => {
     } catch (error: any) {
       toast.error(error.message || 'Failed');
       setGoogleAuthLoading(false);
-    }
-  };
-
-  const registerByFacebook = async () => {
-    try {
-      setFacebookAuthLoading(true);
-
-      const token = await AuthService.registerByFacebook();
-      setFacebookAuthLoading(false);
-      // dispatch(loginUser(token));
-      toast.success('Register is succeeded!');
-      navigate('/');
-    } catch (error: any) {
-      setFacebookAuthLoading(false);
-      toast.error(error.message || 'Failed');
     }
   };
 
@@ -197,7 +184,7 @@ const Register = () => {
                   type="submit"
                   block
                   loading={isAuthLoading}
-                  disabled={isFacebookAuthLoading || isGoogleAuthLoading}
+                  disabled={isGoogleAuthLoading}
                 >
                   {t<string>('register.label')}
                 </PfButton>
@@ -206,23 +193,11 @@ const Register = () => {
           </form>
           <div className="social-auth-links text-center">
             <PfButton
-              className="mb-2"
-              block
-              onClick={registerByFacebook}
-              loading={isFacebookAuthLoading}
-              disabled={isAuthLoading || isGoogleAuthLoading}
-            >
-              <i className="fab fa-facebook mr-2" />
-              {t<string>('login.button.signUp.social', {
-                what: 'Facebook'
-              })}
-            </PfButton>
-            <PfButton
               block
               theme="danger"
               onClick={registerByGoogle}
               loading={isGoogleAuthLoading}
-              disabled={isAuthLoading || isFacebookAuthLoading}
+              disabled={isAuthLoading}
             >
               <i className="fab fa-google mr-2" />
               {t<string>('login.button.signUp.social', {what: 'Google'})}

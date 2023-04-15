@@ -55,6 +55,7 @@ const App = () => {
             <Route path="/" element={<Dashboard />} />
           </Route>
         </Route>
+        <Route path="/callback" element={<div>Callback</div>} />
       </Routes>
       <ToastContainer
         autoClose={3000}
