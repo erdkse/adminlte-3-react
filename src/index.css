@@ -2,11 +2,11 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.3.0/css/flag-icon.min.css');
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700');
 
-@import '~admin-lte/plugins/fontawesome-free/css/all.min.css';
-@import '~admin-lte/plugins/icheck-bootstrap/icheck-bootstrap.min.css';
-@import '~admin-lte/dist/css/adminlte.min.css';
+@import 'admin-lte/plugins/fontawesome-free/css/all.min.css';
+@import 'admin-lte/plugins/icheck-bootstrap/icheck-bootstrap.min.css';
+@import 'admin-lte/dist/css/adminlte.min.css';
 
-@import '~react-toastify/dist/ReactToastify.min.css';
+@import 'react-toastify/dist/ReactToastify.min.css';
 
 #root {
   width: 100vw;

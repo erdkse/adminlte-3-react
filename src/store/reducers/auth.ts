@@ -1,41 +1,29 @@
+import {GoogleProvider} from '@app/utils/oidc-providers';
 import {createSlice} from '@reduxjs/toolkit';
 
 export interface AuthState {
-  isLoggedIn: boolean;
-  token: string | null;
-  currentUser: any;
+  authentication: {
+    access_token: string;
+    id_token: string;
+    refresh_token: string;
+    profile: any;
+  } | null;
 }
 
 const initialState: AuthState = {
-  isLoggedIn: !!localStorage.getItem('token'),
-  token: localStorage.getItem('token'),
-  currentUser: {
-    email: 'mail@example.com',
-    picture: null
-  }
+  authentication: null
 };
 
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    loginUser: (state, {payload}) => {
-      localStorage.setItem('token', payload);
-      state.isLoggedIn = true;
-      state.token = payload;
-    },
-    logoutUser: (state) => {
-      localStorage.removeItem('token');
-      state.currentUser = {};
-      state.isLoggedIn = false;
-      state.token = null;
-    },
-    loadUser: (state, {payload}) => {
-      state.currentUser = payload;
+    setAuthentication: (state: any, {payload}: any) => {
+      state.authentication = payload;
     }
   }
 });
 
-export const {loginUser, logoutUser, loadUser} = authSlice.actions;
+export const {setAuthentication} = authSlice.actions;
 
 export default authSlice.reducer;

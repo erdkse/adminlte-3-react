@@ -4,14 +4,14 @@ import {Link, useNavigate} from 'react-router-dom';
 import {toast} from 'react-toastify';
 import {useFormik} from 'formik';
 import {useTranslation} from 'react-i18next';
-import {loginUser} from '@store/reducers/auth';
+import {setAuthentication} from '@store/reducers/auth';
 import {setWindowClass} from '@app/utils/helpers';
 import {PfButton, PfCheckbox} from '@profabric/react-components';
-
 import * as Yup from 'yup';
 
 import {Form, InputGroup} from 'react-bootstrap';
 import * as AuthService from '../../services/auth';
+import {GoogleProvider} from '@app/utils/oidc-providers';
 
 const Login = () => {
   const [isAuthLoading, setAuthLoading] = useState(false);
@@ -28,7 +28,7 @@ const Login = () => {
       const token = await AuthService.loginByAuth(email, password);
       toast.success('Login is succeed!');
       setAuthLoading(false);
-      dispatch(loginUser(token));
+      // dispatch(loginUser(token));
       navigate('/');
     } catch (error: any) {
       setAuthLoading(false);
@@ -39,10 +39,11 @@ const Login = () => {
   const loginByGoogle = async () => {
     try {
       setGoogleAuthLoading(true);
-      const token = await AuthService.loginByGoogle();
+      const response = await GoogleProvider.signinPopup();
+      dispatch(setAuthentication(response));
+      console.log('response', response);
       toast.success('Login is succeeded!');
       setGoogleAuthLoading(false);
-      dispatch(loginUser(token));
       navigate('/');
     } catch (error: any) {
       setGoogleAuthLoading(false);
@@ -56,7 +57,7 @@ const Login = () => {
       const token = await AuthService.loginByFacebook();
       toast.success('Login is succeeded!');
       setFacebookAuthLoading(false);
-      dispatch(loginUser(token));
+      // dispatch(loginUser(token));
       navigate('/');
     } catch (error: any) {
       setFacebookAuthLoading(false);

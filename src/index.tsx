@@ -1,13 +1,14 @@
 import React from 'react';
 import {createRoot} from 'react-dom/client';
 import {Provider} from 'react-redux';
-import {Gatekeeper} from 'gatekeeper-client-sdk';
 import App from '@app/App';
 import store from '@store/store';
 
 import './utils/i18n';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
+import {GoogleProvider} from '@app/utils/oidc-providers';
+import {setAuthentication} from '@app/store/reducers/auth';
 
 declare const window: any;
 
@@ -17,7 +18,18 @@ window.PF = {
   }
 };
 
-Gatekeeper.initialize('08401b7e-da7e-4bf3-a9bf-6f594ae5fb02');
+const oidcConfig = {
+  authority: 'https://accounts.google.com',
+  client_id:
+    '533830427279-cspigijdu0g50c7imca5pvdbrcn2buaq.apps.googleusercontent.com',
+  client_secret: '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',
+  redirect_uri: 'http://localhost:5173/callback'
+  // ...
+};
+
+GoogleProvider.getUser().then((response) => {
+  store.dispatch(setAuthentication(response));
+});
 
 const container: any = document.getElementById('root');
 const root = createRoot(container);

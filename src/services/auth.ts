@@ -1,8 +1,8 @@
 import {removeWindowClass} from '@app/utils/helpers';
-import {Gatekeeper} from 'gatekeeper-client-sdk';
+// import {Gatekeeper} from 'gatekeeper-client-sdk';
 
 export const loginByAuth = async (email: string, password: string) => {
-  const token = await Gatekeeper.loginByAuth(email, password);
+  const token = 'I_AM_THE_TOKEN';
   localStorage.setItem('token', token);
   removeWindowClass('login-page');
   removeWindowClass('hold-transition');
@@ -10,7 +10,7 @@ export const loginByAuth = async (email: string, password: string) => {
 };
 
 export const registerByAuth = async (email: string, password: string) => {
-  const token = await Gatekeeper.registerByAuth(email, password);
+  const token = 'I_AM_THE_TOKEN';
   localStorage.setItem('token', token);
   removeWindowClass('register-page');
   removeWindowClass('hold-transition');
@@ -18,7 +18,7 @@ export const registerByAuth = async (email: string, password: string) => {
 };
 
 export const loginByGoogle = async () => {
-  const token = await Gatekeeper.loginByGoogle();
+  const token = '';
   localStorage.setItem('token', token);
   removeWindowClass('login-page');
   removeWindowClass('hold-transition');
@@ -26,7 +26,7 @@ export const loginByGoogle = async () => {
 };
 
 export const registerByGoogle = async () => {
-  const token = await Gatekeeper.registerByGoogle();
+  const token = '';
   localStorage.setItem('token', token);
   removeWindowClass('register-page');
   removeWindowClass('hold-transition');
@@ -34,7 +34,7 @@ export const registerByGoogle = async () => {
 };
 
 export const loginByFacebook = async () => {
-  const token = await Gatekeeper.loginByFacebook();
+  const token = '';
   localStorage.setItem('token', token);
   removeWindowClass('login-page');
   removeWindowClass('hold-transition');
@@ -42,7 +42,7 @@ export const loginByFacebook = async () => {
 };
 
 export const registerByFacebook = async () => {
-  const token = await Gatekeeper.registerByFacebook();
+  const token = '';
   localStorage.setItem('token', token);
   removeWindowClass('register-page');
   removeWindowClass('hold-transition');

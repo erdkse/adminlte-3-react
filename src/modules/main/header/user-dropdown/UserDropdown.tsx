@@ -3,9 +3,9 @@ import {useNavigate, Link} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {DateTime} from 'luxon';
 import {useTranslation} from 'react-i18next';
-import {logoutUser} from '@store/reducers/auth';
 import styled from 'styled-components';
 import {PfDropdown, PfImage} from '@profabric/react-components';
+import {setAuthentication} from '@app/store/reducers/auth';
 
 const StyledSmallUserImage = styled(PfImage)`
   margin-top: 3px;
@@ -106,13 +106,13 @@ const UserDropdown = () => {
   const navigate = useNavigate();
   const [t] = useTranslation();
   const dispatch = useDispatch();
-  const user = useSelector((state: any) => state.auth.currentUser);
+  const authentication = useSelector((state: any) => state.auth.authentication);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const logOut = (event: any) => {
     event.preventDefault();
     setDropdownOpen(false);
-    dispatch(logoutUser());
+    dispatch(setAuthentication());
     navigate('/login');
   };
 
@@ -126,7 +126,7 @@ const UserDropdown = () => {
     <StyledDropdown isOpen={dropdownOpen} hideArrow>
       <StyledSmallUserImage
         slot="button"
-        src={user.picture}
+        src={authentication.profile.picture}
         fallbackSrc="/img/default-profile.png"
         alt="User"
         width={25}
@@ -136,7 +136,7 @@ const UserDropdown = () => {
       <div slot="menu">
         <UserHeader className=" bg-primary">
           <StyledBigUserImage
-            src={user.picture}
+            src={authentication.profile.picture}
             fallbackSrc="/img/default-profile.png"
             alt="User"
             width={90}
@@ -144,11 +144,11 @@ const UserDropdown = () => {
             rounded
           />
           <p>
-            {user.email}
+            {authentication.profile.email}
             <small>
               <span>Member since </span>
               <span>
-                {DateTime.fromISO(user.createdAt).toFormat('dd LLL yyyy')}
+                {/* {DateTime.fromISO(user.createdAt).toFormat('dd LLL yyyy')} */}
               </span>
             </small>
           </p>

@@ -1,8 +1,6 @@
 import React, {useState, useEffect, useCallback} from 'react';
 import {Outlet} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
-import {Gatekeeper} from 'gatekeeper-client-sdk';
-import {loadUser, logoutUser} from '@store/reducers/auth';
 import {toggleSidebarMenu} from '@app/store/reducers/ui';
 import {addWindowClass, removeWindowClass, sleep} from '@app/utils/helpers';
 import ControlSidebar from '@app/modules/main/control-sidebar/ControlSidebar';
@@ -20,24 +18,16 @@ const Main = () => {
     (state: any) => state.ui.controlSidebarCollapsed
   );
   const screenSize = useSelector((state: any) => state.ui.screenSize);
+  const authentication = useSelector((state: any) => state.auth.authentication);
   const [isAppLoaded, setIsAppLoaded] = useState(false);
 
   const handleToggleMenuSidebar = () => {
     dispatch(toggleSidebarMenu());
   };
 
-  const fetchProfile = async () => {
-    try {
-      const response = await Gatekeeper.getProfile();
-      dispatch(loadUser(response));
-      await sleep(1000);
-      setIsAppLoaded(true);
-    } catch (error) {
-      dispatch(logoutUser());
-      await sleep(1000);
-      setIsAppLoaded(true);
-    }
-  };
+  useEffect(() => {
+    setIsAppLoaded(Boolean(authentication));
+  }, [authentication]);
 
   useEffect(() => {
     removeWindowClass('register-page');
@@ -46,7 +36,7 @@ const Main = () => {
 
     addWindowClass('sidebar-mini');
 
-    fetchProfile();
+    // fetchProfile();
     return () => {
       removeWindowClass('sidebar-mini');
     };

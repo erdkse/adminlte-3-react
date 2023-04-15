@@ -5,7 +5,7 @@ import {toast} from 'react-toastify';
 import {useFormik} from 'formik';
 import {useTranslation} from 'react-i18next';
 import * as Yup from 'yup';
-import {loginUser} from '@store/reducers/auth';
+// import {loginUser} from '@store/reducers/auth';
 import {setWindowClass} from '@app/utils/helpers';
 import {Form, InputGroup} from 'react-bootstrap';
 import {PfButton, PfCheckbox} from '@profabric/react-components';
@@ -26,7 +26,7 @@ const Register = () => {
       setAuthLoading(true);
       const token = await AuthService.registerByAuth(email, password);
       setAuthLoading(false);
-      dispatch(loginUser(token));
+      // dispatch(loginUser(token));
       toast.success('Registration is success');
       navigate('/');
     } catch (error: any) {
@@ -40,7 +40,7 @@ const Register = () => {
       setGoogleAuthLoading(true);
       const token = await AuthService.registerByGoogle();
       setGoogleAuthLoading(false);
-      dispatch(loginUser(token));
+      // dispatch(loginUser(token));
       toast.success('Authentication is succeed!');
       navigate('/');
     } catch (error: any) {
@@ -55,7 +55,7 @@ const Register = () => {
 
       const token = await AuthService.registerByFacebook();
       setFacebookAuthLoading(false);
-      dispatch(loginUser(token));
+      // dispatch(loginUser(token));
       toast.success('Register is succeeded!');
       navigate('/');
     } catch (error: any) {

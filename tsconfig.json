@@ -1,10 +1,10 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "ESNext",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
-    "esModuleInterop": true,
+    "esModuleInterop": false,
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
@@ -16,8 +16,10 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "baseUrl": "./",
-    "outDir": "./build"
+    "outDir": "./build",
+    "useDefineForClassFields": true
   },
   "include": ["src/**/*"],
-  "extends": "./paths.json"
+  "extends": "./paths.json",
+  "references": [{"path": "./tsconfig.node.json"}]
 }
