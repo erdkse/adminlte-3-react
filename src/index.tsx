@@ -7,11 +7,8 @@ import store from '@store/store';
 import './utils/i18n';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-import { GoogleProvider } from '@app/utils/oidc-providers';
-import { setAuthentication } from '@app/store/reducers/auth';
 
 declare const window: any;
-declare const FB: any;
 
 window.PF = {
   config: {

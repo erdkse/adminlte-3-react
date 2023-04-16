@@ -67,7 +67,7 @@ const App = () => {
   }, [windowSize]);
 
   if (isAppLoading) {
-    return 'Loading';
+    return <p>Loading</p>;
   }
 
   return (
