@@ -19,6 +19,7 @@ import Profile from '@pages/profile/Profile';
 import PublicRoute from './routes/PublicRoute';
 import PrivateRoute from './routes/PrivateRoute';
 import { setAuthentication } from './store/reducers/auth';
+import { GoogleProvider } from './utils/oidc-providers';
 
 declare const FB: any;
 
@@ -47,6 +48,15 @@ const App = () => {
         setIsAppLoading(false);
       }
     });
+    GoogleProvider.getUser()
+      .then((response) => {
+        dispatch(setAuthentication(response as any));
+        setIsAppLoading(false);
+      })
+      .catch((e) => {
+        console.log(e);
+        setIsAppLoading(false);
+      });
   }, []);
 
   useEffect(() => {

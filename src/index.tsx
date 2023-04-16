@@ -19,10 +19,6 @@ window.PF = {
   },
 };
 
-GoogleProvider.getUser().then((response) => {
-  store.dispatch(setAuthentication(response as any));
-});
-
 const container: any = document.getElementById('root');
 const root = createRoot(container);
 root.render(

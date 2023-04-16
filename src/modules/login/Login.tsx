@@ -9,7 +9,7 @@ import { setWindowClass } from '@app/utils/helpers';
 import { PfButton, PfCheckbox } from '@profabric/react-components';
 import * as Yup from 'yup';
 
-import { GoogleProvider } from '@app/utils/oidc-providers';
+import { GoogleProvider, facebookLogin } from '@app/utils/oidc-providers';
 import { Form, InputGroup } from 'react-bootstrap';
 import * as AuthService from '../../services/auth';
 import axios from 'axios';
@@ -42,8 +42,8 @@ const Login = () => {
     try {
       setGoogleAuthLoading(true);
       const response = await GoogleProvider.signinPopup();
-      dispatch(setAuthentication(response as any));
-      toast.success('Login is succeeded!');
+      // dispatch(setAuthentication(response as any));
+      // toast.success('Login is succeeded!');
       setGoogleAuthLoading(false);
       navigate('/');
     } catch (error: any) {
@@ -55,26 +55,9 @@ const Login = () => {
   const loginByFacebook = async () => {
     try {
       setFacebookAuthLoading(true);
-      let authResponse: any = {};
-      FB.login(
-        (r: any) => {
-          if (r.authResponse) {
-            authResponse = r.authResponse;
-            FB.api(
-              '/me?fields=id,name,email,picture.width(640).height(640)',
-              (profileResponse: any) => {
-                authResponse.profile = profileResponse;
-                authResponse.profile.picture = profileResponse.picture.data.url;
-                dispatch(setAuthentication(authResponse));
-              }
-            );
-          } else {
-            console.log('User cancelled login or did not fully authorize.');
-            setFacebookAuthLoading(false);
-          }
-        },
-        { scope: 'public_profile,email' }
-      );
+      const response = await facebookLogin();
+      dispatch(setAuthentication(response as any));
+      setFacebookAuthLoading(false);
       navigate('/');
     } catch (error: any) {
       setFacebookAuthLoading(false);

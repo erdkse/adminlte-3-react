@@ -1,22 +1,23 @@
-import React, {useState} from 'react';
-import {Link, useNavigate} from 'react-router-dom';
-import {useDispatch} from 'react-redux';
-import {toast} from 'react-toastify';
-import {useFormik} from 'formik';
-import {useTranslation} from 'react-i18next';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
+import { useFormik } from 'formik';
+import { useTranslation } from 'react-i18next';
 import * as Yup from 'yup';
 // import {loginUser} from '@store/reducers/auth';
-import {setWindowClass} from '@app/utils/helpers';
-import {Form, InputGroup} from 'react-bootstrap';
-import {PfButton, PfCheckbox} from '@profabric/react-components';
+import { setWindowClass } from '@app/utils/helpers';
+import { Form, InputGroup } from 'react-bootstrap';
+import { PfButton, PfCheckbox } from '@profabric/react-components';
 
 import * as AuthService from '../../services/auth';
-import {GoogleProvider} from '@app/utils/oidc-providers';
-import {setAuthentication} from '@app/store/reducers/auth';
+import { GoogleProvider, facebookLogin } from '@app/utils/oidc-providers';
+import { setAuthentication } from '@app/store/reducers/auth';
 
 const Register = () => {
   const [isAuthLoading, setAuthLoading] = useState(false);
   const [isGoogleAuthLoading, setGoogleAuthLoading] = useState(false);
+  const [isFacebookAuthLoading, setFacebookAuthLoading] = useState(false);
   const [t] = useTranslation();
   const dispatch = useDispatch();
 
@@ -40,9 +41,8 @@ const Register = () => {
     try {
       setGoogleAuthLoading(true);
       const response = await GoogleProvider.signinPopup();
-      dispatch(setAuthentication(response));
+      dispatch(setAuthentication(response as any));
       setGoogleAuthLoading(false);
-      // dispatch(loginUser(token));
       toast.success('Authentication is succeed!');
       navigate('/');
     } catch (error: any) {
@@ -51,11 +51,24 @@ const Register = () => {
     }
   };
 
-  const {handleChange, values, handleSubmit, touched, errors} = useFormik({
+  const registerByFacebook = async () => {
+    try {
+      setFacebookAuthLoading(true);
+      const response = await facebookLogin();
+      dispatch(setAuthentication(response as any));
+      setFacebookAuthLoading(false);
+      navigate('/');
+    } catch (error: any) {
+      setFacebookAuthLoading(false);
+      toast.error(error.message || 'Failed');
+    }
+  };
+
+  const { handleChange, values, handleSubmit, touched, errors } = useFormik({
     initialValues: {
       email: '',
       password: '',
-      passwordRetype: ''
+      passwordRetype: '',
     },
     validationSchema: Yup.object({
       email: Yup.string().email('Invalid email address').required('Required'),
@@ -72,12 +85,12 @@ const Register = () => {
           then: Yup.string().oneOf(
             [Yup.ref('password')],
             'Both password need to be the same'
-          )
-        })
+          ),
+        }),
     }),
     onSubmit: (values) => {
       register(values.email, values.password);
-    }
+    },
   });
 
   setWindowClass('hold-transition register-page');
@@ -184,7 +197,7 @@ const Register = () => {
                   type="submit"
                   block
                   loading={isAuthLoading}
-                  disabled={isGoogleAuthLoading}
+                  disabled={isGoogleAuthLoading || isFacebookAuthLoading}
                 >
                   {t<string>('register.label')}
                 </PfButton>
@@ -194,13 +207,25 @@ const Register = () => {
           <div className="social-auth-links text-center">
             <PfButton
               block
+              className="mb-2"
+              onClick={registerByFacebook}
+              loading={isFacebookAuthLoading}
+              disabled={isAuthLoading || isGoogleAuthLoading}
+            >
+              <i className="fab fa-facebook mr-2" />
+              {t<string>('login.button.signIn.social', {
+                what: 'Facebook',
+              })}
+            </PfButton>
+            <PfButton
+              block
               theme="danger"
               onClick={registerByGoogle}
               loading={isGoogleAuthLoading}
-              disabled={isAuthLoading}
+              disabled={isAuthLoading || isFacebookAuthLoading}
             >
               <i className="fab fa-google mr-2" />
-              {t<string>('login.button.signUp.social', {what: 'Google'})}
+              {t<string>('login.button.signUp.social', { what: 'Google' })}
             </PfButton>
           </div>
           <Link to="/login" className="text-center">
