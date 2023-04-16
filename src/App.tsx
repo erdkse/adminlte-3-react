@@ -19,7 +19,7 @@ import Profile from '@pages/profile/Profile';
 import PublicRoute from './routes/PublicRoute';
 import PrivateRoute from './routes/PrivateRoute';
 import { setAuthentication } from './store/reducers/auth';
-import { GoogleProvider } from './utils/oidc-providers';
+import { GoogleProvider, getFacebookLoginStatus } from './utils/oidc-providers';
 
 declare const FB: any;
 
@@ -29,34 +29,26 @@ const App = () => {
   const dispatch = useDispatch();
   const [isAppLoading, setIsAppLoading] = useState(true);
 
-  useEffect(() => {
-    let authResponse: any = {};
-    FB.getLoginStatus((r: any) => {
-      if (r.authResponse) {
-        authResponse = r.authResponse;
-        FB.api(
-          '/me?fields=id,name,email,picture.width(640).height(640)',
-          (profileResponse: any) => {
-            authResponse.profile = profileResponse;
-            authResponse.profile.picture = profileResponse.picture.data.url;
-            dispatch(setAuthentication(authResponse));
-            setIsAppLoading(false);
-          }
-        );
-      } else {
-        dispatch(setAuthentication(undefined));
-        setIsAppLoading(false);
+  const checkSession = async () => {
+    try {
+      let responses: any = await Promise.all([
+        getFacebookLoginStatus(),
+        GoogleProvider.getUser(),
+      ]);
+
+      responses = responses.filter((r: any) => Boolean(r));
+
+      if (responses && responses.length > 0) {
+        dispatch(setAuthentication(responses[0]));
       }
-    });
-    GoogleProvider.getUser()
-      .then((response) => {
-        dispatch(setAuthentication(response as any));
-        setIsAppLoading(false);
-      })
-      .catch((e) => {
-        console.log(e);
-        setIsAppLoading(false);
-      });
+    } catch (error: any) {
+      console.log('error', error);
+    }
+    setIsAppLoading(false);
+  };
+
+  useEffect(() => {
+    checkSession();
   }, []);
 
   useEffect(() => {

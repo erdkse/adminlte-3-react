@@ -115,17 +115,19 @@ const UserDropdown = () => {
   const logOut = async (event: any) => {
     event.preventDefault();
     setDropdownOpen(false);
+    console.log('authentication', authentication);
     if (authentication.profile.first_name) {
       await GoogleProvider.signoutPopup();
       dispatch(setAuthentication(undefined));
       navigate('/login');
-    } else if (!authentication.profile.last_name) {
-      dispatch(setAuthentication(undefined));
-    } else {
-      FB.logout((response: any) => {
+    } else if (authentication.userID) {
+      FB.logout(() => {
         dispatch(setAuthentication(undefined));
         navigate('/login');
       });
+    } else {
+      dispatch(setAuthentication(undefined));
+      navigate('/login');
     }
   };
 

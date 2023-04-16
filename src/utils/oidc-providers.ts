@@ -13,8 +13,6 @@ const GOOGLE_CONFIG: UserManagerSettings = {
   loadUserInfo: true,
 };
 
-console.log(window.location);
-
 export const GoogleProvider = new UserManager(GOOGLE_CONFIG);
 
 export const facebookLogin = () => {
@@ -39,6 +37,27 @@ export const facebookLogin = () => {
       },
       { scope: 'public_profile,email' }
     );
+  });
+};
+
+export const getFacebookLoginStatus = () => {
+  return new Promise((res, rej) => {
+    let authResponse: any = {};
+    FB.getLoginStatus((r: any) => {
+      if (r.authResponse) {
+        authResponse = r.authResponse;
+        FB.api(
+          '/me?fields=id,name,email,picture.width(640).height(640)',
+          (profileResponse: any) => {
+            authResponse.profile = profileResponse;
+            authResponse.profile.picture = profileResponse.picture.data.url;
+            res(authResponse);
+          }
+        );
+      } else {
+        rej();
+      }
+    });
   });
 };
 

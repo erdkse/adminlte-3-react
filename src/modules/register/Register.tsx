@@ -10,7 +10,6 @@ import { setWindowClass } from '@app/utils/helpers';
 import { Form, InputGroup } from 'react-bootstrap';
 import { PfButton, PfCheckbox } from '@profabric/react-components';
 
-import * as AuthService from '../../services/auth';
 import {
   GoogleProvider,
   authLogin,
@@ -82,14 +81,7 @@ const Register = () => {
       passwordRetype: Yup.string()
         .min(5, 'Must be 5 characters or more')
         .max(30, 'Must be 30 characters or less')
-        .required('Required')
-        .when('password', {
-          is: (val: string) => !!(val && val.length > 0),
-          then: Yup.string().oneOf(
-            [Yup.ref('password')],
-            'Both password need to be the same'
-          ),
-        }),
+        .required('Required'),
     }),
     onSubmit: (values) => {
       register(values.email, values.password);

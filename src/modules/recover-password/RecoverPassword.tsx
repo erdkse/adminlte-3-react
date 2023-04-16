@@ -1,20 +1,20 @@
 import React from 'react';
-import {toast} from 'react-toastify';
-import {Link} from 'react-router-dom';
-import {useTranslation} from 'react-i18next';
-import {setWindowClass} from '@app/utils/helpers';
-import {useFormik} from 'formik';
+import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { setWindowClass } from '@app/utils/helpers';
+import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import {Form, InputGroup} from 'react-bootstrap';
-import {PfButton} from '@profabric/react-components';
+import { Form, InputGroup } from 'react-bootstrap';
+import { PfButton } from '@profabric/react-components';
 
 const RecoverPassword = () => {
   const [t] = useTranslation();
 
-  const {handleChange, values, handleSubmit, touched, errors} = useFormik({
+  const { handleChange, values, handleSubmit, touched, errors } = useFormik({
     initialValues: {
       password: '',
-      confirmPassword: ''
+      confirmPassword: '',
     },
     validationSchema: Yup.object({
       password: Yup.string()
@@ -24,20 +24,13 @@ const RecoverPassword = () => {
       confirmPassword: Yup.string()
         .min(5, 'Must be 5 characters or more')
         .max(30, 'Must be 30 characters or less')
-        .required('Required')
-        .when('password', {
-          is: (val: string) => !!(val && val.length > 0),
-          then: Yup.string().oneOf(
-            [Yup.ref('password')],
-            'Both password need to be the same'
-          )
-        })
+        .required('Required'),
     }),
     onSubmit: (values) => {
       toast.warn('Not yet functional');
       // eslint-disable-next-line no-console
       console.log('values', values);
-    }
+    },
   });
 
   setWindowClass('hold-transition login-page');
