@@ -1,21 +1,24 @@
-import React, {useState} from 'react';
-import {useDispatch} from 'react-redux';
-import {Link, useNavigate} from 'react-router-dom';
-import {toast} from 'react-toastify';
-import {useFormik} from 'formik';
-import {useTranslation} from 'react-i18next';
-import {setAuthentication} from '@store/reducers/auth';
-import {setWindowClass} from '@app/utils/helpers';
-import {PfButton, PfCheckbox} from '@profabric/react-components';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { useFormik } from 'formik';
+import { useTranslation } from 'react-i18next';
+import { setAuthentication } from '@store/reducers/auth';
+import { setWindowClass } from '@app/utils/helpers';
+import { PfButton, PfCheckbox } from '@profabric/react-components';
 import * as Yup from 'yup';
-import {FacebookProvider, GoogleProvider} from '@app/utils/oidc-providers';
 
-import {Form, InputGroup} from 'react-bootstrap';
+import { GoogleProvider } from '@app/utils/oidc-providers';
+import { Form, InputGroup } from 'react-bootstrap';
 import * as AuthService from '../../services/auth';
+import axios from 'axios';
+declare const FB: any;
 
 const Login = () => {
   const [isAuthLoading, setAuthLoading] = useState(false);
   const [isGoogleAuthLoading, setGoogleAuthLoading] = useState(false);
+  const [isFacebookAuthLoading, setFacebookAuthLoading] = useState(false);
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
@@ -39,7 +42,7 @@ const Login = () => {
     try {
       setGoogleAuthLoading(true);
       const response = await GoogleProvider.signinPopup();
-      dispatch(setAuthentication(response));
+      dispatch(setAuthentication(response as any));
       toast.success('Login is succeeded!');
       setGoogleAuthLoading(false);
       navigate('/');
@@ -49,21 +52,51 @@ const Login = () => {
     }
   };
 
-  const {handleChange, values, handleSubmit, touched, errors} = useFormik({
+  const loginByFacebook = async () => {
+    try {
+      setFacebookAuthLoading(true);
+      let authResponse: any = {};
+      FB.login(
+        (r: any) => {
+          if (r.authResponse) {
+            authResponse = r.authResponse;
+            FB.api(
+              '/me?fields=id,name,email,picture.width(640).height(640)',
+              (profileResponse: any) => {
+                authResponse.profile = profileResponse;
+                authResponse.profile.picture = profileResponse.picture.data.url;
+                dispatch(setAuthentication(authResponse));
+              }
+            );
+          } else {
+            console.log('User cancelled login or did not fully authorize.');
+            setFacebookAuthLoading(false);
+          }
+        },
+        { scope: 'public_profile,email' }
+      );
+      navigate('/');
+    } catch (error: any) {
+      setFacebookAuthLoading(false);
+      toast.error(error.message || 'Failed');
+    }
+  };
+
+  const { handleChange, values, handleSubmit, touched, errors } = useFormik({
     initialValues: {
       email: '',
-      password: ''
+      password: '',
     },
     validationSchema: Yup.object({
       email: Yup.string().email('Invalid email address').required('Required'),
       password: Yup.string()
         .min(5, 'Must be 5 characters or more')
         .max(30, 'Must be 30 characters or less')
-        .required('Required')
+        .required('Required'),
     }),
     onSubmit: (values) => {
       login(values.email, values.password);
-    }
+    },
   });
 
   setWindowClass('hold-transition login-page');
@@ -142,7 +175,7 @@ const Login = () => {
                   block
                   type="submit"
                   loading={isAuthLoading}
-                  disabled={isGoogleAuthLoading}
+                  disabled={isFacebookAuthLoading || isGoogleAuthLoading}
                 >
                   {t<string>('login.button.signIn.label')}
                 </PfButton>
@@ -152,13 +185,25 @@ const Login = () => {
           <div className="social-auth-links text-center mt-2 mb-3">
             <PfButton
               block
+              className="mb-2"
+              onClick={loginByFacebook}
+              loading={isFacebookAuthLoading}
+              disabled={isAuthLoading || isGoogleAuthLoading}
+            >
+              <i className="fab fa-facebook mr-2" />
+              {t<string>('login.button.signIn.social', {
+                what: 'Facebook',
+              })}
+            </PfButton>
+            <PfButton
+              block
               theme="danger"
               onClick={loginByGoogle}
               loading={isGoogleAuthLoading}
-              disabled={isAuthLoading}
+              disabled={isAuthLoading || isFacebookAuthLoading}
             >
               <i className="fab fa-google mr-2" />
-              {t<string>('login.button.signIn.social', {what: 'Google'})}
+              {t<string>('login.button.signIn.social', { what: 'Google' })}
             </PfButton>
           </div>
           <p className="mb-1">

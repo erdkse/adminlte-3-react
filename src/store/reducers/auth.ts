@@ -1,17 +1,13 @@
 import {GoogleProvider} from '@app/utils/oidc-providers';
 import {createSlice} from '@reduxjs/toolkit';
+import { User } from 'oidc-client-ts';
 
 export interface AuthState {
-  authentication: {
-    access_token: string;
-    id_token: string;
-    refresh_token: string;
-    profile: any;
-  } | null;
+  authentication?: User
 }
 
 const initialState: AuthState = {
-  authentication: null
+  authentication: undefined
 };
 
 export const authSlice = createSlice({

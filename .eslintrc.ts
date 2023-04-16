@@ -1,40 +1,41 @@
-module.exports = {
+/* eslint-disable import/no-anonymous-default-export */
+export default {
   env: {
     browser: true,
-    es2021: true
+    es2021: true,
   },
   extends: [
     'plugin:react/recommended',
     'airbnb',
-    'plugin:prettier/recommended'
+    'plugin:prettier/recommended',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
-      jsx: true
+      jsx: true,
     },
     ecmaVersion: 12,
-    sourceType: 'module'
+    sourceType: 'module',
   },
   plugins: [
     'react',
     '@typescript-eslint',
     'react-hooks',
     'unused-imports',
-    'prettier'
+    'prettier',
   ],
   settings: {
     react: {
-      version: 'detect'
-    }
+      version: 'detect',
+    },
   },
   rules: {
     'react/jsx-filename-extension': [
       2,
-      {extensions: ['.js', '.jsx', '.ts', '.tsx']}
+      { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
     ],
     'react/jsx-props-no-spreading': ['off'],
-    'jsx-a11y/label-has-associated-control': ['error', {assert: 'either'}],
+    'jsx-a11y/label-has-associated-control': ['error', { assert: 'either' }],
     'react/jsx-indent': 'off',
     'react/jsx-indent-props': 'off',
     'react/jsx-curly-newline': 'off',
@@ -44,8 +45,8 @@ module.exports = {
     'prettier/prettier': [
       'error',
       {
-        endOfLine: 'auto'
-      }
+        endOfLine: 'auto',
+      },
     ],
     'react-hooks/rules-of-hooks': 'error',
     'import/prefer-default-export': 'off',
@@ -57,6 +58,6 @@ module.exports = {
     'react/require-default-props': 'off',
     'no-promise-executor-return': 'off',
     'no-unused-vars': 'off',
-    'import/no-extraneous-dependencies': 'off'
-  }
+    'import/no-extraneous-dependencies': 'off',
+  },
 };

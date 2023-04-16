@@ -1,12 +1,12 @@
-import React, {useState} from 'react';
-import {useNavigate, Link} from 'react-router-dom';
-import {useDispatch, useSelector} from 'react-redux';
-import {DateTime} from 'luxon';
-import {useTranslation} from 'react-i18next';
+import React, { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { DateTime } from 'luxon';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
-import {PfDropdown, PfImage} from '@profabric/react-components';
-import {setAuthentication} from '@app/store/reducers/auth';
-import {GoogleProvider} from '@app/utils/oidc-providers';
+import { PfDropdown, PfImage } from '@profabric/react-components';
+import { setAuthentication } from '@app/store/reducers/auth';
+import { GoogleProvider } from '@app/utils/oidc-providers';
 
 const StyledSmallUserImage = styled(PfImage)`
   margin-top: 3px;
@@ -103,6 +103,8 @@ export const StyledDropdown = styled(PfDropdown)`
   }
 `;
 
+declare const FB: any;
+
 const UserDropdown = () => {
   const navigate = useNavigate();
   const [t] = useTranslation();
@@ -113,9 +115,14 @@ const UserDropdown = () => {
   const logOut = async (event: any) => {
     event.preventDefault();
     setDropdownOpen(false);
-    const response = await GoogleProvider.signoutPopup();
-    console.log('response', response);
-    dispatch(setAuthentication());
+    if (authentication.profile.first_name) {
+      const response = await GoogleProvider.signoutPopup();
+      dispatch(setAuthentication(undefined));
+    } else {
+      FB.logout((response: any) => {
+        dispatch(setAuthentication(undefined));
+      });
+    }
     navigate('/login');
   };
 

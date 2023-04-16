@@ -1,24 +1,26 @@
 import React from 'react';
-import {createRoot} from 'react-dom/client';
-import {Provider} from 'react-redux';
+import { createRoot } from 'react-dom/client';
+import { Provider } from 'react-redux';
 import App from '@app/App';
 import store from '@store/store';
 
 import './utils/i18n';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-import {GoogleProvider} from '@app/utils/oidc-providers';
-import {setAuthentication} from '@app/store/reducers/auth';
+import { GoogleProvider } from '@app/utils/oidc-providers';
+import { setAuthentication } from '@app/store/reducers/auth';
 
 declare const window: any;
+declare const FB: any;
 
 window.PF = {
   config: {
-    mode: 'bs4'
-  }
+    mode: 'bs4',
+  },
 };
+
 GoogleProvider.getUser().then((response) => {
-  store.dispatch(setAuthentication(response));
+  store.dispatch(setAuthentication(response as any));
 });
 
 const container: any = document.getElementById('root');
