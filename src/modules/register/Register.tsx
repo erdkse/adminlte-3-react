@@ -11,7 +11,11 @@ import { Form, InputGroup } from 'react-bootstrap';
 import { PfButton, PfCheckbox } from '@profabric/react-components';
 
 import * as AuthService from '../../services/auth';
-import { GoogleProvider, facebookLogin } from '@app/utils/oidc-providers';
+import {
+  GoogleProvider,
+  authLogin,
+  facebookLogin,
+} from '@app/utils/oidc-providers';
 import { setAuthentication } from '@app/store/reducers/auth';
 
 const Register = () => {
@@ -26,9 +30,8 @@ const Register = () => {
   const register = async (email: string, password: string) => {
     try {
       setAuthLoading(true);
-      const token = await AuthService.registerByAuth(email, password);
-      setAuthLoading(false);
-      // dispatch(loginUser(token));
+      const response = await authLogin(email, password);
+      dispatch(setAuthentication(response as any));
       toast.success('Registration is success');
       navigate('/');
     } catch (error: any) {

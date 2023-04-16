@@ -9,7 +9,11 @@ import { setWindowClass } from '@app/utils/helpers';
 import { PfButton, PfCheckbox } from '@profabric/react-components';
 import * as Yup from 'yup';
 
-import { GoogleProvider, facebookLogin } from '@app/utils/oidc-providers';
+import {
+  GoogleProvider,
+  authLogin,
+  facebookLogin,
+} from '@app/utils/oidc-providers';
 import { Form, InputGroup } from 'react-bootstrap';
 import * as AuthService from '../../services/auth';
 import axios from 'axios';
@@ -27,7 +31,8 @@ const Login = () => {
   const login = async (email: string, password: string) => {
     try {
       setAuthLoading(true);
-      const token = await AuthService.loginByAuth(email, password);
+      const response = await authLogin(email, password);
+      dispatch(setAuthentication(response as any));
       toast.success('Login is succeed!');
       setAuthLoading(false);
       // dispatch(loginUser(token));
@@ -42,8 +47,8 @@ const Login = () => {
     try {
       setGoogleAuthLoading(true);
       const response = await GoogleProvider.signinPopup();
-      // dispatch(setAuthentication(response as any));
-      // toast.success('Login is succeeded!');
+      dispatch(setAuthentication(response as any));
+      toast.success('Login is succeeded!');
       setGoogleAuthLoading(false);
       navigate('/');
     } catch (error: any) {

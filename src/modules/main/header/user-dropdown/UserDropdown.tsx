@@ -116,14 +116,17 @@ const UserDropdown = () => {
     event.preventDefault();
     setDropdownOpen(false);
     if (authentication.profile.first_name) {
-      const response = await GoogleProvider.signoutPopup();
+      await GoogleProvider.signoutPopup();
+      dispatch(setAuthentication(undefined));
+      navigate('/login');
+    } else if (!authentication.profile.last_name) {
       dispatch(setAuthentication(undefined));
     } else {
       FB.logout((response: any) => {
         dispatch(setAuthentication(undefined));
+        navigate('/login');
       });
     }
-    navigate('/login');
   };
 
   const navigateToProfile = (event: any) => {
