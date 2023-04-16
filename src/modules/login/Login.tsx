@@ -15,9 +15,6 @@ import {
   facebookLogin,
 } from '@app/utils/oidc-providers';
 import { Form, InputGroup } from 'react-bootstrap';
-import * as AuthService from '../../services/auth';
-import axios from 'axios';
-declare const FB: any;
 
 const Login = () => {
   const [isAuthLoading, setAuthLoading] = useState(false);
