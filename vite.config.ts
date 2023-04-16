@@ -17,5 +17,6 @@ export default defineConfig({
   },
   optimizeDeps: {
     exclude: ['@profabric/react-components'],
+    disabled: false,
   },
 });
