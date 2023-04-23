@@ -6,7 +6,7 @@ import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { setAuthentication } from '@store/reducers/auth';
 import { setWindowClass } from '@app/utils/helpers';
-import { PfButton, PfCheckbox } from '@profabric/react-components';
+import { PfCheckbox, PfButton } from '@profabric/react-components';
 import * as Yup from 'yup';
 
 import {
