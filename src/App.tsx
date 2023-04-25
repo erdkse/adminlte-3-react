@@ -19,7 +19,11 @@ import Profile from '@pages/profile/Profile';
 import PublicRoute from './routes/PublicRoute';
 import PrivateRoute from './routes/PrivateRoute';
 import { setAuthentication } from './store/reducers/auth';
-import { GoogleProvider, getFacebookLoginStatus } from './utils/oidc-providers';
+import {
+  GoogleProvider,
+  getAuthStatus,
+  getFacebookLoginStatus,
+} from './utils/oidc-providers';
 
 declare const FB: any;
 
@@ -34,6 +38,7 @@ const App = () => {
       let responses: any = await Promise.all([
         getFacebookLoginStatus(),
         GoogleProvider.getUser(),
+        getAuthStatus(),
       ]);
 
       responses = responses.filter((r: any) => Boolean(r));

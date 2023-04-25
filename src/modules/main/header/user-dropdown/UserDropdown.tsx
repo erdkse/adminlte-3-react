@@ -129,6 +129,7 @@ const UserDropdown = () => {
       dispatch(setAuthentication(undefined));
       navigate('/login');
     }
+    localStorage.removeItem('authentication');
   };
 
   const navigateToProfile = (event: any) => {
