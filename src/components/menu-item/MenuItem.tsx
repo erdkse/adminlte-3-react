@@ -2,12 +2,12 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/interactive-supports-focus */
-import React, {useEffect, useState} from 'react';
-import {NavLink, useNavigate, useLocation, Location} from 'react-router-dom';
-import {useTranslation} from 'react-i18next';
-import {IMenuItem} from '@app/modules/main/menu-sidebar/MenuSidebar';
+import React, { useEffect, useState } from 'react';
+import { NavLink, useNavigate, useLocation, Location } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { IMenuItem } from '@app/modules/main/menu-sidebar/MenuSidebar';
 
-const MenuItem = ({menuItem}: {menuItem: IMenuItem}) => {
+const MenuItem = ({ menuItem }: { menuItem: IMenuItem }) => {
   const [t] = useTranslation();
   const [isMenuExtended, setIsMenuExtended] = useState(false);
   const [isExpandable, setIsExpandable] = useState(false);
@@ -69,10 +69,10 @@ const MenuItem = ({menuItem}: {menuItem: IMenuItem}) => {
         }`}
         role="link"
         onClick={handleMainMenuAction}
-        style={{cursor: 'pointer'}}
+        style={{ cursor: 'pointer' }}
       >
         <i className={`${menuItem.icon}`} />
-        <p>{t<string>(menuItem.name)}</p>
+        <p>{t(menuItem.name)}</p>
         {isExpandable ? <i className="right fas fa-angle-left" /> : null}
       </a>
 
@@ -84,7 +84,7 @@ const MenuItem = ({menuItem}: {menuItem: IMenuItem}) => {
             <li className="nav-item">
               <NavLink className="nav-link" to={`${item.path}`}>
                 <i className={`${item.icon}`} />
-                <p>{t<string>(item.name)}</p>
+                <p>{t(item.name)}</p>
               </NavLink>
             </li>
           </ul>

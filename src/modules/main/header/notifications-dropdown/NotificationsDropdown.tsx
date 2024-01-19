@@ -35,18 +35,18 @@ const NotificationsDropdown = () => {
       </div>
       <div slot="menu">
         <span className="dropdown-item dropdown-header">
-          {t<string>('header.notifications.count', { quantity: '15' })}
+          {t('header.notifications.count', { quantity: '15' })}
         </span>
         <div className="dropdown-divider" />
         <Link to="/" className="dropdown-item">
           <i className="fas fa-envelope mr-2" />
           <span>
-            {t<string>('header.notifications.newMessagesCount', {
+            {t('header.notifications.newMessagesCount', {
               quantity: '4',
             })}
           </span>
           <span className="float-right text-muted text-sm">
-            {t<string>('measurement.quantityUnit', {
+            {t('measurement.quantityUnit', {
               quantity: '3',
               unit: 'mins',
             })}
@@ -56,12 +56,12 @@ const NotificationsDropdown = () => {
         <Link to="/" className="dropdown-item">
           <i className="fas fa-users mr-2" />
           <span>
-            {t<string>('header.notifications.friendRequestsCount', {
+            {t('header.notifications.friendRequestsCount', {
               quantity: '5',
             })}
           </span>
           <span className="float-right text-muted text-sm">
-            {t<string>('measurement.quantityUnit', {
+            {t('measurement.quantityUnit', {
               quantity: '12',
               unit: 'hours',
             })}
@@ -71,12 +71,12 @@ const NotificationsDropdown = () => {
         <Link to="/" className="dropdown-item">
           <i className="fas fa-file mr-2" />
           <span>
-            {t<string>('header.notifications.reportsCount', {
+            {t('header.notifications.reportsCount', {
               quantity: '3',
             })}
           </span>
           <span className="float-right text-muted text-sm">
-            {t<string>('measurement.quantityUnit', {
+            {t('measurement.quantityUnit', {
               quantity: '2',
               unit: 'days',
             })}
@@ -84,7 +84,7 @@ const NotificationsDropdown = () => {
         </Link>
         <div className="dropdown-divider" />
         <Link to="/" className="dropdown-item dropdown-footer">
-          {t<string>('header.notifications.seeAll')}
+          {t('header.notifications.seeAll')}
         </Link>
       </div>
     </StyledDropdown>

@@ -45,36 +45,34 @@ const Profile = () => {
                   <p className="text-muted text-center">Software Engineer</p>
                   <ul className="list-group list-group-unbordered mb-3">
                     <li className="list-group-item">
-                      <b>{t<string>('header.user.followers')}</b>
+                      <b>{t('header.user.followers')}</b>
 
                       <span className="float-right">1,322</span>
                     </li>
                     <li className="list-group-item">
-                      <b>{t<string>('views.user.following')}</b>
+                      <b>{t('views.user.following')}</b>
                       <span className="float-right">543</span>
                     </li>
                     <li className="list-group-item">
-                      <b>{t<string>('header.user.friends')}</b>
+                      <b>{t('header.user.friends')}</b>
                       <span className="float-right">13,287</span>
                     </li>
                   </ul>
                   <Button block>
                     {/* @ts-ignore */}
-                    {t<string>('main.label.follow')}
+                    {t('main.label.follow')}
                   </Button>
                 </div>
                 {/* /.card-body */}
               </div>
               <div className="card card-primary">
                 <div className="card-header">
-                  <h3 className="card-title">
-                    {t<string>('main.label.aboutMe')}
-                  </h3>
+                  <h3 className="card-title">{t('main.label.aboutMe')}</h3>
                 </div>
                 <div className="card-body">
                   <strong>
                     <i className="fas fa-book mr-1" />
-                    {t<string>('main.label.education')}
+                    {t('main.label.education')}
                   </strong>
                   <p className="text-muted">
                     B.S. in Computer Science from the University of Tennessee at
@@ -83,13 +81,13 @@ const Profile = () => {
                   <hr />
                   <strong>
                     <i className="fas fa-map-marker-alt mr-1" />
-                    {t<string>('main.label.location')}
+                    {t('main.label.location')}
                   </strong>
                   <p className="text-muted">Malibu, California</p>
                   <hr />
                   <strong>
                     <i className="fas fa-pencil-alt mr-1" />
-                    {t<string>('main.label.skills')}
+                    {t('main.label.skills')}
                   </strong>
                   <p className="text-muted">
                     <span className="tag tag-danger">UI Design</span>
@@ -101,7 +99,7 @@ const Profile = () => {
                   <hr />
                   <strong>
                     <i className="far fa-file-alt mr-1" />
-                    {t<string>('main.label.notes')}
+                    {t('main.label.notes')}
                   </strong>
                   <p className="text-muted">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -122,7 +120,7 @@ const Profile = () => {
                         }`}
                         onClick={() => toggle('ACTIVITY')}
                       >
-                        {t<string>('main.label.activity')}
+                        {t('main.label.activity')}
                       </button>
                     </li>
                     <li className="nav-item">
@@ -133,7 +131,7 @@ const Profile = () => {
                         }`}
                         onClick={() => toggle('TIMELINE')}
                       >
-                        {t<string>('main.label.timeline')}
+                        {t('main.label.timeline')}
                       </button>
                     </li>
                     <li className="nav-item">
@@ -144,7 +142,7 @@ const Profile = () => {
                         }`}
                         onClick={() => toggle('SETTINGS')}
                       >
-                        {t<string>('main.label.settings')}
+                        {t('main.label.settings')}
                       </button>
                     </li>
                   </ul>

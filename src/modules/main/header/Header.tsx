@@ -1,8 +1,11 @@
-import React, {useCallback} from 'react';
-import {Link} from 'react-router-dom';
-import {useTranslation} from 'react-i18next';
-import {useDispatch, useSelector} from 'react-redux';
-import {toggleControlSidebar, toggleSidebarMenu} from '@app/store/reducers/ui';
+import React, { useCallback } from 'react';
+import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  toggleControlSidebar,
+  toggleSidebarMenu,
+} from '@app/store/reducers/ui';
 import MessagesDropdown from '@app/modules/main/header/messages-dropdown/MessagesDropdown';
 import NotificationsDropdown from '@app/modules/main/header/notifications-dropdown/NotificationsDropdown';
 import LanguagesDropdown from '@app/modules/main/header/languages-dropdown/LanguagesDropdown';
@@ -44,12 +47,12 @@ const Header = () => {
         </li>
         <li className="nav-item d-none d-sm-inline-block">
           <Link to="/" className="nav-link">
-            {t<string>('header.label.home')}
+            {t('header.label.home')}
           </Link>
         </li>
         <li className="nav-item d-none d-sm-inline-block">
           <Link to="/" className="nav-link">
-            {t<string>('header.label.contact')}
+            {t('header.label.contact')}
           </Link>
         </li>
       </ul>
