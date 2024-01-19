@@ -4,16 +4,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { DateTime } from 'luxon';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
-import { PfDropdown, PfImage } from '@profabric/react-components';
+import { Dropdown, Image } from '@profabric/react-components';
 import { setAuthentication } from '@app/store/reducers/auth';
 import { GoogleProvider } from '@app/utils/oidc-providers';
 
-const StyledSmallUserImage = styled(PfImage)`
+const StyledSmallUserImage = styled(Image)`
   margin-top: 3px;
   --pf-box-shadow: 0 3px 6px #00000029, 0 3px 6px #0000003b !important;
 `;
 
-const StyledBigUserImage = styled(PfImage)`
+const StyledBigUserImage = styled(Image)`
   --pf-box-shadow: 0 3px 6px #00000029, 0 3px 6px #0000003b !important;
   --pf-border: 3px solid #fff3;
 `;
@@ -83,7 +83,7 @@ const UserFooter = styled.li`
   }
 `;
 
-export const StyledDropdown = styled(PfDropdown)`
+export const StyledDropdown = styled(Dropdown)`
   border: none;
   width: 3rem;
   display: flex;

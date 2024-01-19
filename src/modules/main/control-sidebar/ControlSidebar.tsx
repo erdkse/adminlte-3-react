@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
-import React, {useCallback} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import React, { useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   setNavbarVariant,
   setSidebarSkin,
@@ -12,16 +12,40 @@ import {
   toggleLayoutFixed,
   toggleMenuChildIndent,
   toggleMenuItemFlat,
-  toggleSidebarMenu
+  toggleSidebarMenu,
 } from '@app/store/reducers/ui';
 import {
   NAVBAR_DARK_VARIANTS,
   NAVBAR_LIGHT_VARIANTS,
   SIDEBAR_DARK_SKINS,
-  SIDEBAR_LIGHT_SKINS
+  SIDEBAR_LIGHT_SKINS,
 } from '@app/utils/themes';
 import useScrollPosition from '@app/hooks/useScrollPosition';
-import {PfCheckbox, PfSelect} from '@profabric/react-components';
+import {
+  Checkbox as RawCheckbox,
+  Select as RawSelect,
+} from '@profabric/react-components';
+import styled from 'styled-components';
+
+export const Select = styled(RawSelect)`
+  --pf-width: 100%;
+  --pf-display: block;
+`;
+
+export const Checkbox = styled(RawCheckbox)`
+  --pf-display: block;
+`;
+
+export const FormItem = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const FormLabel = styled.label`
+  margin: 0;
+  padding: 0;
+  padding-left: 8px;
+`;
 
 const ControlSidebar = () => {
   const dispatch = useDispatch();
@@ -98,71 +122,92 @@ const ControlSidebar = () => {
         top: 0,
         bottom: footerFixed ? '57px' : '0px',
         padding: `${getContainerPaddingTop()} 16px 16px 16px`,
-        overflowY: 'scroll'
+        overflowY: 'scroll',
       }}
     >
       <h5>Customize AdminLTE</h5>
       <hr className="mb-2" />
 
-      <div style={{padding: '8px 0'}}>
+      <div style={{ padding: '8px 0' }}>
         <div className="mb-4">
-          <PfCheckbox checked={darkMode} onChange={handleDarkModeChange}>
-            Dark mode
-          </PfCheckbox>
-          <PfCheckbox checked={layoutBoxed} onChange={handleLayoutBoxedChange}>
-            Boxed (Broken when header or footer is fixed)
-          </PfCheckbox>
+          <FormItem>
+            <Checkbox onChange={handleDarkModeChange} />
+            <FormLabel>Dark mode</FormLabel>
+          </FormItem>
+          <FormItem>
+            <Checkbox
+              checked={layoutBoxed}
+              onChange={handleLayoutBoxedChange}
+            />
+            <FormLabel>Boxed (Broken when header or footer is fixed)</FormLabel>
+          </FormItem>
         </div>
 
         <h6>Header Options</h6>
 
         <div className="mb-4">
-          <PfCheckbox checked={headerFixed} onChange={handleHeaderFixedChange}>
-            Fixed
-          </PfCheckbox>
-          <PfCheckbox
-            checked={headerBorder}
-            onChange={handleHeaderBorderChange}
-          >
-            No Border
-          </PfCheckbox>
+          <FormItem>
+            <Checkbox
+              checked={headerFixed}
+              onChange={handleHeaderFixedChange}
+            />
+            <FormLabel>Fixed</FormLabel>
+          </FormItem>
+          <FormItem>
+            <Checkbox
+              checked={headerBorder}
+              onChange={handleHeaderBorderChange}
+            />
+            <FormLabel> No Border</FormLabel>
+          </FormItem>
         </div>
 
         <h6>Sidebar Options</h6>
 
         <div className="mb-4">
-          <PfCheckbox
-            checked={menuSidebarCollapsed}
-            onChange={handleMenuSidebarCollapsed}
-          >
-            Collapse
-          </PfCheckbox>
-          <PfCheckbox checked={layoutFixed} onChange={handleLayoutFixedChange}>
-            Fixed
-          </PfCheckbox>
-          <PfCheckbox
-            checked={menuItemFlat}
-            onChange={handleMenuItemFlatChange}
-          >
-            Nav Flat Style
-          </PfCheckbox>
-          <PfCheckbox
-            checked={menuChildIndent}
-            onChange={handleMenuChildIndentChange}
-          >
-            Nav Child Indent
-          </PfCheckbox>
+          <FormItem>
+            <Checkbox
+              checked={menuSidebarCollapsed}
+              onChange={handleMenuSidebarCollapsed}
+            />
+            <FormLabel>Collapse</FormLabel>
+          </FormItem>
+          <FormItem>
+            <Checkbox
+              checked={layoutFixed}
+              onChange={handleLayoutFixedChange}
+            />
+            <FormLabel>Fixed</FormLabel>
+          </FormItem>
+          <FormItem>
+            <Checkbox
+              checked={menuItemFlat}
+              onChange={handleMenuItemFlatChange}
+            />
+            <FormLabel>Nav Flat Style</FormLabel>
+          </FormItem>
+          <FormItem>
+            <Checkbox
+              checked={menuChildIndent}
+              onChange={handleMenuChildIndentChange}
+            />
+            <FormLabel>Nav Child Indent</FormLabel>
+          </FormItem>
         </div>
 
         <h6>Footer Options</h6>
 
         <div className="mb-4">
-          <PfCheckbox checked={footerFixed} onChange={handleFooterFixedChange}>
-            Fixed
-          </PfCheckbox>
+          <FormItem>
+            <Checkbox
+              checked={footerFixed}
+              onChange={handleFooterFixedChange}
+            ></Checkbox>
+            <FormLabel>Fixed</FormLabel>
+          </FormItem>
         </div>
 
-        <PfSelect
+        <Select
           className="mt-3"
           value={navbarVariant}
           label="Light Navbar Variants"
@@ -170,7 +215,7 @@ const ControlSidebar = () => {
           onChange={(e: any) => onNavbarVariantChange(e.target.value)}
           type="custom"
         />
-        <PfSelect
+        <Select
           className="mt-3"
           label="Dark Navbar Variants"
           value={navbarVariant}
@@ -178,14 +223,14 @@ const ControlSidebar = () => {
           type="custom"
           onChange={(e: any) => onNavbarVariantChange(e.target.value)}
         />
-        <PfSelect
+        <Select
           className="mt-3"
           label="Accent Color Variants"
           options={[]}
           type="custom"
           disabled
         />
-        <PfSelect
+        <Select
           className="mt-3"
           label="Light Sidebar Variants"
           value={sidebarSkin}
@@ -193,7 +238,7 @@ const ControlSidebar = () => {
           type="custom"
           onChange={(e: any) => onSidebarSkinChange(e.target.value)}
         />
-        <PfSelect
+        <Select
           className="mt-3"
           label="Dark Sidebar Variants"
           value={sidebarSkin}
@@ -201,7 +246,7 @@ const ControlSidebar = () => {
           type="custom"
           onChange={(e: any) => onSidebarSkinChange(e.target.value)}
         />
-        <PfSelect
+        <Select
           className="mt-3"
           label="Brand Logo Variants"
           options={[]}

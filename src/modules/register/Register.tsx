@@ -8,7 +8,7 @@ import * as Yup from 'yup';
 // import {loginUser} from '@store/reducers/auth';
 import { setWindowClass } from '@app/utils/helpers';
 import { Form, InputGroup } from 'react-bootstrap';
-import { PfButton, PfCheckbox } from '@profabric/react-components';
+import { Button, Checkbox } from '@profabric/react-components';
 
 import {
   GoogleProvider,
@@ -182,25 +182,25 @@ const Register = () => {
 
             <div className="row">
               <div className="col-7">
-                <PfCheckbox checked={false}>
+                <Checkbox checked={false}>
                   <span>I agree to the </span>
                   <Link to="/">terms</Link>
-                </PfCheckbox>
+                </Checkbox>
               </div>
               <div className="col-5">
-                <PfButton
+                <Button
                   type="submit"
                   block
                   loading={isAuthLoading}
                   disabled={isGoogleAuthLoading || isFacebookAuthLoading}
                 >
                   {t<string>('register.label')}
-                </PfButton>
+                </Button>
               </div>
             </div>
           </form>
           <div className="social-auth-links text-center">
-            <PfButton
+            <Button
               block
               className="mb-2"
               onClick={registerByFacebook}
@@ -211,8 +211,8 @@ const Register = () => {
               {t<string>('login.button.signIn.social', {
                 what: 'Facebook',
               })}
-            </PfButton>
-            <PfButton
+            </Button>
+            <Button
               block
               theme="danger"
               onClick={registerByGoogle}
@@ -221,7 +221,7 @@ const Register = () => {
             >
               <i className="fab fa-google mr-2" />
               {t<string>('login.button.signUp.social', { what: 'Google' })}
-            </PfButton>
+            </Button>
           </div>
           <Link to="/login" className="text-center">
             {t<string>('register.alreadyHave')}

@@ -1,10 +1,10 @@
 import {MENU} from '@app/modules/main/menu-sidebar/MenuSidebar';
-import {PfDropdown} from '@profabric/react-components';
+import {Dropdown} from '@profabric/react-components';
 import React, {useEffect, useRef, useState} from 'react';
 import {NavLink} from 'react-router-dom';
 import styled from 'styled-components';
 
-export const StyledDropdown = styled(PfDropdown)`
+export const StyledDropdown = styled(Dropdown)`
   border: none;
   width: 100%;
   display: flex;

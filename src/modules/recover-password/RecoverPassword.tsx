@@ -6,7 +6,7 @@ import { setWindowClass } from '@app/utils/helpers';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { Form, InputGroup } from 'react-bootstrap';
-import { PfButton } from '@profabric/react-components';
+import { Button } from '@profabric/react-components';
 
 const RecoverPassword = () => {
   const [t] = useTranslation();
@@ -100,10 +100,10 @@ const RecoverPassword = () => {
             </div>
             <div className="row">
               <div className="col-12">
-                <PfButton type="submit" block>
+                <Button type="submit" block>
                   {/* @ts-ignore */}
                   {t<string>('recover.changePassword')}
-                </PfButton>
+                </Button>
               </div>
             </div>
           </form>

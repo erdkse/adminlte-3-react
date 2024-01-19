@@ -7,7 +7,7 @@ import ControlSidebar from '@app/modules/main/control-sidebar/ControlSidebar';
 import Header from '@app/modules/main/header/Header';
 import MenuSidebar from '@app/modules/main/menu-sidebar/MenuSidebar';
 import Footer from '@app/modules/main/footer/Footer';
-import {PfImage} from '@profabric/react-components';
+import {Image} from '@profabric/react-components';
 
 const Main = () => {
   const dispatch = useDispatch();
@@ -68,7 +68,7 @@ const Main = () => {
     if (!isAppLoaded) {
       return (
         <div className="preloader flex-column justify-content-center align-items-center">
-          <PfImage
+          <Image
             className="animation__shake"
             src="/img/logo.png"
             alt="AdminLTELogo"

@@ -1,10 +1,10 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-import {useTranslation} from 'react-i18next';
+import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
-import {PfDropdown} from '@profabric/react-components';
+import { Dropdown } from '@profabric/react-components';
 
-export const StyledDropdown = styled(PfDropdown)`
+export const StyledDropdown = styled(Dropdown)`
   border: none;
   width: 3rem;
   display: flex;
@@ -35,20 +35,20 @@ const NotificationsDropdown = () => {
       </div>
       <div slot="menu">
         <span className="dropdown-item dropdown-header">
-          {t<string>('header.notifications.count', {quantity: '15'})}
+          {t<string>('header.notifications.count', { quantity: '15' })}
         </span>
         <div className="dropdown-divider" />
         <Link to="/" className="dropdown-item">
           <i className="fas fa-envelope mr-2" />
           <span>
             {t<string>('header.notifications.newMessagesCount', {
-              quantity: '4'
+              quantity: '4',
             })}
           </span>
           <span className="float-right text-muted text-sm">
             {t<string>('measurement.quantityUnit', {
               quantity: '3',
-              unit: 'mins'
+              unit: 'mins',
             })}
           </span>
         </Link>
@@ -57,13 +57,13 @@ const NotificationsDropdown = () => {
           <i className="fas fa-users mr-2" />
           <span>
             {t<string>('header.notifications.friendRequestsCount', {
-              quantity: '5'
+              quantity: '5',
             })}
           </span>
           <span className="float-right text-muted text-sm">
             {t<string>('measurement.quantityUnit', {
               quantity: '12',
-              unit: 'hours'
+              unit: 'hours',
             })}
           </span>
         </Link>
@@ -72,13 +72,13 @@ const NotificationsDropdown = () => {
           <i className="fas fa-file mr-2" />
           <span>
             {t<string>('header.notifications.reportsCount', {
-              quantity: '3'
+              quantity: '3',
             })}
           </span>
           <span className="float-right text-muted text-sm">
             {t<string>('measurement.quantityUnit', {
               quantity: '2',
-              unit: 'days'
+              unit: 'days',
             })}
           </span>
         </Link>

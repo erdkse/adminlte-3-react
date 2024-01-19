@@ -2,7 +2,7 @@ import React from 'react';
 import {useSelector} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {MenuItem} from '@components';
-import {PfImage} from '@profabric/react-components';
+import {Image} from '@profabric/react-components';
 import styled from 'styled-components';
 import {SidebarSearch} from '@app/components/sidebar-search/SidebarSearch';
 import i18n from '@app/utils/i18n';
@@ -44,7 +44,7 @@ export const MENU: IMenuItem[] = [
   }
 ];
 
-const StyledBrandImage = styled(PfImage)`
+const StyledBrandImage = styled(Image)`
   float: left;
   line-height: 0.8;
   margin: -1px 8px 0 6px;
@@ -53,7 +53,7 @@ const StyledBrandImage = styled(PfImage)`
     0 6px 6px rgba(0, 0, 0, 0.23) !important;
 `;
 
-const StyledUserImage = styled(PfImage)`
+const StyledUserImage = styled(Image)`
   --pf-box-shadow: 0 3px 6px #00000029, 0 3px 6px #0000003b !important;
 `;
 

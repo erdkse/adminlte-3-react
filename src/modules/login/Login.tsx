@@ -6,7 +6,7 @@ import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { setAuthentication } from '@store/reducers/auth';
 import { setWindowClass } from '@app/utils/helpers';
-import { PfCheckbox, PfButton } from '@profabric/react-components';
+import { Checkbox, Button } from '@profabric/react-components';
 import * as Yup from 'yup';
 
 import {
@@ -151,24 +151,24 @@ const Login = () => {
 
             <div className="row">
               <div className="col-8">
-                <PfCheckbox checked={false}>
+                <Checkbox checked={false}>
                   {t<string>('login.label.rememberMe')}
-                </PfCheckbox>
+                </Checkbox>
               </div>
               <div className="col-4">
-                <PfButton
+                <Button
                   block
-                  type="submit"
                   loading={isAuthLoading}
                   disabled={isFacebookAuthLoading || isGoogleAuthLoading}
+                  onClick={handleSubmit}
                 >
                   {t<string>('login.button.signIn.label')}
-                </PfButton>
+                </Button>
               </div>
             </div>
           </form>
           <div className="social-auth-links text-center mt-2 mb-3">
-            <PfButton
+            <Button
               block
               className="mb-2"
               onClick={loginByFacebook}
@@ -179,8 +179,8 @@ const Login = () => {
               {t<string>('login.button.signIn.social', {
                 what: 'Facebook',
               })}
-            </PfButton>
-            <PfButton
+            </Button>
+            <Button
               block
               theme="danger"
               onClick={loginByGoogle}
@@ -189,7 +189,7 @@ const Login = () => {
             >
               <i className="fab fa-google mr-2" />
               {t<string>('login.button.signIn.social', { what: 'Google' })}
-            </PfButton>
+            </Button>
           </div>
           <p className="mb-1">
             <Link to="/forgot-password">

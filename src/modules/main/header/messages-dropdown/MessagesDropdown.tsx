@@ -1,10 +1,10 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-import {useTranslation} from 'react-i18next';
-import {PfDropdown, PfImage} from '@profabric/react-components';
+import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { Dropdown, Image } from '@profabric/react-components';
 import styled from 'styled-components';
 
-export const StyledDropdown = styled(PfDropdown)`
+export const StyledDropdown = styled(Dropdown)`
   border: none;
   width: 3rem;
   display: flex;
@@ -36,10 +36,11 @@ const MessagesDropdown = () => {
       <div slot="menu">
         <Link to="/" className="dropdown-item">
           <div className="media">
-            <PfImage
+            <Image
               src="/img/default-profile.png"
               alt="User Avatar"
               width={50}
+              height={50}
               rounded
               className="mr-2"
             />
@@ -56,7 +57,7 @@ const MessagesDropdown = () => {
                 <span>
                   {t<string>('header.messages.ago', {
                     quantity: '30',
-                    unit: 'Minutes'
+                    unit: 'Minutes',
                   })}
                 </span>
               </p>
@@ -66,10 +67,11 @@ const MessagesDropdown = () => {
         <div className="dropdown-divider" />
         <Link to="/" className="dropdown-item">
           <div className="media">
-            <PfImage
+            <Image
               src="/img/default-profile.png"
               alt="User Avatar"
               width={50}
+              height={50}
               rounded
               className="mr-2"
             />
@@ -86,7 +88,7 @@ const MessagesDropdown = () => {
                 <span>
                   {t<string>('header.messages.ago', {
                     quantity: '3',
-                    unit: 'Hours'
+                    unit: 'Hours',
                   })}
                 </span>
               </p>
@@ -96,10 +98,11 @@ const MessagesDropdown = () => {
         <div className="dropdown-divider" />
         <Link to="/" className="dropdown-item">
           <div className="media">
-            <PfImage
+            <Image
               src="/img/default-profile.png"
               alt="User Avatar"
               width={50}
+              height={50}
               rounded
               className="mr-2"
             />
@@ -116,7 +119,7 @@ const MessagesDropdown = () => {
                 <span>
                   {t<string>('header.messages.ago', {
                     quantity: '4',
-                    unit: 'Hours'
+                    unit: 'Hours',
                   })}
                 </span>
               </p>

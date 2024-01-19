@@ -1,9 +1,9 @@
-import {PfImage} from '@profabric/react-components';
+import {Image} from '@profabric/react-components';
 import React from 'react';
 import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 
-const StyledUserImage = styled(PfImage)`
+const StyledUserImage = styled(Image)`
   --pf-border: 2px solid #adb5bd;
   --pf-padding: 2px;
   float: left;

@@ -11,6 +11,7 @@
 #root {
   width: 100vw;
   height: 100vh;
+  overflow-x: hidden;
 }
 
 .main-header .navbar-nav .nav-item .nav-link {

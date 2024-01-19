@@ -8,14 +8,6 @@ import './utils/i18n';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 
-declare const window: any;
-
-window.PF = {
-  config: {
-    mode: 'bs4',
-  },
-};
-
 const container: any = document.getElementById('root');
 const root = createRoot(container);
 root.render(

@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import {useTranslation} from 'react-i18next';
-import {PfDropdown} from '@profabric/react-components';
+import {Dropdown} from '@profabric/react-components';
 import styled from 'styled-components';
 
-export const StyledDropdown = styled(PfDropdown)`
+export const StyledDropdown = styled(Dropdown)`
   border: none;
   width: 3rem;
   display: flex;

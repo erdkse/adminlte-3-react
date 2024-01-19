@@ -1,14 +1,14 @@
-import React, {useState} from 'react';
-import {useTranslation} from 'react-i18next';
-import {ContentHeader} from '@components';
-import {PfButton, PfImage} from '@profabric/react-components';
+import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { ContentHeader } from '@components';
+import { Button, Image } from '@profabric/react-components';
 import styled from 'styled-components';
 
 import ActivityTab from './ActivityTab';
 import TimelineTab from './TimelineTab';
 import SettingsTab from './SettingsTab';
 
-const StyledUserImage = styled(PfImage)`
+const StyledUserImage = styled(Image)`
   --pf-border: 3px solid #adb5bd;
   --pf-padding: 3px;
 `;
@@ -58,10 +58,10 @@ const Profile = () => {
                       <span className="float-right">13,287</span>
                     </li>
                   </ul>
-                  <PfButton block>
+                  <Button block>
                     {/* @ts-ignore */}
                     {t<string>('main.label.follow')}
-                  </PfButton>
+                  </Button>
                 </div>
                 {/* /.card-body */}
               </div>
