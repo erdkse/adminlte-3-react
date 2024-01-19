@@ -100,10 +100,7 @@ const RecoverPassword = () => {
             </div>
             <div className="row">
               <div className="col-12">
-                <Button type="submit" block>
-                  {/* @ts-ignore */}
-                  {t('recover.changePassword')}
-                </Button>
+                <Button>{t('recover.changePassword')}</Button>
               </div>
             </div>
           </form>

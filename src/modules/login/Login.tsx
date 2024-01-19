@@ -6,7 +6,7 @@ import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { setAuthentication } from '@store/reducers/auth';
 import { setWindowClass } from '@app/utils/helpers';
-import { Checkbox, Button } from '@profabric/react-components';
+import { Checkbox, Button as RawButton } from '@profabric/react-components';
 import * as Yup from 'yup';
 
 import {
@@ -15,6 +15,12 @@ import {
   facebookLogin,
 } from '@app/utils/oidc-providers';
 import { Form, InputGroup } from 'react-bootstrap';
+import { styled } from 'styled-components';
+
+export const Button = styled(RawButton)`
+  --pf-display: block;
+  --pf-width: 100%;
+`;
 
 const Login = () => {
   const [isAuthLoading, setAuthLoading] = useState(false);
@@ -43,11 +49,12 @@ const Login = () => {
   const loginByGoogle = async () => {
     try {
       setGoogleAuthLoading(true);
-      const response = await GoogleProvider.signinPopup();
-      dispatch(setAuthentication(response as any));
-      toast.success('Login is succeeded!');
-      setGoogleAuthLoading(false);
-      navigate('/');
+      // const response = await GoogleProvider.signinPopup();
+      // dispatch(setAuthentication(response as any));
+      // toast.success('Login is succeeded!');
+      // setGoogleAuthLoading(false);
+      // navigate('/');
+      throw new Error('Not implemented');
     } catch (error: any) {
       setGoogleAuthLoading(false);
       toast.error(error.message || 'Failed');
@@ -57,10 +64,11 @@ const Login = () => {
   const loginByFacebook = async () => {
     try {
       setFacebookAuthLoading(true);
-      const response = await facebookLogin();
-      dispatch(setAuthentication(response as any));
-      setFacebookAuthLoading(false);
-      navigate('/');
+      // const response = await facebookLogin();
+      // dispatch(setAuthentication(response as any));
+      // setFacebookAuthLoading(false);
+      // navigate('/');
+      throw new Error('Not implemented');
     } catch (error: any) {
       setFacebookAuthLoading(false);
       toast.error(error.message || 'Failed');
@@ -151,16 +159,18 @@ const Login = () => {
 
             <div className="row">
               <div className="col-8">
-                <Checkbox checked={false}>
-                  {t('login.label.rememberMe')}
-                </Checkbox>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <Checkbox checked={false} />
+                  <label style={{ margin: 0, padding: 0, paddingLeft: '4px' }}>
+                    {t('login.label.rememberMe')}
+                  </label>
+                </div>
               </div>
               <div className="col-4">
                 <Button
-                  block
                   loading={isAuthLoading}
                   disabled={isFacebookAuthLoading || isGoogleAuthLoading}
-                  onClick={handleSubmit}
+                  onClick={handleSubmit as any}
                 >
                   {t('login.button.signIn.label')}
                 </Button>
@@ -169,7 +179,6 @@ const Login = () => {
           </form>
           <div className="social-auth-links text-center mt-2 mb-3">
             <Button
-              block
               className="mb-2"
               onClick={loginByFacebook}
               loading={isFacebookAuthLoading}
@@ -181,8 +190,7 @@ const Login = () => {
               })}
             </Button>
             <Button
-              block
-              theme="danger"
+              variant="danger"
               onClick={loginByGoogle}
               loading={isGoogleAuthLoading}
               disabled={isAuthLoading || isFacebookAuthLoading}

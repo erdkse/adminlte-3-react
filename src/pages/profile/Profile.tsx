@@ -46,7 +46,6 @@ const Profile = () => {
                   <ul className="list-group list-group-unbordered mb-3">
                     <li className="list-group-item">
                       <b>{t('header.user.followers')}</b>
-
                       <span className="float-right">1,322</span>
                     </li>
                     <li className="list-group-item">
@@ -58,10 +57,7 @@ const Profile = () => {
                       <span className="float-right">13,287</span>
                     </li>
                   </ul>
-                  <Button block>
-                    {/* @ts-ignore */}
-                    {t('main.label.follow')}
-                  </Button>
+                  <Button>{t('main.label.follow')}</Button>
                 </div>
                 {/* /.card-body */}
               </div>

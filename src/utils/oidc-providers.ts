@@ -5,9 +5,8 @@ declare const FB: any;
 
 const GOOGLE_CONFIG: UserManagerSettings = {
   authority: 'https://accounts.google.com',
-  client_id:
-    '533830427279-cspigijdu0g50c7imca5pvdbrcn2buaq.apps.googleusercontent.com',
-  client_secret: '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',
+  client_id: '',
+  client_secret: '',
   redirect_uri: `${window.location.protocol}//${window.location.host}/callback`,
   scope: 'openid email profile',
   loadUserInfo: true,

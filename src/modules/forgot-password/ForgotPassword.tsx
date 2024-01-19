@@ -66,10 +66,7 @@ const ForgotPassword = () => {
             </div>
             <div className="row">
               <div className="col-12">
-                <Button type="submit" block>
-                  {/* @ts-ignore */}
-                  {t('recover.requestNewPassword')}
-                </Button>
+                <Button>{t('recover.requestNewPassword')}</Button>
               </div>
             </div>
           </form>

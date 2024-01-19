@@ -1,8 +1,8 @@
-import {Button} from '@profabric/react-components';
+import { Button } from '@profabric/react-components';
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-const SettingsTab = ({isActive}: {isActive: boolean}) => {
+const SettingsTab = ({ isActive }: { isActive: boolean }) => {
   return (
     <div className={`tab-pane ${isActive ? 'active' : ''}`}>
       <form className="form-horizontal">
@@ -89,9 +89,7 @@ const SettingsTab = ({isActive}: {isActive: boolean}) => {
         </div>
         <div className="form-group row">
           <div className="offset-sm-2 col-sm-10">
-            <Button type="submit" theme="danger">
-              Submit
-            </Button>
+            <Button variant="danger">Submit</Button>
           </div>
         </div>
       </form>

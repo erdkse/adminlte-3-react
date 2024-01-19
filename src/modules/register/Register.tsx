@@ -8,7 +8,7 @@ import * as Yup from 'yup';
 // import {loginUser} from '@store/reducers/auth';
 import { setWindowClass } from '@app/utils/helpers';
 import { Form, InputGroup } from 'react-bootstrap';
-import { Button, Checkbox } from '@profabric/react-components';
+import { Button as RawButton, Checkbox } from '@profabric/react-components';
 
 import {
   GoogleProvider,
@@ -16,6 +16,12 @@ import {
   facebookLogin,
 } from '@app/utils/oidc-providers';
 import { setAuthentication } from '@app/store/reducers/auth';
+import styled from 'styled-components';
+
+export const Button = styled(RawButton)`
+  --pf-display: block;
+  --pf-width: 100%;
+`;
 
 const Register = () => {
   const [isAuthLoading, setAuthLoading] = useState(false);
@@ -42,11 +48,12 @@ const Register = () => {
   const registerByGoogle = async () => {
     try {
       setGoogleAuthLoading(true);
-      const response = await GoogleProvider.signinPopup();
-      dispatch(setAuthentication(response as any));
-      setGoogleAuthLoading(false);
-      toast.success('Authentication is succeed!');
-      navigate('/');
+      // const response = await GoogleProvider.signinPopup();
+      // dispatch(setAuthentication(response as any));
+      // setGoogleAuthLoading(false);
+      // toast.success('Authentication is succeed!');
+      // navigate('/');
+      throw new Error('Not implemented');
     } catch (error: any) {
       toast.error(error.message || 'Failed');
       setGoogleAuthLoading(false);
@@ -56,10 +63,11 @@ const Register = () => {
   const registerByFacebook = async () => {
     try {
       setFacebookAuthLoading(true);
-      const response = await facebookLogin();
-      dispatch(setAuthentication(response as any));
-      setFacebookAuthLoading(false);
-      navigate('/');
+      // const response = await facebookLogin();
+      // dispatch(setAuthentication(response as any));
+      // setFacebookAuthLoading(false);
+      // navigate('/');
+      throw new Error('Not implemented');
     } catch (error: any) {
       setFacebookAuthLoading(false);
       toast.error(error.message || 'Failed');
@@ -182,26 +190,26 @@ const Register = () => {
 
             <div className="row">
               <div className="col-7">
-                <Checkbox checked={false}>
-                  <span>I agree to the </span>
-                  <Link to="/">terms</Link>
-                </Checkbox>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <Checkbox checked={false} />
+                  <label style={{ margin: 0, padding: 0, paddingLeft: '4px' }}>
+                    <span>I agree to the </span>
+                    <Link to="/">terms</Link>{' '}
+                  </label>
+                </div>
               </div>
               <div className="col-5">
                 <Button
-                  type="submit"
-                  block
                   loading={isAuthLoading}
                   disabled={isGoogleAuthLoading || isFacebookAuthLoading}
                 >
-                  {('register.label')}
+                  {t('register.label')}
                 </Button>
               </div>
             </div>
           </form>
           <div className="social-auth-links text-center">
             <Button
-              block
               className="mb-2"
               onClick={registerByFacebook}
               loading={isFacebookAuthLoading}
@@ -213,8 +221,7 @@ const Register = () => {
               })}
             </Button>
             <Button
-              block
-              theme="danger"
+              variant="danger"
               onClick={registerByGoogle}
               loading={isGoogleAuthLoading}
               disabled={isAuthLoading || isFacebookAuthLoading}

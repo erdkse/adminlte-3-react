@@ -210,47 +210,47 @@ const ControlSidebar = () => {
         <Select
           className="mt-3"
           value={navbarVariant}
-          label="Light Navbar Variants"
+          // label="Light Navbar Variants"
+          // type="custom"
           options={NAVBAR_LIGHT_VARIANTS}
           onChange={(e: any) => onNavbarVariantChange(e.target.value)}
-          type="custom"
         />
         <Select
           className="mt-3"
-          label="Dark Navbar Variants"
+          // label="Dark Navbar Variants"
+          // type="custom"
           value={navbarVariant}
           options={NAVBAR_DARK_VARIANTS}
-          type="custom"
           onChange={(e: any) => onNavbarVariantChange(e.target.value)}
         />
         <Select
           className="mt-3"
-          label="Accent Color Variants"
+          // label="Accent Color Variants"
+          // type="custom"
           options={[]}
-          type="custom"
           disabled
         />
         <Select
           className="mt-3"
-          label="Light Sidebar Variants"
+          // label="Light Sidebar Variants"
+          // type="custom"
           value={sidebarSkin}
           options={SIDEBAR_LIGHT_SKINS}
-          type="custom"
           onChange={(e: any) => onSidebarSkinChange(e.target.value)}
         />
         <Select
           className="mt-3"
-          label="Dark Sidebar Variants"
+          // label="Dark Sidebar Variants"
+          // type="custom"
           value={sidebarSkin}
           options={SIDEBAR_DARK_SKINS}
-          type="custom"
           onChange={(e: any) => onSidebarSkinChange(e.target.value)}
         />
         <Select
           className="mt-3"
-          label="Brand Logo Variants"
+          // label="Brand Logo Variants"
+          // type="custom"
           options={[]}
-          type="custom"
           disabled
         />
       </div>
