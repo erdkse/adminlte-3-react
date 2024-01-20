@@ -131,7 +131,7 @@ const ControlSidebar = () => {
       <div style={{ padding: '8px 0' }}>
         <div className="mb-4">
           <FormItem>
-            <Checkbox onChange={handleDarkModeChange} />
+            <Checkbox checked={darkMode} onChange={handleDarkModeChange} />
             <FormLabel>Dark mode</FormLabel>
           </FormItem>
           <FormItem>

@@ -9,11 +9,7 @@ import { setWindowClass } from '@app/utils/helpers';
 import { Checkbox, Button as RawButton } from '@profabric/react-components';
 import * as Yup from 'yup';
 
-import {
-  GoogleProvider,
-  authLogin,
-  facebookLogin,
-} from '@app/utils/oidc-providers';
+import { authLogin } from '@app/utils/oidc-providers';
 import { Form, InputGroup } from 'react-bootstrap';
 import { styled } from 'styled-components';
 

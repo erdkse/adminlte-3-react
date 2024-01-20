@@ -8,7 +8,11 @@
     "build": "tsc && vite build --force",
     "preview": "vite preview",
     "format": "prettier-eslint $PWD/'src/**/*.{js,json}' --write",
-    "lint": "eslint src/**/*.js"
+    "lint": "eslint src/**/*.js",
+    "store-version": "echo '{\"version\" : '$(cat package.json | jq .version )'}' > public/version.json && git add public/version.json && git commit -m \"version upgrade \"",
+    "release:patch": "standard-version --release-as patch && npm run store-version",
+    "release:minor": "standard-version --release-as minor && npm run store-version",
+    "release:major": "standard-version --release-as major && npm run store-version"
   },
   "eslintConfig": {
     "extends": [
@@ -86,6 +90,7 @@
     "prettier": "3.2.4",
     "sass": "1.70.0",
     "sass-loader": "14.0.0",
+    "standard-version": "^9.5.0",
     "typescript": "5.3.3"
   },
   "lint-staged": {

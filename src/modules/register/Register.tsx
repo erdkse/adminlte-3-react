@@ -10,11 +10,7 @@ import { setWindowClass } from '@app/utils/helpers';
 import { Form, InputGroup } from 'react-bootstrap';
 import { Button as RawButton, Checkbox } from '@profabric/react-components';
 
-import {
-  GoogleProvider,
-  authLogin,
-  facebookLogin,
-} from '@app/utils/oidc-providers';
+import { authLogin } from '@app/utils/oidc-providers';
 import { setAuthentication } from '@app/store/reducers/auth';
 import styled from 'styled-components';
 
