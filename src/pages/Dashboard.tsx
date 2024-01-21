@@ -1,6 +1,4 @@
-import {SmallBox} from '@app/components';
-import React from 'react';
-import {ContentHeader} from '@components';
+import { ContentHeader } from '@components';
 
 const Dashboard = () => {
   return (
@@ -29,7 +27,7 @@ const Dashboard = () => {
               <div className="small-box bg-success">
                 <div className="inner">
                   <h3>
-                    53<sup style={{fontSize: '20px'}}>%</sup>
+                    53<sup style={{ fontSize: '20px' }}>%</sup>
                   </h3>
 
                   <p>Bounce Rate</p>

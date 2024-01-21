@@ -1,34 +1,13 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Dropdown, Image } from '@profabric/react-components';
-import styled from 'styled-components';
-
-export const StyledDropdown = styled(Dropdown)`
-  border: none;
-  width: 3rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  --pf-dropdown-menu-min-width: 18rem;
-
-  .dropdown-item {
-    padding: 0.5rem 1rem;
-  }
-
-  .text-sm {
-    margin-bottom: 0;
-  }
-  .dropdown-divider {
-    margin: 0;
-  }
-`;
+import { Image } from '@profabric/react-components';
+import { MessagesMenu } from '@app/styles/dropdown-menus';
 
 const MessagesDropdown = () => {
   const [t] = useTranslation();
 
   return (
-    <StyledDropdown hideArrow>
+    <MessagesMenu hideArrow>
       <div slot="button">
         <i className="far fa-comments" />
         <span className="badge badge-danger navbar-badge">3</span>
@@ -131,7 +110,7 @@ const MessagesDropdown = () => {
           {t('header.messages.seeAll')}
         </Link>
       </div>
-    </StyledDropdown>
+    </MessagesMenu>
   );
 };
 

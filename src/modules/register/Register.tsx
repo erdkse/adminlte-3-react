@@ -1,23 +1,17 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import * as Yup from 'yup';
-// import {loginUser} from '@store/reducers/auth';
 import { setWindowClass } from '@app/utils/helpers';
 import { Form, InputGroup } from 'react-bootstrap';
-import { Button as RawButton, Checkbox } from '@profabric/react-components';
+import { Checkbox } from '@profabric/react-components';
 
 import { authLogin } from '@app/utils/oidc-providers';
 import { setAuthentication } from '@app/store/reducers/auth';
-import styled from 'styled-components';
-
-export const Button = styled(RawButton)`
-  --pf-display: block;
-  --pf-width: 100%;
-`;
+import { Button } from '@app/styles/common';
 
 const Register = () => {
   const [isAuthLoading, setAuthLoading] = useState(false);

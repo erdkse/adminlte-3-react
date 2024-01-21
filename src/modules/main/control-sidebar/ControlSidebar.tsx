@@ -1,5 +1,4 @@
-/* eslint-disable no-unused-vars */
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   setNavbarVariant,
@@ -21,30 +20,32 @@ import {
   SIDEBAR_LIGHT_SKINS,
 } from '@app/utils/themes';
 import useScrollPosition from '@app/hooks/useScrollPosition';
-import {
-  Checkbox as RawCheckbox,
-  Select as RawSelect,
-} from '@profabric/react-components';
 import styled from 'styled-components';
+import { Checkbox, Select } from '@app/styles/common';
 
-export const Select = styled(RawSelect)`
-  --pf-width: 100%;
-  --pf-display: block;
-`;
-
-export const Checkbox = styled(RawCheckbox)`
-  --pf-display: block;
-`;
-
-export const FormItem = styled.div`
+export const HorizontalFormItem = styled.div`
   display: flex;
   align-items: center;
+  margin-bottom: 0.5rem;
+
+  label {
+    margin: 0;
+    padding-left: 8px;
+    font-weight: 500 !important;
+  }
 `;
 
-export const FormLabel = styled.label`
-  margin: 0;
-  padding: 0;
-  padding-left: 8px;
+export const VerticalFormItem = styled.div`
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+  margin-bottom: 1rem;
+
+  label {
+    margin: 0;
+    padding: 0;
+    font-weight: 500 !important;
+  }
 `;
 
 const ControlSidebar = () => {
@@ -130,129 +131,127 @@ const ControlSidebar = () => {
 
       <div style={{ padding: '8px 0' }}>
         <div className="mb-4">
-          <FormItem>
+          <HorizontalFormItem>
             <Checkbox checked={darkMode} onChange={handleDarkModeChange} />
-            <FormLabel>Dark mode</FormLabel>
-          </FormItem>
-          <FormItem>
+            <label>Dark mode</label>
+          </HorizontalFormItem>
+          <HorizontalFormItem>
             <Checkbox
               checked={layoutBoxed}
               onChange={handleLayoutBoxedChange}
             />
-            <FormLabel>Boxed (Broken when header or footer is fixed)</FormLabel>
-          </FormItem>
+            <label>Boxed (Broken when header or footer is fixed)</label>
+          </HorizontalFormItem>
         </div>
 
         <h6>Header Options</h6>
 
         <div className="mb-4">
-          <FormItem>
+          <HorizontalFormItem>
             <Checkbox
               checked={headerFixed}
               onChange={handleHeaderFixedChange}
             />
-            <FormLabel>Fixed</FormLabel>
-          </FormItem>
-          <FormItem>
+            <label>Fixed</label>
+          </HorizontalFormItem>
+          <HorizontalFormItem>
             <Checkbox
               checked={headerBorder}
               onChange={handleHeaderBorderChange}
             />
-            <FormLabel> No Border</FormLabel>
-          </FormItem>
+            <label>No Border</label>
+          </HorizontalFormItem>
         </div>
 
         <h6>Sidebar Options</h6>
 
         <div className="mb-4">
-          <FormItem>
+          <HorizontalFormItem>
             <Checkbox
               checked={menuSidebarCollapsed}
               onChange={handleMenuSidebarCollapsed}
             />
-            <FormLabel>Collapse</FormLabel>
-          </FormItem>
-          <FormItem>
+            <label>Collapse</label>
+          </HorizontalFormItem>
+          <HorizontalFormItem>
             <Checkbox
               checked={layoutFixed}
               onChange={handleLayoutFixedChange}
             />
-            <FormLabel>Fixed</FormLabel>
-          </FormItem>
-          <FormItem>
+            <label>Fixed</label>
+          </HorizontalFormItem>
+          <HorizontalFormItem>
             <Checkbox
               checked={menuItemFlat}
               onChange={handleMenuItemFlatChange}
             />
-            <FormLabel>Nav Flat Style</FormLabel>
-          </FormItem>
-          <FormItem>
+            <label>Nav Flat Style</label>
+          </HorizontalFormItem>
+          <HorizontalFormItem>
             <Checkbox
               checked={menuChildIndent}
               onChange={handleMenuChildIndentChange}
             />
-            <FormLabel>Nav Child Indent</FormLabel>
-          </FormItem>
+            <label>Nav Child Indent</label>
+          </HorizontalFormItem>
         </div>
 
         <h6>Footer Options</h6>
 
         <div className="mb-4">
-          <FormItem>
+          <HorizontalFormItem>
             <Checkbox
               checked={footerFixed}
               onChange={handleFooterFixedChange}
             ></Checkbox>
-            <FormLabel>Fixed</FormLabel>
-          </FormItem>
+            <label>Fixed</label>
+          </HorizontalFormItem>
         </div>
 
-        <Select
-          className="mt-3"
-          value={navbarVariant}
-          // label="Light Navbar Variants"
-          // type="custom"
-          options={NAVBAR_LIGHT_VARIANTS}
-          onChange={(e: any) => onNavbarVariantChange(e.target.value)}
-        />
-        <Select
-          className="mt-3"
-          // label="Dark Navbar Variants"
-          // type="custom"
-          value={navbarVariant}
-          options={NAVBAR_DARK_VARIANTS}
-          onChange={(e: any) => onNavbarVariantChange(e.target.value)}
-        />
-        <Select
-          className="mt-3"
-          // label="Accent Color Variants"
-          // type="custom"
-          options={[]}
-          disabled
-        />
-        <Select
-          className="mt-3"
-          // label="Light Sidebar Variants"
-          // type="custom"
-          value={sidebarSkin}
-          options={SIDEBAR_LIGHT_SKINS}
-          onChange={(e: any) => onSidebarSkinChange(e.target.value)}
-        />
-        <Select
-          className="mt-3"
-          // label="Dark Sidebar Variants"
-          // type="custom"
-          value={sidebarSkin}
-          options={SIDEBAR_DARK_SKINS}
-          onChange={(e: any) => onSidebarSkinChange(e.target.value)}
-        />
-        <Select
-          className="mt-3"
-          // label="Brand Logo Variants"
-          // type="custom"
-          options={[]}
-          disabled
-        />
+        <VerticalFormItem>
+          <label>Light Navbar Variants</label>
+          <Select
+            className="mt-1"
+            value={navbarVariant}
+            options={NAVBAR_LIGHT_VARIANTS}
+            onChange={(e: any) => onNavbarVariantChange(e.target.value)}
+          />
+        </VerticalFormItem>
+        <VerticalFormItem>
+          <label>Dark Navbar Variants</label>
+          <Select
+            className="mt-1"
+            value={navbarVariant}
+            options={NAVBAR_DARK_VARIANTS}
+            onChange={(e: any) => onNavbarVariantChange(e.target.value)}
+          />
+        </VerticalFormItem>
+        <VerticalFormItem>
+          <label>Accent Color Variants</label>
+          <Select className="mt-1" options={[]} disabled />
+        </VerticalFormItem>
+        <VerticalFormItem>
+          <label>Light Sidebar Variants</label>
+          <Select
+            className="mt-1"
+            value={sidebarSkin}
+            options={SIDEBAR_LIGHT_SKINS}
+            onChange={(e: any) => onSidebarSkinChange(e.target.value)}
+          />
+        </VerticalFormItem>
+        <VerticalFormItem>
+          <label>Dark Sidebar Variants</label>
+          <Select
+            className="mt-1"
+            value={sidebarSkin}
+            options={SIDEBAR_DARK_SKINS}
+            onChange={(e: any) => onSidebarSkinChange(e.target.value)}
+          />
+        </VerticalFormItem>
+        <VerticalFormItem>
+          <label>Brand Logo Variants</label>
+          <Select className="mt-1" options={[]} disabled />
+        </VerticalFormItem>
       </div>
     </aside>
   );

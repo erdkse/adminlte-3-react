@@ -1,16 +1,15 @@
-/* eslint-disable import/prefer-default-export */
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 
 export const useWindowSize = () => {
   const [windowSize, setWindowSize] = useState({
     width: window.innerWidth,
-    height: window.innerHeight
+    height: window.innerHeight,
   });
   useEffect(() => {
     function handleResize() {
       setWindowSize({
         width: window.innerWidth,
-        height: window.innerHeight
+        height: window.innerHeight,
       });
     }
     window.addEventListener('resize', handleResize);

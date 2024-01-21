@@ -1,107 +1,16 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { DateTime } from 'luxon';
 import { useTranslation } from 'react-i18next';
-import styled from 'styled-components';
-import { Dropdown, Image } from '@profabric/react-components';
 import { setAuthentication } from '@app/store/reducers/auth';
 import { GoogleProvider } from '@app/utils/oidc-providers';
-
-const StyledSmallUserImage = styled(Image)`
-  margin-top: 3px;
-  --pf-box-shadow: 0 3px 6px #00000029, 0 3px 6px #0000003b !important;
-`;
-
-const StyledBigUserImage = styled(Image)`
-  --pf-box-shadow: 0 3px 6px #00000029, 0 3px 6px #0000003b !important;
-  --pf-border: 3px solid #fff3;
-`;
-
-const UserHeader = styled.li`
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  height: 175px;
-  padding: 10px;
-  text-align: center;
-  img {
-    z-index: 5;
-    height: 90px;
-    width: 90px;
-    border: 3px solid;
-    border-color: transparent;
-    border-color: rgba(255, 255, 255, 0.2);
-  }
-  p {
-    z-index: 5;
-    font-size: 17px;
-    margin-top: 10px;
-    small {
-      display: block;
-      font-size: 12px;
-    }
-  }
-`;
-
-const UserBody = styled.li`
-  border-bottom-right-radius: 4px;
-  border-bottom-left-radius: 4px;
-  border-bottom: 1px solid #495057;
-  border-top: 1px solid #dee2e6;
-  padding: 15px;
-  &::after {
-    display: block;
-    clear: both;
-    content: '';
-  }
-
-  @media (min-width: 576px) {
-    a {
-      background: #ffffff !important;
-      color: #495057 !important;
-    }
-  }
-`;
-
-const UserFooter = styled.li`
-  background-color: #f8f9fa;
-  padding: 10px;
-  &::after {
-    display: block;
-    clear: both;
-    content: '';
-  }
-  .btn-default {
-    color: #6c757d;
-  }
-
-  @media (min-width: 576px) {
-    .btn-default:hover {
-      background-color: #f8f9fa;
-    }
-  }
-`;
-
-export const StyledDropdown = styled(Dropdown)`
-  border: none;
-  width: 3rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  --pf-dropdown-menu-min-width: 280px;
-
-  .dropdown-item {
-    padding: 0.5rem 1rem;
-  }
-
-  .text-sm {
-    margin-bottom: 0;
-  }
-  .dropdown-divider {
-    margin: 0;
-  }
-`;
+import { StyledBigUserImage, StyledSmallUserImage } from '@app/styles/common';
+import {
+  UserBody,
+  UserFooter,
+  UserHeader,
+  UserMenuDropdown,
+} from '@app/styles/dropdown-menus';
 
 declare const FB: any;
 
@@ -139,7 +48,7 @@ const UserDropdown = () => {
   };
 
   return (
-    <StyledDropdown isOpen={dropdownOpen} hideArrow>
+    <UserMenuDropdown isOpen={dropdownOpen} hideArrow>
       <StyledSmallUserImage
         slot="button"
         src={authentication.profile.picture}
@@ -199,7 +108,7 @@ const UserDropdown = () => {
           </button>
         </UserFooter>
       </div>
-    </StyledDropdown>
+    </UserMenuDropdown>
   );
 };
 

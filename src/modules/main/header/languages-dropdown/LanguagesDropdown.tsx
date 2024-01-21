@@ -1,27 +1,6 @@
-import React, { useState } from 'react';
+import { StyledDropdown } from '@app/styles/common';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Dropdown } from '@profabric/react-components';
-import styled from 'styled-components';
-
-export const StyledDropdown = styled(Dropdown)`
-  border: none;
-  width: 3rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  --pf-dropdown-menu-min-width: 10rem;
-
-  .dropdown-item {
-    padding: 0.5rem 1rem;
-  }
-
-  .text-sm {
-    margin-bottom: 0;
-  }
-  .dropdown-divider {
-    margin: 0;
-  }
-`;
 
 export interface Language {
   key: string;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import Main from '@modules/main/Main';
@@ -24,8 +24,6 @@ import {
   getAuthStatus,
   getFacebookLoginStatus,
 } from './utils/oidc-providers';
-
-declare const FB: any;
 
 const App = () => {
   const windowSize = useWindowSize();

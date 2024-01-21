@@ -1,4 +1,3 @@
-import React from 'react';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -6,7 +5,7 @@ import { setWindowClass } from '@app/utils/helpers';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { Form, InputGroup } from 'react-bootstrap';
-import { Button } from '@profabric/react-components';
+import { Button } from '@app/styles/common';
 
 const RecoverPassword = () => {
   const [t] = useTranslation();
@@ -28,7 +27,6 @@ const RecoverPassword = () => {
     }),
     onSubmit: (values) => {
       toast.warn('Not yet functional');
-      // eslint-disable-next-line no-console
       console.log('values', values);
     },
   });

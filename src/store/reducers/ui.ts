@@ -1,14 +1,14 @@
-import {createSlice} from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import {
   addWindowClass,
   calculateWindowSize,
-  removeWindowClass
+  removeWindowClass,
 } from '@app/utils/helpers';
 import {
   NAVBAR_DARK_VARIANTS,
   NAVBAR_LIGHT_VARIANTS,
   SIDEBAR_DARK_SKINS,
-  SIDEBAR_LIGHT_SKINS
+  SIDEBAR_LIGHT_SKINS,
 } from '@app/utils/themes';
 
 export interface UiState {
@@ -40,7 +40,7 @@ const initialState: UiState = {
   layoutBoxed: false,
   menuItemFlat: false,
   menuChildIndent: false,
-  layoutFixed: false
+  layoutFixed: false,
 };
 
 addWindowClass('layout-footer-fixed');
@@ -111,24 +111,24 @@ export const uiSlice = createSlice({
         removeWindowClass('dark-mode');
       }
     },
-    setNavbarVariant: (state, {payload}) => {
+    setNavbarVariant: (state, { payload }) => {
       if (state.darkMode) {
         state.navbarVariant = payload || NAVBAR_DARK_VARIANTS[0].value;
       } else {
         state.navbarVariant = payload || NAVBAR_LIGHT_VARIANTS[0].value;
       }
     },
-    setSidebarSkin: (state, {payload}) => {
+    setSidebarSkin: (state, { payload }) => {
       if (state.darkMode) {
         state.sidebarSkin = payload || SIDEBAR_DARK_SKINS[0].value;
       } else {
         state.sidebarSkin = payload || SIDEBAR_LIGHT_SKINS[0].value;
       }
     },
-    setWindowSize: (state, {payload}) => {
+    setWindowSize: (state, { payload }) => {
       state.screenSize = payload;
-    }
-  }
+    },
+  },
 });
 
 export const {
@@ -144,7 +144,7 @@ export const {
   toggleLayoutBoxed,
   toggleMenuItemFlat,
   toggleMenuChildIndent,
-  toggleLayoutFixed
+  toggleLayoutFixed,
 } = uiSlice.actions;
 
 export default uiSlice.reducer;

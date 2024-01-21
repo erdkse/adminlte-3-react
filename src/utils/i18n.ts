@@ -1,5 +1,5 @@
 import i18n from 'i18next';
-import {initReactI18next} from 'react-i18next';
+import { initReactI18next } from 'react-i18next';
 
 import translationEN from '../locales/en/translation.json';
 import translationTR from '../locales/tr/translation.json';
@@ -10,20 +10,20 @@ import translationFR from '../locales/fr/translation.json';
 // the translations
 const resources = {
   en: {
-    translation: translationEN
+    translation: translationEN,
   },
   tr: {
-    translation: translationTR
+    translation: translationTR,
   },
   es: {
-    translation: translationES
+    translation: translationES,
   },
   fr: {
-    translation: translationFR
+    translation: translationFR,
   },
   de: {
-    translation: translationDE
-  }
+    translation: translationDE,
+  },
 };
 
 i18n
@@ -32,11 +32,11 @@ i18n
     resources,
     lng: 'en',
     interpolation: {
-      escapeValue: false // react already safes from xss
+      escapeValue: false, // react already safes from xss
     },
     react: {
-      wait: true
-    }
+      wait: true,
+    },
   } as any);
 
 export default i18n;

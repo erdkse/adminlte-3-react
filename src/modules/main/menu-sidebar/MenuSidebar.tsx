@@ -1,10 +1,9 @@
-import React from 'react';
-import {useSelector} from 'react-redux';
-import {Link} from 'react-router-dom';
-import {MenuItem} from '@components';
-import {Image} from '@profabric/react-components';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { MenuItem } from '@components';
+import { Image } from '@profabric/react-components';
 import styled from 'styled-components';
-import {SidebarSearch} from '@app/components/sidebar-search/SidebarSearch';
+import { SidebarSearch } from '@app/components/sidebar-search/SidebarSearch';
 import i18n from '@app/utils/i18n';
 
 export interface IMenuItem {
@@ -18,12 +17,12 @@ export const MENU: IMenuItem[] = [
   {
     name: i18n.t('menusidebar.label.dashboard'),
     icon: 'fas fa-tachometer-alt nav-icon',
-    path: '/'
+    path: '/',
   },
   {
     name: i18n.t('menusidebar.label.blank'),
     icon: 'fas fa-wrench nav-icon',
-    path: '/blank'
+    path: '/blank',
   },
   {
     name: i18n.t('menusidebar.label.mainMenu'),
@@ -32,16 +31,16 @@ export const MENU: IMenuItem[] = [
       {
         name: i18n.t('menusidebar.label.subMenu'),
         icon: 'fas fa-hammer nav-icon',
-        path: '/sub-menu-1'
+        path: '/sub-menu-1',
       },
 
       {
         name: i18n.t('menusidebar.label.blank'),
         icon: 'fas fa-cogs nav-icon',
-        path: '/sub-menu-2'
-      }
-    ]
-  }
+        path: '/sub-menu-2',
+      },
+    ],
+  },
 ];
 
 const StyledBrandImage = styled(Image)`
@@ -98,7 +97,7 @@ const MenuSidebar = () => {
           <SidebarSearch />
         </div>
 
-        <nav className="mt-2" style={{overflowY: 'hidden'}}>
+        <nav className="mt-2" style={{ overflowY: 'hidden' }}>
           <ul
             className={`nav nav-pills nav-sidebar flex-column${
               menuItemFlat ? ' nav-flat' : ''

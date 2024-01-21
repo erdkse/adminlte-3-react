@@ -1,7 +1,7 @@
-import {MENU} from '@app/modules/main/menu-sidebar/MenuSidebar';
-import {Dropdown} from '@profabric/react-components';
-import React, {useEffect, useRef, useState} from 'react';
-import {NavLink} from 'react-router-dom';
+import { MENU } from '@app/modules/main/menu-sidebar/MenuSidebar';
+import { Dropdown } from '@profabric/react-components';
+import { useEffect, useRef, useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const StyledDropdown = styled(Dropdown)`
@@ -145,7 +145,7 @@ export const SidebarSearch = () => {
                     className="search-title"
                     // eslint-disable-next-line react/no-danger
                     dangerouslySetInnerHTML={{
-                      __html: boldString(menuItem.name, searchText)
+                      __html: boldString(menuItem.name, searchText),
                     }}
                   />
                   <div className="search-path">{menuItem.name}</div>

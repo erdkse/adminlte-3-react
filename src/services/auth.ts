@@ -1,4 +1,4 @@
-import {removeWindowClass} from '@app/utils/helpers';
+import { removeWindowClass } from '@app/utils/helpers';
 
 export const loginByAuth = async (email: string, password: string) => {
   const token = 'I_AM_THE_TOKEN';
