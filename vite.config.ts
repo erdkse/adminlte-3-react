@@ -6,10 +6,8 @@ import path from 'path';
 export default ({ mode }) => {
   process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };
 
-  const { VITE_NODE_ENV } = process.env;
-
   return defineConfig({
-    mode: VITE_NODE_ENV,
+    mode: 'development',
     plugins: [react()],
     resolve: {
       alias: {
