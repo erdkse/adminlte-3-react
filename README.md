@@ -4,7 +4,7 @@
   </a>
 </p>
 
-<h1 align="center">Admin LTE 3.2.0 - React 18.2.0 (with experimental features)</h1>
+<h1 align="center">Admin LTE 3.2.0 - React 18.2.0</h1>
 
 <p>
   This repository is a form of original AdminLTE project. It is aim to use AdminLTE template with React.
@@ -13,11 +13,9 @@
 
 <span align="center">
 
-[![Run on Repl.it](https://repl.it/badge/github/erdkse/adminlte-3-react)](https://repl.it/github/erdkse/adminlte-3-react)
-![Vercel](https://img.shields.io/github/deployments/erdkse/adminlte-3-react/production.svg?logo=vercel&label=vercel)
-![Issues](https://img.shields.io/github/issues/erdkse/adminlte-3-react)
-![Forks](https://img.shields.io/github/forks/erdkse/adminlte-3-react)
-![Stars](https://img.shields.io/github/stars/erdkse/adminlte-3-react)
+![Stars](https://img.shields.io/github/stars/erdkse/adminlte-3-react?style=flat-square)
+![Forks](https://img.shields.io/github/forks/erdkse/adminlte-3-react?style=flat-square)
+![Issues](https://img.shields.io/github/issues/erdkse/adminlte-3-react?style=flat-square)
 [![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 ![GitHub last commit](https://img.shields.io/github/last-commit/erdkse/adminlte-3-react.svg)
 [![License](https://img.shields.io/github/license/erdkse/adminlte-3-react.svg)](LICENSE)
@@ -68,33 +66,3 @@ If you aren’t satisfied with the build tool and configuration choices, you can
 Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
