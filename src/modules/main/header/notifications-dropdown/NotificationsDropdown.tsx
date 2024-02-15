@@ -7,11 +7,11 @@ const NotificationsDropdown = () => {
 
   return (
     <NotificationMenu hideArrow>
-      <div slot="button">
+      <div slot="head">
         <i className="far fa-bell" />
         <span className="badge badge-warning navbar-badge">15</span>
       </div>
-      <div slot="menu">
+      <div slot="body">
         <span className="dropdown-item dropdown-header">
           {t('header.notifications.count', { quantity: '15' })}
         </span>

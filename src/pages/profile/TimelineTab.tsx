@@ -1,6 +1,5 @@
-import {Image} from '@profabric/react-components';
-import React from 'react';
-import {Link} from 'react-router-dom';
+import { Image } from '@profabric/react-components';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const StyledContentImage = styled(Image)`
@@ -11,7 +10,7 @@ const StyledContentImage = styled(Image)`
   }
 `;
 
-const TimelineTab = ({isActive}: {isActive: boolean}) => {
+const TimelineTab = ({ isActive }: { isActive: boolean }) => {
   return (
     <div className={`tab-pane ${isActive ? 'active' : ''}`}>
       {/* The timeline */}

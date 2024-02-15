@@ -18,5 +18,8 @@ export default ({ mode }) => {
         '@pages': path.resolve(__dirname, './src/pages'),
       },
     },
+    build: {
+      sourcemap: true,
+    }
   });
 };

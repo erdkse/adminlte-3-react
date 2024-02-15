@@ -8,11 +8,11 @@ const MessagesDropdown = () => {
 
   return (
     <MessagesMenu hideArrow>
-      <div slot="button">
+      <div slot="head">
         <i className="far fa-comments" />
         <span className="badge badge-danger navbar-badge">3</span>
       </div>
-      <div slot="menu">
+      <div slot="body">
         <Link to="/" className="dropdown-item">
           <div className="media">
             <Image

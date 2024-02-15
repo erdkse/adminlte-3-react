@@ -64,10 +64,10 @@ const LanguagesDropdown = () => {
 
   return (
     <StyledDropdown isOpen={dropdownOpen} hideArrow>
-      <div className="nav-link" slot="button">
+      <div className="nav-link" slot="head">
         <i className={`flag-icon ${getCurrentLanguage().icon}`} />
       </div>
-      <div slot="menu">
+      <div slot="body">
         {languages.map((language) => (
           <button
             type="button"

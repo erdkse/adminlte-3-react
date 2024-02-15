@@ -99,10 +99,10 @@ export const SidebarSearch = () => {
     <StyledDropdown
       ref={dropdown}
       isOpen={isDropdownOpen}
-      hide-arrow
+      hideArrow
       openOnButtonClick={false}
     >
-      <div slot="button">
+      <div slot="head">
         <div className="input-group">
           <input
             className="form-control form-control-sidebar"
@@ -127,7 +127,7 @@ export const SidebarSearch = () => {
           </div>
         </div>
       </div>
-      <div className="menu" slot="menu">
+      <div className="menu" slot="body">
         {foundMenuItems && foundMenuItems.length === 0 && (
           <div className="nothing-found">No Element found</div>
         )}

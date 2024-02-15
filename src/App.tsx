@@ -10,7 +10,7 @@ import { useWindowSize } from '@app/hooks/useWindowSize';
 import { calculateWindowSize } from '@app/utils/helpers';
 import { useDispatch, useSelector } from 'react-redux';
 import { setWindowSize } from '@app/store/reducers/ui';
-// import ReactGA from 'react-ga4';
+import ReactGA from 'react-ga4';
 
 import Dashboard from '@pages/Dashboard';
 import Blank from '@pages/Blank';
@@ -26,13 +26,13 @@ import {
   getFacebookLoginStatus,
 } from './utils/oidc-providers';
 
-// const { VITE_NODE_ENV, GA_ID } = import.meta.env;
+const { VITE_NODE_ENV, GA_ID } = import.meta.env;
 
 const App = () => {
   const windowSize = useWindowSize();
   const screenSize = useSelector((state: any) => state.ui.screenSize);
   const dispatch = useDispatch();
-  // const location = useLocation();
+  const location = useLocation();
 
   const [isAppLoading, setIsAppLoading] = useState(true);
 
@@ -66,11 +66,11 @@ const App = () => {
     }
   }, [windowSize]);
 
-  // useEffect(() => {
-  //   if (VITE_NODE_ENV === 'production' && GA_ID) {
-  //     ReactGA.initialize(GA_ID);
-  //   }
-  // }, [location]);
+  useEffect(() => {
+    if (VITE_NODE_ENV === 'production' && GA_ID) {
+      ReactGA.initialize(GA_ID);
+    }
+  }, [location]);
 
   if (isAppLoading) {
     return <p>Loading</p>;

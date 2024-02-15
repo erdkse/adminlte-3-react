@@ -50,7 +50,7 @@ const UserDropdown = () => {
   return (
     <UserMenuDropdown isOpen={dropdownOpen} hideArrow>
       <StyledSmallUserImage
-        slot="button"
+        slot="head"
         src={authentication.profile.picture}
         fallbackSrc="/img/default-profile.png"
         alt="User"
@@ -58,7 +58,7 @@ const UserDropdown = () => {
         height={25}
         rounded
       />
-      <div slot="menu">
+      <div slot="body">
         <UserHeader className=" bg-primary">
           <StyledBigUserImage
             src={authentication.profile.picture}
