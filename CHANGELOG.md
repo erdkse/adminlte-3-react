@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.3](https://github.com/erdkse/adminlte-3-react/compare/v0.2.2...v0.2.3) (2024-02-15)
+
+
+### Bug Fixes
+
+* move browser router to other place ([46d215e](https://github.com/erdkse/adminlte-3-react/commit/46d215ef8a435f7a4387ed1ac25477c771e7234e))
+
 ### [0.2.2](https://github.com/erdkse/adminlte-3-react/compare/v0.2.1...v0.2.2) (2024-02-15)
 
 
