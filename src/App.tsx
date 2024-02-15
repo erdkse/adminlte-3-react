@@ -67,8 +67,11 @@ const App = () => {
   }, [windowSize]);
 
   useEffect(() => {
-    if (VITE_NODE_ENV === 'production' && GA_ID) {
-      ReactGA.initialize(GA_ID);
+    if (location && location.pathname && VITE_NODE_ENV === 'production') {
+      ReactGA.send({
+        hitType: 'pageview',
+        page: location.pathname,
+      });
     }
   }, [location]);
 
