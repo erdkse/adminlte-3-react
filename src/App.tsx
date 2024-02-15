@@ -26,7 +26,7 @@ import {
   getFacebookLoginStatus,
 } from './utils/oidc-providers';
 
-const { VITE_NODE_ENV, GA_ID } = import.meta.env;
+const { VITE_NODE_ENV } = import.meta.env;
 
 const App = () => {
   const windowSize = useWindowSize();
