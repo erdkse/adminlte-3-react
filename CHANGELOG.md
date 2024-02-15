@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.2](https://github.com/erdkse/adminlte-3-react/compare/v0.2.1...v0.2.2) (2024-02-15)
+
+
+### Features
+
+* add GA ([944532a](https://github.com/erdkse/adminlte-3-react/commit/944532abd6de18c28d26f71b0aaf225faa8d660e))
+
+
+### Bug Fixes
+
+* change vite build command ([04f80d1](https://github.com/erdkse/adminlte-3-react/commit/04f80d163166dac5071d7023044a2c09c5de2294))
+
 ### [0.2.1](https://github.com/erdkse/adminlte-3-react/compare/v0.2.0...v0.2.1) (2024-01-21)
 
 ## 0.2.0 (2024-01-20)
