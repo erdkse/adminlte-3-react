@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import Main from '@modules/main/Main';
 import Login from '@modules/login/Login';
@@ -77,7 +77,7 @@ const App = () => {
   }
 
   return (
-    <BrowserRouter>
+    <>
       <Routes>
         <Route path="/login" element={<PublicRoute />}>
           <Route path="/login" element={<Login />} />
@@ -111,7 +111,7 @@ const App = () => {
         rtl={false}
         pauseOnHover
       />
-    </BrowserRouter>
+    </>
   );
 };
 

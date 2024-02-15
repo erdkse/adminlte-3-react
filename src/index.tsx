@@ -7,12 +7,15 @@ import store from '@store/store';
 import './utils/i18n';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
+import { BrowserRouter } from 'react-router-dom';
 
 const container: any = document.getElementById('root');
 const root = createRoot(container);
 root.render(
   <Provider store={store}>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </Provider>
 );
 
