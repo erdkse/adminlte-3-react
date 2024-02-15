@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.9](https://github.com/erdkse/adminlte-3-react/compare/v0.2.8...v0.2.9) (2024-02-15)
+
+
+### Features
+
+* send pageview parameters to GA ([af18509](https://github.com/erdkse/adminlte-3-react/commit/af18509985316ae33af2ad2784b3cfafa70c81be))
+
 ### [0.2.8](https://github.com/erdkse/adminlte-3-react/compare/v0.2.7...v0.2.8) (2024-02-15)
 
 
