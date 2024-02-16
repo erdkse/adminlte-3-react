@@ -9,10 +9,10 @@ import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
 import ReactGA from 'react-ga4';
 
-const { VITE_NODE_ENV } = import.meta.env;
+const { VITE_NODE_ENV, GA_ID } = import.meta.env;
 
-if (VITE_NODE_ENV === 'production') {
-  ReactGA.initialize('G-VNNB8VR7PT');
+if (VITE_NODE_ENV === 'production' && GA_ID) {
+  ReactGA.initialize(GA_ID);
 }
 
 const container: any = document.getElementById('root');
