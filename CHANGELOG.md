@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.14](https://github.com/erdkse/adminlte-3-react/compare/v0.2.13...v0.2.14) (2024-04-27)
+
 ### [0.2.13](https://github.com/erdkse/adminlte-3-react/compare/v0.2.12...v0.2.13) (2024-02-16)
 
 ### [0.2.12](https://github.com/erdkse/adminlte-3-react/compare/v0.2.11...v0.2.12) (2024-02-16)
