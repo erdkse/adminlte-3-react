@@ -4,7 +4,7 @@
   </a>
 </p>
 
-<h1 align="center">Admin LTE 3.2.0 - React 18.2.0</h1>
+<h1 align="center">Admin LTE 3.2.0 - React 18.3.1</h1>
 
 <p>
   This repository is a form of original AdminLTE project. It is aim to use AdminLTE template with React.
