@@ -8,6 +8,7 @@ import Header from '@app/modules/main/header/Header';
 import MenuSidebar from '@app/modules/main/menu-sidebar/MenuSidebar';
 import Footer from '@app/modules/main/footer/Footer';
 import { Image } from '@profabric/react-components';
+import { Content } from './content/Content';
 
 const Main = () => {
   const dispatch = useDispatch();
@@ -80,17 +81,12 @@ const Main = () => {
     }
     return (
       <>
-        <Header />
+        <Header containered style={{ marginLeft: '0px' }} />
 
-        <MenuSidebar />
+        {/* <MenuSidebar /> */}
 
-        <div className="content-wrapper">
-          <div className="pt-3" />
-          <section className="content">
-            <Outlet />
-          </section>
-        </div>
-        <Footer />
+        <Content containered />
+        <Footer style={{ marginLeft: '0px' }} />
         <ControlSidebar />
         <div
           id="sidebar-overlay"
