@@ -19,12 +19,10 @@ import Profile from '@pages/profile/Profile';
 
 import PublicRoute from './routes/PublicRoute';
 import PrivateRoute from './routes/PrivateRoute';
-import { setAuthentication } from './store/reducers/auth';
-import {
-  GoogleProvider,
-  getAuthStatus,
-  getFacebookLoginStatus,
-} from './utils/oidc-providers';
+import { setCurrentUser } from './store/reducers/auth';
+
+import { firebaseAuth } from './firebase';
+import { onAuthStateChanged } from 'firebase/auth';
 
 const { VITE_NODE_ENV } = import.meta.env;
 
@@ -36,27 +34,23 @@ const App = () => {
 
   const [isAppLoading, setIsAppLoading] = useState(true);
 
-  const checkSession = async () => {
-    try {
-      let responses: any = await Promise.all([
-        getFacebookLoginStatus(),
-        GoogleProvider.getUser(),
-        getAuthStatus(),
-      ]);
-
-      responses = responses.filter((r: any) => Boolean(r));
-
-      if (responses && responses.length > 0) {
-        dispatch(setAuthentication(responses[0]));
-      }
-    } catch (error: any) {
-      console.log('error', error);
-    }
-    setIsAppLoading(false);
-  };
-
   useEffect(() => {
-    checkSession();
+    onAuthStateChanged(
+      firebaseAuth,
+      (user) => {
+        if (user) {
+          dispatch(setCurrentUser(user as any));
+        } else {
+          dispatch(setCurrentUser(undefined));
+        }
+        setIsAppLoading(false);
+      },
+      (e) => {
+        console.log(e);
+        dispatch(setCurrentUser(undefined));
+        setIsAppLoading(false);
+      }
+    );
   }, []);
 
   useEffect(() => {

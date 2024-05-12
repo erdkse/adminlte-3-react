@@ -57,7 +57,7 @@ const StyledUserImage = styled(Image)`
 `;
 
 const MenuSidebar = () => {
-  const authentication = useSelector((state: any) => state.auth.authentication);
+  const currentUser = useSelector((state: any) => state.auth.currentUser);
   const sidebarSkin = useSelector((state: any) => state.ui.sidebarSkin);
   const menuItemFlat = useSelector((state: any) => state.ui.menuItemFlat);
   const menuChildIndent = useSelector((state: any) => state.ui.menuChildIndent);
@@ -78,7 +78,7 @@ const MenuSidebar = () => {
         <div className="user-panel mt-3 pb-3 mb-3 d-flex">
           <div className="image">
             <StyledUserImage
-              src={authentication.profile.picture}
+              src={currentUser.photoURL}
               fallbackSrc="/img/default-profile.png"
               alt="User"
               width={34}
@@ -88,7 +88,7 @@ const MenuSidebar = () => {
           </div>
           <div className="info">
             <Link to="/profile" className="d-block">
-              {authentication.profile.email}
+              {currentUser.email}
             </Link>
           </div>
         </div>

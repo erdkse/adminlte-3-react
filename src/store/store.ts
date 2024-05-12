@@ -10,7 +10,9 @@ const store = configureStore({
     ui: uiSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(createLogger()) as any,
+    getDefaultMiddleware({ serializableCheck: false }).concat(
+      createLogger()
+    ) as any,
 });
 
 export default store;
