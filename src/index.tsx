@@ -16,16 +16,14 @@ if (!VITE_FIREBASE_CONFIG) {
   throw new Error('Firebase config is missing!');
 }
 
+export const firebaseConfig: FirebaseOptions = JSON.parse(VITE_FIREBASE_CONFIG);
+
 if (!VITE_GA_ID) {
   throw new Error('Google Analaytics config is missing!');
 }
 
-export const firebaseConfig: FirebaseOptions = JSON.parse(VITE_FIREBASE_CONFIG);
-
-firebaseConfig.measurementId = VITE_GA_ID;
-
-if (VITE_NODE_ENV === 'production' && firebaseConfig.measurementId) {
-  ReactGA.initialize(firebaseConfig.measurementId);
+if (VITE_NODE_ENV === 'production' && VITE_GA_ID) {
+  ReactGA.initialize(VITE_GA_ID);
 }
 
 const container: any = document.getElementById('root');
