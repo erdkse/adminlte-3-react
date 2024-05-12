@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.28](https://github.com/erdkse/adminlte-3-react/compare/v0.2.27...v0.2.28) (2024-05-12)
+
+
+### Features
+
+* make BASE_URL configurable ([5271104](https://github.com/erdkse/adminlte-3-react/commit/527110436d517b070e149d756fcce4371516d753))
+
 ### [0.2.27](https://github.com/erdkse/adminlte-3-react/compare/v0.2.26...v0.2.27) (2024-05-12)
 
 
