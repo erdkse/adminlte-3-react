@@ -8,11 +8,12 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
 import ReactGA from 'react-ga4';
+import { firebaseConfig } from './firebase';
 
-const { VITE_NODE_ENV, VITE_GA_ID } = import.meta.env;
+const { VITE_NODE_ENV } = import.meta.env;
 
-if (VITE_NODE_ENV === 'production' && VITE_GA_ID) {
-  ReactGA.initialize(VITE_GA_ID);
+if (VITE_NODE_ENV === 'production' && firebaseConfig.measurementId) {
+  ReactGA.initialize(firebaseConfig.measurementId);
 }
 
 const container: any = document.getElementById('root');
