@@ -11,6 +11,7 @@ import {
 } from '@app/styles/dropdown-menus';
 import { firebaseAuth } from '@app/firebase';
 import { DateTime } from 'luxon';
+import { BASE_PATH } from '@app/config';
 
 const UserDropdown = () => {
   const navigate = useNavigate();
@@ -27,7 +28,7 @@ const UserDropdown = () => {
   const navigateToProfile = (event: any) => {
     event.preventDefault();
     setDropdownOpen(false);
-    navigate('/profile');
+    navigate(BASE_PATH + '/profile');
   };
 
   return (

@@ -1,3 +1,4 @@
+import { BASE_PATH } from '@app/config';
 import {Image} from '@profabric/react-components';
 
 import {Link} from 'react-router-dom';
@@ -14,7 +15,7 @@ const Post = ({isClearfix = false}: {isClearfix?: boolean}) => {
     <div className={`post ${isClearfix ? 'clearfix' : ''}`}>
       <div className="user-block">
         <StyledUserImage
-          src="/img/default-profile.png"
+          src={BASE_PATH + '/img/default-profile.png'}
           alt="User"
           width={40}
           height={40}

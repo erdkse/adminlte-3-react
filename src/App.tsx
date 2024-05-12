@@ -23,6 +23,7 @@ import { setCurrentUser } from './store/reducers/auth';
 
 import { firebaseAuth } from './firebase';
 import { onAuthStateChanged } from 'firebase/auth';
+import { BASE_PATH } from './config';
 
 const { VITE_NODE_ENV } = import.meta.env;
 
@@ -76,25 +77,31 @@ const App = () => {
   return (
     <>
       <Routes>
-        <Route path="/login" element={<PublicRoute />}>
-          <Route path="/login" element={<Login />} />
+        <Route path={`${BASE_PATH}/login`} element={<PublicRoute />}>
+          <Route path={`${BASE_PATH}/login`} element={<Login />} />
         </Route>
-        <Route path="/register" element={<PublicRoute />}>
-          <Route path="/register" element={<Register />} />
+        <Route path={`${BASE_PATH}/register`} element={<PublicRoute />}>
+          <Route path={`${BASE_PATH}/register`} element={<Register />} />
         </Route>
-        <Route path="/forgot-password" element={<PublicRoute />}>
-          <Route path="/forgot-password" element={<ForgetPassword />} />
+        <Route path={`${BASE_PATH}/forgot-password`} element={<PublicRoute />}>
+          <Route
+            path={`${BASE_PATH}/forgot-password`}
+            element={<ForgetPassword />}
+          />
         </Route>
-        <Route path="/recover-password" element={<PublicRoute />}>
-          <Route path="/recover-password" element={<RecoverPassword />} />
+        <Route path={`${BASE_PATH}/recover-password`} element={<PublicRoute />}>
+          <Route
+            path={`${BASE_PATH}/recover-password`}
+            element={<RecoverPassword />}
+          />
         </Route>
-        <Route path="/" element={<PrivateRoute />}>
-          <Route path="/" element={<Main />}>
-            <Route path="/sub-menu-2" element={<Blank />} />
-            <Route path="/sub-menu-1" element={<SubMenu />} />
-            <Route path="/blank" element={<Blank />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/" element={<Dashboard />} />
+        <Route path={`${BASE_PATH}`} element={<PrivateRoute />}>
+          <Route path={`${BASE_PATH}`} element={<Main />}>
+            <Route path={`${BASE_PATH}/sub-menu-2`} element={<Blank />} />
+            <Route path={`${BASE_PATH}/sub-menu-1`} element={<SubMenu />} />
+            <Route path={`${BASE_PATH}/blank`} element={<Blank />} />
+            <Route path={`${BASE_PATH}/profile`} element={<Profile />} />
+            <Route path={`${BASE_PATH}/`} element={<Dashboard />} />
           </Route>
         </Route>
       </Routes>

@@ -5,6 +5,7 @@ import { Image } from '@profabric/react-components';
 import styled from 'styled-components';
 import { SidebarSearch } from '@app/components/sidebar-search/SidebarSearch';
 import i18n from '@app/utils/i18n';
+import { BASE_PATH } from '@app/config';
 
 export interface IMenuItem {
   name: string;
@@ -17,12 +18,12 @@ export const MENU: IMenuItem[] = [
   {
     name: i18n.t('menusidebar.label.dashboard'),
     icon: 'fas fa-tachometer-alt nav-icon',
-    path: '/',
+    path: BASE_PATH + '/',
   },
   {
     name: i18n.t('menusidebar.label.blank'),
     icon: 'fas fa-wrench nav-icon',
-    path: '/blank',
+    path: BASE_PATH + '/blank',
   },
   {
     name: i18n.t('menusidebar.label.mainMenu'),
@@ -31,13 +32,13 @@ export const MENU: IMenuItem[] = [
       {
         name: i18n.t('menusidebar.label.subMenu'),
         icon: 'fas fa-hammer nav-icon',
-        path: '/sub-menu-1',
+        path: BASE_PATH + '/sub-menu-1',
       },
 
       {
         name: i18n.t('menusidebar.label.blank'),
         icon: 'fas fa-cogs nav-icon',
-        path: '/sub-menu-2',
+        path: BASE_PATH + '/sub-menu-2',
       },
     ],
   },
@@ -66,7 +67,7 @@ const MenuSidebar = () => {
     <aside className={`main-sidebar elevation-4 ${sidebarSkin}`}>
       <Link to="/" className="brand-link">
         <StyledBrandImage
-          src="/img/logo.png"
+          src={BASE_PATH + '/img/logo.png'}
           alt="AdminLTE Logo"
           width={33}
           height={33}
@@ -79,7 +80,7 @@ const MenuSidebar = () => {
           <div className="image">
             <StyledUserImage
               src={currentUser.photoURL}
-              fallbackSrc="/img/default-profile.png"
+              fallbackSrc={BASE_PATH + '/img/default-profile.png'}
               alt="User"
               width={34}
               height={34}
@@ -87,7 +88,7 @@ const MenuSidebar = () => {
             />
           </div>
           <div className="info">
-            <Link to="/profile" className="d-block">
+            <Link to={BASE_PATH + '/profile'} className="d-block">
               {currentUser.email}
             </Link>
           </div>
