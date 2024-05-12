@@ -27,15 +27,18 @@
 
 Online demo: https://adminlte-react.erdkse.com
 
-To login website you can create a user. All authenication related features are working and live!
+To login website you can `create` a user. All authenication related features are `working` and `live`!
 
 `Firebase` is added as backend provider to increase better user experince.
 
 ## Available Scripts
 
-In the project directory, you can run:
+`Note`: Please first copy `.env.example` file as `.env` add fill the required fields. 
+
+Then, in the project directory, you can run:
 
 ### `npm run dev`
+
 
 Runs the app in the development mode.<br />
 Open [http://localhost:5173](http://localhost:5173) to view it in the browser.
@@ -48,6 +51,6 @@ Released 2021 by [Erdi Köse](https://erdkse.com)
 
 ## Support for more
 
-If you liked my work and would like to support for my expenses like server cost please (ie. `Firebase`);
+If you liked my work and would like to support for my expenses like server costs, please; (ie. `Firebase`)
 
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/erdkse)
