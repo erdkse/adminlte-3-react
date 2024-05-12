@@ -7,10 +7,11 @@ env:
   VITE_FIREBASE_CONFIG: ${{ secrets.VITE_FIREBASE_CONFIG }}
   BASE_URL: ${{ secrets.BASE_URL }}
 on:
+  workflow_dispatch:
   push:
-    # Pattern matched against refs/tags
     tags:
-      - '*' # Push events to every tag not containing /
+      - '*'
+
 jobs:
   Deploy-Production:
     runs-on: ubuntu-latest
