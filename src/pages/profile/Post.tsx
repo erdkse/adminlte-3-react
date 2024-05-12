@@ -1,7 +1,7 @@
-import { BASE_PATH } from '@app/config';
-import {Image} from '@profabric/react-components';
+import { BASE_URL } from '@app/index';
+import { Image } from '@profabric/react-components';
 
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const StyledUserImage = styled(Image)`
@@ -10,12 +10,12 @@ const StyledUserImage = styled(Image)`
   float: left;
 `;
 
-const Post = ({isClearfix = false}: {isClearfix?: boolean}) => {
+const Post = ({ isClearfix = false }: { isClearfix?: boolean }) => {
   return (
     <div className={`post ${isClearfix ? 'clearfix' : ''}`}>
       <div className="user-block">
         <StyledUserImage
-          src={BASE_PATH + '/img/default-profile.png'}
+          src={BASE_URL + '/img/default-profile.png'}
           alt="User"
           width={40}
           height={40}

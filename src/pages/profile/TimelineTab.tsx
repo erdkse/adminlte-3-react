@@ -1,4 +1,4 @@
-import { BASE_PATH } from '@app/config';
+import { BASE_URL } from '@app/index';
 import { Image } from '@profabric/react-components';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -108,19 +108,19 @@ const TimelineTab = ({ isActive }: { isActive: boolean }) => {
             </h3>
             <div className="timeline-body">
               <StyledContentImage
-                src={BASE_PATH + '/img/default-profile.png'}
+                src={BASE_URL + '/img/default-profile.png'}
                 width={25}
               />
               <StyledContentImage
-                src={BASE_PATH + '/img/default-profile.png'}
+                src={BASE_URL + '/img/default-profile.png'}
                 width={25}
               />
               <StyledContentImage
-                src={BASE_PATH + '/img/default-profile.png'}
+                src={BASE_URL + '/img/default-profile.png'}
                 width={25}
               />
               <StyledContentImage
-                src={BASE_PATH + '/img/default-profile.png'}
+                src={BASE_URL + '/img/default-profile.png'}
                 width={25}
               />
             </div>

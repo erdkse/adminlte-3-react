@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { StyledBigUserImage, StyledSmallUserImage } from '@app/styles/common';
 import {
@@ -11,7 +11,7 @@ import {
 } from '@app/styles/dropdown-menus';
 import { firebaseAuth } from '@app/firebase';
 import { DateTime } from 'luxon';
-import { BASE_PATH } from '@app/config';
+import { BASE_URL } from '@app/index';
 
 const UserDropdown = () => {
   const navigate = useNavigate();
@@ -28,7 +28,7 @@ const UserDropdown = () => {
   const navigateToProfile = (event: any) => {
     event.preventDefault();
     setDropdownOpen(false);
-    navigate(BASE_PATH + '/profile');
+    navigate('/profile');
   };
 
   return (
@@ -36,7 +36,7 @@ const UserDropdown = () => {
       <StyledSmallUserImage
         slot="head"
         src={currentUser.photoURL}
-        fallbackSrc="/img/default-profile.png"
+        fallbackSrc={BASE_URL + '/img/default-profile.png'}
         alt="User"
         width={25}
         height={25}
@@ -46,7 +46,7 @@ const UserDropdown = () => {
         <UserHeader className=" bg-primary">
           <StyledBigUserImage
             src={currentUser.photoURL}
-            fallbackSrc="/img/default-profile.png"
+            fallbackSrc={BASE_URL + '/img/default-profile.png'}
             alt="User"
             width={90}
             height={90}

@@ -8,7 +8,7 @@ import ActivityTab from './ActivityTab';
 import TimelineTab from './TimelineTab';
 import SettingsTab from './SettingsTab';
 import { Button } from '@app/styles/common';
-import { BASE_PATH } from '@app/config';
+import { BASE_URL } from '@app/index';
 
 const StyledUserImage = styled(Image)`
   --pf-border: 3px solid #adb5bd;
@@ -37,7 +37,7 @@ const Profile = () => {
                       width={100}
                       height={100}
                       rounded
-                      src={BASE_PATH + '/img/default-profile.png'}
+                      src={BASE_URL + '/img/default-profile.png'}
                       alt="User profile"
                     />
                   </div>

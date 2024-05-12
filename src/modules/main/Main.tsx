@@ -26,7 +26,6 @@ const Main = () => {
   };
 
   useEffect(() => {
-    console.log('currentUser', currentUser);
     setIsAppLoaded(Boolean(currentUser));
   }, [currentUser]);
 
