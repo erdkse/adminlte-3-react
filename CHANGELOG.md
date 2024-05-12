@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.15](https://github.com/erdkse/adminlte-3-react/compare/v0.2.14...v0.2.15) (2024-05-12)
+
+
+### Features
+
+* add firebase as backend provider ([b9da32e](https://github.com/erdkse/adminlte-3-react/commit/b9da32e088bc695fc315ea4c7998720308121f6f))
+
 ### [0.2.14](https://github.com/erdkse/adminlte-3-react/compare/v0.2.13...v0.2.14) (2024-04-27)
 
 ### [0.2.13](https://github.com/erdkse/adminlte-3-react/compare/v0.2.12...v0.2.13) (2024-02-16)
