@@ -8,9 +8,21 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
 import ReactGA from 'react-ga4';
-import { firebaseConfig } from './firebase';
+import { FirebaseOptions } from 'firebase/app';
 
-const { VITE_NODE_ENV } = import.meta.env;
+const { VITE_NODE_ENV, VITE_FIREBASE_CONFIG, VITE_GA_ID } = import.meta.env;
+
+if (!VITE_FIREBASE_CONFIG) {
+  throw new Error('Firebase config is missing!');
+}
+
+if (!VITE_GA_ID) {
+  throw new Error('Google Analaytics config is missing!');
+}
+
+export const firebaseConfig: FirebaseOptions = JSON.parse(VITE_FIREBASE_CONFIG);
+
+firebaseConfig.measurementId = VITE_GA_ID;
 
 if (VITE_NODE_ENV === 'production' && firebaseConfig.measurementId) {
   ReactGA.initialize(firebaseConfig.measurementId);

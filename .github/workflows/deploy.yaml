@@ -3,6 +3,7 @@ env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
   VITE_NODE_ENV: ${{ secrets.VITE_NODE_ENV }}
+  VITE_GA_ID: ${{ secrets.VITE_GA_ID }}
   VITE_FIREBASE_CONFIG: ${{ secrets.VITE_FIREBASE_CONFIG }}
 on:
   push:
