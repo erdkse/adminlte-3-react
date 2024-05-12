@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.27](https://github.com/erdkse/adminlte-3-react/compare/v0.2.26...v0.2.27) (2024-05-12)
+
+
+### Features
+
+* Add BASE_PATH variable ([1b49ba8](https://github.com/erdkse/adminlte-3-react/commit/1b49ba8fcc2f4a5ed825b4745d99b1699ad216a3))
+
 ### [0.2.26](https://github.com/erdkse/adminlte-3-react/compare/v0.2.25...v0.2.26) (2024-05-12)
 
 ### [0.2.25](https://github.com/erdkse/adminlte-3-react/compare/v0.2.24...v0.2.25) (2024-05-12)
