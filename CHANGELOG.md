@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.29](https://github.com/erdkse/adminlte-3-react/compare/v0.2.28...v0.2.29) (2024-05-12)
+
+
+### Bug Fixes
+
+* app logo display ([ad38e40](https://github.com/erdkse/adminlte-3-react/commit/ad38e4048f653d14a148cac2da45d398570527d2))
+
 ### [0.2.28](https://github.com/erdkse/adminlte-3-react/compare/v0.2.27...v0.2.28) (2024-05-12)
 
 
