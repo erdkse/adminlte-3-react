@@ -25,7 +25,7 @@
 
 ## Demo
 
-Online demo: https://adminlte-react.erdkse.com
+Online demo: https://erdkse.com/adminlte-react
 
 To login website you can `create` a user. All authenication related features are `working` and `live`!
 
