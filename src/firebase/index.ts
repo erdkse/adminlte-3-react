@@ -1,6 +1,13 @@
-import { initializeApp } from 'firebase/app';
+import { FirebaseOptions, initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
-import { firebaseConfig } from '..';
+
+const { VITE_FIREBASE_CONFIG } = import.meta.env;
+
+if (!VITE_FIREBASE_CONFIG) {
+  throw new Error('Firebase config is missing!');
+}
+
+const firebaseConfig: FirebaseOptions = JSON.parse(VITE_FIREBASE_CONFIG);
 
 const app = initializeApp(firebaseConfig);
 // const analytics = getAnalytics(app);
