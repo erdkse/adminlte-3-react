@@ -9,7 +9,7 @@ export default ({ mode }) => {
 
   return defineConfig({
     mode: 'development',
-    base: '',
+    base: '/adminlte-react',
     plugins: [react()],
     resolve: {
       alias: {
