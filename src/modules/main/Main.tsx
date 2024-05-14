@@ -102,12 +102,14 @@ const Main = () => {
           onKeyDown={() => {}}
           style={{
             display:
-              screenSize === 'sm' && !menuSidebarCollapsed ? 'block' : undefined,
+              screenSize === 'sm' && menuSidebarCollapsed
+                ? 'block'
+                : undefined,
           }}
         />
       </>
     );
-  }, [isAppLoaded]);
+  }, [isAppLoaded, menuSidebarCollapsed, screenSize]);
 
   return <div className="wrapper">{getAppTemplate()}</div>;
 };
