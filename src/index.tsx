@@ -9,7 +9,7 @@ import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
 import ReactGA from 'react-ga4';
 
-export const { VITE_NODE_ENV, VITE_GA_ID, BASE_URL } = import.meta.env;
+export const { VITE_NODE_ENV, VITE_GA_ID } = import.meta.env;
 
 if (VITE_NODE_ENV === 'production' && VITE_GA_ID) {
   ReactGA.initialize(VITE_GA_ID);
@@ -20,7 +20,7 @@ const root = createRoot(container);
 
 root.render(
   <Provider store={store}>
-    <BrowserRouter basename={BASE_URL}>
+    <BrowserRouter>
       <App />
     </BrowserRouter>
   </Provider>

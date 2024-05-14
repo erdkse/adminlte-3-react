@@ -5,7 +5,6 @@ import { Image } from '@profabric/react-components';
 import styled from 'styled-components';
 import { SidebarSearch } from '@app/components/sidebar-search/SidebarSearch';
 import i18n from '@app/utils/i18n';
-import { BASE_URL } from '@app/index';
 
 export interface IMenuItem {
   name: string;
@@ -67,7 +66,7 @@ const MenuSidebar = () => {
     <aside className={`main-sidebar elevation-4 ${sidebarSkin}`}>
       <Link to="/" className="brand-link">
         <StyledBrandImage
-          src={`${BASE_URL}/img/logo.png`}
+          src="img/logo.png"
           alt="AdminLTE Logo"
           width={33}
           height={33}
@@ -80,7 +79,7 @@ const MenuSidebar = () => {
           <div className="image">
             <StyledUserImage
               src={currentUser.photoURL}
-              fallbackSrc={`${BASE_URL}/img/default-profile.png`}
+              fallbackSrc="/img/default-profile.png"
               alt="User"
               width={34}
               height={34}

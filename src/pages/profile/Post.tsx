@@ -1,4 +1,3 @@
-import { BASE_URL } from '@app/index';
 import { Image } from '@profabric/react-components';
 
 import { Link } from 'react-router-dom';
@@ -15,7 +14,7 @@ const Post = ({ isClearfix = false }: { isClearfix?: boolean }) => {
     <div className={`post ${isClearfix ? 'clearfix' : ''}`}>
       <div className="user-block">
         <StyledUserImage
-          src={BASE_URL + '/img/default-profile.png'}
+          src="/img/default-profile.png"
           alt="User"
           width={40}
           height={40}

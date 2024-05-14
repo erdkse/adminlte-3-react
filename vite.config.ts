@@ -9,7 +9,6 @@ export default ({ mode }) => {
 
   return defineConfig({
     mode: 'development',
-    base: process.env.BASE_URL,
     plugins: [react()],
     resolve: {
       alias: {

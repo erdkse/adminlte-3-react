@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Image } from '@profabric/react-components';
 import { MessagesMenu } from '@app/styles/dropdown-menus';
-import { BASE_URL } from '@app/index';
 
 const MessagesDropdown = () => {
   const [t] = useTranslation();
@@ -17,7 +16,7 @@ const MessagesDropdown = () => {
         <Link to="/" className="dropdown-item">
           <div className="media">
             <Image
-              src={BASE_URL + '/img/default-profile.png'}
+              src={'/img/default-profile.png'}
               alt="User Avatar"
               width={50}
               height={50}
@@ -48,7 +47,7 @@ const MessagesDropdown = () => {
         <Link to="/" className="dropdown-item">
           <div className="media">
             <Image
-              src={BASE_URL + '/img/default-profile.png'}
+              src="/img/default-profile.png"
               alt="User Avatar"
               width={50}
               height={50}
@@ -79,7 +78,7 @@ const MessagesDropdown = () => {
         <Link to="/" className="dropdown-item">
           <div className="media">
             <Image
-              src={BASE_URL + '/img/default-profile.png'}
+              src="/img/default-profile.png"
               alt="User Avatar"
               width={50}
               height={50}

@@ -1,4 +1,4 @@
-import { BASE_URL } from '@app/index';
+import {} from '@app/index';
 import { Image } from '@profabric/react-components';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -107,22 +107,10 @@ const TimelineTab = ({ isActive }: { isActive: boolean }) => {
               <span> uploaded new photos</span>
             </h3>
             <div className="timeline-body">
-              <StyledContentImage
-                src={BASE_URL + '/img/default-profile.png'}
-                width={25}
-              />
-              <StyledContentImage
-                src={BASE_URL + '/img/default-profile.png'}
-                width={25}
-              />
-              <StyledContentImage
-                src={BASE_URL + '/img/default-profile.png'}
-                width={25}
-              />
-              <StyledContentImage
-                src={BASE_URL + '/img/default-profile.png'}
-                width={25}
-              />
+              <StyledContentImage src="/img/default-profile.png" width={25} />
+              <StyledContentImage src="/img/default-profile.png" width={25} />
+              <StyledContentImage src="/img/default-profile.png" width={25} />
+              <StyledContentImage src="/img/default-profile.png" width={25} />
             </div>
           </div>
         </div>

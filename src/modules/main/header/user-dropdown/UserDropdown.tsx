@@ -11,7 +11,7 @@ import {
 } from '@app/styles/dropdown-menus';
 import { firebaseAuth } from '@app/firebase';
 import { DateTime } from 'luxon';
-import { BASE_URL } from '@app/index';
+import {} from '@app/index';
 
 const UserDropdown = () => {
   const navigate = useNavigate();
@@ -36,7 +36,7 @@ const UserDropdown = () => {
       <StyledSmallUserImage
         slot="head"
         src={currentUser.photoURL}
-        fallbackSrc={BASE_URL + '/img/default-profile.png'}
+        fallbackSrc="/img/default-profile.png"
         alt="User"
         width={25}
         height={25}
@@ -46,7 +46,7 @@ const UserDropdown = () => {
         <UserHeader className=" bg-primary">
           <StyledBigUserImage
             src={currentUser.photoURL}
-            fallbackSrc={BASE_URL + '/img/default-profile.png'}
+            fallbackSrc="/img/default-profile.png"
             alt="User"
             width={90}
             height={90}
