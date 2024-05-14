@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
@@ -12,13 +11,14 @@ import { Checkbox } from '@profabric/react-components';
 import { setCurrentUser } from '@app/store/reducers/auth';
 import { Button } from '@app/styles/common';
 import { registerWithEmail, signInByGoogle } from '@app/services/auth';
+import { useAppDispatch } from '@app/store/store';
 
 const Register = () => {
   const [isAuthLoading, setAuthLoading] = useState(false);
   const [isGoogleAuthLoading, setGoogleAuthLoading] = useState(false);
   const [isFacebookAuthLoading, setFacebookAuthLoading] = useState(false);
   const [t] = useTranslation();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const navigate = useNavigate();
 

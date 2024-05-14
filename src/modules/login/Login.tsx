@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useFormik } from 'formik';
@@ -12,12 +11,13 @@ import * as Yup from 'yup';
 import { Form, InputGroup } from 'react-bootstrap';
 import { Button } from '@app/styles/common';
 import { loginWithEmail, signInByGoogle } from '@app/services/auth';
+import { useAppDispatch } from '@app/store/store';
 
 const Login = () => {
   const [isAuthLoading, setAuthLoading] = useState(false);
   const [isGoogleAuthLoading, setGoogleAuthLoading] = useState(false);
   const [isFacebookAuthLoading, setFacebookAuthLoading] = useState(false);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const navigate = useNavigate();
   const [t] = useTranslation();

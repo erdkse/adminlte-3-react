@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { StyledBigUserImage, StyledSmallUserImage } from '@app/styles/common';
 import {
@@ -10,13 +9,14 @@ import {
   UserMenuDropdown,
 } from '@app/styles/dropdown-menus';
 import { firebaseAuth } from '@app/firebase';
-import { DateTime } from 'luxon';
 import {} from '@app/index';
+import { useAppSelector } from '@app/store/store';
+import { DateTime } from 'luxon';
 
 const UserDropdown = () => {
   const navigate = useNavigate();
   const [t] = useTranslation();
-  const currentUser = useSelector((state: any) => state.auth.currentUser);
+  const currentUser = useAppSelector((state) => state.auth.currentUser);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const logOut = async (event: any) => {
@@ -35,7 +35,7 @@ const UserDropdown = () => {
     <UserMenuDropdown isOpen={dropdownOpen} hideArrow>
       <StyledSmallUserImage
         slot="head"
-        src={currentUser.photoURL}
+        src={currentUser?.photoURL}
         fallbackSrc="/img/default-profile.png"
         alt="User"
         width={25}
@@ -45,7 +45,7 @@ const UserDropdown = () => {
       <div slot="body">
         <UserHeader className=" bg-primary">
           <StyledBigUserImage
-            src={currentUser.photoURL}
+            src={currentUser?.photoURL}
             fallbackSrc="/img/default-profile.png"
             alt="User"
             width={90}
@@ -53,14 +53,16 @@ const UserDropdown = () => {
             rounded
           />
           <p>
-            {currentUser.email}
+            {currentUser?.email}
             <small>
               <span>Member since </span>
-              <span>
-                {DateTime.fromMillis(+currentUser?.metadata.createdAt).toFormat(
-                  'dd LLL yyyy'
-                )}
-              </span>
+              {currentUser?.metadata?.creationTime && (
+                <span>
+                  {DateTime.fromRFC2822(
+                    currentUser?.metadata?.creationTime
+                  ).toFormat('dd LLL yyyy')}
+                </span>
+              )}
             </small>
           </p>
         </UserHeader>

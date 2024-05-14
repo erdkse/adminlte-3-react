@@ -8,7 +8,6 @@ import ForgetPassword from '@modules/forgot-password/ForgotPassword';
 import RecoverPassword from '@modules/recover-password/RecoverPassword';
 import { useWindowSize } from '@app/hooks/useWindowSize';
 import { calculateWindowSize } from '@app/utils/helpers';
-import { useDispatch, useSelector } from 'react-redux';
 import { setWindowSize } from '@app/store/reducers/ui';
 import ReactGA from 'react-ga4';
 
@@ -23,13 +22,14 @@ import { setCurrentUser } from './store/reducers/auth';
 
 import { firebaseAuth } from './firebase';
 import { onAuthStateChanged } from 'firebase/auth';
+import { useAppDispatch, useAppSelector } from './store/store';
 
 const { VITE_NODE_ENV } = import.meta.env;
 
 const App = () => {
   const windowSize = useWindowSize();
-  const screenSize = useSelector((state: any) => state.ui.screenSize);
-  const dispatch = useDispatch();
+  const screenSize = useAppSelector((state) => state.ui.screenSize);
+  const dispatch = useAppDispatch();
   const location = useLocation();
 
   const [isAppLoading, setIsAppLoading] = useState(true);

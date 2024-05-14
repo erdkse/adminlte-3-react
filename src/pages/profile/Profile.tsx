@@ -1,22 +1,28 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ContentHeader } from '@components';
-import { Image } from '@profabric/react-components';
+import { Image, Button as RawButton } from '@profabric/react-components';
 import styled from 'styled-components';
-
 import ActivityTab from './ActivityTab';
 import TimelineTab from './TimelineTab';
 import SettingsTab from './SettingsTab';
 import { Button } from '@app/styles/common';
+import { useAppSelector } from '@app/store/store';
 
 const StyledUserImage = styled(Image)`
   --pf-border: 3px solid #adb5bd;
   --pf-padding: 3px;
 `;
 
+export const TabButton = styled(RawButton)`
+  margin-right: 0.25rem;
+  --pf-width: 8rem;
+`;
+
 const Profile = () => {
   const [activeTab, setActiveTab] = useState('ACTIVITY');
   const [t] = useTranslation();
+  const currentUser = useAppSelector((state) => state.auth.currentUser);
 
   const toggle = (tab: string) => {
     if (activeTab !== tab) setActiveTab(tab);
@@ -36,12 +42,12 @@ const Profile = () => {
                       width={100}
                       height={100}
                       rounded
-                      src="/img/default-profile.png"
+                      src={currentUser?.photoURL}
                       alt="User profile"
                     />
                   </div>
                   <h3 className="profile-username text-center">
-                    Nina Mcintire
+                    {currentUser?.displayName}
                   </h3>
                   <p className="text-muted text-center">Software Engineer</p>
                   <ul className="list-group list-group-unbordered mb-3">
@@ -110,37 +116,28 @@ const Profile = () => {
                 <div className="card-header p-2">
                   <ul className="nav nav-pills">
                     <li className="nav-item">
-                      <button
-                        type="button"
-                        className={`nav-link ${
-                          activeTab === 'ACTIVITY' ? 'active' : ''
-                        }`}
+                      <TabButton
+                        variant={activeTab === 'ACTIVITY' ? 'primary' : 'light'}
                         onClick={() => toggle('ACTIVITY')}
                       >
                         {t('main.label.activity')}
-                      </button>
+                      </TabButton>
                     </li>
                     <li className="nav-item">
-                      <button
-                        type="button"
-                        className={`nav-link ${
-                          activeTab === 'TIMELINE' ? 'active' : ''
-                        }`}
+                      <TabButton
+                        variant={activeTab === 'TIMELINE' ? 'primary' : 'light'}
                         onClick={() => toggle('TIMELINE')}
                       >
                         {t('main.label.timeline')}
-                      </button>
+                      </TabButton>
                     </li>
                     <li className="nav-item">
-                      <button
-                        type="button"
-                        className={`nav-link ${
-                          activeTab === 'SETTINGS' ? 'active' : ''
-                        }`}
+                      <TabButton
+                        variant={activeTab === 'SETTINGS' ? 'primary' : 'light'}
                         onClick={() => toggle('SETTINGS')}
                       >
                         {t('main.label.settings')}
-                      </button>
+                      </TabButton>
                     </li>
                   </ul>
                 </div>

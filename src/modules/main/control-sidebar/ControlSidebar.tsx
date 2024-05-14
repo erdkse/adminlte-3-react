@@ -1,5 +1,4 @@
 import { useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import {
   setNavbarVariant,
   setSidebarSkin,
@@ -22,6 +21,7 @@ import {
 import useScrollPosition from '@app/hooks/useScrollPosition';
 import styled from 'styled-components';
 import { Checkbox, Select } from '@app/styles/common';
+import { useAppDispatch, useAppSelector } from '@app/store/store';
 
 export const HorizontalFormItem = styled.div`
   display: flex;
@@ -49,19 +49,19 @@ export const VerticalFormItem = styled.div`
 `;
 
 const ControlSidebar = () => {
-  const dispatch = useDispatch();
-  const darkMode = useSelector((state: any) => state.ui.darkMode);
-  const headerBorder = useSelector((state: any) => state.ui.headerBorder);
-  const headerFixed = useSelector((state: any) => state.ui.headerFixed);
-  const footerFixed = useSelector((state: any) => state.ui.footerFixed);
-  const navbarVariant = useSelector((state: any) => state.ui.navbarVariant);
-  const sidebarSkin = useSelector((state: any) => state.ui.sidebarSkin);
-  const layoutBoxed = useSelector((state: any) => state.ui.layoutBoxed);
-  const layoutFixed = useSelector((state: any) => state.ui.layoutFixed);
-  const menuItemFlat = useSelector((state: any) => state.ui.menuItemFlat);
-  const menuChildIndent = useSelector((state: any) => state.ui.menuChildIndent);
-  const menuSidebarCollapsed = useSelector(
-    (state: any) => state.ui.menuSidebarCollapsed
+  const dispatch = useAppDispatch();
+  const darkMode = useAppSelector((state) => state.ui.darkMode);
+  const headerBorder = useAppSelector((state) => state.ui.headerBorder);
+  const headerFixed = useAppSelector((state) => state.ui.headerFixed);
+  const footerFixed = useAppSelector((state) => state.ui.footerFixed);
+  const navbarVariant = useAppSelector((state) => state.ui.navbarVariant);
+  const sidebarSkin = useAppSelector((state) => state.ui.sidebarSkin);
+  const layoutBoxed = useAppSelector((state) => state.ui.layoutBoxed);
+  const layoutFixed = useAppSelector((state) => state.ui.layoutFixed);
+  const menuItemFlat = useAppSelector((state) => state.ui.menuItemFlat);
+  const menuChildIndent = useAppSelector((state) => state.ui.menuChildIndent);
+  const menuSidebarCollapsed = useAppSelector(
+    (state) => state.ui.menuSidebarCollapsed
   );
   const scrollPosition = useScrollPosition();
 

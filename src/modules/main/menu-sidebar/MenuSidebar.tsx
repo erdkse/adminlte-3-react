@@ -1,10 +1,10 @@
-import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { MenuItem } from '@components';
 import { Image } from '@profabric/react-components';
 import styled from 'styled-components';
 import { SidebarSearch } from '@app/components/sidebar-search/SidebarSearch';
 import i18n from '@app/utils/i18n';
+import { useAppSelector } from '@app/store/store';
 
 export interface IMenuItem {
   name: string;
@@ -57,10 +57,10 @@ const StyledUserImage = styled(Image)`
 `;
 
 const MenuSidebar = () => {
-  const currentUser = useSelector((state: any) => state.auth.currentUser);
-  const sidebarSkin = useSelector((state: any) => state.ui.sidebarSkin);
-  const menuItemFlat = useSelector((state: any) => state.ui.menuItemFlat);
-  const menuChildIndent = useSelector((state: any) => state.ui.menuChildIndent);
+  const currentUser = useAppSelector((state) => state.auth.currentUser);
+  const sidebarSkin = useAppSelector((state) => state.ui.sidebarSkin);
+  const menuItemFlat = useAppSelector((state) => state.ui.menuItemFlat);
+  const menuChildIndent = useAppSelector((state) => state.ui.menuChildIndent);
 
   return (
     <aside className={`main-sidebar elevation-4 ${sidebarSkin}`}>
@@ -78,7 +78,7 @@ const MenuSidebar = () => {
         <div className="user-panel mt-3 pb-3 mb-3 d-flex">
           <div className="image">
             <StyledUserImage
-              src={currentUser.photoURL}
+              src={currentUser?.photoURL}
               fallbackSrc="/img/default-profile.png"
               alt="User"
               width={34}
@@ -88,7 +88,7 @@ const MenuSidebar = () => {
           </div>
           <div className="info">
             <Link to={'/profile'} className="d-block">
-              {currentUser.email}
+              {currentUser?.email}
             </Link>
           </div>
         </div>

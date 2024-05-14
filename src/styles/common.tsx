@@ -10,6 +10,7 @@ import {
 export const Button = styled(RawButton)`
   --pf-display: block;
   --pf-width: 100%;
+  border: none;
 `;
 
 export const Select = styled(RawSelect)`
