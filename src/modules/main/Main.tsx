@@ -1,7 +1,10 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Outlet } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleSidebarMenu } from '@app/store/reducers/ui';
+import {
+  setSidebarMenuToggle,
+  toggleSidebarMenu,
+} from '@app/store/reducers/ui';
 import { addWindowClass, removeWindowClass, sleep } from '@app/utils/helpers';
 import ControlSidebar from '@app/modules/main/control-sidebar/ControlSidebar';
 import Header from '@app/modules/main/header/Header';
@@ -99,7 +102,7 @@ const Main = () => {
           onKeyDown={() => {}}
           style={{
             display:
-              menuSidebarCollapsed && screenSize === 'sm' ? 'block' : undefined,
+              screenSize === 'sm' && !menuSidebarCollapsed ? 'block' : undefined,
           }}
         />
       </>
