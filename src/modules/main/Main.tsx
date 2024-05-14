@@ -97,6 +97,10 @@ const Main = () => {
           role="presentation"
           onClick={handleToggleMenuSidebar}
           onKeyDown={() => {}}
+          style={{
+            display:
+              menuSidebarCollapsed && screenSize === 'sm' ? 'block' : undefined,
+          }}
         />
       </>
     );
