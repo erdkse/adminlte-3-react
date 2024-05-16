@@ -1,3 +1,4 @@
+import { InfoBox } from '@app/components/info-box/InfoBox';
 import { ContentHeader } from '@components';
 
 const Dashboard = () => {
@@ -69,6 +70,11 @@ const Dashboard = () => {
                   More info <i className="fas fa-arrow-circle-right" />
                 </a>
               </div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-lg-3 col-6">
+              <InfoBox variant='warning' title="Messages" text="1,410" />
             </div>
           </div>
         </div>
