@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "format": "prettier-eslint $PWD/'src/**/*.{js,json}' --write",
     "lint": "eslint src/**/*.js",
-    "store-version": "echo '{\"version\" : '$(cat package.json | jq .version )'}' > public/version.json && git add public/version.json && git commit -m \"version upgrade \"",
+    "firebase:start": "firebase emulators:start",
     "release:patch": "standard-version --release-as patch && npm run store-version",
     "release:minor": "standard-version --release-as minor && npm run store-version",
     "release:major": "standard-version --release-as major && npm run store-version"
