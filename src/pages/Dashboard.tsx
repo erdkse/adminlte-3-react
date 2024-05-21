@@ -73,8 +73,13 @@ const Dashboard = () => {
             </div>
           </div>
           <div className="row">
-            <div className="col-lg-3 col-6">
-              <InfoBox variant='warning' title="Messages" text="1,410" />
+          <div className="col-lg-3 col-6">
+              <InfoBox variant='warning' title="Messages" text="1,410"/>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-lg-6 col-6">
+              <InfoBox variant='warning' title="Bookmarks" text="41,410" useProgressBar={true} progressDescription='70% Increase in 30 Days' progressLevel='70'/>
             </div>
           </div>
         </div>
