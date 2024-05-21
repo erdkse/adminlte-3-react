@@ -27,3 +27,4 @@ yarn-error.log*
 dist
 
 firebase-debug.log
+ui-debug.log
