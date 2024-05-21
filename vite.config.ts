@@ -7,8 +7,10 @@ import 'dotenv/config';
 export default ({ mode }) => {
   process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };
 
+  const { NODE_ENV } = process.env;
+
   return defineConfig({
-    mode: 'development',
+    mode: NODE_ENV,
     plugins: [react()],
     resolve: {
       alias: {
