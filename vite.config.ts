@@ -7,10 +7,10 @@ import 'dotenv/config';
 export default ({ mode }) => {
   process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };
 
-  const { NODE_ENV } = process.env;
+  const { VITE_NODE_ENV } = process.env;
 
   return defineConfig({
-    mode: NODE_ENV,
+    mode: VITE_NODE_ENV,
     plugins: [react()],
     resolve: {
       alias: {
