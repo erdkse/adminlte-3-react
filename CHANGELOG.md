@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.36](https://github.com/erdkse/adminlte-3-react/compare/v0.2.35...v0.2.36) (2024-05-21)
+
+
+### Features
+
+* add info box component ([7437fda](https://github.com/erdkse/adminlte-3-react/commit/7437fda2050d33d9e698c769f81b7d10b3f4e061))
+* initialize firebase emulator ([62a0a43](https://github.com/erdkse/adminlte-3-react/commit/62a0a43384a8e8ed9a4836b843314cb9ea25c3bc))
+
 ### [0.2.35](https://github.com/erdkse/adminlte-3-react/compare/v0.2.34...v0.2.35) (2024-05-14)
 
 ### [0.2.34](https://github.com/erdkse/adminlte-3-react/compare/v0.2.33...v0.2.34) (2024-05-14)
