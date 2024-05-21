@@ -10,9 +10,9 @@
     "format": "prettier-eslint $PWD/'src/**/*.{js,json}' --write",
     "lint": "eslint src/**/*.js",
     "firebase:start": "firebase emulators:start",
-    "release:patch": "standard-version --release-as patch && npm run store-version",
-    "release:minor": "standard-version --release-as minor && npm run store-version",
-    "release:major": "standard-version --release-as major && npm run store-version"
+    "release:patch": "standard-version --release-as patch",
+    "release:minor": "standard-version --release-as minor",
+    "release:major": "standard-version --release-as major"
   },
   "eslintConfig": {
     "extends": [
