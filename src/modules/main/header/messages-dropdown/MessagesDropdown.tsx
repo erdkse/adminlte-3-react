@@ -16,7 +16,7 @@ const MessagesDropdown = () => {
         <Link to="/" className="dropdown-item">
           <div className="media">
             <Image
-              src="/img/default-profile.png"
+              src={'/img/default-profile.png'}
               alt="User Avatar"
               width={50}
               height={50}

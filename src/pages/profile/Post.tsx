@@ -1,6 +1,6 @@
-import {Image} from '@profabric/react-components';
+import { Image } from '@profabric/react-components';
 
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const StyledUserImage = styled(Image)`
@@ -9,7 +9,7 @@ const StyledUserImage = styled(Image)`
   float: left;
 `;
 
-const Post = ({isClearfix = false}: {isClearfix?: boolean}) => {
+const Post = ({ isClearfix = false }: { isClearfix?: boolean }) => {
   return (
     <div className={`post ${isClearfix ? 'clearfix' : ''}`}>
       <div className="user-block">

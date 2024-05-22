@@ -2,6 +2,97 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.39](https://github.com/erdkse/adminlte-3-react/compare/v0.2.38...v0.2.39) (2024-05-21)
+
+### [0.2.38](https://github.com/erdkse/adminlte-3-react/compare/v0.2.37...v0.2.38) (2024-05-21)
+
+### [0.2.37](https://github.com/erdkse/adminlte-3-react/compare/v0.2.36...v0.2.37) (2024-05-21)
+
+### [0.2.36](https://github.com/erdkse/adminlte-3-react/compare/v0.2.35...v0.2.36) (2024-05-21)
+
+
+### Features
+
+* add info box component ([7437fda](https://github.com/erdkse/adminlte-3-react/commit/7437fda2050d33d9e698c769f81b7d10b3f4e061))
+* initialize firebase emulator ([62a0a43](https://github.com/erdkse/adminlte-3-react/commit/62a0a43384a8e8ed9a4836b843314cb9ea25c3bc))
+
+### [0.2.35](https://github.com/erdkse/adminlte-3-react/compare/v0.2.34...v0.2.35) (2024-05-14)
+
+### [0.2.34](https://github.com/erdkse/adminlte-3-react/compare/v0.2.33...v0.2.34) (2024-05-14)
+
+
+### Bug Fixes
+
+* change UI dependencies ([a7014e9](https://github.com/erdkse/adminlte-3-react/commit/a7014e9c1af68d0792f1cd0442ae28d23210da70))
+
+### [0.2.33](https://github.com/erdkse/adminlte-3-react/compare/v0.2.32...v0.2.33) (2024-05-14)
+
+### [0.2.32](https://github.com/erdkse/adminlte-3-react/compare/v0.2.31...v0.2.32) (2024-05-14)
+
+
+### Bug Fixes
+
+* handle sidebar overlay is not visible on tablet resolution ([3b78123](https://github.com/erdkse/adminlte-3-react/commit/3b78123dc999815173dd2c4068320799c94c0255))
+
+### [0.2.31](https://github.com/erdkse/adminlte-3-react/compare/v0.2.30...v0.2.31) (2024-05-14)
+
+### [0.2.30](https://github.com/erdkse/adminlte-3-react/compare/v0.2.29...v0.2.30) (2024-05-13)
+
+### [0.2.29](https://github.com/erdkse/adminlte-3-react/compare/v0.2.28...v0.2.29) (2024-05-12)
+
+
+### Bug Fixes
+
+* app logo display ([ad38e40](https://github.com/erdkse/adminlte-3-react/commit/ad38e4048f653d14a148cac2da45d398570527d2))
+
+### [0.2.28](https://github.com/erdkse/adminlte-3-react/compare/v0.2.27...v0.2.28) (2024-05-12)
+
+
+### Features
+
+* make  configurable ([5271104](https://github.com/erdkse/adminlte-3-react/commit/527110436d517b070e149d756fcce4371516d753))
+
+### [0.2.27](https://github.com/erdkse/adminlte-3-react/compare/v0.2.26...v0.2.27) (2024-05-12)
+
+
+### Features
+
+* Add BASE_PATH variable ([1b49ba8](https://github.com/erdkse/adminlte-3-react/commit/1b49ba8fcc2f4a5ed825b4745d99b1699ad216a3))
+
+### [0.2.26](https://github.com/erdkse/adminlte-3-react/compare/v0.2.25...v0.2.26) (2024-05-12)
+
+### [0.2.25](https://github.com/erdkse/adminlte-3-react/compare/v0.2.24...v0.2.25) (2024-05-12)
+
+### [0.2.24](https://github.com/erdkse/adminlte-3-react/compare/v0.2.23...v0.2.24) (2024-05-12)
+
+
+### Features
+
+* change base ([d778ea2](https://github.com/erdkse/adminlte-3-react/commit/d778ea27c5f13eedd86f6c1e8c5d23f0f8bce534))
+
+### [0.2.23](https://github.com/erdkse/adminlte-3-react/compare/v0.2.22...v0.2.23) (2024-05-12)
+
+### [0.2.22](https://github.com/erdkse/adminlte-3-react/compare/v0.2.21...v0.2.22) (2024-05-12)
+
+### [0.2.21](https://github.com/erdkse/adminlte-3-react/compare/v0.2.20...v0.2.21) (2024-05-12)
+
+### [0.2.20](https://github.com/erdkse/adminlte-3-react/compare/v0.2.19...v0.2.20) (2024-05-12)
+
+### [0.2.19](https://github.com/erdkse/adminlte-3-react/compare/v0.2.18...v0.2.19) (2024-05-12)
+
+### [0.2.18](https://github.com/erdkse/adminlte-3-react/compare/v0.2.17...v0.2.18) (2024-05-12)
+
+### [0.2.17](https://github.com/erdkse/adminlte-3-react/compare/v0.2.16...v0.2.17) (2024-05-12)
+
+### [0.2.16](https://github.com/erdkse/adminlte-3-react/compare/v0.2.15...v0.2.16) (2024-05-12)
+
+### [0.2.15](https://github.com/erdkse/adminlte-3-react/compare/v0.2.14...v0.2.15) (2024-05-12)
+
+
+### Features
+
+* add firebase as backend provider ([b9da32e](https://github.com/erdkse/adminlte-3-react/commit/b9da32e088bc695fc315ea4c7998720308121f6f))
+
 ### [0.2.14](https://github.com/erdkse/adminlte-3-react/compare/v0.2.13...v0.2.14) (2024-04-27)
 
 ### [0.2.13](https://github.com/erdkse/adminlte-3-react/compare/v0.2.12...v0.2.13) (2024-02-16)

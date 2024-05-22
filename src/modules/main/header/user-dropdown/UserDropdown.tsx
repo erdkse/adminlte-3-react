@@ -1,9 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { setAuthentication } from '@app/store/reducers/auth';
-import { GoogleProvider } from '@app/utils/oidc-providers';
 import { StyledBigUserImage, StyledSmallUserImage } from '@app/styles/common';
 import {
   UserBody,
@@ -11,34 +8,21 @@ import {
   UserHeader,
   UserMenuDropdown,
 } from '@app/styles/dropdown-menus';
-
-declare const FB: any;
+import { firebaseAuth } from '@app/firebase';
+import {} from '@app/index';
+import { useAppSelector } from '@app/store/store';
+import { DateTime } from 'luxon';
 
 const UserDropdown = () => {
   const navigate = useNavigate();
   const [t] = useTranslation();
-  const dispatch = useDispatch();
-  const authentication = useSelector((state: any) => state.auth.authentication);
+  const currentUser = useAppSelector((state) => state.auth.currentUser);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const logOut = async (event: any) => {
+    await firebaseAuth.signOut();
     event.preventDefault();
     setDropdownOpen(false);
-    console.log('authentication', authentication);
-    if (authentication.profile.first_name) {
-      await GoogleProvider.signoutPopup();
-      dispatch(setAuthentication(undefined));
-      navigate('/login');
-    } else if (authentication.userID) {
-      FB.logout(() => {
-        dispatch(setAuthentication(undefined));
-        navigate('/login');
-      });
-    } else {
-      dispatch(setAuthentication(undefined));
-      navigate('/login');
-    }
-    localStorage.removeItem('authentication');
   };
 
   const navigateToProfile = (event: any) => {
@@ -51,7 +35,7 @@ const UserDropdown = () => {
     <UserMenuDropdown isOpen={dropdownOpen} hideArrow>
       <StyledSmallUserImage
         slot="head"
-        src={authentication.profile.picture}
+        src={currentUser?.photoURL}
         fallbackSrc="/img/default-profile.png"
         alt="User"
         width={25}
@@ -61,7 +45,7 @@ const UserDropdown = () => {
       <div slot="body">
         <UserHeader className=" bg-primary">
           <StyledBigUserImage
-            src={authentication.profile.picture}
+            src={currentUser?.photoURL}
             fallbackSrc="/img/default-profile.png"
             alt="User"
             width={90}
@@ -69,12 +53,16 @@ const UserDropdown = () => {
             rounded
           />
           <p>
-            {authentication.profile.email}
+            {currentUser?.email}
             <small>
               <span>Member since </span>
-              <span>
-                {/* {DateTime.fromISO(user.createdAt).toFormat('dd LLL yyyy')} */}
-              </span>
+              {currentUser?.metadata?.creationTime && (
+                <span>
+                  {DateTime.fromRFC2822(
+                    currentUser?.metadata?.creationTime
+                  ).toFormat('dd LLL yyyy')}
+                </span>
+              )}
             </small>
           </p>
         </UserHeader>

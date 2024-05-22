@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useFormik } from 'formik';
@@ -9,15 +8,16 @@ import { setWindowClass } from '@app/utils/helpers';
 import { Checkbox } from '@profabric/react-components';
 import * as Yup from 'yup';
 
-import { authLogin } from '@app/utils/oidc-providers';
 import { Form, InputGroup } from 'react-bootstrap';
 import { Button } from '@app/styles/common';
+import { loginWithEmail, signInByGoogle } from '@app/services/auth';
+import { useAppDispatch } from '@app/store/store';
 
 const Login = () => {
   const [isAuthLoading, setAuthLoading] = useState(false);
   const [isGoogleAuthLoading, setGoogleAuthLoading] = useState(false);
   const [isFacebookAuthLoading, setFacebookAuthLoading] = useState(false);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const navigate = useNavigate();
   const [t] = useTranslation();
@@ -25,11 +25,10 @@ const Login = () => {
   const login = async (email: string, password: string) => {
     try {
       setAuthLoading(true);
-      const response = await authLogin(email, password);
-      dispatch(setAuthentication(response as any));
+      const result = await loginWithEmail(email, password);
+      dispatch(setAuthentication(result?.user as any));
       toast.success('Login is succeed!');
       setAuthLoading(false);
-      // dispatch(loginUser(token));
       navigate('/');
     } catch (error: any) {
       setAuthLoading(false);
@@ -40,12 +39,9 @@ const Login = () => {
   const loginByGoogle = async () => {
     try {
       setGoogleAuthLoading(true);
-      // const response = await GoogleProvider.signinPopup();
-      // dispatch(setAuthentication(response as any));
-      // toast.success('Login is succeeded!');
-      // setGoogleAuthLoading(false);
-      // navigate('/');
-      throw new Error('Not implemented');
+      await signInByGoogle();
+      toast.success('Login is succeed!');
+      setGoogleAuthLoading(false);
     } catch (error: any) {
       setGoogleAuthLoading(false);
       toast.error(error.message || 'Failed');
@@ -173,7 +169,7 @@ const Login = () => {
               className="mb-2"
               onClick={loginByFacebook}
               loading={isFacebookAuthLoading}
-              disabled={isAuthLoading || isGoogleAuthLoading}
+              disabled={true || isAuthLoading || isGoogleAuthLoading}
             >
               <i className="fab fa-facebook mr-2" />
               {t('login.button.signIn.social', {

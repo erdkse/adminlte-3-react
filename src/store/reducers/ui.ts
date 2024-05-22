@@ -52,6 +52,9 @@ export const uiSlice = createSlice({
     toggleSidebarMenu: (state) => {
       state.menuSidebarCollapsed = !state.menuSidebarCollapsed;
     },
+    setSidebarMenuToggle: (state, { payload }) => {
+      state.menuSidebarCollapsed = payload;
+    },
     toggleControlSidebar: (state) => {
       state.controlSidebarCollapsed = !state.controlSidebarCollapsed;
     },
@@ -145,6 +148,7 @@ export const {
   toggleMenuItemFlat,
   toggleMenuChildIndent,
   toggleLayoutFixed,
+  setSidebarMenuToggle,
 } = uiSlice.actions;
 
 export default uiSlice.reducer;

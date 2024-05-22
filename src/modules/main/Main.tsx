@@ -1,25 +1,23 @@
 import { useState, useEffect, useCallback } from 'react';
-import { Outlet } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 import { toggleSidebarMenu } from '@app/store/reducers/ui';
-import { addWindowClass, removeWindowClass, sleep } from '@app/utils/helpers';
+import { addWindowClass, removeWindowClass } from '@app/utils/helpers';
 import ControlSidebar from '@app/modules/main/control-sidebar/ControlSidebar';
 import Header from '@app/modules/main/header/Header';
-import MenuSidebar from '@app/modules/main/menu-sidebar/MenuSidebar';
 import Footer from '@app/modules/main/footer/Footer';
 import { Image } from '@profabric/react-components';
 import { Content } from './content/Content';
+import { useAppDispatch, useAppSelector } from '@app/store/store';
 
 const Main = () => {
-  const dispatch = useDispatch();
-  const menuSidebarCollapsed = useSelector(
-    (state: any) => state.ui.menuSidebarCollapsed
+  const dispatch = useAppDispatch();
+  const menuSidebarCollapsed = useAppSelector(
+    (state) => state.ui.menuSidebarCollapsed
   );
-  const controlSidebarCollapsed = useSelector(
-    (state: any) => state.ui.controlSidebarCollapsed
+  const controlSidebarCollapsed = useAppSelector(
+    (state) => state.ui.controlSidebarCollapsed
   );
-  const screenSize = useSelector((state: any) => state.ui.screenSize);
-  const authentication = useSelector((state: any) => state.auth.authentication);
+  const screenSize = useAppSelector((state) => state.ui.screenSize);
+  const currentUser = useAppSelector((state) => state.auth.currentUser);
   const [isAppLoaded, setIsAppLoaded] = useState(false);
 
   const handleToggleMenuSidebar = () => {
@@ -27,8 +25,8 @@ const Main = () => {
   };
 
   useEffect(() => {
-    setIsAppLoaded(Boolean(authentication));
-  }, [authentication]);
+    setIsAppLoaded(Boolean(currentUser));
+  }, [currentUser]);
 
   useEffect(() => {
     removeWindowClass('register-page');
@@ -93,10 +91,14 @@ const Main = () => {
           role="presentation"
           onClick={handleToggleMenuSidebar}
           onKeyDown={() => {}}
+          style={{
+            display:
+              screenSize === 'sm' && menuSidebarCollapsed ? 'block' : undefined,
+          }}
         />
       </>
     );
-  }, [isAppLoaded]);
+  }, [isAppLoaded, menuSidebarCollapsed, screenSize]);
 
   return <div className="wrapper">{getAppTemplate()}</div>;
 };

@@ -25,3 +25,6 @@ yarn-error.log*
 .env
 .eslintcache
 dist
+
+firebase-debug.log
+ui-debug.log

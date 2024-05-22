@@ -1,7 +1,6 @@
 import { useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
 import {
   toggleControlSidebar,
   toggleSidebarMenu,
@@ -12,6 +11,7 @@ import LanguagesDropdown from '@app/modules/main/header/languages-dropdown/Langu
 import UserDropdown from '@app/modules/main/header/user-dropdown/UserDropdown';
 import { styled } from 'styled-components';
 import { Image } from '@profabric/react-components';
+import { useAppDispatch, useAppSelector } from '@app/store/store';
 
 const StyledBrandImage = styled(Image)`
   float: left;
@@ -28,9 +28,9 @@ const StyledBrandImage = styled(Image)`
 
 const Header = ({ containered, style }: any) => {
   const [t] = useTranslation();
-  const dispatch = useDispatch();
-  const navbarVariant = useSelector((state: any) => state.ui.navbarVariant);
-  const headerBorder = useSelector((state: any) => state.ui.headerBorder);
+  const dispatch = useAppDispatch();
+  const navbarVariant = useAppSelector((state) => state.ui.navbarVariant);
+  const headerBorder = useAppSelector((state) => state.ui.headerBorder);
 
   const handleToggleMenuSidebar = () => {
     dispatch(toggleSidebarMenu());

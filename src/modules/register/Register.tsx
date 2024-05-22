@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
@@ -9,24 +8,25 @@ import { setWindowClass } from '@app/utils/helpers';
 import { Form, InputGroup } from 'react-bootstrap';
 import { Checkbox } from '@profabric/react-components';
 
-import { authLogin } from '@app/utils/oidc-providers';
-import { setAuthentication } from '@app/store/reducers/auth';
+import { setCurrentUser } from '@app/store/reducers/auth';
 import { Button } from '@app/styles/common';
+import { registerWithEmail, signInByGoogle } from '@app/services/auth';
+import { useAppDispatch } from '@app/store/store';
 
 const Register = () => {
   const [isAuthLoading, setAuthLoading] = useState(false);
   const [isGoogleAuthLoading, setGoogleAuthLoading] = useState(false);
   const [isFacebookAuthLoading, setFacebookAuthLoading] = useState(false);
   const [t] = useTranslation();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const navigate = useNavigate();
 
   const register = async (email: string, password: string) => {
     try {
       setAuthLoading(true);
-      const response = await authLogin(email, password);
-      dispatch(setAuthentication(response as any));
+      const result = await registerWithEmail(email, password);
+      dispatch(setCurrentUser(result?.user as any));
       toast.success('Registration is success');
       navigate('/');
     } catch (error: any) {
@@ -38,12 +38,8 @@ const Register = () => {
   const registerByGoogle = async () => {
     try {
       setGoogleAuthLoading(true);
-      // const response = await GoogleProvider.signinPopup();
-      // dispatch(setAuthentication(response as any));
-      // setGoogleAuthLoading(false);
-      // toast.success('Authentication is succeed!');
-      // navigate('/');
-      throw new Error('Not implemented');
+      await signInByGoogle();
+      setGoogleAuthLoading(false);
     } catch (error: any) {
       toast.error(error.message || 'Failed');
       setGoogleAuthLoading(false);
@@ -53,10 +49,7 @@ const Register = () => {
   const registerByFacebook = async () => {
     try {
       setFacebookAuthLoading(true);
-      // const response = await facebookLogin();
-      // dispatch(setAuthentication(response as any));
-      // setFacebookAuthLoading(false);
-      // navigate('/');
+
       throw new Error('Not implemented');
     } catch (error: any) {
       setFacebookAuthLoading(false);
@@ -64,27 +57,28 @@ const Register = () => {
     }
   };
 
-  const { handleChange, values, handleSubmit, touched, errors } = useFormik({
-    initialValues: {
-      email: '',
-      password: '',
-      passwordRetype: '',
-    },
-    validationSchema: Yup.object({
-      email: Yup.string().email('Invalid email address').required('Required'),
-      password: Yup.string()
-        .min(5, 'Must be 5 characters or more')
-        .max(30, 'Must be 30 characters or less')
-        .required('Required'),
-      passwordRetype: Yup.string()
-        .min(5, 'Must be 5 characters or more')
-        .max(30, 'Must be 30 characters or less')
-        .required('Required'),
-    }),
-    onSubmit: (values) => {
-      register(values.email, values.password);
-    },
-  });
+  const { handleChange, values, handleSubmit, touched, errors, submitForm } =
+    useFormik({
+      initialValues: {
+        email: '',
+        password: '',
+        passwordRetype: '',
+      },
+      validationSchema: Yup.object({
+        email: Yup.string().email('Invalid email address').required('Required'),
+        password: Yup.string()
+          .min(5, 'Must be 5 characters or more')
+          .max(30, 'Must be 30 characters or less')
+          .required('Required'),
+        passwordRetype: Yup.string()
+          .min(5, 'Must be 5 characters or more')
+          .max(30, 'Must be 30 characters or less')
+          .required('Required'),
+      }),
+      onSubmit: (values) => {
+        register(values.email, values.password);
+      },
+    });
 
   setWindowClass('hold-transition register-page');
 
@@ -190,6 +184,7 @@ const Register = () => {
               </div>
               <div className="col-5">
                 <Button
+                  onClick={submitForm}
                   loading={isAuthLoading}
                   disabled={isGoogleAuthLoading || isFacebookAuthLoading}
                 >
@@ -203,7 +198,7 @@ const Register = () => {
               className="mb-2"
               onClick={registerByFacebook}
               loading={isFacebookAuthLoading}
-              disabled={isAuthLoading || isGoogleAuthLoading}
+              disabled={true || isAuthLoading || isGoogleAuthLoading}
             >
               <i className="fab fa-facebook mr-2" />
               {t('login.button.signIn.social', {
