@@ -1,7 +1,9 @@
 import { FirebaseOptions, initializeApp } from 'firebase/app';
 import { getAuth, connectAuthEmulator } from 'firebase/auth';
 
-let { VITE_FIREBASE_CONFIG, NODE_ENV } = import.meta.env;
+let { VITE_FIREBASE_CONFIG, PROD } = import.meta.env;
+
+console.log('PROD', PROD);
 
 const firebaseConfig: FirebaseOptions = VITE_FIREBASE_CONFIG
   ? JSON.parse(VITE_FIREBASE_CONFIG)
@@ -12,6 +14,6 @@ const app = initializeApp(firebaseConfig);
 
 export const firebaseAuth = getAuth(app);
 
-if (NODE_ENV !== 'production') {
+if (!PROD) {
   connectAuthEmulator(firebaseAuth, 'http://localhost:9099');
 }
