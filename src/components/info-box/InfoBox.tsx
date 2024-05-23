@@ -29,9 +29,6 @@ export const InfoBox = ({
 }) => {
   variant = variant || 'primary';
 
-  const iconClassName = `info-box-icon ${fillBackground ? '' : `bg-${variant}`}`;
-  const infoBoxClassName = `info-box ${fillBackground ? `bg-${variant}` : ''}`;
-
   const progressBarContent = useMemo(() => {
     if (progressBar) {
       const proggressBarVariant = progressBar.variant || variant;
@@ -56,8 +53,8 @@ export const InfoBox = ({
   }, [progressBar, variant]);
 
   return (
-    <div className={infoBoxClassName}>
-      <span className={iconClassName}>
+    <div className={`info-box-icon ${fillBackground ? '' : `bg-${variant}`}`}>
+      <span className={`info-box ${fillBackground ? `bg-${variant}` : ''}`}>
         {icon || <i className="far fa-envelope" />}
       </span>
 
