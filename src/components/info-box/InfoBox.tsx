@@ -53,8 +53,8 @@ export const InfoBox = ({
   }, [progressBar, variant]);
 
   return (
-    <div className={`info-box-icon ${fillBackground ? '' : `bg-${variant}`}`}>
-      <span className={`info-box ${fillBackground ? `bg-${variant}` : ''}`}>
+    <div className={`info-box ${fillBackground ? `bg-${variant}` : ''}`}>
+      <span className={`info-box-icon ${fillBackground ? '' : `bg-${variant}`}`}>
         {icon || <i className="far fa-envelope" />}
       </span>
 
