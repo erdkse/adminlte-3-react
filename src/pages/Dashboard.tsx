@@ -84,7 +84,7 @@ const Dashboard = () => {
               <InfoBox
                 title="Messages"
                 text="1,410"
-                fillBg={false}
+                fillBackground={false}
                 icon={<FontAwesomeIcon icon={faEnvelope} />}
               />
             </div>
@@ -93,7 +93,7 @@ const Dashboard = () => {
                 variant="success"
                 title="Messages"
                 text="1,410"
-                fillBg={true}
+                fillBackground={true}
                 icon={<FontAwesomeIcon icon={faEnvelope} />}
               />
             </div>
@@ -102,7 +102,7 @@ const Dashboard = () => {
                 variant="warning"
                 title="Messages"
                 text="1,410"
-                fillBg={true}
+                fillBackground={true}
                 icon={<FontAwesomeIcon icon={faEnvelope} />}
               />
             </div>
@@ -115,7 +115,8 @@ const Dashboard = () => {
                 text="41,410"
                 progressBar={{
                   description: '70% Increase in 30 Days',
-                  level: 80,
+                  level: 70,
+                  variant: 'success',
                 }}
               />
             </div>
@@ -125,10 +126,10 @@ const Dashboard = () => {
                 variant="success"
                 title="Bookmarks"
                 text="41,410"
-                fillBg={true}
+                fillBackground={true}
                 progressBar={{
                   description: '70% Increase in 30 Days',
-                  level: 80,
+                  level: 70,
                 }}
               />
             </div>
@@ -138,10 +139,11 @@ const Dashboard = () => {
                 variant="warning"
                 title="Bookmarks"
                 text="41,410"
-                fillBg={true}
+                fillBackground={true}
                 progressBar={{
                   description: '70% Increase in 30 Days',
-                  level: 80,
+                  level: 70,
+                  variant: 'danger',
                 }}
               />
             </div>
