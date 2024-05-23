@@ -9,12 +9,14 @@ type VARIANT_TYPES =
   | 'info';
 
 export const InfoBox = ({
+  fillBg,
   variant,
   title,
   text,
   progressBar,
   icon,
 }: {
+  fillBg?: boolean;
   icon?: ReactNode;
   variant?: VARIANT_TYPES;
   title: string;
@@ -22,18 +24,22 @@ export const InfoBox = ({
   progressBar?: {
     description?: string;
     level: number;
-    variant?: VARIANT_TYPES;
   };
 }) => {
   variant = variant || 'primary';
 
+  const iconClassName = 'info-box-icon ' + (fillBg ? '' : ('bg-' + variant));
+  const infoBoxClassName = 'info-box ' + (fillBg ? ('bg-' + variant) : '');
+
   const progressBarContent = useMemo(() => {
     if (progressBar) {
+      console.log('mert');
+      const progressBarClassName = 'progress-bar ' + (fillBg ?  '' : 'bg-' + variant); 
       return (
         <>
           <div className="progress">
             <div
-              className={`progress-bar bg-${progressBar?.variant || 'info'}`}
+              className={progressBarClassName}
               style={{ width: `${progressBar?.level || 0}%` }}
             />
           </div>
@@ -46,11 +52,11 @@ export const InfoBox = ({
       );
     }
     return;
-  }, [progressBar]);
+  }, [progressBar, fillBg]);
 
   return (
-    <div className="info-box">
-      <span className={`info-box-icon bg-${variant || 'info'}`}>
+    <div className={infoBoxClassName}>
+      <span className={iconClassName}>
         {icon || <i className="far fa-envelope" />}
       </span>
 
