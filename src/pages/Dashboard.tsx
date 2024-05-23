@@ -1,5 +1,12 @@
 import { InfoBox } from '@app/components/info-box/InfoBox';
 import { ContentHeader } from '@components';
+import {
+  faBagShopping,
+  faBarChart,
+  faBookmark,
+  faEnvelope,
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Dashboard = () => {
   return (
@@ -74,7 +81,27 @@ const Dashboard = () => {
           </div>
           <div className="row">
             <div className="col-lg-3 col-6">
-              <InfoBox variant='warning' title="Messages" text="1,410" />
+              <InfoBox
+                variant="warning"
+                title="Messages"
+                text="1,410"
+                icon={<FontAwesomeIcon icon={faEnvelope} />}
+              />
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-lg-6 col-6">
+              <InfoBox
+                icon={<FontAwesomeIcon icon={faBookmark} />}
+                variant="warning"
+                title="Bookmarks"
+                text="41,410"
+                progressBar={{
+                  description: '70% Increase in 30 Days',
+                  level: 80,
+                  variant: 'warning',
+                }}
+              />
             </div>
           </div>
         </div>
