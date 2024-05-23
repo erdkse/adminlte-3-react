@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.40](https://github.com/erdkse/adminlte-3-react/compare/v0.2.39...v0.2.40) (2024-05-23)
+
+
+### Features
+
+* add additional variants of info-box ([05e716a](https://github.com/erdkse/adminlte-3-react/commit/05e716ae7cb6a4cc7343529ab9c1ac55bfa4f9eb))
+* add info box with progress bar component ([7948d08](https://github.com/erdkse/adminlte-3-react/commit/7948d08f371e14ebf7f864107131d595f95d8573))
+
 ### [0.2.39](https://github.com/erdkse/adminlte-3-react/compare/v0.2.38...v0.2.39) (2024-05-21)
 
 ### [0.2.38](https://github.com/erdkse/adminlte-3-react/compare/v0.2.37...v0.2.38) (2024-05-21)
