@@ -80,26 +80,70 @@ const Dashboard = () => {
             </div>
           </div>
           <div className="row">
-            <div className="col-lg-3 col-6">
+            <div className="col-lg-4 col-6">
+              <InfoBox
+                title="Messages"
+                text="1,410"
+                fillBackground={false}
+                icon={<FontAwesomeIcon icon={faEnvelope} />}
+              />
+            </div>
+            <div className="col-lg-4 col-6">
+              <InfoBox
+                variant="success"
+                title="Messages"
+                text="1,410"
+                fillBackground={true}
+                icon={<FontAwesomeIcon icon={faEnvelope} />}
+              />
+            </div>
+            <div className="col-lg-4 col-6">
               <InfoBox
                 variant="warning"
                 title="Messages"
                 text="1,410"
+                fillBackground={true}
                 icon={<FontAwesomeIcon icon={faEnvelope} />}
               />
             </div>
           </div>
           <div className="row">
-            <div className="col-lg-6 col-6">
+          <div className="col-lg-4 col-6">
+              <InfoBox
+                icon={<FontAwesomeIcon icon={faEnvelope} />}
+                title="Bookmarks"
+                text="41,410"
+                progressBar={{
+                  description: '70% Increase in 30 Days',
+                  level: 70,
+                  variant: 'success',
+                }}
+              />
+            </div>
+            <div className="col-lg-4 col-6">
+              <InfoBox
+                icon={<FontAwesomeIcon icon={faBookmark} />}
+                variant="success"
+                title="Bookmarks"
+                text="41,410"
+                fillBackground={true}
+                progressBar={{
+                  description: '70% Increase in 30 Days',
+                  level: 70,
+                }}
+              />
+            </div>
+            <div className="col-lg-4 col-6">
               <InfoBox
                 icon={<FontAwesomeIcon icon={faBookmark} />}
                 variant="warning"
                 title="Bookmarks"
                 text="41,410"
+                fillBackground={true}
                 progressBar={{
                   description: '70% Increase in 30 Days',
-                  level: 80,
-                  variant: 'warning',
+                  level: 70,
+                  variant: 'danger',
                 }}
               />
             </div>
