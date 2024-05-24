@@ -25,6 +25,7 @@ export interface UiState {
   menuChildIndent: boolean;
   navbarVariant: string;
   sidebarSkin: string;
+  layout: '1' | '2' | '3';
 }
 
 const initialState: UiState = {
@@ -41,6 +42,7 @@ const initialState: UiState = {
   menuItemFlat: false,
   menuChildIndent: false,
   layoutFixed: false,
+  layout: '1',
 };
 
 addWindowClass('layout-footer-fixed');
@@ -49,6 +51,9 @@ export const uiSlice = createSlice({
   name: 'ui',
   initialState,
   reducers: {
+    setTheme: (state, { payload }) => {
+      state.layout = payload.layout;
+    },
     toggleSidebarMenu: (state) => {
       state.menuSidebarCollapsed = !state.menuSidebarCollapsed;
     },
@@ -149,6 +154,7 @@ export const {
   toggleMenuChildIndent,
   toggleLayoutFixed,
   setSidebarMenuToggle,
+  setTheme,
 } = uiSlice.actions;
 
 export default uiSlice.reducer;

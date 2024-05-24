@@ -7,9 +7,11 @@ import Footer from '@app/modules/main/footer/Footer';
 import { Image } from '@profabric/react-components';
 import { Content } from './content/Content';
 import { useAppDispatch, useAppSelector } from '@app/store/store';
+import MenuSidebar from './menu-sidebar/MenuSidebar';
 
 const Main = () => {
   const dispatch = useAppDispatch();
+  const layout = useAppSelector((state) => state.ui.layout);
   const menuSidebarCollapsed = useAppSelector(
     (state) => state.ui.menuSidebarCollapsed
   );
@@ -79,11 +81,11 @@ const Main = () => {
     }
     return (
       <>
-        <Header containered style={{ marginLeft: '0px' }} />
+        <Header containered={layout === '1'} style={{ marginLeft: '0px' }} />
 
-        {/* <MenuSidebar /> */}
+        {layout !== '1' && <MenuSidebar />}
 
-        <Content containered />
+        <Content containered={layout === '1'} />
         <Footer style={{ marginLeft: '0px' }} />
         <ControlSidebar />
         <div

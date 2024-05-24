@@ -21,7 +21,10 @@
   cursor: pointer;
 }
 
-
 #sidebar-overlay {
-  background-color: rgba(0,0,0,.3);
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.firebase-emulator-warning {
+  display: none;
 }
