@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.41](https://github.com/erdkse/adminlte-3-react/compare/v0.2.40...v0.2.41) (2024-05-24)
+
+
+### Bug Fixes
+
+* solve unused variable issue ([e8d6bd0](https://github.com/erdkse/adminlte-3-react/commit/e8d6bd090de83042850247677a1c0eadac1ad611))
+
 ### [0.2.40](https://github.com/erdkse/adminlte-3-react/compare/v0.2.39...v0.2.40) (2024-05-23)
 
 
