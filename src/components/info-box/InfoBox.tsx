@@ -64,13 +64,7 @@ export const InfoBox = ({
         {icon?.content || <i className="far fa-envelope" />}
       </span>
     );
-  }, [icon]);
-
-  function hasTheme(
-    loading: boolean | { theme?: 'dark' }
-  ): loading is { theme?: 'dark' } {
-    return (loading as { theme?: 'dark' }).theme !== undefined;
-  }
+  }, [icon, variant]);
 
   return (
     <div className={`info-box ${variant ? `bg-${variant}` : ''}`}>
