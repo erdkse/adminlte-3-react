@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
-import { setAuthentication } from '@store/reducers/auth';
+import { setCurrentUser } from '@store/reducers/auth';
 import { setWindowClass } from '@app/utils/helpers';
 import { Checkbox } from '@profabric/react-components';
 import * as Yup from 'yup';
@@ -26,7 +26,7 @@ const Login = () => {
     try {
       setAuthLoading(true);
       const result = await loginWithEmail(email, password);
-      dispatch(setAuthentication(result?.user as any));
+      dispatch(setCurrentUser(result?.user as any));
       toast.success('Login is succeed!');
       setAuthLoading(false);
       navigate('/');
