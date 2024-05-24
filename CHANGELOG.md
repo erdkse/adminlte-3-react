@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.42](https://github.com/erdkse/adminlte-3-react/compare/v0.2.41...v0.2.42) (2024-05-24)
+
+
+### Features
+
+* add loading state to info box component ([e45353d](https://github.com/erdkse/adminlte-3-react/commit/e45353dd59a9a28aa837127e5ade1af198fab7bb))
+
 ### [0.2.41](https://github.com/erdkse/adminlte-3-react/compare/v0.2.40...v0.2.41) (2024-05-24)
 
 
