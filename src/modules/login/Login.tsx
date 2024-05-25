@@ -25,8 +25,8 @@ const Login = () => {
   const login = async (email: string, password: string) => {
     try {
       setAuthLoading(true);
-      const result = await loginWithEmail(email, password);
-      dispatch(setCurrentUser(result?.user as any));
+      const { user } = await loginWithEmail(email, password);
+      dispatch(setCurrentUser(user));
       toast.success('Login is succeed!');
       setAuthLoading(false);
       navigate('/');
@@ -51,10 +51,6 @@ const Login = () => {
   const loginByFacebook = async () => {
     try {
       setFacebookAuthLoading(true);
-      // const response = await facebookLogin();
-      // dispatch(setAuthentication(response as any));
-      // setFacebookAuthLoading(false);
-      // navigate('/');
       throw new Error('Not implemented');
     } catch (error: any) {
       setFacebookAuthLoading(false);

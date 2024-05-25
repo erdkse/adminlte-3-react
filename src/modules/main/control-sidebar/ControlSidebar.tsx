@@ -203,7 +203,7 @@ const ControlSidebar = () => {
             <Checkbox
               checked={footerFixed}
               onChange={handleFooterFixedChange}
-            ></Checkbox>
+            />
             <label>Fixed</label>
           </HorizontalFormItem>
         </div>
@@ -214,7 +214,7 @@ const ControlSidebar = () => {
             className="mt-1"
             value={navbarVariant}
             options={NAVBAR_LIGHT_VARIANTS}
-            onChange={(e: any) => onNavbarVariantChange(e.target.value)}
+            onChange={(e: any) => onNavbarVariantChange(e?.target?.value)}
           />
         </VerticalFormItem>
         <VerticalFormItem>

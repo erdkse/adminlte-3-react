@@ -2,14 +2,20 @@ import { useTranslation } from 'react-i18next';
 import { DateTime } from 'luxon';
 import packageJSON from '../../../../package.json';
 
-const Footer = ({ style, containered }: any) => {
+const Footer = ({
+  style,
+  containered,
+}: {
+  style: any;
+  containered?: boolean;
+}) => {
   const [t] = useTranslation();
 
   return (
     <footer className="main-footer" style={style}>
       <div
         style={{ width: '100%', display: 'flex', alignItems: 'center' }}
-        className={containered && 'container'}
+        className={containered ? 'container' : ''}
       >
         <strong>
           <span>Copyright © {DateTime.now().toFormat('y')} </span>

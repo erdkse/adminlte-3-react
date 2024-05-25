@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { ReactNode, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
@@ -26,7 +26,13 @@ const StyledBrandImage = styled(Image)`
   }
 `;
 
-const Header = ({ containered, style }: any) => {
+const Header = ({
+  containered,
+  style = {},
+}: {
+  containered?: boolean;
+  style?: any;
+}) => {
   const [t] = useTranslation();
   const dispatch = useAppDispatch();
   const navbarVariant = useAppSelector((state) => state.ui.navbarVariant);
@@ -52,7 +58,7 @@ const Header = ({ containered, style }: any) => {
     <nav className={getContainerClasses()} style={style}>
       <div
         style={{ width: '100%', display: 'flex', alignItems: 'center' }}
-        className={containered && 'container'}
+        className={containered ? 'container' : ''}
       >
         <Link to="/" className="brand-link" style={{ display: 'contents' }}>
           <StyledBrandImage
