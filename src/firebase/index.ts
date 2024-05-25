@@ -3,8 +3,6 @@ import { getAuth, connectAuthEmulator } from 'firebase/auth';
 
 let { VITE_FIREBASE_CONFIG, PROD } = import.meta.env;
 
-console.log('PROD', PROD);
-
 const firebaseConfig: FirebaseOptions = VITE_FIREBASE_CONFIG
   ? JSON.parse(VITE_FIREBASE_CONFIG)
   : { apiKey: 'MOCK_KEY' };

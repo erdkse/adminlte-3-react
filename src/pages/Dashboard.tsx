@@ -1,5 +1,12 @@
 import { InfoBox } from '@app/components/info-box/InfoBox';
 import { ContentHeader } from '@components';
+import {
+  faBagShopping,
+  faBarChart,
+  faBookmark,
+  faEnvelope,
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Dashboard = () => {
   return (
@@ -73,8 +80,97 @@ const Dashboard = () => {
             </div>
           </div>
           <div className="row">
-            <div className="col-lg-3 col-6">
-              <InfoBox variant='warning' title="Messages" text="1,410" />
+            <div className="col-lg-3 col-md-6 col-sm-12">
+              <InfoBox
+                title="Messages"
+                text="1,410"
+                icon={{
+                  content: <FontAwesomeIcon icon={faEnvelope} />,
+                  variant: 'info',
+                }}
+              />
+            </div>
+            <div className="col-lg-3 col-md-6 col-sm-12">
+              <InfoBox
+                variant="success"
+                title="Messages"
+                loading="dark"
+                text="1,410"
+                icon={{ content: <FontAwesomeIcon icon={faEnvelope} /> }}
+              />
+            </div>
+            <div className="col-lg-3 col-md-6 col-sm-12">
+              <InfoBox
+                variant="warning"
+                title="Messages"
+                text="1,410"
+                icon={{ content: <FontAwesomeIcon icon={faEnvelope} /> }}
+              />
+            </div>
+            <div className="col-lg-3 col-md-6 col-sm-12">
+              <InfoBox
+                variant="danger"
+                title="Messages"
+                text="1,410"
+                icon={{ content: <FontAwesomeIcon icon={faEnvelope} /> }}
+              />
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-lg-3 col-md-6 col-sm-12">
+              <InfoBox
+                icon={{
+                  content: <FontAwesomeIcon icon={faEnvelope} />,
+                  variant: 'info',
+                }}
+                title="Bookmarks"
+                text="41,410"
+                progressBar={{
+                  description: '70% Increase in 30 Days',
+                  level: 70,
+                  variant: 'success',
+                }}
+              />
+            </div>
+            <div className="col-lg-3 col-md-6 col-sm-12">
+              <InfoBox
+                icon={{ content: <FontAwesomeIcon icon={faBookmark} /> }}
+                variant="success"
+                title="Bookmarks"
+                text="41,410"
+                progressBar={{
+                  description: '70% Increase in 30 Days',
+                  level: 70,
+                  variant: 'light',
+                }}
+              />
+            </div>
+            <div className="col-lg-3 col-md-6 col-sm-12">
+              <InfoBox
+                icon={{ content: <FontAwesomeIcon icon={faBookmark} /> }}
+                variant="warning"
+                title="Bookmarks"
+                text="41,410"
+                loading
+                progressBar={{
+                  description: '70% Increase in 30 Days',
+                  level: 70,
+                  variant: 'dark',
+                }}
+              />
+            </div>
+            <div className="col-lg-3 col-md-6 col-sm-12">
+              <InfoBox
+                icon={{ content: <FontAwesomeIcon icon={faBookmark} /> }}
+                variant="danger"
+                title="Bookmarks"
+                text="41,410"
+                progressBar={{
+                  description: '70% Increase in 30 Days',
+                  level: 70,
+                  variant: 'light',
+                }}
+              />
             </div>
           </div>
         </div>
