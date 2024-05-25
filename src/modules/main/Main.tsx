@@ -86,7 +86,7 @@ const Main = () => {
         {layout !== '1' && <MenuSidebar />}
 
         <Content containered={layout === '1'} />
-        <Footer style={{ marginLeft: '0px' }} />
+        <Footer containered={layout === '1'} style={{ marginLeft: '0px' }} />
         <ControlSidebar />
         <div
           id="sidebar-overlay"
@@ -100,7 +100,13 @@ const Main = () => {
         />
       </>
     );
-  }, [isAppLoaded, menuSidebarCollapsed, screenSize]);
+  }, [
+    isAppLoaded,
+    menuSidebarCollapsed,
+    screenSize,
+    layout,
+    handleToggleMenuSidebar,
+  ]);
 
   return <div className="wrapper">{getAppTemplate()}</div>;
 };

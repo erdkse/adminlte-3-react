@@ -2,16 +2,25 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.3.0/css/flag-icon.min.css');
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700');
 
+@import 'react-toastify/dist/ReactToastify.min.css';
+
 @import 'admin-lte/plugins/fontawesome-free/css/all.min.css';
 @import 'admin-lte/plugins/icheck-bootstrap/icheck-bootstrap.min.css';
 @import 'admin-lte/dist/css/adminlte.min.css';
 
-@import 'react-toastify/dist/ReactToastify.min.css';
 
 #root {
   width: 100vw;
   height: 100vh;
   overflow-x: hidden;
+  min-height: 100vh;
+  height: 100%;
+  background-image: linear-gradient(
+    80deg,
+    rgb(82, 127, 206,0.3),
+    rgb(80, 78, 200,0.4),
+    rgb(31, 49, 208,0.5)
+  );
 }
 
 .main-header .navbar-nav .nav-item .nav-link {
