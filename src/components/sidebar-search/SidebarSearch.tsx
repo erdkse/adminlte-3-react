@@ -1,4 +1,4 @@
-import { MENU } from '@app/modules/main/menu-sidebar/MenuSidebar';
+import { IMenuItem, MENU } from '@app/modules/main/menu-sidebar/MenuSidebar';
 import { Dropdown } from '@profabric/react-components';
 import { useEffect, useRef, useState } from 'react';
 import { NavLink } from 'react-router-dom';
@@ -43,7 +43,7 @@ export const StyledDropdown = styled(Dropdown)`
 
 export const SidebarSearch = () => {
   const [searchText, setSearchText] = useState('');
-  const [foundMenuItems, setFoundMenuItems] = useState<any[]>([]);
+  const [foundMenuItems, setFoundMenuItems] = useState<IMenuItem[]>([]);
   const dropdown = useRef(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -75,9 +75,11 @@ export const SidebarSearch = () => {
     setIsDropdownOpen(false);
   };
 
-  const findMenuItems = (menu: any, results: any = []): any[] => {
-    // eslint-disable-next-line no-restricted-syntax
-    for (const menuItem of menu) {
+  const findMenuItems = (
+    menuItems: IMenuItem[],
+    results: IMenuItem[] = []
+  ): IMenuItem[] => {
+    for (const menuItem of menuItems) {
       if (menuItem.name.includes(searchText) && menuItem.path) {
         results.push(menuItem);
       }
@@ -110,7 +112,7 @@ export const SidebarSearch = () => {
             placeholder="Search"
             aria-label="Search"
             value={searchText}
-            onInput={(e) => setSearchText((e.target as any).value)}
+            onInput={(e: any) => setSearchText(e?.target?.value)}
           />
           <div className="input-group-append">
             <button

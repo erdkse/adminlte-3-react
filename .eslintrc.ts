@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 export default {
   env: {
     browser: true,
@@ -58,5 +59,6 @@ export default {
     'no-promise-executor-return': 'off',
     'no-unused-vars': 'off',
     'import/no-extraneous-dependencies': 'off',
+    'react-hooks/exhaustive-deps': 'off',
   },
 };

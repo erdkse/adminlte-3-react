@@ -1,11 +1,6 @@
 import { InfoBox } from '@app/components/info-box/InfoBox';
 import { ContentHeader } from '@components';
-import {
-  faBagShopping,
-  faBarChart,
-  faBookmark,
-  faEnvelope,
-} from '@fortawesome/free-solid-svg-icons';
+import { faBookmark, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Dashboard = () => {
