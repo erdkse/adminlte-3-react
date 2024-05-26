@@ -39,15 +39,15 @@ const App = () => {
       firebaseAuth,
       (user) => {
         if (user) {
-          dispatch(setCurrentUser(user as any));
+          dispatch(setCurrentUser(user));
         } else {
-          dispatch(setCurrentUser(undefined));
+          dispatch(setCurrentUser(null));
         }
         setIsAppLoading(false);
       },
       (e) => {
         console.log(e);
-        dispatch(setCurrentUser(undefined));
+        dispatch(setCurrentUser(null));
         setIsAppLoading(false);
       }
     );

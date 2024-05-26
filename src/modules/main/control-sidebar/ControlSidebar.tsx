@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import {
   setNavbarVariant,
   setSidebarSkin,
@@ -11,6 +11,7 @@ import {
   toggleMenuChildIndent,
   toggleMenuItemFlat,
   toggleSidebarMenu,
+  toggleTopNavigation,
 } from '@app/store/reducers/ui';
 import {
   NAVBAR_DARK_VARIANTS,
@@ -22,6 +23,7 @@ import useScrollPosition from '@app/hooks/useScrollPosition';
 import styled from 'styled-components';
 import { Checkbox, Select } from '@app/styles/common';
 import { useAppDispatch, useAppSelector } from '@app/store/store';
+import { addWindowClass, removeWindowClass } from '@app/utils/helpers';
 
 export const HorizontalFormItem = styled.div`
   display: flex;
@@ -54,10 +56,11 @@ const ControlSidebar = () => {
   const headerBorder = useAppSelector((state) => state.ui.headerBorder);
   const headerFixed = useAppSelector((state) => state.ui.headerFixed);
   const footerFixed = useAppSelector((state) => state.ui.footerFixed);
+  const layoutFixed = useAppSelector((state) => state.ui.layoutFixed);
   const navbarVariant = useAppSelector((state) => state.ui.navbarVariant);
   const sidebarSkin = useAppSelector((state) => state.ui.sidebarSkin);
   const layoutBoxed = useAppSelector((state) => state.ui.layoutBoxed);
-  const layoutFixed = useAppSelector((state) => state.ui.layoutFixed);
+  const topNavigation = useAppSelector((state) => state.ui.topNavigation);
   const menuItemFlat = useAppSelector((state) => state.ui.menuItemFlat);
   const menuChildIndent = useAppSelector((state) => state.ui.menuChildIndent);
   const menuSidebarCollapsed = useAppSelector(
@@ -83,6 +86,10 @@ const ControlSidebar = () => {
 
   const handleLayoutBoxedChange = () => {
     dispatch(toggleLayoutBoxed());
+  };
+
+  const handleTopNavigationChange = () => {
+    dispatch(toggleTopNavigation());
   };
 
   const handleLayoutFixedChange = () => {
@@ -116,6 +123,46 @@ const ControlSidebar = () => {
     return `${73 - (scrollPosition <= 57 ? scrollPosition : 57)}px`;
   }, [scrollPosition, headerFixed]);
 
+  useEffect(() => {
+    if (footerFixed) {
+      addWindowClass('layout-footer-fixed');
+    } else {
+      removeWindowClass('layout-footer-fixed');
+    }
+  }, [footerFixed]);
+
+  useEffect(() => {
+    if (headerFixed) {
+      addWindowClass('layout-navbar-fixed');
+    } else {
+      removeWindowClass('layout-navbar-fixed');
+    }
+  }, [headerFixed]);
+
+  useEffect(() => {
+    if (layoutBoxed) {
+      addWindowClass('layout-boxed');
+    } else {
+      removeWindowClass('layout-boxed');
+    }
+  }, [layoutBoxed]);
+
+  useEffect(() => {
+    if (layoutFixed) {
+      addWindowClass('layout-fixed');
+    } else {
+      removeWindowClass('layout-fixed');
+    }
+  }, [layoutFixed]);
+
+  useEffect(() => {
+    if (darkMode) {
+      addWindowClass('dark-mode');
+    } else {
+      removeWindowClass('dark-mode');
+    }
+  }, [darkMode]);
+
   return (
     <aside
       className="control-sidebar control-sidebar-dark"
@@ -124,6 +171,7 @@ const ControlSidebar = () => {
         bottom: footerFixed ? '57px' : '0px',
         padding: `${getContainerPaddingTop()} 16px 16px 16px`,
         overflowY: 'scroll',
+        height: '100%',
       }}
     >
       <h5>Customize AdminLTE</h5>
@@ -140,7 +188,14 @@ const ControlSidebar = () => {
               checked={layoutBoxed}
               onChange={handleLayoutBoxedChange}
             />
-            <label>Boxed (Broken when header or footer is fixed)</label>
+            <label>Boxed</label>
+          </HorizontalFormItem>
+          <HorizontalFormItem>
+            <Checkbox
+              checked={topNavigation}
+              onChange={handleTopNavigationChange}
+            />
+            <label>Top Navigation</label>
           </HorizontalFormItem>
         </div>
 
@@ -149,6 +204,7 @@ const ControlSidebar = () => {
         <div className="mb-4">
           <HorizontalFormItem>
             <Checkbox
+              disabled={layoutBoxed}
               checked={headerFixed}
               onChange={handleHeaderFixedChange}
             />
@@ -168,6 +224,7 @@ const ControlSidebar = () => {
         <div className="mb-4">
           <HorizontalFormItem>
             <Checkbox
+              disabled={topNavigation}
               checked={menuSidebarCollapsed}
               onChange={handleMenuSidebarCollapsed}
             />
@@ -175,6 +232,7 @@ const ControlSidebar = () => {
           </HorizontalFormItem>
           <HorizontalFormItem>
             <Checkbox
+              disabled={layoutBoxed}
               checked={layoutFixed}
               onChange={handleLayoutFixedChange}
             />
@@ -182,6 +240,7 @@ const ControlSidebar = () => {
           </HorizontalFormItem>
           <HorizontalFormItem>
             <Checkbox
+              disabled={topNavigation}
               checked={menuItemFlat}
               onChange={handleMenuItemFlatChange}
             />
@@ -189,6 +248,7 @@ const ControlSidebar = () => {
           </HorizontalFormItem>
           <HorizontalFormItem>
             <Checkbox
+              disabled={topNavigation}
               checked={menuChildIndent}
               onChange={handleMenuChildIndentChange}
             />
@@ -201,9 +261,10 @@ const ControlSidebar = () => {
         <div className="mb-4">
           <HorizontalFormItem>
             <Checkbox
+              disabled={layoutBoxed}
               checked={footerFixed}
               onChange={handleFooterFixedChange}
-            ></Checkbox>
+            />
             <label>Fixed</label>
           </HorizontalFormItem>
         </div>
@@ -214,7 +275,7 @@ const ControlSidebar = () => {
             className="mt-1"
             value={navbarVariant}
             options={NAVBAR_LIGHT_VARIANTS}
-            onChange={(e: any) => onNavbarVariantChange(e.target.value)}
+            onChange={(e: any) => onNavbarVariantChange(e?.target?.value)}
           />
         </VerticalFormItem>
         <VerticalFormItem>

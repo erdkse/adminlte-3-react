@@ -39,3 +39,7 @@ export const removeWindowClass = (classList: string) => {
     window.classList.remove(classList);
   }
 };
+
+export const scrollbarVisible = (element: HTMLElement) => {
+  return element.scrollHeight > element.clientHeight;
+};

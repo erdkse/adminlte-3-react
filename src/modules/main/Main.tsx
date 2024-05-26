@@ -1,13 +1,26 @@
-import { useState, useEffect, useCallback } from 'react';
-import { Outlet } from 'react-router-dom';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { toggleSidebarMenu } from '@app/store/reducers/ui';
-import { addWindowClass, removeWindowClass } from '@app/utils/helpers';
+import {
+  addWindowClass,
+  removeWindowClass,
+  scrollbarVisible,
+} from '@app/utils/helpers';
 import ControlSidebar from '@app/modules/main/control-sidebar/ControlSidebar';
 import Header from '@app/modules/main/header/Header';
-import MenuSidebar from '@app/modules/main/menu-sidebar/MenuSidebar';
 import Footer from '@app/modules/main/footer/Footer';
 import { Image } from '@profabric/react-components';
 import { useAppDispatch, useAppSelector } from '@app/store/store';
+import MenuSidebar from './menu-sidebar/MenuSidebar';
+import { styled } from 'styled-components';
+import { Outlet } from 'react-router-dom';
+
+const MENU_WIDTH = 250;
+
+export const Container = styled.div<{ $isScrollbarVisible: boolean }>`
+  min-height: 100%;
+  ${(props) =>
+    `width: calc(100% - ${props.$isScrollbarVisible ? '16px' : '0px'});`};
+`;
 
 const Main = () => {
   const dispatch = useAppDispatch();
@@ -17,9 +30,14 @@ const Main = () => {
   const controlSidebarCollapsed = useAppSelector(
     (state) => state.ui.controlSidebarCollapsed
   );
+  const layoutBoxed = useAppSelector((state) => state.ui.layoutBoxed);
+  const topNavigation = useAppSelector((state) => state.ui.topNavigation);
+
   const screenSize = useAppSelector((state) => state.ui.screenSize);
   const currentUser = useAppSelector((state) => state.auth.currentUser);
   const [isAppLoaded, setIsAppLoaded] = useState(false);
+  const [isScrollbarVisible, setIsScrollbarVisible] = useState(false);
+  const mainRef = useRef<HTMLDivElement | undefined>();
 
   const handleToggleMenuSidebar = () => {
     dispatch(toggleSidebarMenu());
@@ -64,6 +82,28 @@ const Main = () => {
     }
   }, [screenSize, controlSidebarCollapsed]);
 
+  const handleUIChanges = () => {
+    setIsScrollbarVisible(scrollbarVisible(window.document.body));
+  };
+
+  useEffect(() => {
+    window.document.addEventListener('scroll', handleUIChanges);
+    window.document.addEventListener('resize', handleUIChanges);
+
+    return () => {
+      window.document.removeEventListener('scroll', handleUIChanges);
+      window.document.removeEventListener('resize', handleUIChanges);
+    };
+  }, []);
+
+  useEffect(() => {
+    handleUIChanges();
+  }, [mainRef.current]);
+
+  useEffect(() => {
+    console.log('isScrollbarVisible', isScrollbarVisible);
+  }, [isScrollbarVisible]);
+
   const getAppTemplate = useCallback(() => {
     if (!isAppLoaded) {
       return (
@@ -80,17 +120,30 @@ const Main = () => {
     }
     return (
       <>
-        <Header />
+        <Header
+          containered={layoutBoxed}
+          style={{ marginLeft: topNavigation ? '0px' : `${MENU_WIDTH}px` }}
+        />
 
-        <MenuSidebar />
+        {!topNavigation && <MenuSidebar />}
 
-        <div className="content-wrapper">
-          <div className="pt-3" />
+        <div
+          ref={mainRef as any}
+          className="content-wrapper"
+          style={{ marginLeft: topNavigation ? '0px' : `${MENU_WIDTH}px` }}
+        >
           <section className="content">
-            <Outlet />
+            <div className={layoutBoxed ? 'container' : ''}>
+              <Outlet />
+            </div>
           </section>
         </div>
-        <Footer />
+
+        {/* <Content  containered={layoutBoxed} /> */}
+        <Footer
+          containered={layoutBoxed}
+          style={{ marginLeft: topNavigation ? '0px' : `${MENU_WIDTH}px` }}
+        />
         <ControlSidebar />
         <div
           id="sidebar-overlay"
@@ -104,9 +157,19 @@ const Main = () => {
         />
       </>
     );
-  }, [isAppLoaded, menuSidebarCollapsed, screenSize]);
+  }, [
+    isAppLoaded,
+    menuSidebarCollapsed,
+    screenSize,
+    layoutBoxed,
+    topNavigation,
+  ]);
 
-  return <div className="wrapper">{getAppTemplate()}</div>;
+  return (
+    <Container $isScrollbarVisible={isScrollbarVisible} className="wrapper">
+      {getAppTemplate()}
+    </Container>
+  );
 };
 
 export default Main;

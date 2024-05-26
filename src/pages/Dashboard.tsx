@@ -6,7 +6,7 @@ import {
   faChartSimple,
   faCartShopping,
   faUserPlus,
-  faChartPie
+  faChartPie,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -19,16 +19,71 @@ const Dashboard = () => {
         <div className="container-fluid">
           <div className="row">
             <div className="col-lg-3 col-6">
-              <SmallBox title='New Orders' text='150' navigateTo='#' variant='info' icon={{ content: <FontAwesomeIcon icon={faCartShopping} style={{fontSize: '62px'}} /> }}/>
+              <SmallBox
+                title="New Orders"
+                text="150"
+                navigateTo="#"
+                variant="info"
+                icon={{
+                  content: (
+                    <FontAwesomeIcon
+                      icon={faCartShopping}
+                      style={{ fontSize: '62px' }}
+                    />
+                  ),
+                }}
+              />
             </div>
             <div className="col-lg-3 col-6">
-              <SmallBox title='Bounce Rate' text='53 %' navigateTo='#' variant='success' icon={{ content: <FontAwesomeIcon icon={faChartSimple} style={{fontSize: '62px'}} /> }} loading/>
+              <SmallBox
+                title="Bounce Rate"
+                text="53 %"
+                navigateTo="#"
+                variant="success"
+                icon={{
+                  content: (
+                    <FontAwesomeIcon
+                      icon={faChartSimple}
+                      style={{ fontSize: '62px' }}
+                    />
+                  ),
+                }}
+                loading
+              />
             </div>
             <div className="col-lg-3 col-6">
-              <SmallBox title='User Registrations' text='44' navigateTo='#' variant='warning' icon={{ content: <FontAwesomeIcon icon={faUserPlus} style={{fontSize: '62px'}} /> }} loading='dark'/>
+              <SmallBox
+                title="User Registrations"
+                text="44"
+                navigateTo="#"
+                variant="warning"
+                icon={{
+                  content: (
+                    <FontAwesomeIcon
+                      icon={faUserPlus}
+                      style={{ fontSize: '62px' }}
+                    />
+                  ),
+                }}
+                loading="dark"
+              />
             </div>
             <div className="col-lg-3 col-6">
-              <SmallBox title='Unique Visitors' text='65' navigateTo='#' variant='danger' icon={{ content: <FontAwesomeIcon icon={faChartPie} style={{fontSize: '62px'}}/>, variant:'success' }}/>
+              <SmallBox
+                title="Unique Visitors"
+                text="65"
+                navigateTo="#"
+                variant="danger"
+                icon={{
+                  content: (
+                    <FontAwesomeIcon
+                      icon={faChartPie}
+                      style={{ fontSize: '62px' }}
+                    />
+                  ),
+                  variant: 'success',
+                }}
+              />
             </div>
           </div>
           <div className="row">

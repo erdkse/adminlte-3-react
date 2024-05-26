@@ -43,6 +43,7 @@ const Profile = () => {
                       height={100}
                       rounded
                       src={currentUser?.photoURL}
+                      fallbackSrc="/img/default-profile.png"
                       alt="User profile"
                     />
                   </div>
