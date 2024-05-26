@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0](https://github.com/erdkse/adminlte-3-react/compare/v0.2.43...v0.3.0) (2024-05-26)
+
+
+### Features
+
+* add small box ([b6e9439](https://github.com/erdkse/adminlte-3-react/commit/b6e9439da6ae065a138c39ece79c98814f13c494))
+* add top navigation ([ac65abd](https://github.com/erdkse/adminlte-3-react/commit/ac65abd2e4b82bc139cc749c14a94128ea66b5d4))
+
 ### [0.2.43](https://github.com/erdkse/adminlte-3-react/compare/v0.2.42...v0.2.43) (2024-05-25)
 
 ### [0.2.42](https://github.com/erdkse/adminlte-3-react/compare/v0.2.41...v0.2.42) (2024-05-24)
