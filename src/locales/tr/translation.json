@@ -1,0 +1,98 @@
+{
+  "login": {
+    "label": {
+      "signIn": "Oturumunuzu başlatmak için giriş yapın",
+      "rememberMe": "Beni Hatırla",
+      "forgotPass": "Şifremi unuttum",
+      "registerNew": "Üye ol"
+    },
+    "button": {
+      "signIn": {
+        "label": "Giriş Yap",
+        "social": "{{what}} kullanarak giriş yap"
+      },
+      "signUp": {
+        "label": "Üye Ol",
+        "social": "{{what}} kullanarak üye ol"
+      },
+      "signOut": "Çıkış Yap"
+    }
+  },
+  "register": {
+    "alreadyHave": "Zaten üyeliğim var",
+    "registerNew": "Yeni üyelik oluştur",
+    "label": "Üye Ol"
+  },
+  "recover": {
+    "forgotYourPassword": "Şifreni mi unuttun? Kolayca yenisini alabilirsin.",
+    "oneStepAway": "Yeni şifrenden sadece bir adım uzaktasın, şifreni şimdi yenile.",
+    "changePassword": "Şifre Değiştir",
+    "requestNewPassword": "Yeni Şifre Talep Et"
+  },
+  "main": {
+    "label": {
+      "moreInfo": "Daha fazla bilgi",
+      "follow": "Takip Et",
+      "aboutMe": "Hakkımda",
+      "education": "Eğitim",
+      "location": "Konum",
+      "skills": "Beceriler",
+      "notes": "Notlar",
+      "activity": "Hareketlilik",
+      "timeline": "Zaman Tüneli",
+      "settings": "Ayarlar"
+    }
+  },
+  "header": {
+    "label": {
+      "home": "Anasayfa",
+      "contact": "İletişim"
+    },
+    "language": {
+      "turkish": "Türkçe",
+      "english": "İngilizce",
+      "german": "Almanca",
+      "french": "Fransızca",
+      "spanish": "İspanyolca"
+    },
+    "messages": {
+      "ago": "{{quantity}} {{unit}} Önce",
+      "seeAll": "Tüm Mesajları Gör"
+    },
+    "notifications": {
+      "count": "{{quantity}} Bildirim",
+      "newMessagesCount": "{{quantity}} yeni mesaj",
+      "friendRequestsCount": "{{quantity}} arkadaşlık isteği",
+      "reportsCount": "{{quantity}} yeni rapor",
+      "seeAll": "Tüm Bildirimleri Gör"
+    },
+    "user": {
+      "profile": "Profil",
+      "followers": "Takipçi",
+      "sales": "Satış",
+      "friends": "Arkadaşlar"
+    }
+  },
+  "menusidebar": {
+    "label": {
+      "dashboard": "Pano",
+      "profile": "Profil",
+      "blank": "Boş",
+      "mainMenu": "Ana Menü",
+      "subMenu": "Alt Menü"
+    }
+  },
+  "footer": {
+    "version": "Versiyon",
+    "copyright": "Tüm hakları saklıdır."
+  },
+  "views": {
+    "user": {
+      "profile": "Kullanıcı Profili",
+      "following": "Takip Ettikleri"
+    }
+  },
+  "measurement": {
+    "quantityUnit": "{{quantity}} {{unit}}"
+  }
+}

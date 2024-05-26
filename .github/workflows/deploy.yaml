@@ -1,0 +1,29 @@
+name: Production Tag Deployment
+env:
+  VITE_NODE_ENV: ${{ secrets.VITE_NODE_ENV }}
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+  VITE_FIREBASE_CONFIG: ${{ secrets.VITE_FIREBASE_CONFIG }}
+  VITE_GA_ID: ${{ secrets.VITE_GA_ID }}
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  Deploy-Production:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+      - name: Pull Vercel Environment Information
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Build Project Artifacts
+        run: |
+          export NODE_OPTIONS="--max_old_space_size=4096"
+          vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Deploy Project Artifacts to Vercel
+        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}

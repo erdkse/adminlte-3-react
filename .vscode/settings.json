@@ -1,0 +1,7 @@
+{
+    "editor.formatOnPaste": false,
+    "editor.formatOnSave": false,
+    "editor.formatOnType": false,
+    "prettier-eslint.eslintIntegration": true,
+    "javascript.preferences.importModuleSpecifier": "non-relative"
+}

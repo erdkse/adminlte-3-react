@@ -1,0 +1,98 @@
+{
+  "login": {
+    "label": {
+      "signIn": "Sign in to start your session",
+      "rememberMe": "Remember Me",
+      "forgotPass": "I forgot my password",
+      "registerNew": "Register a new membership"
+    },
+    "button": {
+      "signIn": {
+        "label": "Sign In",
+        "social": "Sign in using {{what}}"
+      },
+      "signUp": {
+        "label": "Sign Up",
+        "social": "Sign up using {{what}}"
+      },
+      "signOut": "Sign Out"
+    }
+  },
+  "register": {
+    "alreadyHave": "I already have a membership",
+    "registerNew": "Register a new membership",
+    "label": "Register"
+  },
+  "recover": {
+    "forgotYourPassword": "You forgot your password? Here you can easily retrieve a new password.",
+    "oneStepAway": "You are only one step a way from your new password, recover your password now.",
+    "changePassword": "Change Password",
+    "requestNewPassword": "Request New Password"
+  },
+  "main": {
+    "label": {
+      "moreInfo": "More info",
+      "follow": "Follow",
+      "aboutMe": "About Me",
+      "education": "Education",
+      "location": "Location",
+      "skills": "Skills",
+      "notes": "Notes",
+      "activity": "Activity",
+      "timeline": "Timeline",
+      "settings": "Settings"
+    }
+  },
+  "header": {
+    "label": {
+      "home": "Home",
+      "contact": "Contact"
+    },
+    "language": {
+      "turkish": "Turkish",
+      "english": "English",
+      "german": "German",
+      "french": "French",
+      "spanish": "Spanish"
+    },
+    "messages": {
+      "ago": "{{quantity}} {{unit}} Ago",
+      "seeAll": "See All Messages"
+    },
+    "notifications": {
+      "count": "{{quantity}} Notifications",
+      "newMessagesCount": "{{quantity}} new messages",
+      "friendRequestsCount": "{{quantity}} friend requests",
+      "reportsCount": "{{quantity}} new reports",
+      "seeAll": "See All Notifications"
+    },
+    "user": {
+      "profile": "Profile",
+      "followers": "Followers",
+      "sales": "Sales",
+      "friends": "Friends"
+    }
+  },
+  "menusidebar": {
+    "label": {
+      "dashboard": "Dashboard",
+      "profile": "Profile",
+      "blank": "Blank",
+      "mainMenu": "Main Menu",
+      "subMenu": "Sub Menu"
+    }
+  },
+  "footer": {
+    "version": "Version",
+    "copyright": "All rights reserved."
+  },
+  "views": {
+    "user": {
+      "profile": "User Profile",
+      "following": "Following"
+    }
+  },
+  "measurement": {
+    "quantityUnit": "{{quantity}} {{unit}}"
+  }
+}

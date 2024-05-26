@@ -1,0 +1,52 @@
+@import url('https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.3.0/css/flag-icon.min.css');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/css/bootstrap.min.css');
+
+@import 'react-toastify/dist/ReactToastify.min.css';
+
+@import './scss/adminlte.scss';
+
+#root {
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+}
+
+.main-header .navbar-nav .nav-item .nav-link {
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+#sidebar-overlay {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.firebase-emulator-warning {
+  display: none;
+}
+
+.layout-navbar-fixed.layout-fixed .wrapper .sidebar {
+  margin-top: 0;
+}
+
+.layout-navbar-fixed .wrapper .brand-link {
+  padding-bottom: 11px;
+}
+
+.control-sidebar-slide-open .control-sidebar,
+.control-sidebar-slide-open .control-sidebar::before {
+  right: -15px;
+}
+.layout-fixed.control-sidebar-slide-open .control-sidebar,
+.control-sidebar-slide-open .control-sidebar::before {
+  right: 0px;
+}
+
+.control-sidebar-slide-open .control-sidebar,
+.control-sidebar-slide-open .control-sidebar::before {
+  transition: none;
+}
