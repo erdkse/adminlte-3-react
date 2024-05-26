@@ -104,8 +104,8 @@ const Header = ({ containered, ...rest }: { containered?: boolean } & any) => {
             </Link>
           </li>
           <li className="nav-item d-none d-sm-inline-block">
-            <Link to="/" className="nav-link">
-              {t('header.label.contact')}
+            <Link to="/profile" className="nav-link">
+              Profile
             </Link>
           </li>
         </ul>
