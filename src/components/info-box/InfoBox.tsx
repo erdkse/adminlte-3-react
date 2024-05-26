@@ -1,15 +1,23 @@
 import { ReactNode, useMemo } from 'react';
+import { VARIANT_TYPES } from '../../utils/component-properties';
+import Loading from '../Loading';
 
-type VARIANT_TYPES =
-  | 'primary'
-  | 'secondary'
-  | 'warning'
-  | 'danger'
-  | 'success'
-  | 'info'
-  | 'dark'
-  | 'light';
-
+  export interface InfoBoxProps {
+    loading?: 'dark' | boolean;
+    icon?: {
+      content: ReactNode;
+      variant?: VARIANT_TYPES;
+    };
+    variant?: VARIANT_TYPES;
+    title: string;
+    text: string;
+    progressBar?: {
+      description?: string;
+      level: number;
+      variant?: VARIANT_TYPES;
+    };
+  }
+  
 export const InfoBox = ({
   variant,
   title,
@@ -17,21 +25,7 @@ export const InfoBox = ({
   progressBar,
   icon,
   loading,
-}: {
-  loading?: 'dark' | boolean;
-  icon?: {
-    content: ReactNode;
-    variant?: VARIANT_TYPES;
-  };
-  variant?: VARIANT_TYPES;
-  title: string;
-  text: string;
-  progressBar?: {
-    description?: string;
-    level: number;
-    variant?: VARIANT_TYPES;
-  };
-}) => {
+}: InfoBoxProps) => {
   const progressBarContent = useMemo(() => {
     if (progressBar) {
       const proggressBarVariant = progressBar.variant || variant;
@@ -74,11 +68,7 @@ export const InfoBox = ({
         <span className="info-box-number">{text}</span>
         {progressBarContent}
       </div>
-      {loading && (
-        <div className={`overlay ${typeof loading === 'string' && loading}`}>
-          <i className="fas fa-2x fa-sync-alt fa-spin"></i>
-        </div>
-      )}
+      <Loading show={loading}/>
     </div>
   );
 };
