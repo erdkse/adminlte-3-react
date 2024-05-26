@@ -1,23 +1,23 @@
 import { ReactNode, useMemo } from 'react';
 import { VARIANT_TYPES } from '../../utils/component-properties';
-import Loading from '../Loading';
+import { OverlayLoading } from '../OverlayLoading';
 
-  export interface InfoBoxProps {
-    loading?: 'dark' | boolean;
-    icon?: {
-      content: ReactNode;
-      variant?: VARIANT_TYPES;
-    };
+export interface InfoBoxProps {
+  loading?: 'dark' | boolean;
+  icon?: {
+    content: ReactNode;
     variant?: VARIANT_TYPES;
-    title: string;
-    text: string;
-    progressBar?: {
-      description?: string;
-      level: number;
-      variant?: VARIANT_TYPES;
-    };
-  }
-  
+  };
+  variant?: VARIANT_TYPES;
+  title: string;
+  text: string;
+  progressBar?: {
+    description?: string;
+    level: number;
+    variant?: VARIANT_TYPES;
+  };
+}
+
 export const InfoBox = ({
   variant,
   title,
@@ -68,7 +68,11 @@ export const InfoBox = ({
         <span className="info-box-number">{text}</span>
         {progressBarContent}
       </div>
-      <Loading show={loading}/>
+      {loading && (
+        <OverlayLoading
+          type={typeof loading === 'string' ? loading : 'light'}
+        />
+      )}
     </div>
   );
 };

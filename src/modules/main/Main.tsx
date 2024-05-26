@@ -8,11 +8,11 @@ import {
 import ControlSidebar from '@app/modules/main/control-sidebar/ControlSidebar';
 import Header from '@app/modules/main/header/Header';
 import Footer from '@app/modules/main/footer/Footer';
-import { Image } from '@profabric/react-components';
 import { useAppDispatch, useAppSelector } from '@app/store/store';
 import MenuSidebar from './menu-sidebar/MenuSidebar';
 import { styled } from 'styled-components';
 import { Outlet } from 'react-router-dom';
+import { Loading } from '@app/components/Loading';
 
 const MENU_WIDTH = 250;
 
@@ -100,23 +100,9 @@ const Main = () => {
     handleUIChanges();
   }, [mainRef.current]);
 
-  useEffect(() => {
-    console.log('isScrollbarVisible', isScrollbarVisible);
-  }, [isScrollbarVisible]);
-
   const getAppTemplate = useCallback(() => {
     if (!isAppLoaded) {
-      return (
-        <div className="preloader flex-column justify-content-center align-items-center">
-          <Image
-            className="animation__shake"
-            src="/img/logo.png"
-            alt="AdminLTELogo"
-            height={60}
-            width={60}
-          />
-        </div>
-      );
+      return <Loading />;
     }
     return (
       <>

@@ -8,6 +8,7 @@ export default {
     'plugin:react/recommended',
     'airbnb',
     'plugin:prettier/recommended',
+    'plugin:@typescript-eslint/recommended',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -28,13 +29,18 @@ export default {
     react: {
       version: 'detect',
     },
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
+    },
   },
   rules: {
     'react/jsx-filename-extension': [
       2,
       { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
     ],
-    'react/jsx-props-no-spreading': ['off'],
+    'react/jsx-props-no-spreading': 'off',
     'jsx-a11y/label-has-associated-control': ['error', { assert: 'either' }],
     'react/jsx-indent': 'off',
     'react/jsx-indent-props': 'off',
@@ -51,14 +57,34 @@ export default {
     'react-hooks/rules-of-hooks': 'error',
     'import/prefer-default-export': 'off',
     'react/function-component-definition': 'off',
-    'no-unused-vars ': ['off'],
+    'no-unused-vars': 'off',
     'import/extensions': 'off',
     'no-shadow': 'off',
     'no-use-before-define': 'off',
     'react/require-default-props': 'off',
     'no-promise-executor-return': 'off',
-    'no-unused-vars': 'off',
     'import/no-extraneous-dependencies': 'off',
     'react-hooks/exhaustive-deps': 'off',
+    'unused-imports/no-unused-imports': 'error',
+    '@typescript-eslint/no-unused-vars': [
+      'warn',
+      {
+        vars: 'all',
+        varsIgnorePattern: '^_',
+        args: 'after-used',
+        argsIgnorePattern: '^_',
+        ignoreRestSiblings: true,
+      },
+    ],
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
   },
+  overrides: [
+    {
+      files: ['*.ts', '*.tsx'],
+      rules: {
+        'no-undef': 'off',
+      },
+    },
+  ],
 };

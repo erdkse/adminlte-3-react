@@ -1,17 +1,15 @@
-const Loading = ({
-  show
-}: {
-  show?: 'dark' | boolean;
-}) => {
+import { Image } from '@profabric/react-components';
+
+export const Loading = () => {
   return (
-    <>
-      {show && (
-        <div className={`overlay ${typeof show === 'string' && show}`}>
-          <i className="fas fa-2x fa-sync-alt fa-spin"></i>
-        </div>
-      )}
-    </>
+    <div className="preloader flex-column justify-content-center align-items-center">
+      <Image
+        className="animation__shake"
+        src="/img/logo.png"
+        alt="AdminLTELogo"
+        height={60}
+        width={60}
+      />
+    </div>
   );
 };
-
-export default Loading;

@@ -1,9 +1,8 @@
-
 import { ReactNode, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { VARIANT_TYPES } from '../../utils/component-properties';
-import Loading from '../Loading';
+import { OverlayLoading } from '../OverlayLoading';
 
 export interface SmallBoxProps {
   loading?: 'dark' | boolean;
@@ -48,7 +47,12 @@ const SmallBox = ({
         <span className="mr-2">{t('main.label.moreInfo')}</span>
         <i className="fa fa-arrow-circle-right" />
       </Link>
-      <Loading show={loading}/>
+
+      {loading && (
+        <OverlayLoading
+          type={typeof loading === 'string' ? loading : 'light'}
+        />
+      )}
     </div>
   );
 };

@@ -23,6 +23,7 @@ import { setCurrentUser } from './store/reducers/auth';
 import { firebaseAuth } from './firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import { useAppDispatch, useAppSelector } from './store/store';
+import { Loading } from './components/Loading';
 
 const { VITE_NODE_ENV } = import.meta.env;
 
@@ -70,7 +71,7 @@ const App = () => {
   }, [location]);
 
   if (isAppLoading) {
-    return <p>Loading</p>;
+    return <Loading />;
   }
 
   return (
