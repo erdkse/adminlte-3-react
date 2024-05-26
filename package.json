@@ -38,7 +38,7 @@
     "@fortawesome/free-regular-svg-icons": "6.5.2",
     "@fortawesome/free-solid-svg-icons": "6.5.2",
     "@fortawesome/react-fontawesome": "0.2.2",
-    "@profabric/react-components": "0.2.5-beta.3",
+    "@profabric/react-components": "0.2.5-beta.5",
     "@reduxjs/toolkit": "2.2.5",
     "firebase": "10.12.1",
     "formik": "2.4.6",

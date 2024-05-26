@@ -1,8 +1,13 @@
 import { Outlet } from 'react-router-dom';
 
-export const Content = ({ containered }: { containered?: boolean }) => {
+export const Content = ({
+  containered,
+  ...rest
+}: {
+  containered?: boolean;
+} & any) => {
   return (
-    <div className="content-wrapper" style={{ marginLeft: '0px' }}>
+    <div className="content-wrapper" {...rest}>
       <section className="content">
         <div className={containered ? 'container' : ''}>
           <Outlet />

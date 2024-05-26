@@ -3,18 +3,23 @@ import { DateTime } from 'luxon';
 import packageJSON from '../../../../package.json';
 
 const Footer = ({
-  style,
+  style = {},
   containered,
 }: {
-  style: any;
+  style?: any;
   containered?: boolean;
 }) => {
   const [t] = useTranslation();
 
   return (
-    <footer className="main-footer" style={style}>
+    <footer className="main-footer" style={{ ...style }}>
       <div
-        style={{ width: '100%', display: 'flex', alignItems: 'center' }}
+        style={{
+          width: '100%',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}
         className={containered ? 'container' : ''}
       >
         <strong>

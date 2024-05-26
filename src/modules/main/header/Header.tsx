@@ -26,17 +26,12 @@ const StyledBrandImage = styled(Image)`
   }
 `;
 
-const Header = ({
-  containered,
-  style = {},
-}: {
-  containered?: boolean;
-  style?: any;
-}) => {
+const Header = ({ containered, ...rest }: { containered?: boolean } & any) => {
   const [t] = useTranslation();
   const dispatch = useAppDispatch();
   const navbarVariant = useAppSelector((state) => state.ui.navbarVariant);
   const headerBorder = useAppSelector((state) => state.ui.headerBorder);
+  const topNavigation = useAppSelector((state) => state.ui.topNavigation);
 
   const handleToggleMenuSidebar = () => {
     dispatch(toggleSidebarMenu());
@@ -55,48 +50,54 @@ const Header = ({
   }, [navbarVariant, headerBorder]);
 
   return (
-    <nav className={getContainerClasses()} style={style}>
+    <nav className={getContainerClasses()} {...rest}>
       <div
         style={{ width: '100%', display: 'flex', alignItems: 'center' }}
         className={containered ? 'container' : ''}
       >
-        <Link to="/" className="brand-link" style={{ display: 'contents' }}>
-          <StyledBrandImage
-            src="/img/logo.png"
-            alt="AdminLTE Logo"
-            width={33}
-            height={33}
-            rounded
-          />
-          <span
-            className="brand-text font-weight-light"
-            style={{ color: 'rgba(0, 0, 0, 0.9)' }}
-          >
-            AdminLTE 3
-          </span>
-        </Link>
+        {topNavigation && (
+          <>
+            <Link to="/" className="brand-link" style={{ display: 'contents' }}>
+              <StyledBrandImage
+                src="/img/logo.png"
+                alt="AdminLTE Logo"
+                width={33}
+                height={33}
+                rounded
+              />
+              <span
+                className="brand-text font-weight-light"
+                style={{ color: 'rgba(0, 0, 0, 0.9)' }}
+              >
+                AdminLTE 3
+              </span>
+            </Link>
 
-        {/* <button
-          className="navbar-toggler order-1"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarCollapse"
-          aria-controls="navbarCollapse"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button> */}
-        <ul className="navbar-nav">
-          {/* <li className="nav-item">
             <button
-              onClick={handleToggleMenuSidebar}
+              className="navbar-toggler order-1"
               type="button"
-              className="nav-link"
+              data-toggle="collapse"
+              data-target="#navbarCollapse"
+              aria-controls="navbarCollapse"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
             >
-              <i className="fas fa-bars" />
+              <span className="navbar-toggler-icon"></span>
             </button>
-          </li> */}
+          </>
+        )}
+        <ul className="navbar-nav">
+          {!topNavigation && (
+            <li className="nav-item">
+              <button
+                onClick={handleToggleMenuSidebar}
+                type="button"
+                className="nav-link"
+              >
+                <i className="fas fa-bars" />
+              </button>
+            </li>
+          )}
           <li className="nav-item d-none d-sm-inline-block">
             <Link to="/" className="nav-link">
               {t('header.label.home')}
