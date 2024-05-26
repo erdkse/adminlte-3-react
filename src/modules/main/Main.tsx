@@ -122,7 +122,13 @@ const Main = () => {
       <>
         <Header
           containered={layoutBoxed}
-          style={{ marginLeft: topNavigation ? '0px' : `${MENU_WIDTH}px` }}
+          style={{
+            marginLeft: !['sm', 'xs'].includes(screenSize)
+              ? topNavigation
+                ? '0px'
+                : `${MENU_WIDTH}px`
+              : '0px',
+          }}
         />
 
         {!topNavigation && <MenuSidebar />}
@@ -130,7 +136,13 @@ const Main = () => {
         <div
           ref={mainRef as any}
           className="content-wrapper"
-          style={{ marginLeft: topNavigation ? '0px' : `${MENU_WIDTH}px` }}
+          style={{
+            marginLeft: !['sm', 'xs'].includes(screenSize)
+              ? topNavigation
+                ? '0px'
+                : `${MENU_WIDTH}px`
+              : '0px',
+          }}
         >
           <section className="content">
             <div className={layoutBoxed ? 'container' : ''}>
@@ -142,7 +154,13 @@ const Main = () => {
         {/* <Content  containered={layoutBoxed} /> */}
         <Footer
           containered={layoutBoxed}
-          style={{ marginLeft: topNavigation ? '0px' : `${MENU_WIDTH}px` }}
+          style={{
+            marginLeft:
+            !['sm', 'xs'].includes(screenSize)                ? topNavigation
+                  ? '0px'
+                  : `${MENU_WIDTH}px`
+                : '0px',
+          }}
         />
         <ControlSidebar />
         <div
