@@ -33,13 +33,13 @@ To login website you can `create` a user. All authenication related features are
 
 ## Development
 
+First, install the dependencies with `npm install` command.
+
 You need to run `npm run firebase:start` on a different terminal and keep it running.
 
 Then, in the project directory, you can run: `npm run dev`
 
 Open [http://localhost:5173](http://localhost:5173) to view it in the browser.
-
-`Note`: You must install firebase [emulator](https://firebase.google.com/docs/emulator-suite/install_and_configure).
 
 ## License
 
